@@ -97,8 +97,8 @@ footer p {
 
 #about-me .image-section {
   width: 35%;
-  text-align: right;
-  margin-left: -100px; /* Move image closer to the text */
+  text-align: left;
+  margin-left: 0px; 
 }
 
 /* Project */
@@ -220,3 +220,50 @@ a:hover {
 #wip .text-section {
   width: 100%;  /* Increase as needed */
 }
+
+/* Media query for mobile devices */
+@media (max-width: 480px) {
+  .container {
+    flex-direction: column;
+  }
+
+  #about-me .text-section {
+    width: 100%;
+  }
+
+  #about-me  .image-section img {
+    width: 75%; 
+    height: auto;
+    margin-right: 100px
+  }
+
+  .project .image-section img {
+    width: 75%; 
+    height: auto;
+    margin-right: -100px
+  }
+
+  nav ul {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Reduce text size */
+  .text-section p, li, a {
+    font-size: 0.7em;  /* Adjust as needed */
+  }
+
+  /* Reduce size of buttons */
+  div.buttons button.button,
+  div.buttons a.button {
+    padding: 3px 0.5px;  /* Adjust as needed */
+    font-size: 0.7em;  /* Adjust as needed */
+  }
+
+  /* Increase size of hyperlink text */
+  a {
+    font-size: 1em;  /* Adjust as needed */
+  }
+
+}
+
