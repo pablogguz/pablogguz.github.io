@@ -1,0 +1,222 @@
+/* Reset */
+body, h1, h2, h3, ul, p {
+  margin: 0;
+  padding: 0;
+}
+
+/* Global Styles */
+body {
+  background-color: #333333;
+  font-family: 'Roboto Mono', monospace;
+  color: #808080;
+  line-height: 1.6;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Navigation */
+nav ul {
+  list-style: none;
+  text-align: center;
+  background-color: #333333;  /* Match with body background-color */
+  padding: 1em;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 20px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: 500;
+  text-transform: lowercase;
+}
+
+/* Main Content */
+main {
+  padding: 20px;
+  text-align: center;
+}
+
+section {
+  margin-bottom: 40px;
+}
+
+section h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  font-weight: 400;
+  text-transform: lowercase;
+}
+
+section p {
+  font-size: 16px;
+  color: #dddddd;
+}
+
+/* Footer */
+footer {
+  background-color: #333333;  /* Match with body background-color */
+  text-align: center;
+  padding: 1em;
+  position: relative;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+footer p {
+  font-size: 14px;
+  color: #bbbbbb;
+}
+
+
+/* Container */
+.container {
+  max-width: 800px;
+  margin: auto;
+  text-align: left;
+}
+
+/* Theme Toggle */
+.theme-toggle {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+/* About Me */
+#about-me .text-section,
+#about-me .image-section {
+  display: inline-block;
+  vertical-align: top;
+}
+
+#about-me .text-section {
+  width: 60%;
+}
+
+#about-me .image-section {
+  width: 35%;
+  text-align: right;
+  margin-left: -100px; /* Move image closer to the text */
+}
+
+/* Project */
+.project .text-section,
+.project .image-section {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.project .text-section {
+  width: 60%;
+}
+
+.project .text-section .buttons {
+  margin-top: 10px;
+}
+
+.button {
+  cursor: pointer;
+  background-color: #ccc;
+  padding: 3px 2px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px; /* adjust as needed */
+  display: inline-block;
+  text-align: center;
+  width: 100px; /* adjust as needed */
+  color: #3b3b3b;
+}
+
+.button, .button a {
+  color: #3b3b3b;
+}
+
+/* Remove underline from PDF link */
+.button, .button a {
+  text-decoration: none;
+}
+
+
+.abstract-content {
+  display: none;
+}
+
+.project .image-section {
+  width: 35%;
+  text-align: right;
+}
+
+.image-section img {
+  width: 130px;  /* Adjust as needed */
+  border-radius: 50%;
+}
+
+.project .image-section {
+  float: left;
+  margin-right: 20px;
+}
+
+.project .image-section img {
+  width: 100px;  /* Adjust as needed */
+}
+
+.theme-icon {
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.theme-icon:hover {
+  opacity: 0.7;
+}
+
+a {
+  color: rgb(62, 183, 240);
+  text-decoration: none;
+}
+
+a {
+  color: #ffffff; /* white */
+  text-decoration: underline;
+  text-decoration-color: #808080; /* medium gray */
+  transition: text-decoration-color 0.3s ease; /* 0.3s duration, ease timing function */
+}
+
+a:hover {
+  text-decoration-color: #ffffff; /* white */
+}
+
+.fab {
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.project .image-section img {
+  width: 70%; /* Sets width to 120% of the original size */
+  height: auto;
+}
+
+.button.abstract-toggle {
+  cursor: pointer;
+  background-color: #ccc;
+  padding: 6px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px; /* adjust as needed */
+  display: inline-block;
+  text-align: center;
+}
+
+.abstract-content {
+  font-size: 12px; /* Adjust as needed */
+}
+
+.image-section img {
+  border-radius: 0%; /* This will make sure the image is square */
+}
+
+
+#wip .text-section {
+  width: 100%;  /* Increase as needed */
+}
