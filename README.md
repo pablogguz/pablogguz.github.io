@@ -1,2 +1,1 @@
-# pablogguz.me
-my personal website
+# my personal website
