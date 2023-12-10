@@ -1,23 +1,26 @@
-/* Reset */
-body, h1, h2, h3, ul, p {
-  margin: 0;
-  padding: 0;
-}
+
+
+
 
 /* Global Styles */
 body {
-  background-color: #333333;
+  background-color: #242424;
   font-family: 'Roboto Mono', monospace;
-  color: #808080;
+  color: #cccccc;
   line-height: 1.6;
   transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+body, h1, h2, h3, ul, p {
+  margin: 0;
+  padding: 0;
 }
 
 /* Navigation */
 nav ul {
   list-style: none;
   text-align: center;
-  background-color: #333333;  /* Match with body background-color */
+  background-color: #242424;
   padding: 1em;
   transition: background-color 0.5s ease, color 0.5s ease;
 }
@@ -29,12 +32,13 @@ nav ul li {
 
 nav ul li a {
   text-decoration: none;
-  color: #ffffff;
+  color: #cccccc;
   font-weight: 500;
   text-transform: lowercase;
 }
 
 /* Main Content */
+
 main {
   padding: 20px;
   text-align: center;
@@ -52,13 +56,13 @@ section h2 {
 }
 
 section p {
-  font-size: 16px;
-  color: #dddddd;
+  font-size: 14px;
 }
 
 /* Footer */
+
 footer {
-  background-color: #333333;  /* Match with body background-color */
+  background-color: #242424;
   text-align: center;
   padding: 1em;
   position: relative;
@@ -66,16 +70,17 @@ footer {
 }
 
 footer p {
-  font-size: 14px;
-  color: #bbbbbb;
+  font-size: 10px;
+  color: #cccccc;
 }
 
-
 /* Container */
+
 .container {
-  max-width: 800px;
+  max-width: 1200px;
   margin: auto;
   text-align: left;
+  text-align:  justify;
 }
 
 /* Theme Toggle */
@@ -102,6 +107,7 @@ footer p {
 }
 
 /* Project */
+
 .project .text-section,
 .project .image-section {
   display: inline-block;
@@ -116,28 +122,38 @@ footer p {
   margin-top: 10px;
 }
 
+/* Buttons */
+
 .button {
   cursor: pointer;
-  background-color: #ccc;
+  background-color: #E3E3E3 !important;
   padding: 3px 2px;
   border: none;
-  border-radius: 4px;
-  font-size: 14px; /* adjust as needed */
-  display: inline-block;
+  border-radius: 6px; /* Slightly larger radius for a modern look */
+  font-size: 12px !important;
   text-align: center;
-  width: 100px; /* adjust as needed */
+  display: inline-block;
+  width: 110px; /* Auto width based on content */
+  transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s; /* Smooth transitions for interactive effects */
   color: #3b3b3b;
+
+  font-family: 'Roboto Mono', monospace;
+
+  /* Adding a subtle shadow for depth */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
 }
 
-.button, .button a {
-  color: #3b3b3b;
+a[class="button"] {
+  width: 110px; /* adjust as needed */
+  padding: 4px !important;
 }
 
 /* Remove underline from PDF link */
+
 .button, .button a {
   text-decoration: none;
 }
-
 
 .abstract-content {
   display: none;
@@ -172,19 +188,14 @@ footer p {
 }
 
 a {
-  color: rgb(62, 183, 240);
-  text-decoration: none;
-}
-
-a {
-  color: #ffffff; /* white */
+  color: #ffffff; /* black */
   text-decoration: underline;
-  text-decoration-color: #808080; /* medium gray */
+  text-decoration-color: #cccccc; /* medium gray */
   transition: text-decoration-color 0.3s ease; /* 0.3s duration, ease timing function */
 }
 
 a:hover {
-  text-decoration-color: #ffffff; /* white */
+  text-decoration-color: #242424; /* black */
 }
 
 .fab {
@@ -193,7 +204,7 @@ a:hover {
 }
 
 .project .image-section img {
-  width: 70%; /* Sets width to 120% of the original size */
+  width: 35%; /* Sets width to 120% of the original size */
   height: auto;
 }
 
@@ -216,7 +227,6 @@ a:hover {
   border-radius: 0%; /* This will make sure the image is square */
 }
 
-
 #wip .text-section {
   width: 100%;  /* Increase as needed */
 }
@@ -237,8 +247,12 @@ a:hover {
     margin-right: 100px
   }
 
+  .project .text-section {
+    width: 90%; 
+  }
+
   .project .image-section img {
-    width: 75%; 
+    width: 100%; 
     height: auto;
     margin-right: -100px
   }
@@ -247,7 +261,6 @@ a:hover {
     display: flex;
     flex-direction: column;
   }
-
   /* Reduce text size */
   .text-section p, li, a {
     font-size: 0.7em;  /* Adjust as needed */
@@ -256,14 +269,39 @@ a:hover {
   /* Reduce size of buttons */
   div.buttons button.button,
   div.buttons a.button {
-    padding: 3px 0.5px;  /* Adjust as needed */
-    font-size: 0.7em;  /* Adjust as needed */
+    padding: 3px 0.5px;  
+    font-size: 0.7em;  
   }
 
   /* Increase size of hyperlink text */
   a {
     font-size: 1em;  /* Adjust as needed */
   }
+
+.button {
+  cursor: pointer;
+  background-color: #E3E3E3 !important;
+  padding: 3px 2px;
+  border: none;
+  border-radius: 6px; /* Slightly larger radius for a modern look */
+  font-size: 10px !important;
+  text-align: center;
+  display: inline-block;
+  width: 90px; /* Auto width based on content */
+  transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s; /* Smooth transitions for interactive effects */
+  color: #3b3b3b;
+
+  font-family: 'Roboto Mono', monospace;
+
+  /* Adding a subtle shadow for depth */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+}
+
+a[class="button"] {
+  width: 90px; /* adjust as needed */
+  padding: 1.5px !important;
+}
 
 }
 
