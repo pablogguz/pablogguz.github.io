@@ -1,0 +1,34 @@
+# [[project]]
+# name = ""
+# desc = ""
+# tags = ["", ""]
+# links = [
+#   { name = "", url = "" },
+#   { name = "", url = "" },
+# ]
+
+[[project]]
+name = "From everywhere to Spain"
+desc = "Shiny app to explore the international migrant stock in Spain using microdata from administrative municipal registers"
+tags = ["shiny", "dataviz", "migration"]
+links = [
+  { name = "shiny app", url = "https://pablogguz.shinyapps.io/dataviz_migration_esp/" },
+  # { name = "", url = "" },
+]
+
+[[project]]
+name = "Placement outcomes for PhD graduates in economics"
+desc = "I construct a novel dataset with individual-level information on PhD placement outcomes for a total of 29 economics departments worldwide to answer the following question: who hires PhD graduates in Economics?"
+tags = ["shiny", "dataviz", "econphd"]
+links = [
+  { name = "shiny app", url = "https://pablogguz.shinyapps.io/econphd_placements/" },
+  { name = "github", url = "https://github.com/pablogguz/econphd_placements" },
+]
+
+[[project]]
+name = "Gender gaps in the labor market impact of the COVID-19 pandemic (w/ Claudia Hupkau)"
+desc = "Policy brief exploring the impact of the Covid-19 pandemic on gender gaps in labor market outcomes"
+tags = ["policybrief", "gender", "labor"]
+links = [
+  { name = "pdf", url = "https://www.esade.edu/ecpol/en/publications/las-brechas-de-genero-en-el-mercado-laboral-durante-la-pandemia/"}
+]
