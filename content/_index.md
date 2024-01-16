@@ -15,10 +15,7 @@ My work leverages large-scale datasets to answer policy-oriented research questi
 
 Fancy a (virtual) coffee?
 
-<!---
-My work leverages large-scale household surveys and administrative datasets to answer policy-oriented research questions in the realm of applied microeconomics.
-
-I also design interactive visualizations tools to maximize the impact of key research products and, in my free time, to tell data stories about whatever I deem interesting.
-
-Fancy a (virtual) coffee?
---->
+### Stuff I'm doing 
+-	Learning [Quarto](https://quarto.org/)
+-	Thinking about [digital gardens](https://maggieappleton.com/garden-history) and idea management systems
+-	Trying not to suck at chess

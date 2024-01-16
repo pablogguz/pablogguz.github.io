@@ -6,13 +6,25 @@
     border-radius: 0 !important;
   }
 
+  .prose a {
+    transition: text-decoration-color 0.3s ease !important; /* 0.3s duration, ease timing function */
+    border-bottom:  none !important;
+    text-decoration: underline !important;
+    text-decoration-color: #5871a200 !important;
+  }
+
+  .prose a:hover {
+    text-decoration: underline;
+    text-decoration-color: #5871a2 !important; /* black */
+  }
+
   /* light mode colors */
   body {
-    --primary-color: #5871a2;
+    --primary-color: #5bafd7;
     --primary-pale-color: #5871a210;
     --text-color: #3C4043;
     --text-pale-color: #9b9faa;
-    --bg-color: #ffffff; 
+    --bg-color: #f2f2f2; 
     --highlight-mark-color: #5f75b045;
   
     --callout-note-color: #5871a2;
@@ -25,11 +37,11 @@
 
   /* dark mode colors */
   body.dark {
-    --primary-color: #5d77ac;
+    --primary-color: #5bafd7;
     --primary-pale-color: #5d77ac20;
-    --text-color: #9197a5;
+    --text-color: #bcbcbc;
     --text-pale-color: #626975;
-    --bg-color: #202124;
+    --bg-color: #242424;
     --highlight-mark-color: #5f75b045;
 
     --callout-note-color: #5d77ac;
