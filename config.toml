@@ -44,7 +44,7 @@ anchors = "on"
 name = ""                         # Your name
 id = "pablo garcía-guzmán"                           # Your id / username / handle
 bio = ""                          # Your bio
-avatar = "img/cat.jpg"            # Your avatar
+avatar = "img/profile2.jpg"            # Your avatar
 links = [                             # Your links
     { name = "GitHub", icon = "github", url = "https://github.com/pablogguz" },
     { name = "Twitter", icon = "twitter", url = "https://twitter.com/pablogguz_" },
