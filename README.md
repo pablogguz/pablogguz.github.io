@@ -1,3 +1,3 @@
 # my personal website
 
-feel free to fork it, just give credit :-) 
+built with [Zola](https://www.getzola.org/) and [serene](https://github.com/isunjn/serene).
