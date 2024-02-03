@@ -20,8 +20,3 @@ truncate_summary = false
 featured = false
 +++
 
-new post about something...
-
-<!-- more -->
-
-more post content...

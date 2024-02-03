@@ -16,6 +16,5 @@ My work leverages large-scale datasets to answer policy-oriented research questi
 Fancy a (virtual) coffee?
 
 ### Stuff I'm doing 
--	Learning [Quarto](https://quarto.org/)
 -	Thinking about [digital gardens](https://maggieappleton.com/garden-history) and idea management systems
 -	Trying not to suck at chess
