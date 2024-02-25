@@ -10,4 +10,7 @@
     <a href="https://github.com/isunjn/serene" target="_blank" rel='noreferrer noopener'>serene</a>
   </div>
   {% endif %}
+  <div class="disclaimer">
+    {{ config.extra.footer_disclaimer | trim | markdown | safe }}
+  </div>
 </footer>

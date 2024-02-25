@@ -87,6 +87,7 @@ outdate_alert_text_before = "This article was last updated "
 outdate_alert_text_after = " days ago and may be out of date."
 
 footer_copyright = "made by pablo w/ ❤️ © 2024"
+footer_disclaimer = "All the content shared on this website is completely my own and does not reflect the views of the EBRD"
 
 footer_credits = true                 # Whether to show "powered by zola and serene" in footer
 
