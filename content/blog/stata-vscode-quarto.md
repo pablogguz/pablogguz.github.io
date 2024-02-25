@@ -36,17 +36,17 @@ I know what you are thinking.
 **jUsT dOn't usE sTAta BrO**.
 
 
-I get it. I code in multiple languages and it is indeed not a good idea to *just* use Stata, simply because there are lots of cool things (web scraping, geospatial stuff, ML) that you would not be able to do.
+I get it. I code in multiple languages and it is indeed not a good idea to *only* use Stata, simply because there are lots of cool things (web scraping, geospatial stuff, ML) that you would miss out on by doing so.
 
 However, the truth is that if you do applied microeconomics for a living, in many cases **it would be very stupid not to use Stata**. Whoever tells you otherwise is i) not an applied microeconomist (good for them!) or ii) underestimating how important Stata is in the profession:
 
 - Stata can be found in [more than 70% of replication packages](https://www.r-bloggers.com/2023/12/usage-shares-of-programming-languages-in-economics-research/) for published papers in economics. It is followed by Matlab (which we deliberately ignore since it is aimed at structural work), and R comes in third with less than 10%. I am not going to argue whether this is a good or a bad equilibrium but _it is an equilibrium_, and if you want collaborate with others and be able to replicate their work, you will have to use Stata
 
-- For reduced-form econometrics, Stata is unparalleled. Period. I have been writing code for +3.5 years and it still amazes me how ridiculously cumbersome R and Python are relative to Stata when it comes to running regressions and manipulating regression output. For some specifications, it is simply not possible to use something else unless you want to code the estimator from scratch (good luck running modern difference-in-differences estimators for heterogeneous treatment effects in Python, for example)
+- For reduced-form econometrics, Stata is unparalleled. Period. I have been writing code for +3.5 years and it still amazes me how ridiculously cumbersome R and Python are relative to Stata when it comes to running regressions. For some specifications, it is simply not possible to use something else unless you want to code the estimator from scratch (good luck running modern difference-in-differences estimators for heterogeneous treatment effects in Python, for example)
 
 - Economists love regression tables. And again, the functionalities and flexibility of ```esttab``` to export fully formatted and reproducible LaTeX tables in Stata are light years ahead of the alternatives in other languages (e.g., ```stargazer``` in R)
 
-- For most people doing applied micro research or policy work, **coding will hardly ever be their comparative advantage**. Instead, their value lies in the quality of their ideas and how well they execute them – coding is only useful insofar as it helps in that purpose. Some folks (myself included) enjoy venturing off the beaten path, but most researchers would prioritize research productivity when the marginal cost of learning new data skills is too high. In this sense, Stata has a quite shallow and gentle learning curve, so a lot of people learn it as their first "language" and then just stick to it. I am not saying this is good (I think is bad!), but in the end people respond to incentives
+- For most people doing applied micro research or policy work, **coding will hardly ever be their comparative advantage**. Instead, your value lies in the quality of your ideas and how well you execute them – coding is only useful insofar as it helps in that purpose. Some folks (myself included) enjoy venturing off the beaten path, but most researchers would prioritize research productivity if the marginal cost of learning new data skills is sufficiently high. In this sense, Stata has a quite shallow and gentle learning curve, so usually people learn it as their first "language" and then just stick to it. I am not saying this is good (I think is bad!), but in the end people respond to incentives
 
 # Why VSCode
 
