@@ -8,11 +8,11 @@
   <meta name="color-scheme" content="light dark">
   {% block desc %}{% endblock desc %}
   <title>{% block title %}{% endblock title %}</title>
+  {% block head %}{% endblock head %}
   <link rel="icon" type="image/jpeg" sizes="32x32" href="/img/blue.jpg">
   {% include "_custom_font.html" %}
   {% include "_custom_css.html" %}
   <link rel="stylesheet" href="/main.css">
-  {% block head %}{% endblock head %}
   {% include "_head_extend.html" %}
 </head>
 
