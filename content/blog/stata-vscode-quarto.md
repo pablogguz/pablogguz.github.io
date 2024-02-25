@@ -25,7 +25,7 @@ cover_image = "https://pablogguz.github.io/img/dalle_vscode_stata_v2.webp"
 
 Over the last few decades, empirical economic research has witnessed what is widely termed as [the credibility revolution](https://www.aeaweb.org/articles?id=10.1257/jep.24.2.3), a paradigm shift that emphasized the importance of experimental and quasi-experimental methods to credibly identify causal relationships between variables. This transformative period has not only influenced the methodologies employed in academic papers but also strengthened the field's impact on policy-making, by providing more solid and rigorous evidence upon which to base decisions.
 
-The emphasis on methodologically robust empirical research has naturally elevated the importance of data and coding skills within the field. However, despite the increasing importance of coding in economics, many economists lag in adopting modern coding practices and development environments. One of the most widely used tools in the profession, [Stata](https://www.stata.com/), is not even a general-purpose programming language[^1] but a purpose-built statistical package. Stata is also commercial software, meaning that it does not have the benefits of open-source languages like Python or R, which have amassed extensive communities contributing to their development and offering support. Due to its nature, it has traditionally been hard to integrate Stata with modern IDEs, which results in a less efficient workflow when one has to write code in multiple languages or use the latest tools for version control, code completion, and so on.
+The emphasis on methodologically robust empirical research has naturally elevated the importance of data and coding skills within the field. However, despite the increasing importance of coding in economics, many economists lag in adopting modern coding practices and development environments. One of the most widely used tools in the profession, [Stata](https://www.stata.com/), is not even a general-purpose programming language but a purpose-built statistical package.[^1] Stata is also commercial software, meaning that it does not have the benefits of open-source languages like Python or R, which have amassed extensive communities contributing to their development and offering support. Due to its nature, it has traditionally been hard to integrate Stata with modern IDEs, resulting in a less efficient workflow when one has to write code in multiple languages or use the latest tools for version control, code completion, and so on.
 
 This post provides a quick tutorial on setting up a modern development environment for Stata with Visual Studio Code and Quarto. It is by no means perfect and it comes with its own caveats, but it is a step in the right direction for those who want to modernize a bit their workflow without having to give up on Stata.
 
@@ -40,13 +40,13 @@ I get it. I code in multiple languages and it is indeed not a good idea to *just
 
 However, the truth is that if you do applied microeconomics for a living, in many cases **it would be very stupid not to use Stata**. Whoever tells you otherwise is i) not an applied microeconomist (good for them!) or ii) underestimating how important Stata is in the profession:
 
-- Stata can be found in [more than 70% of replication packages](https://www.r-bloggers.com/2023/12/usage-shares-of-programming-languages-in-economics-research/) for published papers in economics. It is followed by Matlab (which we deliberately ignore since it is aimed at structural work), and R comes in third with less than 10%. I am not going to argue whether this is a good or a bad equilibrium but _it is an equilibrium_, and if you want to understand what others have done and collaborate you need to learn Stata
+- Stata can be found in [more than 70% of replication packages](https://www.r-bloggers.com/2023/12/usage-shares-of-programming-languages-in-economics-research/) for published papers in economics. It is followed by Matlab (which we deliberately ignore since it is aimed at structural work), and R comes in third with less than 10%. I am not going to argue whether this is a good or a bad equilibrium but _it is an equilibrium_, and if you want collaborate with others and be able to replicate their work, you will have to use Stata
 
 - For reduced-form econometrics, Stata is unparalleled. Period. I have been writing code for +3.5 years and it still amazes me how ridiculously cumbersome R and Python are relative to Stata when it comes to running regressions and manipulating regression output. For some specifications, it is simply not possible to use something else unless you want to code the estimator from scratch (good luck running modern difference-in-differences estimators for heterogeneous treatment effects in Python, for example)
 
 - Economists love regression tables. And again, the functionalities and flexibility of ```esttab``` to export fully formatted and reproducible LaTeX tables in Stata are light years ahead of the alternatives in other languages (e.g., ```stargazer``` in R)
 
-- For most people doing applied micro research or policy work, **coding will ever hardly be their comparative advantage**. Economists in academia are not commercial data scientists, and it does not make sense to pretend to be one.[^2] Instead, their value lies in the quality of their ideas and how well they execute them – coding is only useful insofar as it helps in that purpose. Some folks (myself included) enjoy venturing off the beaten path, but most researchers would prioritize research productivity when the marginal cost of learning new data skills is too high. In this sense, Stata has a quite shallow and gentle learning curve, so a lot of people learn it as their first "language" and then just stick to it. I am not saying this is good (I think is bad!), but in the end people respond to incentives.
+- For most people doing applied micro research or policy work, **coding will hardly ever be their comparative advantage**. Instead, their value lies in the quality of their ideas and how well they execute them – coding is only useful insofar as it helps in that purpose. Some folks (myself included) enjoy venturing off the beaten path, but most researchers would prioritize research productivity when the marginal cost of learning new data skills is too high. In this sense, Stata has a quite shallow and gentle learning curve, so a lot of people learn it as their first "language" and then just stick to it. I am not saying this is good (I think is bad!), but in the end people respond to incentives
 
 # Why VSCode
 
@@ -103,7 +103,7 @@ pip install nbstata
 python -m nbstata.install
 ```
 
-And that is it! Your machine should be now ready to run Quarto Markdown (```.qmd```) files in VSCode using the ```nbstata``` kernel.
+And that is it! Your machine should be now ready to render Quarto Markdown (```.qmd```) files in VSCode using the ```nbstata``` kernel.
 
 ## An example 
 
@@ -180,7 +180,7 @@ Let's create a simple dumbbell chart by sex:
   cap ren sh_sta_suic_fe_p5 fem_rate 
   cap ren sh_sta_suic_ma_p5 male_rate 
 
-  keep if !inlist(.,fem_rate,male_rate) // keep non-missings
+  keep if !inlist(.,fem_rate,male_rate) // keep non-missing pairs of female and male suicide rates
   bys countrycode (year): keep if _n == _N // keep latest country-year obs.
   drop if region == "" // drop regional aggregates
   keep if incomelevelname == "Low income" // keep low-income countries
@@ -211,15 +211,16 @@ Let's create a simple dumbbell chart by sex:
 
 # Caveats
 
-Sadly, the integration of Stata with VSCode and Quarto is far from perfect, specially if you are used to the native Stata editor and its functionalities. Here are some of the issues that bother me:
+Sadly, the integration of Stata with VSCode and Quarto is far from perfect, specially if you are used to the native Stata editor and its functionalities. Here are a couple of issues that bother me:
 
-- You will be missing the data browser and the variable explorer. This is a big one. The Stata data browser is also incredibly smooth and fast compared to the alternatives in R and Python, so it is a shame to lose one of its comparative advantages
+- You will be missing the data browser and the variable explorer. This is a big one. The Stata data browser is also incredibly smooth and fast compared to the alternatives in R and Python, so it is a shame to lose one of its comparative advantages. Although ```nbstata``` comes with [Jupyter magics](https://hugetim.github.io/nbstata/user_guide.html#magics) that allow for browsing, such as ```%browse``` for the main dataset and ```%frbrowse``` for frames, so far I have not figured out a way to expand the cell output in VSCode (nor in Jupyter itself), so this is not useful. If you know of a solution, please reach out!
+  
 - You will not be able to change the font for your charts within VSCode. Not a big deal, you can always change it by opening Stata itself and changing the defaults with the ```graph set``` commands, but it is a bit annoying
 
 
 # Troubleshooting
 
-In case you are finding issues with your setup, you should verify your installations and ensure that the Jupyter kernel is correctly set up and recognnized by your system.
+In case you are finding problems with your setup, you should verify your installations and ensure that the Jupyter kernel is correctly set up and recognnized by your system.
 
 To check if Quarto is installed and determine its version, open your command prompt (or terminal on macOS and Linux) and enter the following command:
 
@@ -266,8 +267,6 @@ To do so, install the [stataRun](https://marketplace.visualstudio.com/items?item
 -----------------------------------------------------------------
 
 [^1]: Stata though has its own matrix-based programming language, _Mata_. Some of the most popular user-written Stata packages, like ```reghdfe``` for regressions with high dimensional fixed effects, are largely written in Mata.
-
-[^2]: Unless you want to work in industry, of course.
 
 [^copilot]: For open-source languages, like R or Python, Copilot is a game-changer. For Stata, it is less useful, although I have to say that I am pleasantly surprised with the quality of its suggestions relative to ChatGPT 4.
 
