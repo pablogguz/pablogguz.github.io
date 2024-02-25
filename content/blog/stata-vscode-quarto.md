@@ -23,11 +23,11 @@ cover_image = "https://pablogguz.github.io/img/dalle_vscode_stata_v2.webp"
 
 <img src="/img/dalle_vscode_stata_v2.webp" width="600"/>
 
-Over the last few decades, empirical research in economics has witnessed what is widely termed as [the credibility revolution](https://www.aeaweb.org/articles?id=10.1257/jep.24.2.3), a paradigm shift that emphasized the importance of experimental and quasi-experimental methods to credibly identify causal relationships. This transformative period has not only influenced the methodologies employed in academic papers but also strengthened the field's impact on policy-making, by providing more solid and rigorous evidence upon which to base decisions.
+Over the last few decades, empirical economic research has witnessed what is widely termed as [the credibility revolution](https://www.aeaweb.org/articles?id=10.1257/jep.24.2.3), a paradigm shift that emphasized the importance of experimental and quasi-experimental methods to credibly identify causal relationships between variables. This transformative period has not only influenced the methodologies employed in academic papers but also strengthened the field's impact on policy-making, by providing more solid and rigorous evidence upon which to base decisions.
 
-The emphasis on methodologically robust empirical research has naturally elevated the importance of data and coding skills within the field. However, despite the increasing importance of coding in economics, many economists lag in adopting modern coding practices and development environments. In fact, one of the most widely used tools in the profession, [Stata](https://www.stata.com/), is not even a programming language[^1], but a purpose-built statistical package. Stata is a commercial software, meaning that it does not have the benefits of open-source languages like Python or R, which have amassed extensive communities contributing to their development and offering support. Due to its nature, it has traditionally been hard to integrate Stata with modern IDEs, which results in a less efficient workflow when one has to write code in multiple languages or wants to use the latest tools for version control, code completion, and so on.
+The emphasis on methodologically robust empirical research has naturally elevated the importance of data and coding skills within the field. However, despite the increasing importance of coding in economics, many economists lag in adopting modern coding practices and development environments. One of the most widely used tools in the profession, [Stata](https://www.stata.com/), is not even a general-purpose programming language[^1] but a purpose-built statistical package. Stata is also commercial software, meaning that it does not have the benefits of open-source languages like Python or R, which have amassed extensive communities contributing to their development and offering support. Due to its nature, it has traditionally been hard to integrate Stata with modern IDEs, which results in a less efficient workflow when one has to write code in multiple languages or use the latest tools for version control, code completion, and so on.
 
-This post is a tutorial on setting up a modern development environment for Stata with Visual Studio Code and Quarto. I do not want to oversell it as it comes with its own caveats, but it is a step in the right direction for those who want to modernize a bit their workflow without having to give up on Stata.
+This post provides a quick tutorial on setting up a modern development environment for Stata with Visual Studio Code and Quarto. It is by no means perfect and it comes with its own caveats, but it is a step in the right direction for those who want to modernize a bit their workflow without having to give up on Stata.
 
 # Why Stata
 
@@ -36,21 +36,21 @@ I know what you are thinking.
 **jUsT dOn't usE sTAta BrO**.
 
 
-I get it. I code in multiple languages in my work and it is indeed not a good idea to *just* use Stata, simply because there are lots of cool things (web scraping, geospatial stuff, ML) that otherwise you won't be able to do.
+I get it. I code in multiple languages and it is indeed not a good idea to *just* use Stata, simply because there are lots of cool things (web scraping, geospatial stuff, ML) that you would not be able to do.
 
 However, the truth is that if you do applied microeconomics for a living, in many cases **it would be very stupid not to use Stata**. Whoever tells you otherwise is i) not an applied microeconomist (good for them!) or ii) underestimating how important Stata is in the profession:
 
-- Stata can be found in [more than 70% of replication packages](https://www.r-bloggers.com/2023/12/usage-shares-of-programming-languages-in-economics-research/) for published papers in economics. It is followed by Matlab (which we deliberately ignore since it is aimed for structural work), and R comes in third with less than 10%. I am not going to argue whether this is a good or a bad equilibrium but _it is an equilibrium_, and if you want to understand what others have done and collaborate you need to learn Stata
+- Stata can be found in [more than 70% of replication packages](https://www.r-bloggers.com/2023/12/usage-shares-of-programming-languages-in-economics-research/) for published papers in economics. It is followed by Matlab (which we deliberately ignore since it is aimed at structural work), and R comes in third with less than 10%. I am not going to argue whether this is a good or a bad equilibrium but _it is an equilibrium_, and if you want to understand what others have done and collaborate you need to learn Stata
 
-- For reduced-form econometrics, Stata is unparallaled. Period. I have been writing code for +3.5 years and it still amazes me how ridiculously cumbersome R and Python are relative to Stata when it comes to running regressions. For some specifications, it is simply not possible to use something else unless you want to code the estimator from scratch (good luck running modern difference-in-differences estimators for heterogeneous treatment effects in Python, for example)
+- For reduced-form econometrics, Stata is unparalleled. Period. I have been writing code for +3.5 years and it still amazes me how ridiculously cumbersome R and Python are relative to Stata when it comes to running regressions and manipulating regression output. For some specifications, it is simply not possible to use something else unless you want to code the estimator from scratch (good luck running modern difference-in-differences estimators for heterogeneous treatment effects in Python, for example)
 
-- Economists love regression tables. And again, the functionalities and flexibility of ```esttab``` to export fully formatted and reproducible LaTeX tables in Stata are light years ahead of the alternatives in other languages (e.g., ```stargazer``` in R). 
+- Economists love regression tables. And again, the functionalities and flexibility of ```esttab``` to export fully formatted and reproducible LaTeX tables in Stata are light years ahead of the alternatives in other languages (e.g., ```stargazer``` in R)
 
-- If you do applied micro research or policy work, **coding will never truly be your comparative advantage**. An economist is not a commercial data scientist, and it does not make sense to pretend to be one.[^2] Instead, your value lies on the quality of your ideas and how good you execute them – programming is only useful insofar as it helps you in that purpose. Some folks (myself included) enjoy venturing off the beaten path, but most researchers would prioritize research productivity over learning new data skills. In this sense, Stata has a quite shallow and gentle learning curve, so a lot of people learn it as their first "language" and then just stick to it. I am not saying this is good (I think is bad!), but in the end people respond to incentives.
+- For most people doing applied micro research or policy work, **coding will ever hardly be their comparative advantage**. Economists in academia are not commercial data scientists, and it does not make sense to pretend to be one.[^2] Instead, their value lies in the quality of their ideas and how well they execute them – coding is only useful insofar as it helps in that purpose. Some folks (myself included) enjoy venturing off the beaten path, but most researchers would prioritize research productivity when the marginal cost of learning new data skills is too high. In this sense, Stata has a quite shallow and gentle learning curve, so a lot of people learn it as their first "language" and then just stick to it. I am not saying this is good (I think is bad!), but in the end people respond to incentives.
 
 # Why VSCode
 
-VSCode is Microsoft's open-source code editor. It supports a wide array of programming languages and comes with the usual IDE features like syntax highlighting, code completion, Copilot, and version control integration.
+VSCode is Microsoft's open-source code editor. It supports a wide array of programming languages and comes with the usual IDE features like syntax highlighting, code completion, [Copilot](https://github.com/features/copilot), and version control integration.[^copilot]
 
 More importantly, turns out that it is fairly straightforward to integrate VSCode with Stata via plug-ins. VSCode also has nice LaTeX extensions, which in my opinion makes it the only real alternative to Overleaf. This means that you can seamlessly integrate all your workflow into a single code editor, from data cleaning to drafting.
 
@@ -79,18 +79,18 @@ Go to [https://code.visualstudio.com/download](https://code.visualstudio.com/dow
 ## Step 3: Install VSCode extensions
 
 You will have to install two VSCode extensions:
-1. To get nice Stata syntax highlighting and code autocompletion, you will have to install the [Stata Enhanced](https://marketplace.visualstudio.com/items?itemName=kylebarron.stata-enhanced) package. Open VSCode, go to the extensions tab (highlighted in red in the screenshot), search for the extension, and install.
+1. To get nice Stata syntax highlighting and code autocompletion, you will have to install the [Stata Enhanced](https://marketplace.visualstudio.com/items?itemName=kylebarron.stata-enhanced) package. Open VSCode, go to the extensions tab (highlighted in red in the screenshot), search for the extension, and install it.
 2. For integrated render and preview for Quarto documents, repeat the steps above and install the [Quarto](https://marketplace.visualstudio.com/items?itemName=quarto.quarto) extension.
 
 ![Alt text](/img/stataenhanced_example.jpg)
 
 ## Step 4: Install ```nbstata```
 
-```nbstata``` is a Jupyter kernel for Stata, built on top of the functionalities of the ```pystata``` Python package introduced in Stata version 17. Unfortunately, this means that you will need Stata 17 or higher to use ```nbstata```.[^3] You can find the full user and installation guide here: [https://hugetim.github.io/nbstata/user_guide.html](https://hugetim.github.io/nbstata/user_guide.html).
+```nbstata``` is a Jupyter kernel for Stata, built on top of the functionalities of the ```pystata``` Python package introduced in Stata version 17. This means that you will need Stata 17 or higher to install it.[^3] 
 
-The short version goes as follows (for those who are interested, it might be useful to read the full guide to custom your installation to your needs and preferences):
+You can find the full user and installation guide [here](https://hugetim.github.io/nbstata/user_guide.html). For the curious, I encourage you to go through the author's guide. For the lazy ones, the short version goes as follows:
 
-1. In order to install ```nbstata```, you need an installation of Python 3.7 or higher. For first-time Python users, I would follow the suggestion from the author of ```nbstata``` and just install the [Anaconda distribution](https://www.anaconda.com/download/). If you want a lighter, minimalistic version, you can go for [Miniconda](https://docs.anaconda.com/free/miniconda/).[^4]
+1. To install ```nbstata```, you need an installation of Python 3.7 or higher. For first-time Python users, I would follow the suggestion from the author of ```nbstata``` and just install the [Anaconda distribution](https://www.anaconda.com/download/). If you want a lighter, minimalistic version, you can go for [Miniconda](https://docs.anaconda.com/free/miniconda/).[^4]
 2. Once you have installed Anaconda, open the Anaconda prompt and type
 
 ```
@@ -252,15 +252,16 @@ This command will list all available kernels, including their names and installa
 
 ## Common issue: Quarto does not recognize the Python installation
 
-To ensure your system uses the Anaconda installation when you run Python commands (and by extension, to help Quarto find the correct Python), you can try the following steps:
-1. Disable app execution aliases for Python: Open Settings, go to Windows Settings > Apps > Apps & features, and manage execution aliases to disable Python aliases (i.e., turn off the toggle(s) that point to the Microsoft Store app, ```python.exe``` and ```python3.exe```). By disabling these, you prevent Windows from redirecting Python commands to the Microsoft Store app, allowing your system to use the Anaconda Python executable instead.
-2. Adjusting the PATH order: go to System Properties > Advanced > Environment Variables, then select the "Path" variable under User variables or System variables and click "Edit". In the Edit Environment Variable window, find the entry for ```C:\Users\[your-username]\AppData\Local\Microsoft\WindowsApps```. You can either remove this entry or move it down the list so that the paths to your Anaconda installation appear above it. This changes the order in which Windows searches these paths for executable files. To check the order of your PATH environment variable, type ```where python``` in the Anaconda prompt (usually, it should be ```C:\ProgramData\anaconda3```). Then, add this path to the PATH environment variable and move it to the top of the list, adding also the ```Scripts``` folder (usually, ```C:\ProgramData\anaconda3\Scripts```).
+If you have problems with Quarto finding the correct Python installation, you can try the following steps (here I have assumed you have installed Anaconda, but the same logic applies to Miniconda or any other Python distribution):
+
+1. **Disable app execution aliases for Python**: Open Settings, go to Windows Settings > Apps > Apps & features, and manage execution aliases to disable Python aliases (i.e., turn off the toggle(s) that point to the Microsoft Store app, ```python.exe``` and ```python3.exe```). By disabling these, you prevent Windows from redirecting Python commands to the Microsoft Store app, allowing your system to use the Anaconda Python executable instead.
+2. **Adjusting the PATH order**: go to System Properties > Advanced > Environment Variables, then select the "Path" variable under User variables or System variables and click "Edit". In the Edit Environment Variable window, find the entry for ```C:\Users\[your-username]\AppData\Local\Microsoft\WindowsApps```. You can either remove this entry or move it down the list so that the paths to your Anaconda installation appear above it. This changes the order in which Windows searches these paths for executable files. To check the order of your PATH environment variable, type ```where python``` in the Anaconda prompt (usually, it should be installed in ```C:\ProgramData\anaconda3```). Then, add this path to the PATH environment variable and move it to the top of the list, adding also the ```Scripts``` folder (usually, ```C:\ProgramData\anaconda3\Scripts```).
 
 # Bonus: run ```.do``` files in VSCode
 
 If you are not interested in running code interactively, you can also run your usual Stata ```.do``` files within VSCode. 
 
-To do so, install the [stataRun](https://marketplace.visualstudio.com/items?itemName=Yeaoh.stataRun) extension in VSCode. Then, press ```Ctrl+,``` to open the settings tab, type "stataRun" in the search tab, and set up your paths and preferences accordingly. For macOS users, this is (apparently) all you need to do; for Windows and Linus it is sadly a bit more involved. You can find the instructions in the link above. I have not tested it, so I cannot say much more.
+To do so, install the [stataRun](https://marketplace.visualstudio.com/items?itemName=Yeaoh.stataRun) extension in VSCode. Then, press ```Ctrl+,``` to open the settings tab, type "stataRun" in the search tab, and set up your paths and preferences accordingly. For macOS users, this is (apparently) all you need to do; for Windows and Linux it is sadly a bit more involved. You can find the instructions in the link above. I have not tested it, so I cannot say much more.
 
 -----------------------------------------------------------------
 
@@ -268,8 +269,10 @@ To do so, install the [stataRun](https://marketplace.visualstudio.com/items?item
 
 [^2]: Unless you want to work in industry, of course.
 
-[^3]: For earlier Stata versions, an alternative would be using the ```stata_kernel``` for Jupyter notebooks. I have not tested it, but I have good references from colleagues. You can find the installation guide [here](https://kylebarron.dev/stata_kernel/).
+[^copilot]: For open-source languages, like R or Python, Copilot is a game-changer. For Stata, it is less useful, although I have to say that I am pleasantly surprised with the quality of its suggestions relative to ChatGPT 4.
 
-[^4]: ```nbstata``` is a Jupyter kernel. If you install Anaconda, you will also get JupyterLab installed, so you will be able to run Stata code from Jupyter notebooks as well. I hate them, but if you don't it is an alternative.
+[^3]: For earlier Stata versions, an alternative would be using the ```stata_kernel``` Jupyter kernel. I have not tested it, but I have good references from colleagues. You can find the installation guide [here](https://kylebarron.dev/stata_kernel/).
+
+[^4]: ```nbstata``` is a Jupyter kernel. If you install Anaconda, you will also get JupyterLab installed, so you will be able to run Stata code from Jupyter notebooks as well. I personally hate them, but if you don't, it is an alternative.
 
 
