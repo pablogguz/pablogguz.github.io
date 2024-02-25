@@ -18,6 +18,7 @@ outdate_alert_days = 120
 display_tags = true
 truncate_summary = false
 featured = false
+cover_image = "/img/dalle_vscode_stata_v2.webp"
 +++
 
 <img src="/img/dalle_vscode_stata_v2.webp" width="600"/>
