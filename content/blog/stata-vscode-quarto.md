@@ -68,13 +68,13 @@ And last but not least, Quarto outputs are [beautiful](https://quarto.org/docs/g
 
 Go to [https://quarto.org/](https://quarto.org/), click on "Get Started", download the latest Quarto version available, and install it on your machine. 
 
-![Alt text](/img/quarto_example.jpg)
+![Alt text](/img/quarto_example.JPG)
 
 ## Step 2: Install VSCode 
 
 Go to [https://code.visualstudio.com/download](https://code.visualstudio.com/download), download the latest VSCode version available, and install it on your machine.
 
-![Alt text](/img/vscode_example.jpg)
+![Alt text](/img/vscode_example.JPG)
 
 ## Step 3: Install VSCode extensions
 
