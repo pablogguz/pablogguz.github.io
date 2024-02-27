@@ -38,7 +38,7 @@ I know what you are thinking.
 
 I get it. I code in multiple languages and it is indeed not a good idea to *only* use Stata, simply because there are lots of cool things (web scraping, geospatial stuff, ML) that you would miss out on by doing so.
 
-However, the truth is that if you do applied microeconomics for a living, in many cases **it would be very stupid not to use Stata**. Whoever tells you otherwise is i) not an applied microeconomist (good for them!) or ii) underestimating how important Stata is in the profession:
+However, the truth is that if you do applied microeconomics for a living, **it would be very stupid not to use Stata** sometimes. Whoever tells you otherwise is i) not an applied microeconomist (good for them!) or ii) underestimating how important Stata is in the profession:
 
 - Stata can be found in [more than 70% of replication packages](https://www.r-bloggers.com/2023/12/usage-shares-of-programming-languages-in-economics-research/) for published papers in economics. It is followed by Matlab (which we deliberately ignore since it is aimed at structural work), and R comes in third with less than 10%. I am not going to argue whether this is a good or a bad equilibrium but _it is an equilibrium_, and if you want collaborate with others and be able to replicate their work, you will have to use Stata
 
