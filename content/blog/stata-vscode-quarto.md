@@ -86,7 +86,7 @@ You will have to install two VSCode extensions:
 
 ## Step 4: Install ```nbstata```
 
-```nbstata``` is a Jupyter kernel for Stata, built on top of the functionalities of the ```pystata``` Python package introduced in Stata version 17. This means that you will need Stata 17 or higher to install it.[^3] 
+[```nbstata```](https://hugetim.github.io/nbstata/) is a Jupyter kernel for Stata, built on top of the functionalities of the ```pystata``` Python package introduced in Stata version 17. This means that you will need Stata 17 or higher to install it.[^3] 
 
 You can find the full user and installation guide [here](https://hugetim.github.io/nbstata/user_guide.html). For the curious, I encourage you to go through the author's guide. For the lazy ones, the short version goes as follows:
 
