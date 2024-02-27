@@ -1,6 +1,6 @@
 +++
 title = "A modern IDE for Stata with VSCode + Quarto"
-date = 2024-02-25
+date = 2024-02-27
 draft = false
 
 [taxonomies]
@@ -23,9 +23,9 @@ cover_image = "https://pablogguz.github.io/img/dalle_vscode_stata_v2.webp"
 
 <img src="/img/dalle_vscode_stata_v2.webp" width="600"/>
 
-Over the last few decades, empirical economic research has witnessed what is widely termed as [the credibility revolution](https://www.aeaweb.org/articles?id=10.1257/jep.24.2.3), a paradigm shift that emphasized the importance of experimental and quasi-experimental methods to credibly identify causal relationships between variables. This transformative period has not only influenced the methodologies employed in academic papers but also strengthened the field's impact on policy-making, by providing more solid and rigorous evidence upon which to base decisions.
+Over the last few decades, applied microeconomic research has witnessed what is widely termed as [the credibility revolution](https://www.aeaweb.org/articles?id=10.1257/jep.24.2.3), a paradigm shift that emphasized the importance of experimental and quasi-experimental methods to credibly identify causal relationships between variables. This transformative period has not only influenced the methodologies employed in academic papers but also strengthened the field's impact on policy-making, by providing more solid and rigorous evidence upon which to base decisions.
 
-The emphasis on methodologically robust empirical research has naturally elevated the importance of data and coding skills within the field. However, despite the increasing importance of coding in economics, many economists lag in adopting modern coding practices and development environments. One of the most widely used tools in the profession, [Stata](https://www.stata.com/), is not even a general-purpose programming language but a purpose-built statistical package.[^1] Stata is also commercial software, meaning that it does not have the benefits of open-source languages like Python or R, which have amassed extensive communities contributing to their development and offering support. Due to its nature, it has traditionally been hard to integrate Stata with modern IDEs, resulting in a less efficient workflow when one has to write code in multiple languages or use the latest tools for version control, code completion, and so on.
+This emphasis on methodologically robust empirical approaches has resulted in bigger, more complex projects, naturally elevating the importance of data skills within the field. However, despite the increasing importance of coding in economics, many economists lag in adopting modern coding practices and development environments. One of the most widely used tools in the profession, [Stata](https://www.stata.com/), is not even a programming language but a purpose-built statistical package.[^1] Stata is also commercial software, meaning that it does not have the benefits of open-source languages like Python or R, which have amassed extensive communities contributing to their development and offering support. Due to its nature, it has traditionally been hard to integrate Stata with modern IDEs, resulting in a less efficient workflow when one has to write code in multiple languages or use the latest tools for version control, code completion, and so on.
 
 This post provides a quick tutorial on setting up a modern development environment for Stata with Visual Studio Code and Quarto. It is by no means perfect and it comes with its own caveats, but it is a step in the right direction for those who want to modernize a bit their workflow without having to give up on Stata.
 
@@ -42,7 +42,7 @@ However, the truth is that if you do applied microeconomics for a living, in man
 
 - Stata can be found in [more than 70% of replication packages](https://www.r-bloggers.com/2023/12/usage-shares-of-programming-languages-in-economics-research/) for published papers in economics. It is followed by Matlab (which we deliberately ignore since it is aimed at structural work), and R comes in third with less than 10%. I am not going to argue whether this is a good or a bad equilibrium but _it is an equilibrium_, and if you want collaborate with others and be able to replicate their work, you will have to use Stata
 
-- For reduced-form econometrics, Stata is unparalleled. Period. I have been writing code for +3.5 years and it still amazes me how ridiculously cumbersome R and Python are relative to Stata when it comes to running regressions. For some specifications, it is simply not possible to use something else unless you want to code the estimator from scratch (good luck running modern difference-in-differences estimators for heterogeneous treatment effects in Python, for example)
+- For reduced-form econometrics, Stata is unparalleled. Period. I have been writing code for +3.5 years and it still amazes me how ridiculously cumbersome R and Python can be relative to Stata when it comes to running regressions. For some specifications, it is simply not possible to use something else unless you want to code the estimator from scratch (good luck running modern difference-in-differences estimators for heterogeneous treatment effects in Python, for example)
 
 - Economists love regression tables. And again, the functionalities and flexibility of ```esttab``` to export fully formatted and reproducible LaTeX tables in Stata are light years ahead of the alternatives in other languages (e.g., ```stargazer``` in R)
 
@@ -127,9 +127,9 @@ format:
 ---
 ```
 
-You can now create code chunks as you would do in any other notebook-based interface, specifying ```stata``` in your code chunk. 
+You can now create code chunks as you would do in any other notebook-based interface, specifying ```stata``` in your code chunk header.
 
-For our example, we will create a simple chart to visualize gender gaps in suicide rates across countries. To load the dataset into our environment, we will use the Stata wrapper for the World Bank's WDI database API, [```wbopendata```](https://github.com/jpazvd/wbopendata/tree/master):
+For our example, we will create a chart to visualize gender gaps in suicide rates across low-income countries. To load the dataset into our environment, we will use the Stata wrapper for the World Bank's WDI database API, [```wbopendata```](https://github.com/jpazvd/wbopendata/tree/master):
 
 
 ````stata
@@ -197,11 +197,17 @@ Let's create a simple dumbbell chart by sex:
   local x_max = round(r(max),0.1) // max value for y-axis
 
 * Export chart
-  twoway (rspike male_rate fem_rate order, lcolor(gs14%90)) ///
-    (scatter male_rate order, mcolor(midblue)) ///
-    (scatter fem_rate order, mcolor(pink)), ///
-    legend(order(2 "Males" 3 "Females") pos(11) row(1) size(3)) ///
-    ytitle("Suicide mortality rate (per 100,000 population)") xlabel(1(1)`ub', angle(45) labsize(vsmall) valuelabel) xtitle("") ylabel(0(5)`x_max') title(Gender gaps in suicide rates across low-income countries, pos(11) size(medium))
+  #d;
+  twoway (rspike male_rate fem_rate order, lcolor(gs14%90)) 
+    (scatter male_rate order, mcolor(midblue)) 
+    (scatter fem_rate order, mcolor(pink)), 
+    ytitle("Suicide mortality rate (per 100,000 population)") 
+    xtitle("") 
+    ylabel(0(5)`x_max') 
+    xlabel(1(1)`ub', angle(45) labsize(vsmall) valuelabel) 
+    legend(order(2 "Males" 3 "Females") pos(11) row(1) size(3)) 
+    title(Gender gaps in suicide rates across low-income countries, pos(11) size(medium));
+  #d cr
 ```
 ````
 
@@ -262,7 +268,7 @@ If you have problems with Quarto finding the correct Python installation, you ca
 
 If you are not interested in running code interactively, you can also run your usual Stata ```.do``` files within VSCode. 
 
-To do so, install the [stataRun](https://marketplace.visualstudio.com/items?itemName=Yeaoh.stataRun) extension in VSCode. Then, press ```Ctrl+,``` to open the settings tab, type "stataRun" in the search tab, and set up your paths and preferences accordingly. For macOS users, this is (apparently) all you need to do; for Windows and Linux it is sadly a bit more involved. You can find the instructions in the link above. I have not tested it, so I cannot say much more.
+To do so, install the [stataRun](https://marketplace.visualstudio.com/items?itemName=Yeaoh.stataRun) extension in VSCode. Then, press ```Ctrl+,``` to open the settings tab, type "stataRun" in the search tab, and set up your paths and preferences accordingly. For macOS users, this is (apparently) all you need to do; for Windows and Linux it is sadly a bit more involved – you can find the instructions in the extension page. I have not tested it, so I cannot say much more.
 
 -----------------------------------------------------------------
 
