@@ -232,6 +232,15 @@ function enableImgLightense() {
   window.addEventListener("load", () => Lightense(".prose img", { background: 'rgba(43, 43, 43, 0.19)' }));
 }
 
+/* Function for clickable description buttons */
+// document.querySelectorAll('.desc-button').forEach(button => {
+//   button.addEventListener('click', () => {
+//     const desc = button.nextElementSibling;
+//     desc.style.display = desc.style.display === 'none' ? 'block' : 'none';
+//     button.classList.toggle('collapsed');
+//   });
+// });
+
 //--------------------------------------------
 
 enableThemeToggle();

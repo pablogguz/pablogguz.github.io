@@ -95,7 +95,14 @@
         <h1>{{ page.title }}</h1>
         <div id="post-info">
           <div id="date">
-            <span id="publish">{{ page.date | date }}</span>
+            <div id="date">
+              <span id="publish">{{ page.date | date }}</span>
+            </div>
+            <!-- Add reading time here -->
+            <div id="reading-time">
+              <i class="fa fa-clock-o"></i>
+              <span> {{ page.extra.reading_time }} minute read</span>
+            </div>
             {% if page.updated and page.updated != page.date -%}
             <span>Updated on <span id="updated">{{ page.updated | date }}</span></span>
             {% endif -%}

@@ -17,7 +17,21 @@
       <div class="content">
         <div>
           <p class="name">{{ proj.name }}</p>
-          <div class="desc">{{ proj.desc | trim | markdown | safe }}</div>
+          <!-- Add expandable description -->
+          <div class="buttons">
+<!--             <i class="desc-button" id="descBtn">Description <span class="triangle">&#9660;</span></i>
+            <div class="desc" id="descDiv" style="display: none;">{{ proj.desc | trim | markdown | safe }}</div> -->
+            <div class="desc">{{ proj.desc | trim | markdown | safe }}</div>
+            {% if proj.shiny_url %}
+            <a href="{{ proj.shiny_url }}" class="desc-button link-button" target="_blank"><i class="fas fa-chart-line"></i> Shiny App</a>
+            {% endif %}
+            {% if proj.github_url %}
+            <a href="{{ proj.github_url }}" class="desc-button link-button" target="_blank"><i class="fab fa-github"></i> GitHub Repo</a>
+            {% endif %}
+            {% if proj.pdf_url %}
+            <a href="{{ proj.pdf_url }}" class="desc-button link-button" target="_blank"><i class="fas fa-file-pdf"></i> PDF</a>
+            {% endif %}
+          </div>
         </div>
         {% if proj.img %}
         <img src="{{ proj.img }}" alt="{{ proj.name }}" />

@@ -22,6 +22,61 @@
     text-decoration-color: #6487cc !important; /* black */
   }
 
+  #reading-time {
+    font-size: 0.8em; 
+  }
+
+  /* Buttons for project section */
+  .desc-button {
+    font-size: 0.9em; /* Adjust as needed */
+    color: #333; /* Adjust to match your theme */
+    background-color: #f2f2f2; /* Adjust to match your theme */
+    border: 1px solid #ccc; /* Adjust to match your theme */
+    padding: 5px 10px; /* Adjust as needed */
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s ease;
+  }
+
+  .desc-button .triangle {
+    display: inline-block;
+    transition: transform 0.3s ease;
+  }
+
+  .desc-button.collapsed .triangle {
+    transform: rotate(-90deg);
+  }
+
+  .desc {
+    font-size: 0.9em; /* Adjust as needed */
+    color: var(--text-color); /* use the text color for the text */
+    /* display: none; */
+  }
+
+  .desc-button, .link-button {
+    height: 40px; /* adjust as needed */
+    line-height: 40px; /* should be the same as height for vertical centering */
+    text-decoration: none; /* remove underline */
+    margin-right: 10px; /* add space between buttons */
+    transition: all 0.3s ease; /* smooth transition for hover effects */
+    background-color: transparent; /* make the background transparent */
+    border: 1px solid var(--text-color); /* use the text color for the border */
+    color: var(--text-color); /* use the text color for the text */
+  }
+
+  .desc-button:hover, .link-button:hover {
+    border-color: #6487cc; /* change border color on hover */
+    color: #6487cc; /* change font color on hover */
+  }
+
+  .link-button i {
+    margin-right: 5px; /* add space between icon and text */
+  }
+
+  .link-button {
+    text-decoration: none; /* remove underline */
+  }
+
   /* light mode colors */
   body {
     --primary-color: #6487cc;

@@ -19,6 +19,7 @@ display_tags = true
 truncate_summary = false
 featured = false
 cover_image = "https://pablogguz.github.io/img/dalle_vscode_stata_v2.webp"
+reading_time = 8
 +++
 
 <img src="/img/dalle_vscode_stata_v2.webp" width="600"/>

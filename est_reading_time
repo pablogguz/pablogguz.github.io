@@ -1,0 +1,18 @@
+
+from bs4 import BeautifulSoup
+import markdown
+
+def estimate_reading_time(filename):
+    file_path = r'C:\Users\pablo\Documents\GitHub\pablogguz.github.io\content\blog\\' + filename
+    with open(file_path, 'r') as file:
+        text = file.read()
+    html = markdown.markdown(text)
+    soup = BeautifulSoup(html, features="html.parser")
+    for code_block in soup.find_all('code'):  # find all code blocks
+        code_block.decompose()  # remove the code blocks
+    words = soup.get_text().split()
+    words_count = len(words)
+    reading_time = words_count / 300  # using 300 words per minute
+    return round(reading_time)
+
+print(estimate_reading_time('stata-vscode-quarto.md'))

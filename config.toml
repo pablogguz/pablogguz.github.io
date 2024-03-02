@@ -94,3 +94,5 @@ footer_credits = true                 # Whether to show "powered by zola and ser
 not_found_title = "404"
 not_found_error_text = "Not Found"
 not_found_recover_text = "« back to home »"
+
+reading_time = 0                    # Reading time 
