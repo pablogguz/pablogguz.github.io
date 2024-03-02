@@ -64,7 +64,12 @@
     color: var(--text-color); /* use the text color for the text */
   }
 
-  .desc-button:hover, .link-button:hover {
+  div.buttons a.link-button {
+    /* existing styles */
+    box-sizing: border-box; /* include border and padding in total width and height */
+  }
+
+  div.buttons a.link-button:hover {
     border-color: #6487cc; /* change border color on hover */
     color: #6487cc; /* change font color on hover */
   }
