@@ -53,7 +53,7 @@ terms is from 2004 to 2007. All data are at the state level.</p>
 
 But the potential of Google searches goes beyond measuring racial animus. In <a href="#table1">Table 1</a>, I show some of Stephen-Davidowitz's examples on how Google searches can be exploited to predict various population-level outcomes. For example, Google searches for the word "Gun" explain 62% of the variation in states' gun ownership rates, and Google searches for the word "Hispanic" explain 61% of the variation in the percentage of hispanic population across U.S. states. 
 
-Can we do better? In this post, I will show you how we can leverage the popularity of Latino urban music artists in Google searches to predict state-level hispanic population shares in the U.S.
+Can we do better? In this post, I will show you how we can leverage the popularity of Latin urban music artists in Google searches to predict state-level hispanic population shares in the U.S.
 
 # Some background on Google Trends data
 
