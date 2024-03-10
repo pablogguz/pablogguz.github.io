@@ -18,7 +18,7 @@ outdate_alert_days = 120
 display_tags = true
 truncate_summary = false
 featured = false
-cover_image = "https://pablogguz.github.io/img/corr_badbunny_Hispanic.png"
+cover_image = "https://pablogguz.github.io/img/corr_badbunny_hispanic.png"
 reading_time = 7
 +++
 
@@ -72,7 +72,7 @@ Let's do it. To start with, I show the Hispanic population shares across U.S. st
 <br>
 <figure id="fig1">
   <figcaption>Figure 1</figcaption>
-  <img src="/img/map_Hispanic.png" loading="lazy" style="width: 100%; border: 0px none;"></iframe>
+  <img src="/img/map_hispanic.png" loading="lazy" style="width: 100%; border: 0px none;"></iframe>
 </figure>
 <!-- <p class="figure-note">Source: 2022 ACS.</a></p> -->
 <br>
@@ -94,7 +94,7 @@ We can visualize the relationship between the popularity of the search term "bad
 <br>
 <figure id="fig3">
   <figcaption>Figure 3</figcaption>
-  <img src="/img/corr_badbunny_Hispanic.png" loading="lazy" style="width: 100%; border: 0px none;"></iframe>
+  <img src="/img/corr_badbunny_hispanic.png" loading="lazy" style="width: 100%; border: 0px none;"></iframe>
 </figure>
 <!-- <p class="figure-note">Source: 2022 ACS.</a></p> -->
 <br>
