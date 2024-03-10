@@ -158,7 +158,7 @@ Still, I think it's quite cool. I will leave below a bunch of potential applicat
   - **Political outcomes**: there has been a rising concern about how polls often underestimate voting intention for far-right parties (for instance, see [here](https://www.aljazeera.com/news/2022/10/6/how-did-brazils-pollsters-underestimate-support-for-bolsonaro)). Could we predict vote shares for controversial candidates at scale with Google searches?
   - **Emergency situations and public safety**: during emergencies, real-time data from Google Trends can provide insights into public sentiment or areas of concern, which might be faster or more accurate other methods. For instance, in the context of natural disasters, spikes in searches for emergency services or relief efforts can indicate the most affected areas or the public’s most urgent needs.
 
-I will leave it here. If you have worked with Google Trends data before and have some cool applications in mind, please feel free to share!
+I will leave it here. If you have worked with Google Trends data before and have some cool applications in mind you would like to share, please feel free to get in touch!
 
 {% tip(header="Code and data") %}
 All the code used to produce the analyses in my blog posts is fully open source and publicly available in my [blog's code kitchen](https://github.com/pablogguz/blog_posts_code).
