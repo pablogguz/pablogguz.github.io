@@ -53,7 +53,7 @@ terms is from 2004 to 2007. All data are at the state level.</p>
 
 But the potential of Google searches goes beyond measuring racial animus. In <a href="#table1">Table 1</a>, I show some of Stephen-Davidowitz's examples on how Google searches can be exploited to predict various population-level outcomes. For example, Google searches for the word "Gun" explain 62% of the variation in states' gun ownership rates, and Google searches for the word "Hispanic" explain 61% of the variation in the percentage of hispanic population across U.S. states. 
 
-Can we do better? In this post, I will show you how we can leverage the popularity of latino urban music singers in Google searches to predict state-level hispanic population shares in the U.S.
+Can we do better? In this post, I will show you how we can leverage the popularity of Latino urban music artists in Google searches to predict state-level hispanic population shares in the U.S.
 
 # Some background on Google Trends data
 
@@ -63,9 +63,9 @@ There are a bazillion online resources on how to use Google Trends, so I won't g
 
 # Predicting hispanic population shares with Google Trends 
 
-We will combine Google Trends data on the popularity of search terms related to latino urban music singers with data on the hispanic population shares across U.S. states sourced from the [American Community Survey (ACS)](https://www.census.gov/programs-surveys/acs/data.html) microdata for the year 2022.[^2]
+We will combine Google Trends data on the popularity of search terms related to Latin urban music superstars with data on the hispanic population shares across U.S. states sourced from the [American Community Survey (ACS)](https://www.census.gov/programs-surveys/acs/data.html) microdata for the year 2022.[^2]
 
-First, we will use the search term "bad bunny" to predict hispanic population shares. [Bad Bunny](https://open.spotify.com/intl-es/artist/4q3ewBCX7sLwd24euuV69X) is arguably the most popular latin artist worldwide nowadays – in 2022, he was Billboard's top artist of the year and the [most streamed artist](https://www.billboard.com/pro/bad-bunny-top-streaming-artist-year-end-charts-2022/) in Spotify and Apple Music. He also has a [huge following](https://www.instagram.com/badbunnypr/) on Instagram with over 40 million followers, and its popularity has played a crucial role in the reivindication of the latino culture and identity in the U.S. ([_ahora todos quieren ser latinos_](https://www.youtube.com/watch?v=QdQEljUMCEM)).
+First, we will use the search term "bad bunny" to predict hispanic population shares. [Bad Bunny](https://open.spotify.com/intl-es/artist/4q3ewBCX7sLwd24euuV69X) is arguably the most popular latin artist worldwide nowadays – in 2022, he was Billboard's top artist of the year and the [most streamed artist](https://www.billboard.com/pro/bad-bunny-top-streaming-artist-year-end-charts-2022/) in Spotify and Apple Music. He also has a [huge following](https://www.instagram.com/badbunnypr/) on Instagram with over 40 million followers, and its popularity has played a crucial role in the reivindication of the Latino culture and identity in the U.S. ([_ahora todos quieren ser Latinos_](https://www.youtube.com/watch?v=QdQEljUMCEM)).
 
 Let's do it. To start with, I show the hispanic population shares across U.S. states in 2022 in <a href="#fig1">Figure 1</a>. Unsurprisingly, the hispanic population is concentrated in the South and West regions of the U.S. The states with the highest hispanic population shares are New Mexico, California, and Texas, with shares of 50%, 40.3%, and 40.2%, respectively. The states with the lowest hispanic population shares are West Virginia, Maine, and Vermont, with shares of around 2% each.
 
@@ -170,7 +170,7 @@ All the code used to produce the analyses in my blog posts is fully open source 
 
 [^1] However, with some assumptions and creativity, it is possible to come up with proxies for absolute Google search volumnes. See Appendix C in [Stephens-Davidowitz (2015)](https://people.cs.umass.edu/~brenocon/smacss2015/papers/StephensDawidowitz2014.pdf) for more details.
 
-[^2] I identify people with hispanic/latino origin in the ACS using the variable ```HISPAN```. More details can be found [here](https://usa.ipums.org/usa-action/variables/HISPAN#description_section).
+[^2] I identify people with hispanic/Latino origin in the ACS using the variable ```HISPAN```. More details can be found [here](https://usa.ipums.org/usa-action/variables/HISPAN#description_section).
 
 [^3] One further caveat is that the Google Trends metro areas are custom aggregates and do not correspond to standard metropolitan statistical areas (MSAs) or metropolitan divisions. Due to this, there has been some attempts to map Google Trends metro areas to more granular geographic units, such as [counties in the U.S](https://sites.google.com/view/jacob-schneider/resources).
 
