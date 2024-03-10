@@ -118,7 +118,7 @@ The results are shown in <a href="#fig4">Figure 4</a>. The fit is breathtaking: 
 
 Fine, this is cute. But what's the point?
 
-The point is that Google searches can be used to measure things that actually matter. We might not need to predict historical hispanic population shares, or for that matter any type of socio-economic outcome that can be easily derived from traditional data sources. But we might be interested, for instance, in nowcasting suicide rates or the prevalence of mental health disorders. Insofar as these figures could guide the allocation of resources in healthcare systems, inform the development of public health campaigns, and provide early warning signs for potential crises, they could be a quite important estimand for policy.
+The point is that Google searches can be used to measure things that actually matter. We might not need to predict historical hispanic population shares, or for that matter any type of socio-economic outcome that can be easily derived from traditional data sources. But we might be interested, for instance, in nowcasting suicide rates or the prevalence of mental health disorders. Insofar as these figures could guide the allocation of resources in healthcare systems and provide early warning signs for potential crises, they could be a quite important estimand for policy.
 
 In <a href="#table1">Table 2</a>, I illustrate the comparison between how state-level suicide rates in the U.S. correlate with both Google search terms and self-reported measures of suicide risk. While Google searches are not perfect, they prove to be more reliable than the traditional survey-derived data, which yields statistically insignificant correlations.
 
