@@ -107,8 +107,8 @@ The results are shown in <a href="#fig4">Figure 4</a>. The fit is breathtaking: 
 
 
 <br>
-<figure id="fig3">
-  <figcaption>Figure 3</figcaption>
+<figure id="fig4">
+  <figcaption>Figure 4</figcaption>
   <img src="/img/corr_pesopluma_mexican.png" loading="lazy" style="width: 100%; border: 0px none;"></iframe>
 </figure>
 <!-- <p class="figure-note">Source: 2022 ACS.</a></p> -->
