@@ -154,7 +154,7 @@ That said, it does not always work. Using Google Trends for research purposes ca
 
 Still, I think it's quite cool. I will leave below a bunch of potential applications for Google Trends data that I would find particularly interesting:
 
-  - **Sexual minorities**: can we use Google searches to estimate sexual minority population shares in settings where sexual orientation and identity is heavily stigmatized?
+  - **Sexual minorities**: can we use Google searches to estimate sexual minority population shares in settings where sexual orientation and identity is heavily stigmatized? Stephens-Davidowitz's has some work on this for the U.S., but I would be curious to see how this could be applied to countries where sexual minorities are criminalized.
   - **Political outcomes**: there has been a rising concern about how polls often underestimate voting intention for far-right parties (for instance, see [here](https://www.aljazeera.com/news/2022/10/6/how-did-brazils-pollsters-underestimate-support-for-bolsonaro)). Could we predict vote shares for controversial candidates at scale with Google searches?
   - **Emergency situations and public safety**: during emergencies, real-time data from Google Trends can provide insights into public sentiment or areas of concern, which might be faster or more accurate other methods. For instance, in the context of natural disasters, spikes in searches for emergency services or relief efforts can indicate the most affected areas or the public’s most urgent needs.
 
