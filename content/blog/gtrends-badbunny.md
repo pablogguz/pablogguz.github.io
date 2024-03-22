@@ -160,8 +160,10 @@ Still, I think it's quite cool. I will leave below a bunch of potential applicat
 
 I will leave it here. If you have worked with Google Trends data before and have some cool applications in mind you would like to share, please feel free to get in touch!
 
+<br>
+
 {% tip(header="Code and data") %}
-All the code used to produce the analyses in my blog posts is fully open source and publicly available in my [blog's code kitchen](https://github.com/pablogguz/blog_posts_code).
+All the code used to produce the analyses in my blog posts (if any) is publicly available in my [blog's code kitchen](https://github.com/pablogguz/blog_posts_code).
 {% end %}
 
 

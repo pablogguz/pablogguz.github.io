@@ -46,6 +46,7 @@ id = "pablo garcía-guzmán"                           # Your id / username / ha
 bio = ""                          # Your bio
 avatar = "img/profile2.jpg"            # Your avatar
 links = [                             # Your links
+    { name = "LinkedIn", icon = "linkedin", url = "https://www.linkedin.com/in/pablogguz/" },
     { name = "GitHub", icon = "github", url = "https://github.com/pablogguz" },
     { name = "Twitter", icon = "twitter", url = "https://twitter.com/pablogguz_" },
     { name = "Email", icon = "email", url = "mailto:<pgarcia.eco@gmail.com>" },
