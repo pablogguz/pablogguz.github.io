@@ -1,6 +1,6 @@
 +++
 title = "Wellbeing I: Introduction"
-date = 2024-03-27
+date = 2024-03-22
 draft = false
 
 [taxonomies]
