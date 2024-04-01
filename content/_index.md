@@ -29,4 +29,5 @@ fancy a (virtual) coffee?
 
 ### stuff I'm doing 
 -	thinking about [digital gardens](https://maggieappleton.com/garden-history) and idea management systems
+-	developing [subincomeR](https://pablogguz.github.io/subincomeR), an R package to access global sub-national income data 
 -	trying not to suck at chess

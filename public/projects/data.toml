@@ -8,6 +8,16 @@
 # ]
 
 [[project]]
+name = "subincomeR"
+desc = "An R package providing coordinate-based access to a global dataset of reported sub-national income data covering more than 1,600 sub-national regions across 83 countries"
+tags = []
+r_url = "https://pablogguz.github.io/subincomeR/"
+github_url = "https://github.com/pablogguz/subincomeR"
+links = [
+  # { name = "", url = "" },
+]
+
+[[project]]
 name = "From everywhere to Spain"
 desc = "Shiny app to explore the international migrant stock in Spain using microdata from administrative municipal registers"
 tags = []

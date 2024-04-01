@@ -22,6 +22,9 @@
 <!--             <i class="desc-button" id="descBtn">Description <span class="triangle">&#9660;</span></i>
             <div class="desc" id="descDiv" style="display: none;">{{ proj.desc | trim | markdown | safe }}</div> -->
             <div class="desc">{{ proj.desc | trim | markdown | safe }}</div>
+            {% if proj.r_url %}
+            <a href="{{ proj.r_url }}" class="desc-button link-button" target="_blank"><i class="fab fa-r-project"></i> R Package</a>
+            {% endif %}
             {% if proj.shiny_url %}
             <a href="{{ proj.shiny_url }}" class="desc-button link-button" target="_blank"><i class="fas fa-chart-line"></i> Shiny App</a>
             {% endif %}
