@@ -27,7 +27,7 @@ fancy a (virtual) coffee?
 
 <!-- i mainly read, write (code), work out, and try to enjoy life.  -->
 
-### stuff I'm doing 
+<!-- ### stuff I'm doing 
 -	thinking about [digital gardens](https://maggieappleton.com/garden-history) and idea management systems
 -	developing [subincomeR](https://pablogguz.github.io/subincomeR), an R package to access global sub-national income data 
--	trying not to suck at chess
+-	trying not to suck at chess -->
