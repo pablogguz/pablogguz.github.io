@@ -8,6 +8,16 @@
 # ]
 
 [[project]]
+name = "whed"
+desc = "An R package to access WHED, a global dataset on higher education institutions"
+tags = []
+r_url = "https://pablogguz.github.io/whed/"
+github_url = "https://github.com/pablogguz/whed"
+links = [
+  # { name = "", url = "" },
+]
+
+[[project]]
 name = "subincomeR"
 desc = "An R package providing coordinate-based access to a global dataset of reported sub-national income data covering more than 1,600 sub-national regions across 83 countries"
 tags = []
