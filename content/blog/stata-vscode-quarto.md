@@ -14,13 +14,19 @@ copy = true
 math = false
 mermaid = false
 outdate_alert = true
-outdate_alert_days = 120
+outdate_alert_days = 365
 display_tags = true
 truncate_summary = false
 featured = false
 cover_image = "https://pablogguz.github.io/img/dalle_vscode_stata_v2.webp"
 reading_time = 8
 +++
+
+{% alert(header="Update Aug 2024") %}
+I only used this setup for a couple of weeks before switching to a non-interactive integration that allows for running ```.do``` files within VSCode. The lack of a data browser and the variable explorer in the Jupyter kernel was a dealbreaker for me (plus I have grown to find interactive notebooks a bit annoying except for very specific tasks). To set this up, follow the instructions [here](https://github.com/wulizyk/Notebook_Stata/wiki/Run-STATA-in-VScode) under the "way one" section. 
+
+Moreover, I have increasingly found myself using R for most of my work over the last year, and I have to stay that I no longer agree with some of the points I made in this post. Most of the time, the so-claimed "superiority" of Stata for reduced-form empirical work is just a skill issue. My advice would be to invest time in mastering R or Python, and _then_ decide whether you really need to use Stata (you probably won't). 
+{% end %}
 
 <img src="/img/dalle_vscode_stata_v2.webp" width="600"/>
 
@@ -264,12 +270,6 @@ If you have problems with Quarto finding the correct Python installation, you ca
 
 1. **Disable app execution aliases for Python**: Open Settings, go to Windows Settings > Apps > Apps & features, and manage execution aliases to disable Python aliases (i.e., turn off the toggle(s) that point to the Microsoft Store app, ```python.exe``` and ```python3.exe```). By disabling these, you prevent Windows from redirecting Python commands to the Microsoft Store app, allowing your system to use the Anaconda Python executable instead.
 2. **Adjusting the PATH order**: go to System Properties > Advanced > Environment Variables, then select the "Path" variable under User variables or System variables and click "Edit". In the Edit Environment Variable window, find the entry for ```C:\Users\[your-username]\AppData\Local\Microsoft\WindowsApps```. You can either remove this entry or move it down the list so that the paths to your Anaconda installation appear above it. This changes the order in which Windows searches these paths for executable files. To check the order of your PATH environment variable, type ```where python``` in the Anaconda prompt (usually, it should be installed in ```C:\ProgramData\anaconda3```). Then, add this path to the PATH environment variable and move it to the top of the list, adding also the ```Scripts``` folder (usually, ```C:\ProgramData\anaconda3\Scripts```).
-
-# Bonus: run ```.do``` files in VSCode
-
-If you are not interested in running code interactively, you can also run your usual Stata ```.do``` files within VSCode. 
-
-To do so, install the [stataRun](https://marketplace.visualstudio.com/items?itemName=Yeaoh.stataRun) extension in VSCode. Then, press ```Ctrl+,``` to open the settings tab, type "stataRun" in the search tab, and set up your paths and preferences accordingly. For macOS users, this is (apparently) all you need to do; for Windows and Linux it is sadly a bit more involved – you can find the instructions in the extension page. I have not tested it, so I cannot say much more.
 
 -----------------------------------------------------------------
 
