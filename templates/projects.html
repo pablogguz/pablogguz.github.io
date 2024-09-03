@@ -23,13 +23,13 @@
             <div class="desc" id="descDiv" style="display: none;">{{ proj.desc | trim | markdown | safe }}</div> -->
             <div class="desc">{{ proj.desc | trim | markdown | safe }}</div>
             {% if proj.r_url %}
-            <a href="{{ proj.r_url }}" class="desc-button link-button" target="_blank"><i class="fab fa-r-project"></i> R Package</a>
+            <a href="{{ proj.r_url }}" class="desc-button link-button" target="_blank"><i class="fab fa-r-project"></i> R package</a>
             {% endif %}
             {% if proj.shiny_url %}
-            <a href="{{ proj.shiny_url }}" class="desc-button link-button" target="_blank"><i class="fas fa-chart-line"></i> Shiny App</a>
+            <a href="{{ proj.shiny_url }}" class="desc-button link-button" target="_blank"><i class="fas fa-chart-line"></i> App</a>
             {% endif %}
             {% if proj.github_url %}
-            <a href="{{ proj.github_url }}" class="desc-button link-button" target="_blank"><i class="fab fa-github"></i> GitHub Repo</a>
+            <a href="{{ proj.github_url }}" class="desc-button link-button" target="_blank"><i class="fab fa-github"></i> Code</a>
             {% endif %}
             {% if proj.pdf_url %}
             <a href="{{ proj.pdf_url }}" class="desc-button link-button" target="_blank"><i class="fas fa-file-pdf"></i> PDF</a>
