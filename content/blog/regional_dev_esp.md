@@ -40,18 +40,18 @@ $$
 
 where $\Delta y_{it}$ is an approximation for the cumulative income growth rate in region $i$ between time $t$ and $t-1$, and $y_{it-1}$ denotes the income level at baseline in region $i$. The coefficient $\beta$ is the parameter of interest, and it measures the speed at which income levels converge (if negative) or diverge (if positive) across regions. 
 
-# Fact 1: Spanish regions are converging (relatively) fast
+# Fact 1: Spanish regions are converging 
 
-If we gather data on sub-national GDP per capita levels for the period 1995-2023 and fit the regression above across Spanish NUTS3 regions, we obtain a (statistically significant) $\beta$-convergence coefficient of -0.0139. This implies that, on average, the income levels across Spanish regions converged at a rate of 1.39% per year over the last 30 years (see <a href="#fig1">Figure 1</a>). With this rate of convergence, it would take approximately 50 years to close half the income gap between regions in Spain.[^2]
+If we gather data on sub-national GDP per capita levels for the period 1995-2023 and fit the regression above across Spanish NUTS3 regions, we obtain a (statistically significant) $\beta$-convergence coefficient of -0.0139. This implies that, on average, the income levels across Spanish regions converged at a rate of 1.39% per year over the last 30 years (see <a href="#fig1">Figure 1</a>). With this rate of convergence, it would take approximately 50 years to close half the income gap between regions in Spain.[^2]. Spanish regions are also converging in terms of labour productivity (measured as GDP per hour worked) at a rate of 1.66% per year. 
 
 <br>
 <figure id="fig1">
   <figcaption>Figure 1</figcaption>
-  <img src="/img/convergence_log_gdp_1995.png" loading="lazy" style="width: 100%; border: 0px none;"></iframe>
+  <img src="/img/convergence.png" loading="lazy" style="width: 100%; border: 0px none;"></iframe>
 </figure>
 <br>
 
-How does this compare to other European economies? I conducted the same analysis for all countries in the ARDECO database with i) available data since 1995, and ii) at least 5 NUTS3 regions.[^3] The results are shown in <a href="#fig2">Figure 2</a>. Strikingly, Spain is one of the countries with the highest rates of convergence in Europe since 1995, only behind Finland.
+How does this compare to other European economies? I conducted the same analysis for all countries in the ARDECO database with i) available data since 1995, and ii) at least 5 NUTS3 regions.[^3] The results are shown in <a href="#fig2">Figure 2</a>. Strikingly, Spain is one of the countries with the highest rates of convergence in Europe since 1995, only behind Finland. Spanish regions are converging relatively fast compared to other European countries.
 
 <br>
 <figure id="fig2">
@@ -60,7 +60,8 @@ How does this compare to other European economies? I conducted the same analysis
 </figure>
 <br>
 
-What about $\sigma$-convergence? We can compute a measure of dispersion by looking at the standard deviation of the log of GDP per capita across regions. In <a href="#fig3">Figure 3</a>, I plot the evolution of this measure over time. As you can see, the dispersion in income levels across Spanish regions has decreased significantly since 1990, consistent with the $\beta$-convergence results. 
+
+To assess $\sigma$-convergence, we can compute a measure of cross-regional income dispersion by looking at the standard deviation of the log of GDP per capita across regions. In <a href="#fig3">Figure 3</a>, I plot the evolution of this measure over time. As you can see, the dispersion in income levels across Spanish regions has decreased significantly since 1990, consistent with the $\beta$-convergence results. 
 
 <!-- If we transform the standard deviation into a coefficient of variation (the ratio of the standard deviation to the mean), we find that the coefficient of variation has decreased from 0.33 in 1990 to 0.21 in 2023. This suggests that the dispersion of income levels across Spanish regions has decreased by approximately 36% over the period of study. -->
 
@@ -81,6 +82,6 @@ What about $\sigma$-convergence? We can compute a measure of dispersion by looki
 
 [^2]: The formula to calculate the time it takes to close half the gap between regions is given by $t = \frac{log(2)}{\beta}$. In this case, $t = \frac{log(2)}{-0.0145} \approx 48$ years.
 
-[^3]: I removed Ireland as the GDP per capita figures derived from standard national accounts methodology are meaningless there due to profit shifting by multinational corporations (e.g., iPhone exports in 2017 accounted for 25% of Irish GDP growth. See [here](https://www.imf.org/en/Publications/WEO/Issues/2018/03/20/world-economic-outlook-april-2018)).
+[^3]: I excluded Ireland from the analysis as profit shifting by multinational corporations renders standard national accounts methodology meaningless (e.g., iPhone exports in 2017 accounted for 25% of Irish GDP growth. See [here](https://www.imf.org/en/Publications/WEO/Issues/2018/03/20/world-economic-outlook-april-2018)).
 
 
