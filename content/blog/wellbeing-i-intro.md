@@ -112,7 +112,7 @@ In light of the above, the answer to the question on why should we not rely sole
 
 ### The social comparison hypothesis
 
-One of the first explanations for the paradox was that income affects wellbeing through relative, rather than absolute, terms. In other words, what matters for determining wellbeing is how one's income compares to that of others in society. This is known as the **social comparison** and suggests that, if everyone becomes richer by a common factor, the average level of life satisfaction would not necessarily increase as the individuals' relative position within the income distribution would remain unchanged.
+One of the first explanations for the paradox was that income affects wellbeing through relative, rather than absolute, terms. In other words, what matters for determining wellbeing is how one's income compares to that of others in society. This is known as the **social comparison** hypothesis and suggests that, if everyone becomes richer by a common factor, the average level of life satisfaction would not necessarily increase as the individuals' relative position within the income distribution would remain unchanged.
 
 This is a very intuitive idea. If you are the only one in your social circle who has a Mercedes, you will probably feel very happy about it. But if all of a sudden all your friends start driving Ferraris, your Mercedes will now feel like a piece of junk. This is because the Mercedes serves as a status symbol: it is valuable insofar as it signals that you are in a better social position than your peers, but the moment it stops being exclusive it no longer serves that purpose.
 
