@@ -8,6 +8,15 @@
 # ]
 
 [[project]]
+name = "LiTS IV Visualizer"
+desc = "An interactive online application to explore the data from the latest wave of the EBRD-World Bank Life in Transition Survey, a large-scale household survey covering 37,000+ respondents across 37 countries"
+tags = []
+shiny_url = "https://lits-visualizer.ebrd.com/"
+links = [
+  # { name = "", url = "" },
+]
+
+[[project]]
 name = "whed"
 desc = "An R package to access WHED, a global dataset on higher education institutions"
 tags = []
