@@ -17,8 +17,18 @@ links = [
 ]
 
 [[project]]
+name = "ineAtlas"
+desc = "An R package to provide easy access to granular socio-economic data for Spain at the municipal, district, and census tract levels"
+tags = []
+r_url = "https://pablogguz.github.io/ineAtlas/"
+github_url = "https://github.com/pablogguz/ineAtlas"
+links = [
+  # { name = "", url = "" },
+]
+
+[[project]]
 name = "whed"
-desc = "An R package to access WHED, a global dataset on higher education institutions"
+desc = "An institution-level dataset on higher education institutions worldwide with information on over 20,000 institutions in 183 countries"
 tags = []
 r_url = "https://pablogguz.github.io/whed/"
 github_url = "https://github.com/pablogguz/whed"
@@ -38,7 +48,7 @@ links = [
 
 [[project]]
 name = "From everywhere to Spain"
-desc = "Shiny app to explore the international migrant stock in Spain using microdata from administrative municipal registers"
+desc = "Interactive online application to explore the international migrant stock in Spain using microdata from administrative municipal registers"
 tags = []
 shiny_url = "https://pablogguz.shinyapps.io/dataviz_migration_esp/"
 links = [
