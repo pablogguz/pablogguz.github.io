@@ -27,6 +27,15 @@ links = [
 ]
 
 [[project]]
+name = "comparatuingreso.es"
+desc = "An interactive online tool that allows users to calculate their relative position in the income distribution of Spain using census tract-level admnistrative data from income tax returns"
+tags = []
+shiny_url = "https://comparatuingreso.es/"
+links = [
+  # { name = "", url = "" },
+]
+
+[[project]]
 name = "whed"
 desc = "An institution-level dataset on higher education institutions worldwide with information on over 20,000 institutions in 183 countries"
 tags = []
