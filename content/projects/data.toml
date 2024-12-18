@@ -46,16 +46,6 @@ links = [
 ]
 
 [[project]]
-name = "whed"
-desc = "An institution-level dataset on higher education institutions worldwide with information on over 20,000 institutions in 183 countries"
-tags = []
-r_url = "https://pablogguz.github.io/whed/"
-github_url = "https://github.com/pablogguz/whed"
-links = [
-  # { name = "", url = "" },
-]
-
-[[project]]
 name = "From everywhere to Spain"
 desc = "Interactive online application to explore the international migrant stock in Spain using microdata from administrative municipal registers"
 tags = []
