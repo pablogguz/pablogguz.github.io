@@ -36,16 +36,6 @@ links = [
 ]
 
 [[project]]
-name = "whed"
-desc = "An institution-level dataset on higher education institutions worldwide with information on over 20,000 institutions in 183 countries"
-tags = []
-r_url = "https://pablogguz.github.io/whed/"
-github_url = "https://github.com/pablogguz/whed"
-links = [
-  # { name = "", url = "" },
-]
-
-[[project]]
 name = "subincomeR"
 desc = "An R package providing coordinate-based access to a global dataset of reported sub-national income data covering more than 1,600 sub-national regions across 83 countries"
 tags = []
@@ -74,11 +64,11 @@ links = [
   # { name = "", url = "" },
 ]
 
-[[project]]
-name = "Gender gaps in the labor market impact of the COVID-19 pandemic (w/ Claudia Hupkau)"
-desc = "Policy brief exploring the impact of the Covid-19 pandemic on gender gaps in labor market outcomes"
-tags = []
-pdf_url = "https://www.esade.edu/ecpol/en/publications/las-brechas-de-genero-en-el-mercado-laboral-durante-la-pandemia/"
-links = [
-  # { name = "", url = "" },
-]
+# [[project]]
+# name = "Gender gaps in the labor market impact of the COVID-19 pandemic (w/ Claudia Hupkau)"
+# desc = "Policy brief exploring the impact of the Covid-19 pandemic on gender gaps in labor market outcomes"
+# tags = []
+# pdf_url = "https://www.esade.edu/ecpol/en/publications/las-brechas-de-genero-en-el-mercado-laboral-durante-la-pandemia/"
+# links = [
+#   # { name = "", url = "" },
+# ]

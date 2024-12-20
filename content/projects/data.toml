@@ -64,11 +64,11 @@ links = [
   # { name = "", url = "" },
 ]
 
-[[project]]
-name = "Gender gaps in the labor market impact of the COVID-19 pandemic (w/ Claudia Hupkau)"
-desc = "Policy brief exploring the impact of the Covid-19 pandemic on gender gaps in labor market outcomes"
-tags = []
-pdf_url = "https://www.esade.edu/ecpol/en/publications/las-brechas-de-genero-en-el-mercado-laboral-durante-la-pandemia/"
-links = [
-  # { name = "", url = "" },
-]
+# [[project]]
+# name = "Gender gaps in the labor market impact of the COVID-19 pandemic (w/ Claudia Hupkau)"
+# desc = "Policy brief exploring the impact of the Covid-19 pandemic on gender gaps in labor market outcomes"
+# tags = []
+# pdf_url = "https://www.esade.edu/ecpol/en/publications/las-brechas-de-genero-en-el-mercado-laboral-durante-la-pandemia/"
+# links = [
+#   # { name = "", url = "" },
+# ]
