@@ -48,7 +48,7 @@ The relationship between inequality and intergenerational mobility is perhaps be
 <br>
 <figure id="fig1">
   <figcaption>Figure 1: The Great Gatsby Curve</figcaption>
-  <img src="/img/corak.png" loading="lazy" style="width: 100%; border: 0px none;"></iframe>
+  <img src="/img/corak.PNG" loading="lazy" style="width: 100%; border: 0px none;"></iframe>
 </figure>
 <p class="figure-note">Source: <a href="https://www.aeaweb.org/articles?id=10.1257/jep.27.3.79">Corak (2013)</a></p>
 <br>
@@ -74,7 +74,7 @@ For example, more advantaged families make strategic choices about neighborhoods
 <br>
 <figure id="fig3">
   <figcaption>Figure 3: Sorting by school quality in Denmark</figcaption>
-  <img src="/img/school_quality.png" loading="lazy" style="width: 70%; border: 0px none;"></iframe>
+  <img src="/img/school_quality.PNG" loading="lazy" style="width: 70%; border: 0px none;"></iframe>
 </figure>
 <p class="figure-note">Source: <a href="https://bfi.uchicago.edu/working-paper/pricing-neighborhoods/">Eshaghnia et al. (2023)</a></p>
 <br>
@@ -89,7 +89,7 @@ However, as Denmark shifted toward universal programs in the late 1960s and 1970
 <br>
 <figure id="fig4">
   <figcaption>Figure 4: College completion by parents' education</figcaption>
-  <img src="/img/heckman_college.png" loading="lazy" style="width: 100%; border: 0px none;"></iframe>
+  <img src="/img/heckman_college.PNG" loading="lazy" style="width: 100%; border: 0px none;"></iframe>
 </figure>
 <p class="figure-note">Source: <a href="https://onlinelibrary.wiley.com/doi/full/10.1111/sjoe.12219">Heckman and Landerso (2017)</a>, <a href="https://cehd.uchicago.edu/wp-content/uploads/2017/01/Scandinavian_Fantasy_Web-App_2016-06-11b_RL-1.pdf">Online Appendix (Figure A30e)</a> </p>
 <br>
