@@ -89,7 +89,7 @@ However, as Denmark shifted toward universal programs in the late 1960s and 1970
 <br>
 <figure id="fig4">
   <figcaption>Figure 4: College completion by parents' education</figcaption>
-  <img src="/img/heckman_college.PNG" loading="lazy" style="width: 100%; border: 0px none;"></iframe>
+  <img src="/img/heckman_college.PNG" loading="lazy" style="width: 90%; border: 0px none;"></iframe>
 </figure>
 <p class="figure-note">Source: <a href="https://onlinelibrary.wiley.com/doi/full/10.1111/sjoe.12219">Heckman and Landerso (2017)</a>, <a href="https://cehd.uchicago.edu/wp-content/uploads/2017/01/Scandinavian_Fantasy_Web-App_2016-06-11b_RL-1.pdf">Online Appendix (Figure A30e)</a> </p>
 <br>
