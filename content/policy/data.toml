@@ -1,0 +1,44 @@
+# [[project]]
+# name = ""
+# desc = ""
+# tags = ["", ""]
+# links = [
+#   { name = "", url = "" },
+#   { name = "", url = "" },
+# ]
+
+[[project]]
+name = "Life in Transition Survey IV: Household resilience in a turbulent world"
+desc = "Analytical chapters on intergenerational mobility, support for the green transition and job market informality using data from the latest wave of the EBRD-World Bank Life in Transition Survey (w/ Zsoka Koczan)"
+tags = []
+pdf_url = "https://www.ebrd.com/life-in-transition-iv.pdf"
+links = [
+   { name = "Frankfurter Allgemeine", url = "https://www.faz.net/aktuell/wirtschaft/mehr-wirtschaft/warum-es-kindern-in-osteuropa-schlechter-geht-als-ihren-eltern-trotz-aufschwung-110110899.html" },
+]
+
+[[project]]
+name = "Promoting structural change (EBRD Transition Report 2024-25, Chapter 2)"
+desc = "Structural transformation and (services) export-led growth (w/ Anton Grahed, Helena Schweiger, and Beata Javorcik)"
+tags = []
+pdf_url = "https://www.ebrd.com/publications/transition-report-202425-promoting-structural-change"
+links = [
+   { name = "VoxEU", url = "https://cepr.org/voxeu/columns/rise-services-exports-new-pathways-growth" },
+]
+
+[[project]]
+name = "Place-based industrial policies (EBRD Transition Report 2024-25, Chapter 3)"
+desc = "Regional inequality and urban-rural disparities in the EBRD regions (w/ Cevat Aksoy, Francesco Loiacono, Ege Ondes, and Xuanyi Wang)"
+tags = []
+pdf_url = "https://www.ebrd.com/publications/transition-report-202425-regional-inequality-and-special-economic-zones"
+links = [
+   { name = "VoxEU", url = "https://cepr.org/voxeu/columns/special-economic-zones-and-slow-path-regional-convergence" },
+]
+
+[[project]]
+name = "Gender gaps in the labor market impact of the COVID-19 pandemic"
+desc = "Policy brief exploring the impact of the Covid-19 pandemic on gender gaps in labor market outcomes (w/ Claudia Hupkau)"
+tags = []
+pdf_url = "https://www.esade.edu/ecpol/en/publications/las-brechas-de-genero-en-el-mercado-laboral-durante-la-pandemia/"
+links = [
+  # { name = "", url = "" },
+]
