@@ -1,18 +1,19 @@
 <style>
-
-  .disclaimer, .copyright, .credits {
+  .disclaimer,
+  .copyright,
+  .credits {
     font-size: 0.8em; /* Adjust as needed */
   }
 
   #myAvatar {
-    width: 110px !important; 
+    width: 110px !important;
     height: auto !important;
     border-radius: 0 !important;
   }
 
   .prose a {
     transition: text-decoration-color 0.3s ease !important; /* 0.3s duration, ease timing function */
-    border-bottom:  none !important;
+    border-bottom: none !important;
     text-decoration: underline !important;
     text-decoration-color: #5871a200 !important;
   }
@@ -23,7 +24,7 @@
   }
 
   #reading-time {
-    font-size: 0.8em; 
+    font-size: 0.8em;
   }
 
   figcaption {
@@ -67,7 +68,8 @@
     /* display: none; */
   }
 
-  .desc-button, .link-button {
+  .desc-button,
+  .link-button {
     height: 40px; /* adjust as needed */
     line-height: 40px; /* should be the same as height for vertical centering */
     text-decoration: none; /* remove underline */
@@ -100,11 +102,11 @@
   body {
     --primary-color: #6487cc;
     --primary-pale-color: #5871a210;
-    --text-color: #3C4043;
+    --text-color: #3c4043;
     --text-pale-color: #9b9faa;
-    --bg-color: #f2f2f2; 
+    --bg-color: #f2f2f2;
     --highlight-mark-color: #5f75b045;
-  
+
     --callout-note-color: #6487cc;
     --callout-important-color: #8062b0;
     --callout-warning-color: #936e51;
@@ -132,8 +134,12 @@
 
   /* typography */
   body {
-    --main-font: 'Libre Franklin', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";;
-    --code-font: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --main-font: "Libre Franklin", ui-sans-serif, system-ui, -apple-system,
+      BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+      "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+      "Segoe UI Symbol", "Noto Color Emoji";
+    --code-font: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+      "Liberation Mono", "Courier New", monospace;
     --homepage-max-width: 768px;
     --main-max-width: 768px;
     --avatar-size: 60px;
@@ -154,6 +160,91 @@
     display: flex;
     align-items: center;
     font-size: 0.8em;
+  }
+
+  /* ---------------------- Modal --------------------------- */
+  /* Modal base styles */
+  .modal {
+    border: none;
+    border-radius: 8px;
+    padding: 30px;
+    max-width: 550px;
+    background: var(--bg-color);
+    color: var(--text-color);
+    box-shadow: 0 4px 32px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  /* Modal open state */
+  .modal[open] {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* Backdrop styling */
+  .modal::backdrop {
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(3px);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .modal[open]::backdrop {
+    opacity: 1;
+  }
+
+  /* Content styling */
+  .modal-content {
+    font-size: 0.95em;
+    line-height: 1.6;
+  }
+
+  .modal-content h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.4em;
+    font-weight: 600;
+  }
+
+  .modal-content ul {
+    padding-left: 25px;
+    margin: 20px 0;
+  }
+
+  .modal-content li {
+    margin-bottom: 12px;
+  }
+
+  /* Button styling */
+  .modal-close {
+    float: right;
+    padding: 10px 20px;
+    margin-top: 20px;
+    background: var(--primary-color);
+    color: var(--bg-color);
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+  }
+
+  .modal-close:hover {
+    background: var(--text-color);
+    transform: translateY(-1px);
+  }
+
+  .modal-close:active {
+    transform: translateY(0);
+  }
+
+  #coffee-btn {
+  text-decoration: none;
+    color: #6487cc;  /* Change to blue */
+    border-bottom: 1.5px solid #0077cc;
   }
 
 </style>

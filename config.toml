@@ -98,3 +98,23 @@ not_found_error_text = "Not Found"
 not_found_recover_text = "« back to home »"
 
 reading_time = 0                    # Reading time 
+
+# Coffee modal config
+coffee_modal = true
+coffee_text = "fancy a (virtual) coffee?"
+coffee_guidelines = [
+    """
+    Don't be shy! I'm always happy to chat about data, economics, or anything else. 
+    If you are a student or just starting out in the field, I'm also happy to provide advice 
+    or guidance on the usual stuff (e.g. whether to do a PhD, whether a pre-doc is worth it, 
+    alternative career paths, etc.).
+    """,
+    """
+    If you add me on LinkedIn, please drop a brief note explaining why you want to connect. 
+    I generally don't accept invites without context (unless we're clearly in the same data/econ research bubble).
+    """,
+    """
+    I am not a hiring manager and can't provide specific interview advice for EBRD roles.
+    If you ask me about this, I will refer you to publicly available resources and wish you the best of luck!
+    """
+]

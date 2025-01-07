@@ -19,6 +19,65 @@
 </head>
 
 <body class="{% block page %}{% endblock page%}">
+  {% if config.extra.coffee_modal %}
+    {% include "_modal.html" %}
+  {% endif %}
+
+  <script>
+document.addEventListener('DOMContentLoaded', function() {
+  const coffeeModal = document.getElementById('coffee-modal');
+  const coffeeBtn = document.getElementById('coffee-btn');
+  const closeBtn = document.querySelector('.modal-close');
+
+  // Add this - set initial styles
+  if (coffeeModal) {
+    coffeeModal.style.opacity = '0';
+    coffeeModal.style.transform = 'scale(0.95)';
+  }
+
+  if (coffeeBtn) {
+    coffeeBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      coffeeModal.showModal();
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          coffeeModal.style.opacity = '1';
+          coffeeModal.style.transform = 'scale(1)';
+        });
+      });
+    });
+  }
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+      coffeeModal.style.opacity = '0';
+      coffeeModal.style.transform = 'scale(0.95)';
+      setTimeout(() => {
+        coffeeModal.close();
+      }, 200);
+    });
+  }
+
+  if (coffeeModal) {
+    coffeeModal.addEventListener('click', (e) => {
+      const dialogDimensions = coffeeModal.getBoundingClientRect();
+      if (
+        e.clientX < dialogDimensions.left ||
+        e.clientX > dialogDimensions.right ||
+        e.clientY < dialogDimensions.top ||
+        e.clientY > dialogDimensions.bottom
+      ) {
+        coffeeModal.style.opacity = '0';
+        coffeeModal.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+          coffeeModal.close();
+        }, 200);
+      }
+    });
+  }
+});
+  </script>
+  
   <script>
     const theme = sessionStorage.getItem('theme');
     const match = window.matchMedia("(prefers-color-scheme: dark)").matches

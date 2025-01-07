@@ -23,7 +23,7 @@ i do applied microeconomic and policy research at a [multilateral development ba
 
 i have +4 years of experience conducting empirical work with large-scale household surveys, administrative and geospatial datasets to answer policy-oriented research questions. i also contribute to original data collection through survey implementation, design and build [web applications](/projects) (such as interactive visualization tools) to maximize the impact of key products, and develop [r packages](https://pablogguz.github.io/ineAtlas) and other open-source public goods to make data more accessible for everyone.
 
-fancy a (virtual) coffee? 
+fancy a <a href="#" id="coffee-btn">(virtual) coffee?</a>
 
 <!-- i mainly read, write (code), work out, and try to enjoy life.  -->
 
