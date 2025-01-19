@@ -41,7 +41,7 @@ desc = "An interactive visualization tool to explore the spatial distribution of
 tags = []
 shiny_url = "https://datoscrimen.es/"
 links = [
-  # { name = "", url = "" },
+   { name = "vozpopuli.com", url = "https://www.vozpopuli.com/espana/cataluna/proliferan-las-patrullas-vecinales-en-una-cataluna-a-la-cabeza-de-los-robos-violentos-en-espana.html" },
 ]
 
 [[project]]
