@@ -13,7 +13,8 @@ desc = "Analytical chapters on intergenerational mobility, support for the green
 tags = []
 pdf_url = "https://www.ebrd.com/life-in-transition-iv.pdf"
 links = [
-   { name = "Frankfurter Allgemeine", url = "https://www.faz.net/aktuell/wirtschaft/mehr-wirtschaft/warum-es-kindern-in-osteuropa-schlechter-geht-als-ihren-eltern-trotz-aufschwung-110110899.html" },
+   { name = "VoxEU", url = "https://cepr.org/voxeu/columns/social-mobility-and-digital-divides-emerging-economies-evidence-4th-wave-life" },
+   { name = "Frankfurter Allgemeine", url = "https://www.faz.net/aktuell/wirtschaft/mehr-wirtschaft/warum-es-kindern-in-osteuropa-schlechter-geht-als-ihren-eltern-trotz-aufschwung-110110899.html" }
 ]
 
 [[project]]

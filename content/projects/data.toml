@@ -32,7 +32,7 @@ desc = "An interactive online tool that allows users to calculate their relative
 tags = []
 shiny_url = "https://comparatuingreso.es/"
 links = [
-  # { name = "", url = "" },
+   { name = "COPE", url = "https://www.cope.es/actualidad/economia/noticias/ganas-mas-dinero-vecino-truco-descubrirlo-te-pillen-20241209_3058228.html" },
 ]
 
 [[project]]
@@ -41,7 +41,8 @@ desc = "An interactive visualization tool to explore the spatial distribution of
 tags = []
 shiny_url = "https://datoscrimen.es/"
 links = [
-   { name = "vozpopuli.com", url = "https://www.vozpopuli.com/espana/cataluna/proliferan-las-patrullas-vecinales-en-una-cataluna-a-la-cabeza-de-los-robos-violentos-en-espana.html" },
+   { name = "Vozpópuli", url = "https://www.vozpopuli.com/espana/cataluna/proliferan-las-patrullas-vecinales-en-una-cataluna-a-la-cabeza-de-los-robos-violentos-en-espana.html" },
+   { name = "La Razón", url = "https://www.larazon.es/cataluna/herencia-proces-cataluna-generalitat-independentista-11-municipios-mas-robos-espana-eran-catalanes_202501146786aba0bc785b00017bf770.html" }  
 ]
 
 [[project]]
