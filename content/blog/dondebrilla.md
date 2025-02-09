@@ -44,7 +44,7 @@ At first, it seemed like a linguistic flub — an unintended inversion of the ph
 
 # The accidental prophet
 
-_Shine wherever you go_. Society loves this mantra. It’s the self-help gospel of grinding, hustling, and proving your worth in hostile spaces. _Be brilliant, be visible, be universally admired_. The kind of self-optimization propaganda that keeps LinkedIn influencers employed and therapy offices full. But _"va donde brilla"_ suggests a quieter rebellion: **what if life isn’t about forcing yourself to glow in every room, but about finding the rooms that already see your light?**
+_Shine wherever you go_. Society loves this mantra. It’s the self-help gospel of grinding, hustling, and proving your worth in hostile spaces. _Be brilliant, be visible, be universally admired_. The kind of self-optimization propaganda that keeps LinkedIn influencers employed and therapy offices full. But _"va donde brilla"_ suggests a quieter rebellion: **what if life isn’t about forcing yourself to shine in every room, but about finding the rooms that already see your light?**
 
 There is a difference between adapting and contorting. While society pushes people to be everything to everyone, the truth is uglier: **our talents, love, and vulnerabilities only matter when met with eyes soft enough to behold them**. Some places will never be home. Some people will never see you. Some loves will never fit, no matter how much skin you scrape off trying to squeeze into them. **We've all seen it — those relationships where one partner tolerates the other like an interesting furniture choice they've grown to regret.**
 
