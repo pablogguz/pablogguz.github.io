@@ -56,7 +56,11 @@ And if it doesn’t, well.
 
 You can always run. 
 
-
+<br>
+<figure id="fig1">
+  <img src="/img/montoyagif.gif" loading="lazy" style="width: 90%; border: 0px none;">
+</figure>
+<br> 
 
 <br>
 
