@@ -40,7 +40,7 @@ The cameras loved it. We loved it. The clip went viral. Of course it did. The ed
 
 But before this pivotal moment, Montoya had already established himself as the show's main character through a series of fantastic one-liners, performances, and a general air of tragicomedy. One of his most memorable moments was when, during a breakdown, he declared with the solemnity of a Shakespearean actor that **_"Montoya va donde brilla"_** ("Montoya goes where he shines"). 
 
-At first, it seemed like a linguistic flub — an unintended inversion of the phrase **_"Montoya brilla donde va"_** ("Montoya shines wherever he goes", which is a common Spanish idiom to say that someone thrives in any environment). But as the meme spread, I realized that this accidental catchphrase was never meant to be a joke. **It was a manifesto**.
+At first, it seemed like a linguistic flub — an unintended inversion of the phrase **_"Montoya brilla donde va"_** ("Montoya shines wherever he goes", which is a common Spanish idiom to say that someone is able to thrive in any environment). But as the meme spread, I realized that this accidental catchphrase was never meant to be a joke. **It was a manifesto**.
 
 # The accidental prophet
 
