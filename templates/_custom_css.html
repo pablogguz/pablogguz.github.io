@@ -242,9 +242,255 @@
   }
 
   #coffee-btn {
-  text-decoration: none;
+    text-decoration: none;
     color: var(--primary-color);
     border-bottom: 1.5px solid var(--primary-color);
   }
+</style>
 
+<style>
+
+  /* Project Cards Styling */
+.projects-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1.5em;
+}
+
+.project-card {
+  background: var(--bg-color);
+  border-radius: 12px;
+  padding: 2em;
+  margin: 1em 0;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-2px);
+}
+
+.project-title {
+  font-size: 1.1em;
+  color: var(--primary-color);
+  margin: 0 0 0 0;
+}
+
+.project-desc {
+  color: var(--text-color);
+  line-height: 1.6;
+  font-size: 0.9em;
+  margin-bottom: 1.5em;
+}
+
+.project-links {
+  display: flex;
+  gap: 1em;
+  flex-wrap: wrap;
+  margin-bottom: 1.5em;
+}
+
+.link-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.5em 1em;
+  border-radius: 6px;
+  background: var(--primary-pale-color);
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.link-button:hover {
+  background: var(--primary-color);
+  color: var(--bg-color);
+}
+
+.media-section {
+  margin: 0 0;
+  padding-top: 1.5em;
+  border-top: 1px solid var(--primary-pale-color);
+}
+
+.media-label {
+  display: block;
+  color: var(--text-pale-color);
+  margin-bottom: 0.5em;
+}
+
+.media-links {
+  display: flex;
+  gap: 1em;
+  flex-wrap: wrap;
+}
+
+.media-links a {
+  color: var(--primary-color);
+  text-decoration: none;
+  padding: 0.2em 0;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.media-links a:hover {
+  border-bottom-color: var(--primary-color);
+}
+
+.project-tags {
+  display: flex;
+  gap: 0.5em;
+  flex-wrap: wrap;
+  margin-top: 1.5em;
+}
+
+.tag {
+  font-size: 0.9em;
+  color: var(--text-pale-color);
+  padding: 0.2em 0.8em;
+  border-radius: 20px;
+  background: var(--primary-pale-color);
+}
+
+@media (max-width: 768px) {
+  .projects-container {
+    padding: 1em;
+  }
+  
+  .project-card {
+    padding: 1.5em;
+  }
+}
+
+  /* Portfolio layout */
+  .portfolio-intro {
+    padding: 4em 2em 2em;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .portfolio-intro h1 {
+    font-size: 2em;
+    margin-bottom: 0.5em;
+    color: var(--primary-color);
+  }
+
+  .portfolio-intro p {
+    color: var(--text-pale-color);
+    font-size: 1.1em;
+    line-height: 1.6;
+  }
+
+  /* Visualization cards */
+  .viz-card {
+    background: var(--bg-color);
+    border-radius: 12px;
+    padding: 2em;
+    margin: 2em auto; /* Changed from 2em 1em to center */
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease;
+    max-width: 800px; /* Adjust this value for card width */
+  }
+
+  .viz-card:hover {
+    transform: translateY(-2px);
+  }
+
+  .viz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1em;
+    flex-wrap: wrap;
+    gap: 1em;
+  }
+
+  .viz-header h2 {
+    font-size: 1.5em;
+    margin: 0;
+    color: var(--primary-color);
+  }
+
+  .viz-tags {
+    display: flex;
+    gap: 0.5em;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    font-size: 0.9em;
+    color: var(--text-pale-color);
+    padding: 0.2em 0.8em;
+    border-radius: 20px;
+    background: var(--primary-pale-color);
+  }
+
+  .viz-description {
+    color: var(--text-color);
+    line-height: 1.6;
+    margin: 1em 0 2em;
+  }
+
+  .viz-container {
+    border-radius: 8px;
+    overflow: hidden;
+    background: white;
+    margin: 1em 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Add this to contain all viz cards */
+  .viz-container-wrapper {
+    max-width: 900px; /* Adjust this value to control overall width */
+    margin: 0 auto;
+    padding: 0 2em;
+  }
+
+  .viz-links {
+    margin-top: 1.5em;
+    display: flex;
+    gap: 1em;
+    flex-wrap: wrap;
+  }
+
+  .viz-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    color: var(--primary-color);
+    text-decoration: none;
+    padding: 0.5em 1em;
+    border-radius: 6px;
+    background: var(--primary-pale-color);
+    transition: all 0.2s ease;
+  }
+
+  .viz-link:hover {
+    background: var(--primary-color);
+    color: var(--bg-color);
+  }
+
+  .viz-link svg {
+    transition: transform 0.2s ease;
+  }
+
+  .viz-link:hover svg {
+    transform: translateX(3px);
+  }
+
+  @media (max-width: 768px) {
+    .viz-container-wrapper {
+      padding: 0 1em;
+    }
+
+    .viz-card {
+      padding: 1.5em;
+      margin: 1.5em auto;
+    }
+
+    .viz-header {
+      flex-direction: column;
+    }
+  }
 </style>

@@ -11,52 +11,69 @@
 {% include "_header.html" %}
 <div id="wrapper">
   <main>
-    {% set data = load_data(path="content/projects/data.toml", format="toml") %}
-    {% for proj in data.project %}
-    <div class="proj">
-      <div class="content">
-        <div>
-          <p class="name">{{ proj.name }}</p>
-          <!-- Add expandable description -->
-          <div class="buttons">
-<!--             <i class="desc-button" id="descBtn">Description <span class="triangle">&#9660;</span></i>
-            <div class="desc" id="descDiv" style="display: none;">{{ proj.desc | trim | markdown | safe }}</div> -->
-            <div class="desc">{{ proj.desc | trim | markdown | safe }}</div>
+    <div class="projects-container">
+      {% set data = load_data(path="content/projects/data.toml", format="toml") %}
+      {% for proj in data.project %}
+      <div class="project-card">
+        <div class="card-content">
+          <h2 class="project-title">{{ proj.name }}</h2>
+          <div class="project-desc">{{ proj.desc | trim | markdown | safe }}</div>
+          
+          <div class="project-links">
             {% if proj.r_url %}
-            <a href="{{ proj.r_url }}" class="desc-button link-button" target="_blank"><i class="fab fa-r-project"></i> R package</a>
+            <a href="{{ proj.r_url }}" class="link-button" target="_blank">
+              <i class="fab fa-r-project"></i>
+              <span>R package</span>
+            </a>
             {% endif %}
             {% if proj.shiny_url %}
-            <a href="{{ proj.shiny_url }}" class="desc-button link-button" target="_blank"><i class="fas fa-chart-line"></i> App</a>
+            <a href="{{ proj.shiny_url }}" class="link-button" target="_blank">
+              <i class="fas fa-chart-line"></i>
+              <span>App</span>
+            </a>
             {% endif %}
             {% if proj.github_url %}
-            <a href="{{ proj.github_url }}" class="desc-button link-button" target="_blank"><i class="fab fa-github"></i> Code</a>
+            <a href="{{ proj.github_url }}" class="link-button" target="_blank">
+              <i class="fab fa-github"></i>
+              <span>Code</span>
+            </a>
             {% endif %}
             {% if proj.pdf_url %}
-            <a href="{{ proj.pdf_url }}" class="desc-button link-button" target="_blank"><i class="fas fa-file-pdf"></i> PDF</a>
+            <a href="{{ proj.pdf_url }}" class="link-button" target="_blank">
+              <i class="fas fa-file-pdf"></i>
+              <span>PDF</span>
+            </a>
             {% endif %}
           </div>
+
+          {% if proj.links|length > 0 %}
+          <div class="media-section">
+            <span class="media-label">Media Coverage</span>
+            <div class="media-links">
+              {% for link in proj.links -%}
+              <a href="{{ link.url }}" target="_blank" rel='noreferrer noopener'>{{ link.name }}</a>
+              {% endfor %}
+            </div>
+          </div>
+          {% endif %}
+
+          {% if proj.tags|length > 0 %}
+          <div class="project-tags">
+            {% for tag in proj.tags %}
+            <span class="tag">#{{ tag }}</span>
+            {% endfor %}
+          </div>
+          {% endif %}
         </div>
+
         {% if proj.img %}
-        <img src="{{ proj.img }}" alt="{{ proj.name }}" />
+        <div class="card-image">
+          <img src="{{ proj.img }}" alt="{{ proj.name }}" />
+        </div>
         {% endif %}
       </div>
-      <div class="more">
-        <div class="tags">
-          {% for tag in proj.tags %}
-          <div><span>#</span>{{ tag }}</div>
-          {% endfor %}
-        </div>
-        <div class="links">
-          {% if proj.links|length > 0 %}
-          <span>Media:</span>
-          {% endif %}
-          {% for link in proj.links -%}
-          <a href="{{ link.url }}" target="_blank" rel='noreferrer noopener'>{{ link.name }}</a>
-          {% endfor %}
-        </div>
-      </div>  
+      {% endfor %}
     </div>
-    {% endfor %}
   </main>
   {% include "_footer.html" -%}
 </div>
