@@ -1,0 +1,9 @@
+[[viz]]
+name = "Graduate Employment in Spain"
+desc = "Interactive visualization exploring employment outcomes and skill utilization among Spanish university graduates (in Spanish)"
+tags = ["highcharts", "education", "labor-market"]
+embed_url = "/img/rightqualemployed_vs_degreeuseful_interactive.html"
+height = "600px"
+links = [
+    
+]
