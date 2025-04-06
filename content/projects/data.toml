@@ -57,7 +57,7 @@ links = [
 
 [[project]]
 name = "From everywhere to Spain"
-desc = "Interactive online application to explore the international migrant stock in Spain using microdata from administrative municipal registers"
+desc = "Interactive online application to explore the international migrant stock in Spain using microdata from administrative municipal registers and the census"
 tags = []
 shiny_url = "https://pablogguz.shinyapps.io/dataviz_migration_esp/"
 links = [
