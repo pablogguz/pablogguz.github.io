@@ -27,7 +27,7 @@ links = [
 ]
 
 [[project]]
-name = "wikibarrio.es"
+name = "WikiBarrio"
 desc = "An interactive visualization tool to explore neighborhood-level socio-demographic data from Spain"
 tags = []
 shiny_url = "https://www.wikibarrio.es/"
