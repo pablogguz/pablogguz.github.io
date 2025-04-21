@@ -27,6 +27,15 @@ links = [
 ]
 
 [[project]]
+name = "wikibarrio.es"
+desc = "An interactive visualization tool to explore neighborhood-level socio-demographic data from Spain"
+tags = []
+shiny_url = "https://www.wikibarrio.es/"
+links = [
+  # { name = "", url = "" },
+]
+
+[[project]]
 name = "comparatuingreso.es"
 desc = "An interactive online tool that allows users to calculate their relative position in the income distribution of Spain using census tract-level admnistrative data from income tax returns"
 tags = []
@@ -57,7 +66,7 @@ links = [
 
 [[project]]
 name = "From everywhere to Spain"
-desc = "Interactive online application to explore the international migrant stock in Spain using microdata from administrative municipal registers"
+desc = "Interactive online application to explore the international migrant stock in Spain using microdata from administrative municipal registers and the census"
 tags = []
 shiny_url = "https://pablogguz.shinyapps.io/dataviz_migration_esp/"
 links = [
