@@ -162,9 +162,9 @@ I will leave it here. If you have worked with Google Trends data before and have
 
 <br>
 
-{% tip(header="Code and data") %}
+<!-- {% tip(header="Code and data") %}
 All the code used to produce the analyses in my blog posts (if any) is publicly available in my [blog's code kitchen](https://github.com/pablogguz/blog_posts_code).
-{% end %}
+{% end %} -->
 
 
 

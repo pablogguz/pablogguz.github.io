@@ -178,9 +178,9 @@ On a more general note, the truth is that we humans are not very good at predict
 
 <br>
 
-{% tip(header="Code and data") %}
+<!-- {% tip(header="Code and data") %}
 All the code used to produce the analyses in my blog posts (if any) is publicly available in my [blog's code kitchen](https://github.com/pablogguz/blog_posts_code).
-{% end %}
+{% end %} -->
 
 
 -----------------------------------------------------------------

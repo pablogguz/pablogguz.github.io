@@ -36,6 +36,16 @@ links = [
 ]
 
 [[project]]
+name = "From everywhere to Spain"
+desc = "Interactive online application to explore the international migrant stock in Spain using microdata from administrative municipal registers and the census"
+tags = []
+shiny_url = "https://pablogguz.shinyapps.io/dataviz_migration_esp/"
+links = [
+  { name = "Infobae", url = "https://www.infobae.com/espana/2025/04/23/las-dos-caras-de-la-inmigracion-en-espana-los-marroquies-vienen-en-edad-de-trabajar-y-los-britanicos-despues-de-jubilarse/" },
+]
+
+
+[[project]]
 name = "comparatuingreso.es"
 desc = "An interactive online tool that allows users to calculate their relative position in the income distribution of Spain using census tract-level admnistrative data from income tax returns"
 tags = []
@@ -60,15 +70,6 @@ desc = "An R package providing coordinate-based access to a global dataset of re
 tags = []
 r_url = "https://pablogguz.github.io/subincomeR/"
 github_url = "https://github.com/pablogguz/subincomeR"
-links = [
-  # { name = "", url = "" },
-]
-
-[[project]]
-name = "From everywhere to Spain"
-desc = "Interactive online application to explore the international migrant stock in Spain using microdata from administrative municipal registers and the census"
-tags = []
-shiny_url = "https://pablogguz.shinyapps.io/dataviz_migration_esp/"
 links = [
   # { name = "", url = "" },
 ]
