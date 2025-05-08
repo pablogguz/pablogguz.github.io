@@ -1,6 +1,6 @@
 +++
 title = "A demographic projection of Spain's native-born population: quantifying the stock of second-generation immigrants"
-date = 2025-05-04
+date = 2025-05-08
 draft = false
 
 [taxonomies]
