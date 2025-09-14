@@ -19,7 +19,7 @@ display_tags = true
 truncate_summary = false
 featured = false
 cover_image = "https://pablogguz.github.io/img/bull.png"
-reading_time = 3
+reading_time = 10
 +++
 
 <img src="/img/bull.png" width="500"/>
