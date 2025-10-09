@@ -36,10 +36,10 @@ links = [
 ]
 
 [[project]]
-name = "From everywhere to Spain"
+name = "dedonde.es"
 desc = "Interactive online application to explore the international migrant stock in Spain using microdata from administrative municipal registers and the census"
 tags = []
-shiny_url = "https://pablogguz.shinyapps.io/dataviz_migration_esp/"
+shiny_url = "http://dedonde.es/"
 links = [
   { name = "Infobae", url = "https://www.infobae.com/espana/2025/04/23/las-dos-caras-de-la-inmigracion-en-espana-los-marroquies-vienen-en-edad-de-trabajar-y-los-britanicos-despues-de-jubilarse/" },
 ]

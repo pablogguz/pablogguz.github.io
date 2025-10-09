@@ -263,6 +263,6 @@ These are empirical questions that only time will answer, but history suggests t
 
 ------------------------------------------------------------
 
-[^1]: If you are curious, I developed an interactive visualization tool to explore data on the international migrant stock in Spain since 1998 to the present using microdata from administrative municipal registers and censuses. Check it out: [https://pablogguz.shinyapps.io/dataviz_migration_esp/](https://pablogguz.shinyapps.io/dataviz_migration_esp/).
+[^1]: If you are curious, I developed an interactive visualization tool to explore data on the international migrant stock in Spain since 1998 to the present using microdata from administrative municipal registers and censuses. Check it out: [http://dedonde.es/](http://dedonde.es/).
 
 [^2]: With the caveat that, compared to London or New York, origin countries are much more concentrated in Spanish cities. For example, individuals born in Latin America accounted for roughly 48% of the total foreign-born population stock at the national level in 2024.
