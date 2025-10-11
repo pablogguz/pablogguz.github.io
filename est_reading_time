@@ -15,4 +15,4 @@ def estimate_reading_time(filename):
     reading_time = words_count / 300  # using 300 words per minute
     return round(reading_time)
 
-print(estimate_reading_time('pop-projections-esp.md'))
+print(estimate_reading_time('wage-cohort-esp.md'))
