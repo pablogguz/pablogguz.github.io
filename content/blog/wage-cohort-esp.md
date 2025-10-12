@@ -18,11 +18,11 @@ outdate_alert_days = 120
 display_tags = true
 truncate_summary = false
 featured = false
-cover_image = "https://pablogguz.github.io/img/nocountry_v2.png"
+cover_image = "https://pablogguz.github.io/img/nocountry.png"
 reading_time = 8
 +++
 
-<img src="/img/nocountry_v2.png" width="500"/>
+<img src="/img/nocountry.png" width="500"/>
 <br>
 
 # Introduction
