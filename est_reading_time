@@ -1,18 +1,32 @@
-
 from bs4 import BeautifulSoup
 import markdown
 
 def estimate_reading_time(filename):
     file_path = r'C:\Users\pablo\Documents\GitHub\pablogguz.github.io\content\blog\\' + filename
-    with open(file_path, 'r') as file:
+    
+    # Specify UTF-8 encoding to handle special characters
+    with open(file_path, 'r', encoding='utf-8') as file:
         text = file.read()
+    
+    # Convert markdown to HTML
     html = markdown.markdown(text)
     soup = BeautifulSoup(html, features="html.parser")
-    for code_block in soup.find_all('code'):  # find all code blocks
-        code_block.decompose()  # remove the code blocks
-    words = soup.get_text().split()
+    
+    # Remove code blocks (both <code> and <pre> tags)
+    for code_block in soup.find_all(['code', 'pre']):
+        code_block.decompose()
+    
+    # Get text and split into words
+    text_content = soup.get_text()
+    
+    # Better word counting: strip whitespace and filter empty strings
+    words = [word for word in text_content.split() if word.strip()]
     words_count = len(words)
-    reading_time = words_count / 300  # using 300 words per minute
-    return round(reading_time)
+    
+    # Calculate reading time (300 words per minute)
+    reading_time = words_count / 300
+    
+    # Return at least 1 minute for very short posts
+    return max(1, round(reading_time))
 
 print(estimate_reading_time('wage-cohort-esp.md'))
