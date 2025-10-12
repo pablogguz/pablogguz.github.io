@@ -29,7 +29,7 @@ reading_time = 8
 
 Spain's younger generations are not enjoying higher wages than their parents did at the same age. In fact, **each successive male cohort since the 1960s appears to do progressively worse**: men born in the 1990s, now in their mid-30s, earn about 9% less in real terms than men born in the 1970s at comparable ages.
 
-**Women's wage trajectories tell a different story**: recent cohorts have achieved parity with earlier generations and appear on track to surpass them. While matching or slightly exceeding wage levels from decades ago is hardly cause for celebration, it stands in marked contrast to the persistent declines young men have experienced.
+**Women's wage trajectories tell a different story**: recent cohorts have achieved parity with earlier generations and appear on track to surpass them. While matching or slightly exceeding wage levels from decades ago is hardly cause for celebration, it stands in marked contrast to the persistent declines younger men have experienced.
 
 This post documents an attempt to construct age-earnings profiles by birth cohort in Spain. My approach accounts for methodological breaks in the underlying survey data and allows me to track different generations across their working lives.
 
