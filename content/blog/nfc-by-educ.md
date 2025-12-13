@@ -154,19 +154,18 @@ This approach preserves the *shape* of the tax profile (reflecting both progress
 
 ## Labour income taxes
 
-Gross labour income in the survey comprises gross cash earnings from employment, non-cash employee income, company car benefits, employer social security contributions, and self-employment income. Gross benefit income includes unemployment benefits, old-age pensions, survivor benefits, sickness and disability benefits, and education-related allowances. Following NTA convention, self-employment income is attributed in full to labour for the tax calculation.
-
-Net labour and benefit income is constructed analogously from the corresponding net variables. The implied tax is the difference between gross and net totals:
+Gross labour income in the survey comprises gross cash earnings from employment, non-cash employee income, company car benefits, and employer social security contributions. Gross benefit income includes unemployment benefits, old-age pensions, survivor benefits, sickness and disability benefits, and education-related allowances. Self-employment income is treated separately.
+Net income is constructed analogously from the corresponding net variables. The implied tax on each component is the difference between gross and net totals:
 
 $$
-T^L_i = (Y^L_i + B_i)^{\text{gross}} - (Y^L_i + B_i)^{\text{net}}
+T^L_i = Y^{L,\text{gross}}_i - Y^{L,\text{net}}_i \quad ; \quad T^{SE}_i = Y^{SE,\text{gross}}_i - Y^{SE,\text{net}}_i \quad ; \quad T^B_i = B^{\text{gross}}_i - B^{\text{net}}_i
 $$
 
-This captures taxes on both earnings and taxable benefits. The profile is rescaled to match the DG TAXUD macro control for labour-related taxes, which comprises personal income tax on labour and transfers, employee and employer social security contributions, and payroll taxes.
+Each component is rescaled to its corresponding DG TAXUD macro control: employment taxes to taxes on income form employment, benefit taxes to taxes paid by the non-employed (which captures taxes on pensions and social transfers), and self-employment taxes to taxes on income of self-employed. 
 
 ## Capital income taxes
 
-Capital income is measured at the household level and includes interest, dividends, profit from capital investments, and rental income. I compute implied capital taxes as the difference between gross and net capital income at the household level and allocate this to the household head. 
+Capital income is measured at the household level and includes interest, dividends, profit from capital investments, and rental income. I compute implied capital taxes as the difference between gross and net capital income at the household level and allocate this to the household head. The profile is rescaled to the DG TAXUD aggregate for capital taxes on household and corporate income, excluding the self-employment component (which is treated as labour above).
 
 ## Consumption taxes
 
