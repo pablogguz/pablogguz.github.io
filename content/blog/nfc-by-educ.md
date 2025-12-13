@@ -104,7 +104,7 @@ $$
 G^O_{\text{macro}} = \text{P3\\_S13} - \text{GF09}
 $$
 
-where P3_S13 is total government consumption from the National Accounts and GF09 is government education expenditure from COFOG.
+where P3_S13 is total government consumption from the National Accounts and GF09 is final government consumption expenditure on education from COFOG.
 
 ### Public education consumption
 
