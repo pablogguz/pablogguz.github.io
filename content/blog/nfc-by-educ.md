@@ -171,7 +171,7 @@ I start from pre-computed age profiles of private consumption for Spain from the
 
 $$\alpha(a,e) = \left(\frac{\bar{Y}(a,e)}{\bar{Y}}\right)^{\gamma}$$
 
-where $\gamma < 1$ captures the concavity of the consumption-income relationship. I set $\gamma = 0.6$, which implies that a doubling of income increases consumption by approximately 50% — consistent with empirical estimates of the income elasticity of consumption.[^2] This adjustment is applied to the NTA base consumption profile, and the resulting profiles are rescaled to match the National Accounts aggregate for household consumption. Consumption taxes are then allocated proportionally, with the aggregate matching DG TAXUD data on consumption tax revenue.
+where $\gamma < 1$ captures the concavity of the consumption-income relationship. I set $\gamma = 0.6$, which implies that a doubling of income increases consumption by approximately 50% — consistent with empirical estimates of the income elasticity of consumption.[^2] The base consumption profile is multiplied by this adjustment factor to generate education-specific profiles, which are then rescaled so that the population-weighted total matches the National Accounts aggregate for household consumption. Consumption taxes are allocated in proportion to consumption, with the aggregate matching DG TAXUD data on consumption tax revenue.
 
 # Combining inflows and outflows
 
