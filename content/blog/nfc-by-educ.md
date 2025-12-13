@@ -104,7 +104,7 @@ $$
 G^O_{\text{macro}} = \text{P3\\_S13} - \text{GF09}
 $$
 
-where P3_S13 is total government consumption from the National Accounts and GF09 is final government consumption expenditure on education from COFOG.
+where P3_S13 is total government consumption from the National Accounts and GF09 is final government consumption expenditure on education expenditure from COFOG.
 
 ### Public education consumption
 
@@ -113,7 +113,7 @@ Education consumption requires different treatment because it varies systematica
 The allocation procedure rests on two building blocks:
 
 1. **Enrolment data**: I gather data on per-student costs by education level (`educ_uoe_fine09`). Since the latest available data is for 2022, I adjust it to 2023 prices using the government consumption deflator.
-2. **Macro control**: Total government education expenditure from COFOG (GF09 in `gov_10a_exp`), which the individual-level allocations must sum to.
+2. **Macro control**: Final government consumption expenditure on education from COFOG (GF09 in `gov_10a_exp`), which the individual-level allocations must sum to.
 
 For each individual in the survey, I assign education consumption as follows. For individuals currently enrolled in education, I assign consumption based on their enrolment level and the corresponding per-student cost. For children under 16, I impute current enrollment based on age (see table below). Individuals not currently enrolled receive zero education consumption. 
 
