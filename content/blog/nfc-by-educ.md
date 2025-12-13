@@ -198,7 +198,7 @@ These profiles highlight that the fiscal position of an individual is shaped by 
 
 **Tertiary-educated graduates are net fiscal contributors from their late 20s until their mid-60s**, with average contributions around €13,000 per year during prime working ages (25-54). After retirement, they become net recipients, but their implied synthetic lifetime contributions remain positive. Those with **secondary education are also net fiscal contributors during their working lives**, but with more modest average contributions during prime working ages (of the order of one-third of the average for tertiary-educated individuals). However, their synthetic lifetime fiscal contribution turns negative once we account for receipts during childhood and retirement. 
 
-Those with **only primary education or below are roughly neutral for most of their working lives**. Even during prime working ages, their average net fiscal contribution is close to zero. As a result, their synthetic lifetime fiscal contribution is substantially negative.
+Those with **only primary education or below are roughly neutral for most of their working lives**: even during prime working ages, their average net fiscal contribution is close to zero. As a result, their synthetic lifetime fiscal contribution is substantially negative.
 
 An important part of these gaps stems from differences in labour market attachment. In the survey, prime working-age individuals with less than secondary education have an employment rate of around 55%, compared to over 85% for those with tertiary education. Interestingly, the employment rate of individuals with tertiary education aged 60-64 is above the prime working-age employment rate of those with only primary education.
 
