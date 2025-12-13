@@ -78,9 +78,9 @@ Transfer inflows consist of two main components: cash benefits received from the
 
 ## Cash benefits
 
-Cash benefits are measured from household survey microdata both at the individual level (for personal benefits) and at the household level (for household-level transfers). Individual-level benefits include unemployment benefits, old-age pensions, survivor benefits, sickness benefits, disability benefits, and education-related benefits. Household-level benefits (housing allowances, family/child allowances, and social exclusion benefits) are divided equally among household members.
+Cash benefits are measured from household survey microdata both at the individual level (for personal benefits) and at the household level (for household-level transfers). Individual-level benefits include unemployment benefits, old-age pensions, survivor benefits, sickness benefits, disability benefits, and education-related benefits. Household-level benefits (which include housing allowances, family/child allowances, and social exclusion benefits) are divided equally among household members.
 
-I aggregate all cash benefits to the individual level and then rescale to match the National Accounts macro control for social benefits paid by the general government (D62 from `gov_10a_main`):
+I aggregate all cash benefits to the individual level and then rescale to match the National Accounts macro control for social benefits other than social transfers in-kind paid by the general government (D62 from `gov_10a_main`):
 
 $$
 B_i^{\text{scaled}} = B_i^{\text{survey}} \times \frac{\text{D62}}{\sum_i B_i^{\text{survey}} \times w_i}
@@ -90,7 +90,7 @@ where $w_i$ are the survey weights.
 
 ## Public consumption
 
-Public consumption represents the value of government-provided services consumed by individuals. I decompose this into two components: **public education** ($G^E$) and **other public consumption** ($G^O$, primarily healthcare and general government services).
+Public consumption represents the value of government-provided services consumed by individuals. I decompose this into two components: **public education** ($G^E$) and **other public consumption** ($G^O$, which includes healthcare and general government services).
 
 ### Other public consumption (healthcare and general services)
 
@@ -104,7 +104,7 @@ $$
 G^O_{\text{macro}} = \text{P3\\_S13} - \text{GF09}
 $$
 
-where P3_S13 is total government consumption from the National Accounts and GF09 is final government consumption expenditure on education expenditure from COFOG.
+where P3_S13 is total government consumption from the National Accounts and GF09 is final government consumption expenditure on education from COFOG.
 
 ### Public education consumption
 
