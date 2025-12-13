@@ -19,7 +19,7 @@ display_tags = true
 truncate_summary = false
 featured = false
 cover_image = "https://pablogguz.github.io/img/nfc_by_educ.png"
-reading_time = 10
+reading_time = 9
 +++
 
 <img src="/img/nfc_by_educ.png" width="500"/>
