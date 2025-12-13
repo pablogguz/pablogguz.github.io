@@ -29,4 +29,4 @@ def estimate_reading_time(filename):
     # Return at least 1 minute for very short posts
     return max(1, round(reading_time))
 
-print(estimate_reading_time('wage-cohort-esp.md'))
+print(estimate_reading_time('nfc-by-educ.md'))
