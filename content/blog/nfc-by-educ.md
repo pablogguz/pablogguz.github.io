@@ -212,7 +212,7 @@ This exercise constructs **period (cross-sectional) NFC profiles** by age and ed
 
 3. **Educational attainment is not exogenous.** Differences in NFC across education groups should not be interpreted causally as the fiscal return to education but simply as an accounting decomposition.
 
-Taken together: the results are best interpreted as a **consistent, macro-anchored snapshot of who pays and who receives today**, by age and education, under current institutions. They are informative for understanding the structure of fiscal redistribution, but they are not a cohort forecast and should not be read as a causal estimate of the fiscal payoff to schooling.
+In sum, the results are best interpreted as a **consistent, macro-anchored snapshot of who pays and who receives today**, by age and education, under current institutions. They are informative for understanding the structure of fiscal redistribution, but they are not a cohort forecast and should not be read as a causal estimate of the fiscal payoff to schooling.
 
 
 ---------------------------------------
