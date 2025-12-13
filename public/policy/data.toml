@@ -8,6 +8,25 @@
 # ]
 
 [[project]]
+name = "Demographic trends and the future of growth (EBRD Transition Report 2025-26, Chapter 1)"
+desc = "Quantifying the effects of demographic change on economic growth and evaluating which policy levers can realistically offset it (w/ Federica Coelli and Emily Nilsson)"
+tags = []
+pdf_url = "https://www.ebrd.com/home/news-and-events/publications/economics/transition-reports/transition-report-2025-26/chapters.html#1"
+links = [
+   { name = "FT", url = "https://www.ft.com/content/3a675f7f-ff46-4b8d-9744-08dfed18d23a" },
+   { name = "WSJ", url = "https://www.wsj.com/economy/global/parts-of-europe-at-risk-of-downward-spiral-if-older-voters-stymie-reforms-ebrd-warns-6947369f" }
+]
+
+[[project]]
+name = "The political economy of demographic change (EBRD Transition Report 2025-26, Chapter 4)"
+desc = "Analysing how shifting age structures influence voters' attitudes and the political feasibility of responding to demographic pressures (w/ Zsoka Koczan, Alexander Plekhanov, Zhaosheng Li and Daniel Treisman)"
+tags = []
+pdf_url = "https://www.ebrd.com/home/news-and-events/publications/economics/transition-reports/transition-report-2025-26/chapters.html#4"
+links = [
+   { name = "WSJ", url = "https://www.wsj.com/economy/global/parts-of-europe-at-risk-of-downward-spiral-if-older-voters-stymie-reforms-ebrd-warns-6947369f" }
+]
+
+[[project]]
 name = "Life in Transition Survey IV: Household resilience in a turbulent world"
 desc = "Analytical chapters on intergenerational mobility, support for the green transition and job market informality using data from the latest wave of the EBRD-World Bank Life in Transition Survey (w/ Zsoka Koczan)"
 tags = []
@@ -26,14 +45,14 @@ links = [
    { name = "VoxEU", url = "https://cepr.org/voxeu/columns/rise-services-exports-new-pathways-growth" },
 ]
 
-[[project]]
-name = "Place-based industrial policies (EBRD Transition Report 2024-25, Chapter 3)"
-desc = "Regional inequality and urban-rural disparities in the EBRD regions (w/ Cevat Aksoy, Francesco Loiacono, Ege Ondes, and Xuanyi Wang)"
-tags = []
-pdf_url = "https://www.ebrd.com/publications/transition-report-202425-regional-inequality-and-special-economic-zones"
-links = [
-   { name = "VoxEU", url = "https://cepr.org/voxeu/columns/special-economic-zones-and-slow-path-regional-convergence" },
-]
+# [[project]]
+# name = "Place-based industrial policies (EBRD Transition Report 2024-25, Chapter 3)"
+# desc = "Regional inequality and urban-rural disparities in the EBRD regions (w/ Cevat Aksoy, Francesco Loiacono, Ege Ondes, and Xuanyi Wang)"
+# tags = []
+# pdf_url = "https://www.ebrd.com/publications/transition-report-202425-regional-inequality-and-special-economic-zones"
+# links = [
+#    { name = "VoxEU", url = "https://cepr.org/voxeu/columns/special-economic-zones-and-slow-path-regional-convergence" },
+# ]
 
 [[project]]
 name = "Gender gaps in the labor market impact of the COVID-19 pandemic"
