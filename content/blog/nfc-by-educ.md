@@ -49,7 +49,7 @@ The analysis draws on the following datasets:
 
 - **[ES-SILC (_ECV_)](https://www.ine.es/dyngs/INEbase/es/operacion.htm?c=Estadistica_C&cid=1254736176807&menu=ultiDatos&idp=1254735976608)**: The microdata for the 2024 wave of Spain's Survey of Living Conditions (i.e., the Spanish EU-SILC), which provides individual-level data on earnings, benefits and socio-demographic characteristics.
 
-- **[Eurostat National Accounts](https://ec.europa.eu/eurostat/databrowser/)**: Macro control totals for rescaling survey-based estimates to match official statistics:
+- **[Eurostat national accounts](https://ec.europa.eu/eurostat/databrowser/)**: Macro control totals for rescaling survey-based estimates to match official statistics:
     - `nama_10_gdp`: GDP components including household final consumption expenditure and government consumption
     - `gov_10a_main`: Government sector accounts
     - `gov_10a_exp`: Government expenditure by function
@@ -80,7 +80,7 @@ Transfer inflows consist of two main components: cash benefits received from the
 
 Cash benefits are measured from household survey microdata both at the individual level (for personal benefits) and at the household level (for household-level transfers). Individual-level benefits include unemployment benefits, old-age pensions, survivor benefits, sickness benefits, disability benefits, and education-related benefits. Household-level benefits (which include housing allowances, family/child allowances, and social exclusion benefits) are divided equally among household members.
 
-I aggregate all cash benefits to the individual level and then rescale to match the National Accounts macro control for social benefits other than social transfers in-kind paid by the general government (D62 from `gov_10a_main`):
+I aggregate all cash benefits to the individual level and then rescale to match the national accounts macro control for social benefits other than social transfers in-kind paid by the general government (D62 from `gov_10a_main`):
 
 $$
 B_i^{\text{scaled}} = B_i^{\text{survey}} \times \frac{\text{D62}}{\sum_i B_i^{\text{survey}} \times w_i}
@@ -104,7 +104,7 @@ $$
 G^O_{\text{macro}} = \text{P3\\_S13} - \text{GF09}
 $$
 
-where P3_S13 is total government consumption from the National Accounts and GF09 is final government consumption expenditure on education from COFOG.
+where P3_S13 is total government consumption from the national accounts and GF09 is final government consumption expenditure on education from COFOG.
 
 ### Public education consumption
 
@@ -128,11 +128,11 @@ Finally, I rescale all values proportionally so that the population-weighted tot
 
 # Transfer outflows
 
-Transfer outflows consist of taxes paid. Following the NTA methodology, I decompose total taxes into three components: taxes on labour income, taxes on capital income, and taxes on consumption.
+Transfer outflows consist of taxes paid. Following the NTA methodology, I decompose total taxes into **three components: taxes on labour income, taxes on capital income, and taxes on consumption**.
 
 Two features of the Spanish tax system require careful treatment when constructing education-specific income tax profiles. First, Spain has a progressive tax system: higher earners face higher marginal rates and pay a larger share of their income in taxes. The standard NTA approach takes gross income from surveys and rescales uniformly to match macro tax aggregates, implicitly assuming a flat tax rate across the income distribution. Since educational attainment is strongly correlated with earnings, ignoring progressivity would compress differences across education groups — understating the tax burden of higher-educated individuals and overstating that of lower-educated individuals.
 
-Second, most cash transfers in Spain are subject to personal income tax. Recall that transfer inflows are measured as gross government expenditure — the full amount the state disburses. But recipients do not keep all of this: pensions, unemployment benefits, and most other social transfers enter the tax base and are taxed according to the standard rate schedule. These taxes paid on benefits must appear somewhere in transfer outflows. Indeed, the DG TAXUD classification allocates taxes on pensions and social transfers to "taxes on non-employed labour income", a subcategory of labour taxes. A methodology that only considers taxes on earnings would miss this component, understating the tax contributions of groups that receive substantial taxable transfers (particularly retirees).
+Second, most cash transfers in Spain are subject to personal income tax. Recall that transfer inflows are measured as gross government expenditure (i.e., the full amount the state disburses). But recipients do not keep all of this: pensions, unemployment benefits, and most other social transfers enter the tax base and are taxed according to the standard rate schedule. These taxes paid on benefits must appear somewhere in transfer outflows. Indeed, the DG TAXUD classification allocates taxes on pensions and social transfers to "taxes on non-employed labour income", a subcategory of labour taxes. A methodology that only considers taxes on earnings would miss this component, understating the tax contributions of groups that receive substantial taxable transfers (particularly retirees).
 
 To address both issues, I exploit the fact that the ES-SILC reports both gross and net income variables. The difference between gross and net income captures the actual tax incidence as reported in the survey, which already incorporates the progressive rate structure and taxes paid on benefits:
 
@@ -146,11 +146,12 @@ $$
 T_i^{\text{scaled}} = T_i^{\text{survey}} \times \frac{T_{\text{agg}}}{\sum_i T_i^{\text{survey}} \times w_i}
 $$
 
-This approach preserves the *shape* of the tax profile (reflecting both progressivity and the taxation of transfers) while ensuring consistency with National Accounts aggregates.
+This approach preserves the shape of the tax profile (reflecting both progressivity and the taxation of transfers) while ensuring consistency with national accounts.
 
 ## Labour income taxes
 
-Gross labour income in the survey comprises gross cash earnings from employment, non-cash employee income, company car benefits, and employer social security contributions. Gross benefit income includes unemployment benefits, old-age pensions, survivor benefits, sickness and disability benefits, and education-related allowances. Self-employment income is treated separately.
+Gross labour income in the survey comprises gross cash earnings from employment, non-cash employee income (including company car) and employer social security contributions. Gross benefit income includes unemployment benefits, old-age pensions, survivor benefits, sickness and disability benefits, and education-related allowances. Self-employment income is treated separately.
+
 Net income is constructed analogously from the corresponding net variables. The implied tax on each component is the difference between gross and net totals:
 
 $$
@@ -167,11 +168,11 @@ Capital income is measured at the household level and includes interest, dividen
 
 Consumption taxes present a different challenge. The standard NTA approach allocates consumption taxes based on age-specific consumption profiles without further disaggregation, but total consumption varies systematically with income — and hence with educational attainment. 
 
-I start from pre-computed age profiles of private consumption for Spain from the European NTA. These profiles are uniform across education groups, so I adjust them to reflect income-related differences in consumption. I compute mean disposable income by age × education cell and define an adjustment factor:
+I start from pre-computed age profiles of private consumption for Spain from the European NTA. These profiles are uniform across education groups, so I adjust them to reflect income-related differences in consumption. I compute mean disposable income by age-education cell and define an adjustment factor:
 
 $$\alpha(a,e) = \left(\frac{\bar{Y}(a,e)}{\bar{Y}}\right)^{\gamma}$$
 
-where $\gamma < 1$ captures the concavity of the consumption-income relationship. I set $\gamma = 0.6$, which implies that a doubling of income increases consumption by approximately 50% — consistent with empirical estimates of the income elasticity of consumption.[^2] The base consumption profile is multiplied by this adjustment factor to generate education-specific profiles, which are then rescaled so that the population-weighted total matches the National Accounts aggregate for household consumption. Consumption taxes are allocated in proportion to consumption, with the aggregate matching DG TAXUD data on consumption tax revenue.
+where $\gamma < 1$ captures the concavity of the consumption-income relationship. I set $\gamma = 0.6$, which implies that a doubling of income increases consumption by approximately 50% — consistent with empirical estimates of the income elasticity of consumption.[^2] The base consumption profile is multiplied by this adjustment factor to generate education-specific profiles, which are then rescaled so that the population-weighted total matches the national accounts aggregate for household consumption. Consumption taxes are allocated in proportion to consumption, with the aggregate matching DG TAXUD data on consumption tax revenue.
 
 # Combining inflows and outflows
 
