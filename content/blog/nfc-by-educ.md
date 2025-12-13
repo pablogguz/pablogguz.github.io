@@ -50,7 +50,7 @@ The analysis draws on the following datasets:
 - **[Spanish EU-SILC (ECV)](https://www.ine.es/dyngs/INEbase/es/operacion.htm?c=Estadistica_C&cid=1254736176807&menu=ultiDatos&idp=1254735976608)**: The microdata for the 2024 wave of Spain's Survey of Living Conditions, which provides individual-level data on earnings, benefits and socio-demographic characteristics.
 
 - **[Eurostat National Accounts](https://ec.europa.eu/eurostat/databrowser/)**: Macro control totals for rescaling survey-based estimates to match official statistics:
-    - `nama_10_gdp`: GDP components including household final consumption expenditure and government consumption, plus corresponding deflators
+    - `nama_10_gdp`: GDP components including household final consumption expenditure and government consumption
     - `gov_10a_main`: Government sector accounts
     - `gov_10a_exp`: Government expenditure by function
 
@@ -94,7 +94,7 @@ Public consumption represents the value of government-provided services consumed
 
 ### Other public consumption (healthcare and general services)
 
-For healthcare and other government services, consumption is allocated using pre-computed age profiles for Spain from the NTA database (2010 base year), updated to 2023 prices using Eurostat's government consumption deflator (derived from `nama_10_gdp`). These profiles capture the well-documented pattern of healthcare consumption rising sharply with age.
+For healthcare and other government services, consumption is allocated using pre-computed age profiles for Spain from the European NTA. These profiles capture the well-documented pattern of healthcare consumption rising sharply with age.
 
 Other public consumption is not differentiated by education — the assumption is that individuals of the same age consume similar amounts of healthcare and other public services regardless of their educational attainment.[^1]
 
@@ -171,7 +171,7 @@ Capital income is measured at the household level and includes interest, dividen
 
 Consumption taxes present a different challenge. The standard NTA approach allocates consumption taxes based on age-specific consumption profiles without further disaggregation, but total consumption varies systematically with income — and hence with educational attainment. 
 
-To address this, I implement an income-weighted consumption tax allocation. I first compute disposable income for each individual and calculate the mean by age × education cell. I then define an adjustment factor as:
+I start from pre-computed age profiles of private consumption for Spain from the European NTA. These profiles are uniform across education groups, so I adjust them to reflect income-related differences in consumption. I compute mean disposable income by age × education cell and define an adjustment factor:
 
 $$\alpha(a,e) = \left(\frac{\bar{Y}(a,e)}{\bar{Y}}\right)^{\gamma}$$
 
