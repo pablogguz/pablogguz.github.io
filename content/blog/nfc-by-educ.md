@@ -126,10 +126,6 @@ For each individual in the survey, I assign education consumption as follows. Fo
 
 Finally, I rescale all values proportionally so that the population-weighted total matches the COFOG macro control.
 
-<!-- {% note(header="Synthetic profiles for young ages") %}
-A challenge arises when constructing profiles by current educational consumption: cells for higher attainment levels at young ages are undefined (i.e., there are no 10-year-olds with tertiary education). For visualization purposes, I construct synthetic profiles for young ages that are identical across education categories up to the ages when educational paths diverge.
-{% end %} -->
-
 # Transfer outflows
 
 Transfer outflows consist of taxes paid. Following the NTA methodology, I decompose total taxes into three components: taxes on labour income, taxes on capital income, and taxes on consumption.
