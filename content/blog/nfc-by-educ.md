@@ -47,7 +47,7 @@ where $a$ denotes age and $e$ denotes educational attainment. A positive NFC mea
 
 The analysis draws on the following datasets:
 
-- **[Spanish EU-SILC (ECV)](https://www.ine.es/dyngs/INEbase/es/operacion.htm?c=Estadistica_C&cid=1254736176807&menu=ultiDatos&idp=1254735976608)**: The microdata for the 2024 wave of Spain's Survey of Living Conditions, which provides individual-level data on earnings, benefits and socio-demographic characteristics.
+- **[ES-SILC (_ECV_)](https://www.ine.es/dyngs/INEbase/es/operacion.htm?c=Estadistica_C&cid=1254736176807&menu=ultiDatos&idp=1254735976608)**: The microdata for the 2024 wave of Spain's Survey of Living Conditions (i.e., the Spanish EU-SILC), which provides individual-level data on earnings, benefits and socio-demographic characteristics.
 
 - **[Eurostat National Accounts](https://ec.europa.eu/eurostat/databrowser/)**: Macro control totals for rescaling survey-based estimates to match official statistics:
     - `nama_10_gdp`: GDP components including household final consumption expenditure and government consumption
@@ -134,7 +134,7 @@ Two features of the Spanish tax system require careful treatment when constructi
 
 Second, most cash transfers in Spain are subject to personal income tax. Recall that transfer inflows are measured as gross government expenditure — the full amount the state disburses. But recipients do not keep all of this: pensions, unemployment benefits, and most other social transfers enter the tax base and are taxed according to the standard rate schedule. These taxes paid on benefits must appear somewhere in transfer outflows. Indeed, the DG TAXUD classification allocates taxes on pensions and social transfers to "taxes on non-employed labour income", a subcategory of labour taxes. A methodology that only considers taxes on earnings would miss this component, understating the tax contributions of groups that receive substantial taxable transfers (particularly retirees).
 
-To address both issues, I exploit the fact that the Spanish EU-SILC reports both gross and net income variables. The difference between gross and net income captures the actual tax incidence as reported in the survey, which already incorporates the progressive rate structure and taxes paid on benefits:
+To address both issues, I exploit the fact that the ES-SILC reports both gross and net income variables. The difference between gross and net income captures the actual tax incidence as reported in the survey, which already incorporates the progressive rate structure and taxes paid on benefits:
 
 $$
 T_i^{\text{survey}} = Y_i^{\text{gross}} - Y_i^{\text{net}}
