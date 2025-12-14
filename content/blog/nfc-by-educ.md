@@ -182,7 +182,7 @@ $$
 \text{NFC}_i = T^L_i + T^K_i + T^C_i - B_i - G_i
 $$
 
-I then compute weighted means by age and education level to construct the final profiles.
+I then compute weighted means by age and education level to construct the final profiles, which are smoothed using a local polynomial regression (LOESS).
 
 {% note(header="Handling empty cells at young ages") %}
 A methodological challenge arises when constructing profiles by educational attainment: at young ages, cells for higher attainment levels are not defined. Educational attainment is a stock variable observed at the time of the survey, whereas fiscal flows occur throughout the life cycle. For a child currently in school, we observe their eventual educational attainment in the cross-section, but their current fiscal profile is largely independent of that future attainment. For visualization purposes, I compute population-weighted per capita values by age, pooling across education categories, and apply this uniform value to all education groups at ages where education-specific estimation is not conceptually feasible. As a result, the final profiles diverge only at ages where economic behaviour genuinely differs by attainment — typically from the late teens onwards. This ensures that the childhood portions of the profiles are identical across education groups.
