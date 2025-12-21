@@ -1,0 +1,104 @@
+# [[project]]
+# name = ""
+# desc = ""
+# tags = ["", ""]
+# links = [
+#   { name = "", url = "" },
+#   { name = "", url = "" },
+# ]
+
+[[project]]
+name = "NTA Spain"
+desc = "An interactive online application to explore how taxes paid and benefits received are distributed across the lifecycle in Spain"
+tags = []
+shiny_url = "https://nta-spain.es/"
+links = [
+  # { name = "", url = "" },
+]
+
+
+[[project]]
+name = "LiTS IV Visualizer"
+desc = "An interactive online application to explore the data from the latest wave of the EBRD-World Bank Life in Transition Survey, a large-scale household survey covering 37,000+ respondents across 37 countries"
+tags = []
+shiny_url = "https://lits-visualizer.ebrd.com/"
+links = [
+  # { name = "", url = "" },
+]
+
+[[project]]
+name = "WikiBarrio"
+desc = "An interactive visualization tool to explore neighborhood-level socio-demographic data from Spain"
+tags = []
+shiny_url = "https://www.wikibarrio.es/"
+links = [
+  # { name = "", url = "" },
+]
+
+[[project]]
+name = "dedonde.es"
+desc = "Interactive online application to explore the international migrant stock in Spain using microdata from administrative municipal registers and the census"
+tags = []
+shiny_url = "http://dedonde.es/"
+links = [
+  { name = "Infobae", url = "https://www.infobae.com/espana/2025/04/23/las-dos-caras-de-la-inmigracion-en-espana-los-marroquies-vienen-en-edad-de-trabajar-y-los-britanicos-despues-de-jubilarse/" },
+]
+
+
+[[project]]
+name = "comparatuingreso.es"
+desc = "An interactive online tool that allows users to calculate their relative position in the income distribution of Spain using census tract-level admnistrative data from income tax returns"
+tags = []
+shiny_url = "https://comparatuingreso.es/"
+links = [
+   { name = "COPE", url = "https://www.cope.es/actualidad/economia/noticias/ganas-mas-dinero-vecino-truco-descubrirlo-te-pillen-20241209_3058228.html" },
+]
+
+[[project]]
+name = "datoscrimen.es"
+desc = "An interactive visualization tool to explore the spatial distribution of crime in Spain using data from the Spanish Home Office"
+tags = []
+shiny_url = "https://datoscrimen.es/"
+links = [
+   { name = "Vozpópuli", url = "https://www.vozpopuli.com/espana/cataluna/proliferan-las-patrullas-vecinales-en-una-cataluna-a-la-cabeza-de-los-robos-violentos-en-espana.html" },
+   { name = "La Razón", url = "https://www.larazon.es/cataluna/herencia-proces-cataluna-generalitat-independentista-11-municipios-mas-robos-espana-eran-catalanes_202501146786aba0bc785b00017bf770.html" }  
+]
+
+[[project]]
+name = "ineAtlas"
+desc = "An R package to provide easy access to granular socio-economic data for Spain at the municipal, district, and census tract levels"
+tags = []
+r_url = "https://pablogguz.github.io/ineAtlas/"
+github_url = "https://github.com/pablogguz/ineAtlas"
+links = [
+  # { name = "", url = "" },
+]
+
+[[project]]
+name = "subincomeR"
+desc = "An R package providing coordinate-based access to a global dataset of reported sub-national income data covering more than 1,600 sub-national regions across 83 countries"
+tags = []
+r_url = "https://pablogguz.github.io/subincomeR/"
+github_url = "https://github.com/pablogguz/subincomeR"
+links = [
+  # { name = "", url = "" },
+]
+
+[[project]]
+name = "Placement outcomes for PhD graduates in economics"
+desc = "I construct a novel dataset with individual-level information on PhD placement outcomes for a total of 29 economics departments worldwide to answer the following question: who hires PhD graduates in Economics?"
+tags = []
+shiny_url = "https://pablogguz.shinyapps.io/econphd_placements/"
+github_url = "https://github.com/pablogguz/econphd_placements"
+links = [
+  # { name = "", url = "" },
+]
+
+# [[project]]
+# name = "Gender gaps in the labor market impact of the COVID-19 pandemic (w/ Claudia Hupkau)"
+# desc = "Policy brief exploring the impact of the Covid-19 pandemic on gender gaps in labor market outcomes"
+# tags = []
+# pdf_url = "https://www.esade.edu/ecpol/en/publications/las-brechas-de-genero-en-el-mercado-laboral-durante-la-pandemia/"
+# links = [
+#   # { name = "", url = "" },
+# ]
