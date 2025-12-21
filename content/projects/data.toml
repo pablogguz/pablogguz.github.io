@@ -8,20 +8,20 @@
 # ]
 
 [[project]]
-name = "LiTS IV Visualizer"
-desc = "An interactive online application to explore the data from the latest wave of the EBRD-World Bank Life in Transition Survey, a large-scale household survey covering 37,000+ respondents across 37 countries"
+name = "NTA Spain"
+desc = "An interactive online application to explore how taxes paid and benefits received are distributed across the lifecycle in Spain"
 tags = []
-shiny_url = "https://lits-visualizer.ebrd.com/"
+shiny_url = "https://nta-spain.es/"
 links = [
   # { name = "", url = "" },
 ]
 
+
 [[project]]
-name = "ineAtlas"
-desc = "An R package to provide easy access to granular socio-economic data for Spain at the municipal, district, and census tract levels"
+name = "LiTS IV Visualizer"
+desc = "An interactive online application to explore the data from the latest wave of the EBRD-World Bank Life in Transition Survey, a large-scale household survey covering 37,000+ respondents across 37 countries"
 tags = []
-r_url = "https://pablogguz.github.io/ineAtlas/"
-github_url = "https://github.com/pablogguz/ineAtlas"
+shiny_url = "https://lits-visualizer.ebrd.com/"
 links = [
   # { name = "", url = "" },
 ]
@@ -62,6 +62,16 @@ shiny_url = "https://datoscrimen.es/"
 links = [
    { name = "Vozpópuli", url = "https://www.vozpopuli.com/espana/cataluna/proliferan-las-patrullas-vecinales-en-una-cataluna-a-la-cabeza-de-los-robos-violentos-en-espana.html" },
    { name = "La Razón", url = "https://www.larazon.es/cataluna/herencia-proces-cataluna-generalitat-independentista-11-municipios-mas-robos-espana-eran-catalanes_202501146786aba0bc785b00017bf770.html" }  
+]
+
+[[project]]
+name = "ineAtlas"
+desc = "An R package to provide easy access to granular socio-economic data for Spain at the municipal, district, and census tract levels"
+tags = []
+r_url = "https://pablogguz.github.io/ineAtlas/"
+github_url = "https://github.com/pablogguz/ineAtlas"
+links = [
+  # { name = "", url = "" },
 ]
 
 [[project]]
