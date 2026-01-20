@@ -49,7 +49,7 @@ The analysis draws on the following datasets:
 
 - **[ES-SILC (_ECV_)](https://www.ine.es/dyngs/INEbase/es/operacion.htm?c=Estadistica_C&cid=1254736176807&menu=ultiDatos&idp=1254735976608)**: The microdata for the 2024 wave of Spain's Survey of Living Conditions (i.e., the Spanish EU-SILC), which provides individual-level data on earnings, benefits and socio-demographic characteristics.
 
-- **[Eurostat National Accounts](https://ec.europa.eu/eurostat/databrowser/)**: Macro control totals for rescaling survey-based estimates to match official statistics:
+- **[Eurostat national accounts](https://ec.europa.eu/eurostat/databrowser/)**: Macro control totals for rescaling survey-based estimates to match official statistics:
     - `nama_10_gdp`: GDP components including household final consumption expenditure and government consumption
     - `gov_10a_main`: Government sector accounts
     - `gov_10a_exp`: Government expenditure by function
@@ -78,9 +78,9 @@ Transfer inflows consist of two main components: cash benefits received from the
 
 ## Cash benefits
 
-Cash benefits are measured from household survey microdata both at the individual level (for personal benefits) and at the household level (for household-level transfers). Individual-level benefits include unemployment benefits, old-age pensions, survivor benefits, sickness benefits, disability benefits, and education-related benefits. Household-level benefits (housing allowances, family/child allowances, and social exclusion benefits) are divided equally among household members.
+Cash benefits are measured from household survey microdata both at the individual level (for personal benefits) and at the household level (for household-level transfers). Individual-level benefits include unemployment benefits, old-age pensions, survivor benefits, sickness benefits, disability benefits, and education-related benefits. Household-level benefits (which include housing allowances, family/child allowances, and social exclusion benefits) are divided equally among household members.
 
-I aggregate all cash benefits to the individual level and then rescale to match the National Accounts macro control for social benefits paid by the general government (D62 from `gov_10a_main`):
+I aggregate all cash benefits to the individual level and then rescale to match the national accounts macro control for social benefits other than social transfers in-kind paid by the general government (D62 from `gov_10a_main`):
 
 $$
 B_i^{\text{scaled}} = B_i^{\text{survey}} \times \frac{\text{D62}}{\sum_i B_i^{\text{survey}} \times w_i}
@@ -90,7 +90,7 @@ where $w_i$ are the survey weights.
 
 ## Public consumption
 
-Public consumption represents the value of government-provided services consumed by individuals. I decompose this into two components: **public education** ($G^E$) and **other public consumption** ($G^O$, primarily healthcare and general government services).
+Public consumption represents the value of government-provided services consumed by individuals. I decompose this into two components: **public education** ($G^E$) and **other public consumption** ($G^O$, which includes healthcare and general government services).
 
 ### Other public consumption (healthcare and general services)
 
@@ -104,7 +104,7 @@ $$
 G^O_{\text{macro}} = \text{P3\\_S13} - \text{GF09}
 $$
 
-where P3_S13 is total government consumption from the National Accounts and GF09 is final government consumption expenditure on education expenditure from COFOG.
+where P3_S13 is total government consumption from the national accounts and GF09 is final government consumption expenditure on education from COFOG.
 
 ### Public education consumption
 
@@ -128,11 +128,11 @@ Finally, I rescale all values proportionally so that the population-weighted tot
 
 # Transfer outflows
 
-Transfer outflows consist of taxes paid. Following the NTA methodology, I decompose total taxes into three components: taxes on labour income, taxes on capital income, and taxes on consumption.
+Transfer outflows consist of taxes paid. Following the NTA methodology, I decompose total taxes into **three components: taxes on labour income, taxes on capital income, and taxes on consumption**.
 
 Two features of the Spanish tax system require careful treatment when constructing education-specific income tax profiles. First, Spain has a progressive tax system: higher earners face higher marginal rates and pay a larger share of their income in taxes. The standard NTA approach takes gross income from surveys and rescales uniformly to match macro tax aggregates, implicitly assuming a flat tax rate across the income distribution. Since educational attainment is strongly correlated with earnings, ignoring progressivity would compress differences across education groups — understating the tax burden of higher-educated individuals and overstating that of lower-educated individuals.
 
-Second, most cash transfers in Spain are subject to personal income tax. Recall that transfer inflows are measured as gross government expenditure — the full amount the state disburses. But recipients do not keep all of this: pensions, unemployment benefits, and most other social transfers enter the tax base and are taxed according to the standard rate schedule. These taxes paid on benefits must appear somewhere in transfer outflows. Indeed, the DG TAXUD classification allocates taxes on pensions and social transfers to "taxes on non-employed labour income", a subcategory of labour taxes. A methodology that only considers taxes on earnings would miss this component, understating the tax contributions of groups that receive substantial taxable transfers (particularly retirees).
+Second, most cash transfers in Spain are subject to personal income tax. Recall that transfer inflows are measured as gross government expenditure (i.e., the full amount the state disburses). But recipients do not keep all of this: pensions, unemployment benefits, and most other social transfers enter the tax base and are taxed according to the standard rate schedule. These taxes paid on benefits must appear somewhere in transfer outflows. Indeed, the DG TAXUD classification allocates taxes on pensions and social transfers to "taxes on non-employed labour income", a subcategory of labour taxes. A methodology that only considers taxes on earnings would miss this component, understating the tax contributions of groups that receive substantial taxable transfers (particularly retirees).
 
 To address both issues, I exploit the fact that the ES-SILC reports both gross and net income variables. The difference between gross and net income captures the actual tax incidence as reported in the survey, which already incorporates the progressive rate structure and taxes paid on benefits:
 
@@ -146,11 +146,12 @@ $$
 T_i^{\text{scaled}} = T_i^{\text{survey}} \times \frac{T_{\text{agg}}}{\sum_i T_i^{\text{survey}} \times w_i}
 $$
 
-This approach preserves the *shape* of the tax profile (reflecting both progressivity and the taxation of transfers) while ensuring consistency with National Accounts aggregates.
+This approach preserves the shape of the tax profile (reflecting both progressivity and the taxation of transfers) while ensuring consistency with national accounts.
 
 ## Labour income taxes
 
-Gross labour income in the survey comprises gross cash earnings from employment, non-cash employee income, company car benefits, and employer social security contributions. Gross benefit income includes unemployment benefits, old-age pensions, survivor benefits, sickness and disability benefits, and education-related allowances. Self-employment income is treated separately.
+Gross labour income in the survey comprises gross cash earnings from employment, non-cash employee income (including company car) and employer social security contributions. Gross benefit income includes unemployment benefits, old-age pensions, survivor benefits, sickness and disability benefits, and education-related allowances. Self-employment income is treated separately.
+
 Net income is constructed analogously from the corresponding net variables. The implied tax on each component is the difference between gross and net totals:
 
 $$
@@ -167,11 +168,11 @@ Capital income is measured at the household level and includes interest, dividen
 
 Consumption taxes present a different challenge. The standard NTA approach allocates consumption taxes based on age-specific consumption profiles without further disaggregation, but total consumption varies systematically with income — and hence with educational attainment. 
 
-I start from pre-computed age profiles of private consumption for Spain from the European NTA. These profiles are uniform across education groups, so I adjust them to reflect income-related differences in consumption. I compute mean disposable income by age × education cell and define an adjustment factor:
+I start from pre-computed age profiles of private consumption for Spain from the European NTA. These profiles are uniform across education groups, so I adjust them to reflect income-related differences in consumption. I compute mean disposable income by age-education cell and define an adjustment factor:
 
 $$\alpha(a,e) = \left(\frac{\bar{Y}(a,e)}{\bar{Y}}\right)^{\gamma}$$
 
-where $\gamma < 1$ captures the concavity of the consumption-income relationship. I set $\gamma = 0.6$, which implies that a doubling of income increases consumption by approximately 50% — consistent with empirical estimates of the income elasticity of consumption.[^2] The base consumption profile is multiplied by this adjustment factor to generate education-specific profiles, which are then rescaled so that the population-weighted total matches the National Accounts aggregate for household consumption. Consumption taxes are allocated in proportion to consumption, with the aggregate matching DG TAXUD data on consumption tax revenue.
+where $\gamma < 1$ captures the concavity of the consumption-income relationship. I set $\gamma = 0.6$, which implies that a doubling of income increases consumption by approximately 50% — consistent with empirical estimates of the income elasticity of consumption.[^2] The base consumption profile is multiplied by this adjustment factor to generate education-specific profiles, which are then rescaled so that the population-weighted total matches the national accounts aggregate for household consumption. Consumption taxes are allocated in proportion to consumption, with the aggregate matching DG TAXUD data on consumption tax revenue.
 
 # Combining inflows and outflows
 
@@ -181,7 +182,7 @@ $$
 \text{NFC}_i = T^L_i + T^K_i + T^C_i - B_i - G_i
 $$
 
-I then compute weighted means by age and education level to construct the final profiles.
+I then compute weighted means by age and education level to construct the final profiles, which are smoothed using a local polynomial regression (LOESS).
 
 {% note(header="Handling empty cells at young ages") %}
 A methodological challenge arises when constructing profiles by educational attainment: at young ages, cells for higher attainment levels are not defined. Educational attainment is a stock variable observed at the time of the survey, whereas fiscal flows occur throughout the life cycle. For a child currently in school, we observe their eventual educational attainment in the cross-section, but their current fiscal profile is largely independent of that future attainment. For visualization purposes, I compute population-weighted per capita values by age, pooling across education categories, and apply this uniform value to all education groups at ages where education-specific estimation is not conceptually feasible. As a result, the final profiles diverge only at ages where economic behaviour genuinely differs by attainment — typically from the late teens onwards. This ensures that the childhood portions of the profiles are identical across education groups.
@@ -206,11 +207,9 @@ An important part of these gaps stems from differences in labour market attachme
 
 This exercise constructs **period (cross-sectional) NFC profiles** by age and educational attainment. It does **not** follow the same people over time, and it does not observe the full fiscal life cycle of any cohort. Instead, it combines a snapshot of age-specific flows observed (or imputed) in one year. That is standard in the NTA tradition, but it comes with important limitations.
 
-1. **Age profiles are “period” profiles, not cohort histories.** At a given age, the tertiary-educated individuals observed in the 2024 survey are not the same people as the tertiary-educated individuals observed at age 60. Cohorts differ in lifetime earnings paths, labour-market attachment, and institutional exposure. As a result, these profiles should be read as: *“How much do 40-year-olds with tertiary education contribute/receive under today’s institutions and macro aggregates?”*, but not as *“What will today’s 40-year-olds experience when they are 60?”*.
+1. **Age profiles are “period” profiles, not cohort histories.** At a given age, the tertiary-educated individuals observed in the 2024 survey are not the same people as the tertiary-educated individuals observed at age 60. Cohorts differ in lifetime earnings paths, labour-market attachment, and institutional exposure. As a result, these profiles should be read as: *“How much do 40-year-olds with tertiary education contribute/receive under today’s institutions and macro aggregates?”*, but not as *“What will today’s 40-year-olds experience when they are 60?”*. In other words, any implied lifetime contribution computed by integrating these cross-sectional profiles is a synthetic construct that reflects the current fiscal architecture rather than a prediction of future net contributions.
 
-2. **Lifetime NFC is a synthetic construct and is not a forecast.** Similarly, any “implied lifetime contribution” computed by integrating these cross-sectional profiles implicitly assumes away policy change, macro shocks, and behavioural adjustments. In reality, taxes, benefits, demographics, and education finance evolve over time; the synthetic lifetime NFC therefore reflects the **current fiscal architecture** rather than a prediction of future net contributions.
-
-3. **Educational attainment is not exogenous.** Differences in NFC across education groups should not be interpreted causally as the fiscal return to education but simply as an accounting decomposition.
+2. **Educational attainment is not exogenous.** Differences in NFC across education groups should not be interpreted causally as the fiscal return to education but simply as an accounting decomposition.
 
 In sum, the results are best interpreted as a **consistent, macro-anchored snapshot of who pays and who receives today**, by age and education, under current institutions. They are informative for understanding the structure of fiscal redistribution, but they are not a cohort forecast and should not be read as a causal estimate of the fiscal payoff to schooling.
 
