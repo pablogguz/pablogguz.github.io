@@ -13,60 +13,62 @@
   <main>
     <div class="projects-container">
       {% set data = load_data(path="content/policy/data.toml", format="toml") %}
-      {% for proj in data.project %}
-      <div class="project-card">
-        <div class="card-content">
-          <h2 class="project-title">{{ proj.name }}</h2>
-          <div class="project-desc">{{ proj.desc | trim | markdown | safe }}</div>
-          
-          <div class="project-links">
-            {% if proj.r_url %}
-            <a href="{{ proj.r_url }}" class="link-button" target="_blank">
-              <i class="fab fa-r-project"></i>
-              <span>R package</span>
-            </a>
-            {% endif %}
-            {% if proj.shiny_url %}
-            <a href="{{ proj.shiny_url }}" class="link-button" target="_blank">
-              <i class="fas fa-chart-line"></i>
-              <span>App</span>
-            </a>
-            {% endif %}
-            {% if proj.github_url %}
-            <a href="{{ proj.github_url }}" class="link-button" target="_blank">
-              <i class="fab fa-github"></i>
-              <span>Code</span>
-            </a>
-            {% endif %}
-            {% if proj.pdf_url %}
-            <a href="{{ proj.pdf_url }}" class="link-button" target="_blank">
-              <i class="fas fa-file-pdf"></i>
-              <span>PDF</span>
-            </a>
-            {% endif %}
-          </div>
+      <div class="project-grid">
+        {% for proj in data.project %}
+        <div class="project-card compact">
+          <div class="card-content">
+            <h3 class="project-title">{{ proj.name }}</h3>
+            <div class="project-desc">{{ proj.desc | trim | markdown | safe }}</div>
 
-          {% if proj.links|length > 0 %}
-          <div class="media-section">
-            <span class="media-label">Media coverage</span>
-            <div class="media-links">
-              {% for link in proj.links -%}
-              <a href="{{ link.url }}" target="_blank" rel='noreferrer noopener'>{{ link.name }}</a>
+            <div class="project-links">
+              {% if proj.r_url %}
+              <a href="{{ proj.r_url }}" class="link-button" target="_blank">
+                <i class="fab fa-r-project"></i>
+                <span>R package</span>
+              </a>
+              {% endif %}
+              {% if proj.shiny_url %}
+              <a href="{{ proj.shiny_url }}" class="link-button" target="_blank">
+                <i class="fas fa-chart-line"></i>
+                <span>App</span>
+              </a>
+              {% endif %}
+              {% if proj.github_url %}
+              <a href="{{ proj.github_url }}" class="link-button" target="_blank">
+                <i class="fab fa-github"></i>
+                <span>Code</span>
+              </a>
+              {% endif %}
+              {% if proj.pdf_url %}
+              <a href="{{ proj.pdf_url }}" class="link-button" target="_blank">
+                <i class="fas fa-file-pdf"></i>
+                <span>PDF</span>
+              </a>
+              {% endif %}
+            </div>
+
+            {% if proj.links | length > 0 %}
+            <div class="media-section">
+              <span class="media-label">Media coverage</span>
+              <div class="media-links">
+                {% for link in proj.links -%}
+                <a href="{{ link.url }}" target="_blank" rel='noreferrer noopener'>{{ link.name }}</a>
+                {% endfor %}
+              </div>
+            </div>
+            {% endif %}
+
+            {% if proj.tags | length > 0 %}
+            <div class="project-tags">
+              {% for tag in proj.tags %}
+              <span class="tag">#{{ tag }}</span>
               {% endfor %}
             </div>
+            {% endif %}
           </div>
-          {% endif %}
-
-          {% if proj.tags|length > 0 %}
-          <div class="project-tags">
-            {% for tag in proj.tags %}
-            <span class="tag">#{{ tag }}</span>
-            {% endfor %}
-          </div>
-          {% endif %}
         </div>
+        {% endfor %}
       </div>
-      {% endfor %}
     </div>
   </main>
   {% include "_footer.html" -%}

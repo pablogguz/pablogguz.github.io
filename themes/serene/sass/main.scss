@@ -1,4 +1,4 @@
-/* base
+/* base - PIXEL ART STYLE
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
   *,
@@ -6,71 +6,84 @@
   *::after {
     box-sizing: border-box;
   }
-  
+
   body {
     min-height: 100%;
     font-family: var(--main-font);
     background-color: var(--bg-color);
     color: var(--text-color);
   }
-  
+
   html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto; /* Remove smooth scrolling for pixel feel */
   }
-  
+
   button:focus-visible,
   a:focus-visible {
-    outline: var(--primary-color) solid 3px;
+    outline: var(--primary-color) solid 2px;
+    outline-offset: 2px;
   }
-  
+
   ::selection {
     background-color: var(--primary-color);
     color: var(--bg-color);
   }
-  
+
+  /* Pixel-style scrollbar */
   body::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+    width: 8px;
+    height: 8px;
   }
   ::-webkit-scrollbar {
-    width: 4px;
-    height: 4px;
+    width: 8px;
+    height: 8px;
   }
   ::-webkit-scrollbar-track {
-    background: #0000;
+    background: var(--bg-color);
+    border-left: 2px solid var(--border-color);
   }
   ::-webkit-scrollbar-thumb {
-    background: #aeb7caa1;
+    background: var(--primary-color);
     border-radius: 0px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #8a90a1a1;
+    background: var(--accent-color);
   }
   
-  /* prose
+  /* prose - CLEAN TYPOGRAPHY (Claude Code inspired)
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-  
+
   .prose {
     h1 {
-      font-size: 1.5em;
-      font-weight: bolder;
+      font-family: var(--main-font);
+      font-size: 1.75em;
+      font-weight: 600;
       margin: 1em 0 0.5em 0;
+      color: var(--text-color);
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 0.25em;
     }
-  
+
     h2 {
-      font-size: 1.3em;
+      font-family: var(--main-font);
+      font-size: 1.4em;
+      font-weight: 600;
       padding-top: 80px;
       margin-top: -45px;
+      color: var(--text-color);
     }
-  
+
     h3 {
-      font-size: 1.1em;
+      font-family: var(--main-font);
+      font-size: 1.15em;
+      font-weight: 600;
       padding-top: 65px;
       margin-top: -45px;
     }
-  
+
     h4 {
       font-size: 1.05em;
+      font-weight: 600;
       margin: 30px 0 15px 0;
     }
   
@@ -122,10 +135,11 @@
     }
   
     blockquote {
-      border-left: 2px var(--text-pale-color) solid;
-      padding-left: 16px;
+      border-left: 4px var(--primary-color) solid;
+      padding: 16px;
       margin: 1em 0;
       color: var(--text-pale-color);
+      background: var(--primary-pale-color);
     }
     
     li {
@@ -146,19 +160,23 @@
     table {
       width: 100%;
       border-spacing: 0;
-      border: 1px solid var(--primary-pale-color);
+      border: 2px solid var(--border-color);
+      border-collapse: collapse;
     }
-  
+
     thead {
       background-color: var(--primary-pale-color);
+      font-family: var(--pixel-font-display);
+      text-transform: uppercase;
+      font-size: 0.9em;
     }
-  
+
     th,
     td {
       line-height: 2;
-      text-align: center;
-      border: 1px solid var(--primary-pale-color);
-      padding: 1px 10px;
+      text-align: left;
+      border: 1px solid var(--border-color);
+      padding: 8px 16px;
     }
   
     p>code,
@@ -166,25 +184,27 @@
     td>code,
     th>code {
       font-family: var(--code-font);
-      font-size: 0.85em;
-      padding: 1px 6px;
+      font-size: 0.9em;
+      padding: 2px 6px;
       margin: 0 2px;
       color: var(--primary-color);
       background-color: var(--inline-code-bg-color);
-      border-radius: var(--inline-code-border-radius);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
       word-wrap: break-word;
     }
-  
+
     pre {
-      font-size: 0.8em;
+      font-family: var(--code-font);
+      font-size: 0.875em;
       margin: 1.25em 0;
-      padding: 12px 48px 12px 16px;
-      line-height: 1.5;
-      border: 1.5px solid var(--primary-color);
-      border-color: var(--block-code-border-color);
-      border-radius: var(--block-code-border-radius);
+      padding: 16px 48px 16px 16px;
+      line-height: 1.6;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
       overflow: auto;
-  
+      background-color: var(--card-bg-color);
+
       code {
         font-family: var(--code-font);
       }
@@ -573,18 +593,21 @@
       padding: 0 15px;
       display: flex;
       gap: 1em;
-  
+
       img {
         height: var(--avatar-size);
         width: var(--avatar-size);
-        border-radius: 50%;
+        border-radius: 0px;
+        border: 2px solid var(--border-color);
+        box-shadow: 4px 4px 0px var(--border-color);
       }
-  
+
       #text {
         display: flex;
         flex-direction: column;
         justify-content: space-around;
         line-height: 1.5;
+        font-family: var(--code-font);
       }
       
       #name, #id {
@@ -600,7 +623,7 @@
         font-size: 1em;
       }
     }
-  
+
     #links {
       padding: 0 15px;
       margin: 1em 0 1.75em;
@@ -627,7 +650,8 @@
         display: flex;
         flex-wrap: wrap;
         gap: 1em;
-  
+        font-family: var(--code-font);
+
         a {
           border-bottom: 1.5px solid var(--primary-color);
           line-height: 1.5;
@@ -672,33 +696,30 @@
     }
   }
   
-  /* header
+  /* header - CLEAN STYLE (Claude Code inspired)
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-  
+
   header {
     z-index: 99;
     position: fixed;
     top: 0;
     width: 100%;
-    height: 45px;
+    height: 48px;
     background-color: var(--bg-color);
-    border-bottom: 1.5px solid var(--primary-color);
-  
-  
+    border-bottom: 1px solid var(--border-color);
+
     @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
       &.blur {
-        background-color: initial;
-        -webkit-backdrop-filter: blur(10px);
-        backdrop-filter: blur(10px);
-      }
-      
-      #rss-mask {
-        // background-color: initial;
-        -webkit-backdrop-filter: blur(32px);
-        backdrop-filter: blur(32px);
+        background-color: rgba(255, 255, 255, 0.8);
+        -webkit-backdrop-filter: blur(12px);
+        backdrop-filter: blur(12px);
       }
     }
-  
+
+    body.dark &.blur {
+      background-color: rgba(13, 17, 23, 0.8);
+    }
+
     #header-wrapper {
       height: 100%;
       max-width: var(--main-max-width);
@@ -709,21 +730,26 @@
       align-items: center;
       position: relative;
     }
-  
+
     nav {
-      font-size: 1.35em;
+      font-family: var(--code-font);
+      font-size: 1.1em;
       display: flex;
       align-items: center;
-  
+
       a {
         color: var(--text-color);
         text-decoration: none;
-  
+        padding: 4px 8px;
+        border-radius: 4px;
+        transition: background-color 0.15s ease;
+
         &:hover {
           color: var(--primary-color);
+          background: var(--primary-pale-color);
         }
       }
-  
+
       .separator {
         width: 24px;
         text-align: center;
@@ -733,10 +759,11 @@
         padding: 0;
         background: transparent;
         margin: 0 0.1em;
-        color: var(--text-color);
+        color: var(--text-pale-color);
         -webkit-tap-highlight-color: transparent;
       }
       .wrap {
+        color: var(--text-pale-color);
         &.left {
           margin: 0 0.3em 0 -0.1em;
         }
@@ -746,8 +773,9 @@
       }
       .wrap-separator {
         margin: 0 0.5em 0 0.1em;
+        color: var(--text-pale-color);
       }
-      
+
       .fold {
         display: none;
         &.shown {
@@ -844,36 +872,43 @@
     }
   }
   
-  /* footer
+  /* footer - CLEAN STYLE
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-  
+
   footer {
-    font-size: 0.95em;
-    padding: 15px;
+    font-size: 0.875em;
+    padding: 16px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    gap: 15px;
+    gap: 16px;
     color: var(--text-pale-color);
-  
+    border-top: 1px solid var(--border-color);
+    margin-top: 32px;
+
     .copyright {
       margin-right: auto;
     }
-    
+
     .credits {
       margin-left: auto;
     }
-  
+
     a {
-      color: var(--text-pale-color);
+      color: var(--primary-color);
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
-  
+
     @media (max-width: 374px) {
       & {
         flex-direction: column;
-        gap: 0;
-  
+        gap: 8px;
+
         .copyright,
         .credits {
           margin: 0;
