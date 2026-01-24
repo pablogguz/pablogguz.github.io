@@ -121,6 +121,13 @@
   }
 
   /* ----------------------------------------
+     ENSURE TEXT COLOR IS APPLIED
+     ---------------------------------------- */
+  body, body p, body li, body span, body div {
+    color: var(--text-color);
+  }
+
+  /* ----------------------------------------
      BASE TRANSITIONS
      ---------------------------------------- */
   * {
@@ -160,19 +167,19 @@
      LINKS - Distinctive color with underline animation
      ---------------------------------------- */
   .prose a {
-    color: var(--primary-color) !important;
-    text-decoration: none !important;
-    border-bottom: none !important;
+    color: var(--primary-color);
+    text-decoration: none;
+    border-bottom: none;
     background-image: linear-gradient(var(--primary-color), var(--primary-color));
     background-size: 0% 1px;
     background-position: 0 100%;
     background-repeat: no-repeat;
-    transition: background-size 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s ease !important;
+    transition: background-size 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s ease;
     font-weight: 500;
   }
 
   .prose a:hover {
-    color: var(--primary-hover) !important;
+    color: var(--primary-hover);
     background-size: 100% 1px;
   }
 
