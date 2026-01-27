@@ -21,7 +21,7 @@
           {% for proj in data.active %}
           <div class="project-card compact">
             <div class="card-content">
-              <h3 class="project-title">{{ proj.name }}</h3>
+              <h3 class="project-title">{% if proj.icon %}<img src="{{ proj.icon }}" alt="" class="project-icon">{% endif %}{{ proj.name }}</h3>
               <div class="project-desc">{{ proj.desc | trim | markdown | safe }}</div>
 
               <div class="project-links">
@@ -74,7 +74,7 @@
           {% for proj in data.packages %}
           <div class="project-card compact">
             <div class="card-content">
-              <h3 class="project-title">{{ proj.name }}</h3>
+              <h3 class="project-title">{% if proj.icon %}<img src="{{ proj.icon }}" alt="" class="project-icon">{% endif %}{{ proj.name }}</h3>
               <div class="project-desc">{{ proj.desc | trim | markdown | safe }}</div>
 
               <div class="project-links">
@@ -127,7 +127,7 @@
           {% for proj in data.dormant %}
           <div class="project-card compact">
             <div class="card-content">
-              <h3 class="project-title">{{ proj.name }}</h3>
+              <h3 class="project-title">{% if proj.icon %}<img src="{{ proj.icon }}" alt="" class="project-icon">{% endif %}{{ proj.name }}</h3>
               <div class="project-desc">{{ proj.desc | trim | markdown | safe }}</div>
 
               <div class="project-links">

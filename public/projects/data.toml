@@ -25,6 +25,7 @@ links = [
 name = "observatoriorenta.es"
 desc = "Interactive platform for exploring income distribution and inequality data across Spain at multiple geographic levels"
 tags = []
+icon = "/img/favicons/observatoriorenta.png"
 shiny_url = "https://observatoriorenta.es/"
 links = []
 
@@ -32,6 +33,7 @@ links = []
 name = "nta-spain.es"
 desc = "Interactive visualization of National Transfer Accounts data for Spain, showing how economic resources flow between generations"
 tags = []
+icon = "/img/favicons/nta-spain.svg"
 shiny_url = "https://nta-spain.es/"
 links = []
 
@@ -39,6 +41,7 @@ links = []
 name = "LiTS IV Visualizer"
 desc = "An interactive online application to explore the data from the latest wave of the EBRD-World Bank Life in Transition Survey, a large-scale household survey covering 37,000+ respondents across 37 countries"
 tags = []
+icon = "/img/favicons/lits-visualizer.png"
 shiny_url = "https://lits-visualizer.ebrd.com/"
 links = [
   # { name = "", url = "" },
@@ -86,6 +89,7 @@ links = [
 name = "datoscrimen.es"
 desc = "An interactive visualization tool to explore the spatial distribution of crime in Spain using data from the Spanish Home Office"
 tags = []
+icon = "/img/favicons/datoscrimen.svg"
 shiny_url = "https://datoscrimen.es/"
 links = [
    { name = "Vozpópuli", url = "https://www.vozpopuli.com/espana/cataluna/proliferan-las-patrullas-vecinales-en-una-cataluna-a-la-cabeza-de-los-robos-violentos-en-espana.html" },
@@ -106,6 +110,7 @@ links = [
 name = "dedonde.es"
 desc = "Interactive online application to explore the international migrant stock in Spain using microdata from administrative municipal registers and the census"
 tags = []
+icon = "/img/favicons/dedonde.svg"
 shiny_url = "http://dedonde.es/"
 links = [
   { name = "Infobae", url = "https://www.infobae.com/espana/2025/04/23/las-dos-caras-de-la-inmigracion-en-espana-los-marroquies-vienen-en-edad-de-trabajar-y-los-britanicos-despues-de-jubilarse/" },
@@ -115,6 +120,7 @@ links = [
 name = "WikiBarrio"
 desc = "An interactive visualization tool to explore neighborhood-level socio-demographic data from Spain"
 tags = []
+icon = "/img/favicons/wikibarrio.svg"
 shiny_url = "https://www.wikibarrio.es/"
 links = []
 
@@ -126,6 +132,7 @@ links = []
 name = "ineAtlas"
 desc = "An R package to provide easy access to granular socio-economic data for Spain at the municipal, district, and census tract levels"
 tags = []
+icon = "/img/favicons/ineatlas.png"
 r_url = "https://pablogguz.github.io/ineAtlas/"
 github_url = "https://github.com/pablogguz/ineAtlas"
 links = []
@@ -134,6 +141,7 @@ links = []
 name = "subincomeR"
 desc = "An R package providing coordinate-based access to a global dataset of reported sub-national income data covering more than 1,600 sub-national regions across 83 countries"
 tags = []
+icon = "/img/favicons/subincomer.png"
 r_url = "https://pablogguz.github.io/subincomeR/"
 github_url = "https://github.com/pablogguz/subincomeR"
 links = []
