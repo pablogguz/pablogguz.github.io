@@ -1,3 +1,5 @@
+dormant = []
+
 # [[project]]
 # name = ""
 # desc = ""
@@ -20,6 +22,14 @@ links = [
 # ========================================
 # ACTIVE PROJECTS
 # ========================================
+
+[[active]]
+name = "WikiBarrio"
+desc = "An interactive visualization tool to explore neighborhood-level socio-demographic data from Spain"
+tags = []
+icon = "/img/favicons/wikibarrio.svg"
+shiny_url = "https://www.wikibarrio.es/"
+links = []
 
 [[active]]
 name = "observatoriorenta.es"
@@ -86,15 +96,12 @@ links = [
 ]
 
 [[active]]
-name = "datoscrimen.es"
-desc = "An interactive visualization tool to explore the spatial distribution of crime in Spain using data from the Spanish Home Office"
+name = "econphdplacements.com"
+desc = "An interactive platform to explore placement outcomes for PhD graduates in economics across departments worldwide"
 tags = []
-icon = "/img/favicons/datoscrimen.svg"
-shiny_url = "https://datoscrimen.es/"
-links = [
-   { name = "Vozpópuli", url = "https://www.vozpopuli.com/espana/cataluna/proliferan-las-patrullas-vecinales-en-una-cataluna-a-la-cabeza-de-los-robos-violentos-en-espana.html" },
-   { name = "La Razón", url = "https://www.larazon.es/cataluna/herencia-proces-cataluna-generalitat-independentista-11-municipios-mas-robos-espana-eran-catalanes_202501146786aba0bc785b00017bf770.html" }
-]
+icon = "/img/favicons/econphdplacements.svg"
+shiny_url = "https://econphdplacements.com/"
+links = []
 
 [[project]]
 name = "ineAtlas"
@@ -117,12 +124,15 @@ links = [
 ]
 
 [[active]]
-name = "WikiBarrio"
-desc = "An interactive visualization tool to explore neighborhood-level socio-demographic data from Spain"
+name = "datoscrimen.es"
+desc = "An interactive visualization tool to explore the spatial distribution of crime in Spain using data from the Spanish Home Office"
 tags = []
-icon = "/img/favicons/wikibarrio.svg"
-shiny_url = "https://www.wikibarrio.es/"
-links = []
+icon = "/img/favicons/datoscrimen.svg"
+shiny_url = "https://datoscrimen.es/"
+links = [
+   { name = "Vozpópuli", url = "https://www.vozpopuli.com/espana/cataluna/proliferan-las-patrullas-vecinales-en-una-cataluna-a-la-cabeza-de-los-robos-violentos-en-espana.html" },
+   { name = "La Razón", url = "https://www.larazon.es/cataluna/herencia-proces-cataluna-generalitat-independentista-11-municipios-mas-robos-espana-eran-catalanes_202501146786aba0bc785b00017bf770.html" }
+]
 
 # ========================================
 # R PACKAGES
@@ -150,11 +160,13 @@ links = []
 # OLD/DORMANT PROJECTS
 # ========================================
 
-[[dormant]]
-name = "Placement outcomes for PhD graduates in economics"
-desc = "I construct a novel dataset with individual-level information on PhD placement outcomes for a total of 29 economics departments worldwide to answer the following question: who hires PhD graduates in Economics?"
-tags = []
-shiny_url = "https://pablogguz.shinyapps.io/econphd_placements/"
-github_url = "https://github.com/pablogguz/econphd_placements"
-links = []
+# Moved to active as econphdplacements.com
+# [[dormant]]
+# name = "Placement outcomes for PhD graduates in economics"
+# desc = "I construct a novel dataset with individual-level information on PhD placement outcomes for a total of 29 economics departments worldwide to answer the following question: who hires PhD graduates in Economics?"
+# tags = []
+# shiny_url = "https://pablogguz.shinyapps.io/econphd_placements/"
+# github_url = "https://github.com/pablogguz/econphd_placements"
+# links = []
+
 

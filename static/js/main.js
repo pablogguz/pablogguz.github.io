@@ -20,8 +20,16 @@ function enableThemeToggle() {
     window.removeEventListener('message', initGiscusTheme);
   }
   window.addEventListener('message', initGiscusTheme);
-  themeToggle.addEventListener('click', () => toggleTheme(sessionStorage.getItem("theme") == "dark" ? "light" : "dark"));
-  preferDark.addEventListener("change", e => toggleTheme(e.matches ? "dark" : "light"));
+  themeToggle.addEventListener('click', () => {
+    document.body.classList.add('theme-transition');
+    toggleTheme(sessionStorage.getItem("theme") == "dark" ? "light" : "dark");
+    setTimeout(() => document.body.classList.remove('theme-transition'), 400);
+  });
+  preferDark.addEventListener("change", e => {
+    document.body.classList.add('theme-transition');
+    toggleTheme(e.matches ? "dark" : "light");
+    setTimeout(() => document.body.classList.remove('theme-transition'), 400);
+  });
   if (!sessionStorage.getItem("theme") && preferDark.matches) toggleTheme("dark");
   if (sessionStorage.getItem("theme") == "dark") toggleTheme("dark");
 }
