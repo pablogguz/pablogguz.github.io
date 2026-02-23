@@ -29,7 +29,9 @@ desc = "An interactive visualization tool to explore neighborhood-level socio-de
 tags = []
 icon = "/img/favicons/wikibarrio.svg"
 shiny_url = "https://www.wikibarrio.es/"
-links = []
+links = [
+  { name = "El Español", url = "https://www.elespanol.com/elandroidelibre/noticias-y-novedades/20260221/google-maps-informacion-economica-barrio-extranjeros-renta-edades/1003744122806_0.html" },
+]
 
 [[active]]
 name = "observatoriorenta.es"
