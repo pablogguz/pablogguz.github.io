@@ -34,6 +34,14 @@ links = [
 ]
 
 [[active]]
+name = "que-estudio.es"
+desc = "An interactive explorer of employment outcomes and salary data for Spanish university graduates across 81 universities and 29 fields of study"
+tags = []
+icon = "/img/favicons/queestudio.svg"
+shiny_url = "https://que-estudio.es/"
+links = []
+
+[[active]]
 name = "observatoriorenta.es"
 desc = "Interactive platform for exploring income distribution and inequality data across Spain at multiple geographic levels"
 tags = []
