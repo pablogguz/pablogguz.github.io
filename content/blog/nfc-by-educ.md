@@ -1,7 +1,7 @@
 +++
 title = "Education pays off (for the state too): net fiscal contributions by educational attainment in Spain"
 date = 2025-12-12
-draft = false
+draft = true
 
 [taxonomies]
 tags = ["fiscal", "spain", "education", "nta", "taxes", "public spending"]
