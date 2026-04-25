@@ -96,15 +96,6 @@ links = [
 ]
 
 
-[[project]]
-name = "comparatuingreso.es"
-desc = "An interactive online tool that allows users to calculate their relative position in the income distribution of Spain using census tract-level admnistrative data from income tax returns"
-tags = []
-shiny_url = "https://comparatuingreso.es/"
-links = [
-   { name = "COPE", url = "https://www.cope.es/actualidad/economia/noticias/ganas-mas-dinero-vecino-truco-descubrirlo-te-pillen-20241209_3058228.html" },
-]
-
 [[active]]
 name = "econphdplacements.com"
 desc = "An interactive platform to explore placement outcomes for PhD graduates in economics across departments worldwide"
@@ -131,6 +122,16 @@ icon = "/img/favicons/dedonde.svg"
 shiny_url = "http://dedonde.es/"
 links = [
   { name = "Infobae", url = "https://www.infobae.com/espana/2025/04/23/las-dos-caras-de-la-inmigracion-en-espana-los-marroquies-vienen-en-edad-de-trabajar-y-los-britanicos-despues-de-jubilarse/" },
+]
+
+[[active]]
+name = "comparatuingreso.es"
+desc = "An interactive online tool that allows users to calculate their relative position in the income distribution of Spain using census tract-level administrative data from income tax returns"
+tags = []
+icon = "/img/favicons/comparatuingreso.svg"
+shiny_url = "https://comparatuingreso.es/"
+links = [
+   { name = "COPE", url = "https://www.cope.es/actualidad/economia/noticias/ganas-mas-dinero-vecino-truco-descubrirlo-te-pillen-20241209_3058228.html" },
 ]
 
 [[active]]
