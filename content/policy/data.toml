@@ -8,6 +8,19 @@
 # ]
 
 [[project]]
+name = "Las transferencias intergeneracionales y el reto demográfico (EsadeEcPol)"
+desc = "Estimating the life-cycle profile of taxes paid and public transfers received in Spain, and quantifying how population ageing will strain the sustainability of the welfare state (w/ Miguel Almunia)"
+tags = []
+pdf_url = "https://www.esade.edu/ecpol/es/publicaciones/las-transferencias-intergeneracionales-y-el-reto-demografico/"
+links = [
+   { name = "El País", url = "https://elpais.com/economia/2026-07-02/el-envejecimiento-triplicara-en-2050-el-deficit-entre-lo-que-los-ciudadanos-aportan-y-reciben-del-estado.html" },
+   { name = "El Mundo", url = "https://www.elmundo.es/economia/2026/07/01/6a4541fdfc6c83ca298b45c4.html" },
+   { name = "El Confidencial", url = "https://www.elconfidencial.com/economia/2026-07-02/contribucion-neta-impuestos-prestaciones-edad-formacion_4381908/" },
+   { name = "La Vanguardia", url = "https://www.lavanguardia.com/economia/20260702/11581329/mayoria-poblacion-recibe-mas-servicios-aporta.html" },
+   { name = "Forbes", url = "https://forbes.es/ultima-hora/970339/esadeecpol-estima-que-cuatro-de-cada-diez-espanoles-aporta-mas-impuestos-de-lo-que-reciben/" },
+]
+
+[[project]]
 name = "Demographic trends and the future of growth (EBRD Transition Report 2025-26, Chapter 1)"
 desc = "Quantifying the effects of demographic change on economic growth and evaluating which policy levers can realistically offset it (w/ Federica Coelli and Emily Nilsson)"
 tags = []
