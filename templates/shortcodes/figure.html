@@ -1,5 +1,5 @@
 <figure>
-    <img src="{{ src }}" {% if alt %} alt="{{ alt }}"{% endif %}>
+    <img src="{{ src }}" {% if alt %} alt="{{ alt }}"{% endif %} loading="lazy" decoding="async">
     {% if via %}
     <figcaption><a href="{{via}}">via</a></figcaption>
     {% else %}

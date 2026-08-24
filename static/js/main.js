@@ -6,7 +6,7 @@ function enableThemeToggle() {
     if (theme == "dark") document.body.classList.add('dark'); else document.body.classList.remove('dark');
     if (hlLink) hlLink.href = `/hl-${theme}.css`;
     themeToggle.innerHTML = theme == "dark" ? themeToggle.dataset.sunIcon : themeToggle.dataset.moonIcon;
-    sessionStorage.setItem("theme", theme);
+    localStorage.setItem("theme", theme);
     toggleGiscusTheme(theme);
   }
   function toggleGiscusTheme(theme) {
@@ -16,13 +16,13 @@ function enableThemeToggle() {
   function initGiscusTheme(evt) {
     if (evt.origin !== 'https://giscus.app') return;
     if (!(typeof evt.data === 'object' && evt.data.giscus)) return;
-    toggleGiscusTheme(sessionStorage.getItem("theme") || (preferDark.matches ? "dark" : "light"));
+    toggleGiscusTheme(localStorage.getItem("theme") || (preferDark.matches ? "dark" : "light"));
     window.removeEventListener('message', initGiscusTheme);
   }
   window.addEventListener('message', initGiscusTheme);
   themeToggle.addEventListener('click', () => {
     document.body.classList.add('theme-transition');
-    toggleTheme(sessionStorage.getItem("theme") == "dark" ? "light" : "dark");
+    toggleTheme(localStorage.getItem("theme") == "dark" ? "light" : "dark");
     setTimeout(() => document.body.classList.remove('theme-transition'), 400);
   });
   preferDark.addEventListener("change", e => {
@@ -30,8 +30,8 @@ function enableThemeToggle() {
     toggleTheme(e.matches ? "dark" : "light");
     setTimeout(() => document.body.classList.remove('theme-transition'), 400);
   });
-  if (!sessionStorage.getItem("theme") && preferDark.matches) toggleTheme("dark");
-  if (sessionStorage.getItem("theme") == "dark") toggleTheme("dark");
+  if (!localStorage.getItem("theme") && preferDark.matches) toggleTheme("dark");
+  if (localStorage.getItem("theme") == "dark") toggleTheme("dark");
 }
 
 function enablePrerender() {
@@ -236,6 +236,51 @@ function addFootnoteBacklink() {
   });
 }
 
+function enableSidenotes() {
+  const article = document.querySelector('article.prose');
+  if (!article) return;
+  const defs = article.querySelectorAll('.footnote-definition');
+  if (!defs.length) return;
+  const wide = window.matchMedia('(min-width: 1280px)');
+  const notes = new Map();
+  const layout = () => {
+    article.classList.toggle('sidenotes-active', wide.matches);
+    if (!wide.matches) return;
+    let prevBottom = -Infinity;
+    const articleTop = article.getBoundingClientRect().top;
+    defs.forEach(def => {
+      const ref = article.querySelector(`.footnote-reference a[href="#${def.id}"]`);
+      if (!ref) return;
+      let note = notes.get(def);
+      if (!note) {
+        note = document.createElement('aside');
+        note.className = 'sidenote';
+        note.innerHTML = `<span class="sidenote-num">${ref.textContent}</span>` + def.innerHTML;
+        const label = note.querySelector('sup.footnote-definition-label');
+        if (label) label.remove();
+        note.querySelectorAll('button.backlink').forEach(b => b.remove());
+        article.appendChild(note);
+        notes.set(def, note);
+        ref.addEventListener('click', (e) => {
+          if (!wide.matches) return;
+          e.preventDefault();
+          note.classList.add('flash');
+          setTimeout(() => note.classList.remove('flash'), 1200);
+        });
+      }
+      const top = Math.max(ref.getBoundingClientRect().top - articleTop, prevBottom + 12);
+      note.style.top = `${top}px`;
+      prevBottom = top + note.offsetHeight;
+    });
+  };
+  let timer;
+  const relayout = () => { clearTimeout(timer); timer = setTimeout(layout, 150); };
+  window.addEventListener('resize', relayout);
+  window.addEventListener('load', layout);
+  wide.addEventListener('change', layout);
+  layout();
+}
+
 function enableCopyLink() {
   const btn = document.querySelector('#copy-link-btn');
   if (!btn) return;
@@ -319,4 +364,7 @@ if (document.querySelector('.prose')) {
   addCopyBtns();
   addFootnoteBacklink();
   enableImgLightense();
+}
+if (document.body.classList.contains('post')) {
+  enableSidenotes();
 }

@@ -1,0 +1,42 @@
+{% extends "_base.html" %}
+
+{% block page %}search{% endblock page %}
+{% block lang %}en{% endblock lang %}
+{% block title %}search · {{ config.title }}{% endblock title %}
+{% block desc %}
+<meta name="description" content="search essays and notes">
+{% endblock desc %}
+
+{% block head %}
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+{% endblock head %}
+
+{% block content %}
+{% include "_header.html" %}
+<div id="wrapper">
+  <main>
+    <h1 class="search-title">search</h1>
+    <div id="search"></div>
+    <p id="search-fallback" hidden>
+      the search index is generated at deploy time, so it isn't available on the
+      plain dev server — run <code>./scripts/serve-search.sh</code> to try it locally.
+    </p>
+    {% include "_footer.html" %}
+  </main>
+</div>
+{% endblock content %}
+
+{% block script %}
+<script src="/pagefind/pagefind-ui.js" onerror="document.getElementById('search-fallback').hidden = false"></script>
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    if (window.PagefindUI) {
+      new PagefindUI({ element: '#search', showSubResults: true, showImages: false });
+      const input = document.querySelector('#search input');
+      if (input) input.focus();
+    } else {
+      document.getElementById('search-fallback').hidden = false;
+    }
+  });
+</script>
+{% endblock script %}

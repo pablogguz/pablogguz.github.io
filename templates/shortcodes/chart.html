@@ -1,0 +1,18 @@
+{#- numbered chart figure for essays.
+    usage: {{/* chart(src="/img/foo.png", title="...", subtitle="...", source="...", note="...", alt="...") */}}
+    `nth` is the invocation count, so figures number themselves and can be
+    referenced in text as "figure {{ nth }}" and linked via #figure-N -#}
+<figure class="chart" id="figure-{{ nth }}">
+  <div class="chart-head">
+    <a class="chart-anchor" href="#figure-{{ nth }}">figure {{ nth }}</a>
+    {% if title %}<span class="chart-title">{{ title }}</span>{% endif %}
+    {% if subtitle %}<span class="chart-subtitle">{{ subtitle }}</span>{% endif %}
+  </div>
+  <img src="{{ src }}" alt="{{ alt | default(value=title) | default(value='chart') }}" loading="lazy" decoding="async">
+  {% if note or source %}
+  <figcaption class="chart-foot">
+    {% if note %}<span class="chart-note">{{ note }}</span>{% endif %}
+    {% if source %}<span class="chart-source">source: {{ source }}</span>{% endif %}
+  </figcaption>
+  {% endif %}
+</figure>

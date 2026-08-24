@@ -137,13 +137,15 @@
       <div id="copy-cfg" style="display: none;" data-copy-icon="{{ copy_icon }}" data-check-icon="{{ check_icon }}"></div>
       {% endif %}
       {% set backlink_icon = load_data(path="static/icon/backlink.svg") %}
-      <article class="prose" data-backlink-icon="{{ backlink_icon }}">
+      <article class="prose" data-backlink-icon="{{ backlink_icon }}" data-pagefind-body>
         <h1>{{ page.title }}</h1>
         <div id="post-info">
           <div id="date">
+            {% if page.extra.kind is defined and page.extra.kind == "note" %}<span class="kind-chip">note</span>{% endif %}
             <span id="publish">{{ page.date | date }}</span>
             <div id="reading-time">
-              <i class="far fa-clock"></i>
+              {% set clock_icon = load_data(path="static/icon/clock.svg") %}
+              {{ clock_icon | safe }}
               {%- if page.extra.reading_time %}
               <span> {{ page.extra.reading_time }} minute read</span>
               {%- else %}
@@ -161,7 +163,7 @@
           <div id="tags">
             {% for tag in page.taxonomies.tags -%}
             {% set tag_slugify = tag | slugify -%}
-            <a class="instant" href="{{ config.base_url ~ '/tags/' ~ tag_slugify }}"><span>#</span>{{ tag }}</a>
+            <a class="instant" href="{{ config.base_url ~ '/tags/' ~ tag_slugify }}">{{ tag }}</a>
             {%- endfor %}
           </div>
           {% endif %}
@@ -181,6 +183,8 @@
           <div class="content"></div>
         </blockquote>
         {% endif %}
+
+        {% include "_post_series.html" %}
 
         {% if page.extra.truncate_summary is defined %}{% set truncate_summary = page.extra.truncate_summary %}{% elif config.extra.truncate_summary is defined %}{% set truncate_summary = config.extra.truncate_summary %}{% else %}{% set truncate_summary = false %}{% endif %}
 

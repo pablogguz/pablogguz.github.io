@@ -11,6 +11,7 @@
     <a class="share-btn" href="/blog/feed.xml">rss</a>
   </div>
 
+  {% if page.extra.kind is not defined or page.extra.kind != "note" %}
   <details class="cite-box">
     <summary>cite this essay</summary>
     <div class="cite-formats">
@@ -27,6 +28,7 @@
 }</pre>
     </div>
   </details>
+  {% endif %}
 
   {# with sort_by = "date": page.lower = newer neighbour, page.higher = older #}
   {% if page.lower or page.higher %}

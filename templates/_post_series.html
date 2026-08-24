@@ -1,0 +1,23 @@
+{#- series box: shown at the top of a post when its [extra] series has 2+ parts.
+    parts are ordered by date; the current essay is highlighted, others link. -#}
+{% if page.extra.series %}
+{% set blog_section_path = config.extra.blog_section_path | trim_start_matches(pat="/") %}
+{% set blog = get_section(path=blog_section_path ~ "/_index.md") %}
+{% set parts = blog.pages | filter(attribute="extra.series", value=page.extra.series) | sort(attribute="date") %}
+{% if parts | length > 1 %}
+<nav class="series-box">
+  <span class="extras-label">series · {{ page.extra.series }}</span>
+  <ol class="series-parts">
+    {% for part in parts %}
+    <li>
+      {% if part.permalink == page.permalink %}
+      <span class="series-current">{{ part.title }}</span>
+      {% else %}
+      <a class="instant" href="{{ part.permalink }}">{{ part.title }}</a>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ol>
+</nav>
+{% endif %}
+{% endif %}

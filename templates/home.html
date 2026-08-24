@@ -35,7 +35,8 @@
 <div id="wrapper">
   <main>
     <section id="info">
-      <img src="{{ config.extra.avatar }}" alt="avatar" id="myAvatar">
+      {%- set avatar = resize_image(path="static/" ~ config.extra.avatar, width=240, op="fit_width", format="webp", quality=85) %}
+      <img src="{{ avatar.url }}" alt="avatar" id="myAvatar" width="{{ avatar.width }}" height="{{ avatar.height }}">
       <div id="text">
         <div>
           <span id="name">{{ config.extra.name }}</span>
@@ -60,6 +61,9 @@
           {{ icon | safe }}
         </a>
         {% endfor %}
+        <a id="search-btn" class="instant" href="/search" aria-label="search">
+          {{ load_data(path="static/icon/search.svg") | safe }}
+        </a>
         {% set moon_icon = load_data(path="static/icon/moon.svg") %}
         {% set sun_icon = load_data(path="static/icon/sun.svg") %}
         <button id="theme-toggle" aria-label="theme switch" data-moon-icon="{{ moon_icon }}" data-sun-icon="{{ sun_icon }}">

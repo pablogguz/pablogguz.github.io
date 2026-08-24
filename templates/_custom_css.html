@@ -1080,6 +1080,270 @@
     margin-top: 2px;
   }
 
+  /* blog list — essays / notes group titles */
+  .layout-list .list-title {
+    margin: 2.5em 15px 0;
+  }
+  .layout-list .list-title + .post-list {
+    margin-top: 0.75em;
+  }
+  .layout-list .list-title:first-child {
+    margin-top: 2em;
+  }
+
+  /* =====================================================================
+     11c · POST TAGS + KIND CHIP — quiet mono pills, no hashtags
+     ===================================================================== */
+
+  body.post #post-info #tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 12px;
+    font-size: 1em;
+  }
+  body.post #post-info #tags a {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: lowercase;
+    letter-spacing: 0.03em;
+    color: var(--text-secondary);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 99px;
+    padding: 3px 11px;
+    text-decoration: none;
+    background-image: none;
+  }
+  body.post #post-info #tags a:hover {
+    color: var(--accent);
+    border-color: color-mix(in srgb, var(--accent) 45%, var(--border-color));
+    background: color-mix(in srgb, var(--accent) 6%, var(--bg-secondary));
+    transform: translateY(-1px);
+  }
+
+  .kind-chip {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 500;
+    text-transform: lowercase;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+    border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+    background: color-mix(in srgb, var(--accent) 8%, transparent);
+    border-radius: 99px;
+    padding: 2px 9px;
+    margin-right: 8px;
+  }
+
+  #reading-time svg {
+    width: 12px;
+    height: 12px;
+    vertical-align: -1.5px;
+    margin-right: 2px;
+  }
+
+  .link-button svg {
+    width: 13px;
+    height: 13px;
+    flex-shrink: 0;
+  }
+
+  /* =====================================================================
+     11d · CHART FIGURES (the chart(...) shortcode)
+     ===================================================================== */
+
+  .prose figure.chart {
+    margin: var(--space-4) 0;
+    padding: var(--space-3);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    background: var(--card-bg-color);
+    box-shadow: var(--shadow-sm);
+  }
+  .chart-head {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    margin-bottom: var(--space-2);
+    text-align: left;
+  }
+  .prose a.chart-anchor {
+    font-family: var(--font-mono);
+    font-size: 0.72em;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--text-pale-color);
+    background-image: none;
+    width: fit-content;
+  }
+  .prose a.chart-anchor::before {
+    content: "// ";
+    color: var(--accent);
+  }
+  .prose a.chart-anchor:hover {
+    color: var(--accent);
+  }
+  .chart-title {
+    font-weight: 600;
+    font-size: 0.95em;
+    letter-spacing: -0.01em;
+    color: var(--text-color);
+  }
+  .chart-subtitle {
+    font-size: 0.85em;
+    color: var(--text-secondary);
+  }
+  figure.chart img {
+    margin: 0 auto;
+    border-radius: var(--radius);
+  }
+  figcaption.chart-foot {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-top: var(--space-2);
+    text-align: left;
+    font-size: 0.78em;
+    font-weight: 400;
+    color: var(--text-pale-color);
+    line-height: 1.5;
+  }
+
+  /* =====================================================================
+     11e · SERIES BOX
+     ===================================================================== */
+
+  .series-box {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    margin: var(--space-3) 0 var(--space-4);
+    padding: var(--space-2) 16px;
+    border: 1px solid var(--border-color);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    background: var(--card-bg-color);
+    box-shadow: var(--shadow-sm);
+  }
+  .series-parts {
+    margin: 0;
+    padding-left: 1.4em;
+    font-size: 0.85em;
+  }
+  .series-parts li {
+    margin: 3px 0;
+    color: var(--text-secondary);
+  }
+  .series-parts li::marker {
+    font-family: var(--font-mono);
+    color: var(--text-pale-color);
+  }
+  .series-current {
+    font-weight: 600;
+    color: var(--text-color);
+  }
+
+  /* =====================================================================
+     11f · SIDENOTES — footnotes in the left margin on wide screens
+     ===================================================================== */
+
+  .prose {
+    position: relative;
+  }
+  .sidenote {
+    display: none;
+  }
+  @media (min-width: 1280px) {
+    body.post .prose.sidenotes-active .footnote-definition {
+      display: none;
+    }
+    body.post .prose.sidenotes-active .sidenote {
+      display: block;
+      position: absolute;
+      left: -292px;
+      width: 240px;
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--text-secondary);
+      padding-left: 12px;
+      border-left: 2px solid var(--border-color);
+      transition: border-color var(--speed) var(--ease);
+    }
+    .sidenote .sidenote-num {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--accent);
+      margin-right: 6px;
+    }
+    .sidenote p {
+      display: inline;
+      font-size: inherit;
+      line-height: inherit;
+      margin: 0;
+    }
+    .sidenote.flash {
+      border-left-color: var(--accent);
+      color: var(--text-color);
+    }
+  }
+
+  /* =====================================================================
+     11g · SEARCH PAGE (pagefind)
+     ===================================================================== */
+
+  body.search #wrapper {
+    margin: 0 auto;
+    max-width: var(--main-max-width);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0 15px;
+  }
+  body.search main {
+    margin: 45px 0;
+  }
+  .search-title {
+    font-family: var(--font-sans);
+    font-size: 1.6em;
+    font-weight: 650;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.9em;
+  }
+  .search-title::before {
+    content: "// ";
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.8em;
+  }
+  #search {
+    --pagefind-ui-scale: 0.9;
+    --pagefind-ui-primary: var(--accent);
+    --pagefind-ui-text: var(--text-color);
+    --pagefind-ui-background: var(--card-bg-color);
+    --pagefind-ui-border: var(--border-color);
+    --pagefind-ui-tag: var(--bg-secondary);
+    --pagefind-ui-border-width: 1px;
+    --pagefind-ui-border-radius: var(--radius);
+    --pagefind-ui-font: var(--font-sans);
+  }
+  #search-fallback {
+    font-size: 0.9em;
+    color: var(--text-secondary);
+    border: 1px dashed var(--border-color);
+    border-radius: var(--radius);
+    padding: var(--space-2);
+  }
+  #search-btn svg {
+    transition: transform var(--speed) var(--ease-spring);
+  }
+  #search-btn:hover svg {
+    transform: scale(1.12);
+  }
+
   /* =====================================================================
      12 · FOOTER
      ===================================================================== */

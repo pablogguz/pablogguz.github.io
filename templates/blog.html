@@ -29,15 +29,31 @@
     </div>
     {% endfor %}
     {% else %}
+    {% set notes = section.pages | filter(attribute="extra.kind", value="note") %}
+    {% if notes | length > 0 %}<div class="section-title list-title">essays</div>{% endif %}
     <div class="post-list">
       {% for post in section.pages %}
+      {% if post.extra.kind | default(value="essay") != "note" %}
       <a class="post instant {% if post.extra.featured %}featured{% endif %}" href="{{ post.permalink }}">
         <span>{{ post.title }}</span>
         <span class="date">{{ post.date | date }} · {% if post.extra.reading_time %}{{ post.extra.reading_time }}{% else %}{{ post.reading_time }}{% endif %} min</span>
         {% if post.description %}<span class="post-desc">{{ post.description }}</span>{% endif %}
       </a>
+      {% endif %}
       {% endfor %}
     </div>
+    {% if notes | length > 0 %}
+    <div class="section-title list-title">notes</div>
+    <div class="post-list">
+      {% for post in notes %}
+      <a class="post instant" href="{{ post.permalink }}">
+        <span>{{ post.title }}</span>
+        <span class="date">{{ post.date | date }}</span>
+        {% if post.description %}<span class="post-desc">{{ post.description }}</span>{% endif %}
+      </a>
+      {% endfor %}
+    </div>
+    {% endif %}
     {% endif %}
   </main>
   {% include "_footer.html" %}

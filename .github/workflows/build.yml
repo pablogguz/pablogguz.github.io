@@ -1,17 +1,27 @@
-# On every push this script is executed
+# On every push to main: build with zola, index with pagefind, deploy to gh-pages
 on: push
 name: Build and deploy GH Pages
 jobs:
   build:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
+    permissions:
+      contents: write
     steps:
       - name: checkout
         uses: actions/checkout@v4
-      - name: build_and_deploy
-        uses: shalzz/zola-deploy-action@v0.18.0
-        env:
-          # Target branch
-          PAGES_BRANCH: gh-pages
-          # Or if publishing to the same repo, use the automatic token
-          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: install zola
+        run: |
+          curl -fsSL https://github.com/getzola/zola/releases/download/v0.22.1/zola-v0.22.1-x86_64-unknown-linux-gnu.tar.gz \
+            | sudo tar xz -C /usr/local/bin
+      - name: build site
+        run: zola build
+      - name: build search index
+        run: npx --yes pagefind@1 --site public
+      - name: deploy
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          publish_branch: gh-pages
+          force_orphan: true

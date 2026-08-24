@@ -6,7 +6,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="light dark">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   {% block desc %}{% endblock desc %}
   <title>{% block title %}{% endblock title %}</title>
   {% block head %}{% endblock head %}
@@ -79,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function() {
   </script>
   
   <script>
-    const theme = sessionStorage.getItem('theme');
+    const theme = localStorage.getItem('theme');
     const match = window.matchMedia("(prefers-color-scheme: dark)").matches
     if ((theme && theme == 'dark') || (!theme && match)) {
       document.body.classList.add('dark');

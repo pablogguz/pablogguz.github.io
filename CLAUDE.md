@@ -10,7 +10,7 @@ zola build            # production build into public/
 zola check            # validate internal/external links
 ```
 
-Deployment is automatic: every push to `main` triggers `.github/workflows/build.yml`, which builds the site with `zola-deploy-action` and publishes to the `gh-pages` branch. The `public/` directory is generated output — gitignored, never edit it by hand.
+Deployment is automatic: every push to `main` triggers `.github/workflows/build.yml`, which installs zola (pinned version), runs `zola build`, builds the search index with `pagefind`, and publishes `public/` to the `gh-pages` branch. The `public/` directory is generated output — gitignored, never edit it by hand.
 
 ## Drafts
 
@@ -40,6 +40,12 @@ Unpublished essays must never reach the public repo. They live in `content/blog/
 - The whole site uses a lowercase aesthetic (headings, nav, labels) — keep new copy lowercase unless it's a proper noun or publication title.
 - Blog posts get an "essay tools" block (`templates/_post_extras.html`: share row, "cite this essay" plain-text + BibTeX box, older/newer nav) and a giscus comment section by default. Per-post opt-out via `cite = false` / `comment = false` in `[extra]`. giscus credentials live in `[extra.giscus]` in `config.toml`; its light/dark iframe themes are `static/giscus_light.css` / `static/giscus_dark.css` (keep in sync with the design tokens).
 - Post front matter: `description` (shown under the title on the blog list and used for meta/OG description), `cover_image` (absolute URL, used for twitter/OG cards). `reading_time` is computed by Zola automatically; a manual `reading_time` in `[extra]` overrides it.
+- **Notes vs essays**: `kind = "note"` in a post's `[extra]` marks it as a lightweight note — it's listed under a separate "notes" group on /blog, gets a "note" chip on its page, and skips the cite box. Everything else is an essay. `./scripts/new-draft.sh "title" --note` scaffolds one.
+- **Series**: `series = "series name"` in `[extra]` groups essays; a series box (template `_post_series.html`) appears at the top of each part once the series has 2+ posts, ordered by date.
+- **Sidenotes**: on viewports ≥1280px, footnotes render in the left margin next to their reference (`enableSidenotes` in `main.js` + section 11f of `_custom_css.html`); below that they stay at their normal in-flow position. No front-matter needed.
+- **Chart shortcode**: `chart(src=..., title=..., subtitle=..., source=..., note=..., alt=...)` renders a numbered figure (`figure-N` anchors, referenceable as "figure N" in text). Plain images can keep using `figure()`.
+- **Search**: pagefind indexes only elements with `data-pagefind-body` (the post `<article>`), built at deploy time. `/search` page + magnifier icon in header/homepage. Not available under plain `zola serve` — use `./scripts/serve-search.sh` to test locally.
+- Fonts are **self-hosted** (`static/fonts/` + `@font-face` in `_custom_font.html`, latin/latin-ext subsets). No Font Awesome — icons are inline SVGs in `static/icon/` loaded with `load_data`. Theme choice persists via `localStorage`.
 - With `sort_by = "date"`, `page.lower` is the *newer* neighbouring post and `page.higher` the *older* one (used in `_post_extras.html`).
 - Atom feeds: `/feed.xml` (site) and `/blog/feed.xml` (blog); the rss button in the header and the `<link rel="alternate">` tags in `_head_extend.html` point at them.
 - To restyle the site, change tokens in section 1 of `_custom_css.html` (e.g. `--accent`) rather than adding scattered rules.

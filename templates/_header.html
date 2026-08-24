@@ -49,13 +49,17 @@
       {% endif %}
       {% endif %}
 
+      <a id="search-btn" class="instant" href="/search" aria-label="search">
+        {{ load_data(path="static/icon/search.svg") | safe }}
+      </a>
+
       {% set moon_icon = load_data(path="static/icon/moon.svg") %}
       {% set sun_icon = load_data(path="static/icon/sun.svg") %}
       <button id="theme-toggle" aria-label="theme switch" data-moon-icon="{{ moon_icon }}" data-sun-icon="{{ sun_icon }}">
         {{ moon_icon | safe }}
       </button>
 
-      {% if blog_section_path is defined and section.path is starting_with(blog_section_path) %}
+      {% if blog_section_path is defined and section is defined and section.path is starting_with(blog_section_path) %}
       {% set toc_icon = load_data(path="static/icon/toc.svg") %}
       {% if page.extra.toc is defined %}{% set show_toc = page.extra.toc %}{% else %}{% set show_toc = config.extra.toc %}{% endif %}
       {% if show_toc and page %}

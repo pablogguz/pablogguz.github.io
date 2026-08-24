@@ -7,6 +7,7 @@ draft = false
 tags = ["wellbeing"]
 
 [extra]
+series = "on wellbeing"
 lang = "en"
 toc = true
 comment = true
