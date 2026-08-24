@@ -1,0 +1,8 @@
+# generated output — built and deployed to gh-pages by CI, never committed
+public/
+
+# local drafts — never pushed; preview with `zola serve --drafts`
+content/blog/drafts/
+
+# os noise
+.DS_Store
