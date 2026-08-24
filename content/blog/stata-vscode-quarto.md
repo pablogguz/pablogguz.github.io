@@ -19,7 +19,6 @@ display_tags = true
 truncate_summary = false
 featured = false
 cover_image = "https://pablogguz.github.io/img/dalle_vscode_stata_v2.webp"
-reading_time = 8
 +++
 
 {% alert(header="Update Aug 2024") %}

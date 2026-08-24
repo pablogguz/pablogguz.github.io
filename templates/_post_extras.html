@@ -1,0 +1,49 @@
+{#- essay tools: share row · cite box · older/newer nav -#}
+{%- set author_citation = config.extra.author_citation | default(value=config.extra.author) -%}
+{%- set year = page.date | date(format="%Y") -%}
+<div id="post-extras">
+
+  <div class="share-row">
+    <span class="extras-label">share</span>
+    <button class="share-btn" id="copy-link-btn" data-link="{{ page.permalink | safe }}">copy link</button>
+    <a class="share-btn" href="https://twitter.com/intent/tweet?text={{ page.title | urlencode }}&amp;url={{ page.permalink | urlencode }}" target="_blank" rel="noopener">x / twitter</a>
+    <a class="share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url={{ page.permalink | urlencode }}" target="_blank" rel="noopener">linkedin</a>
+    <a class="share-btn" href="/blog/feed.xml">rss</a>
+  </div>
+
+  <details class="cite-box">
+    <summary>cite this essay</summary>
+    <div class="cite-formats">
+      <span class="extras-label">plain text</span>
+      <pre class="cite-text">{{ author_citation }} ({{ year }}). &ldquo;{{ page.title }}&rdquo;. {{ config.title }}. {{ page.permalink | safe }}</pre>
+      <span class="extras-label">bibtex</span>
+      <pre class="cite-text">@misc{garciaguzman{{ year }}{{ page.slug | replace(from="-", to="") }},
+  author = { {{- author_citation -}} },
+  title  = { {{- page.title -}} },
+  year   = { {{- year -}} },
+  month  = { {{- page.date | date(format="%m") -}} },
+  url    = { {{- page.permalink | safe -}} },
+  note   = { {{- config.title -}} }
+}</pre>
+    </div>
+  </details>
+
+  {# with sort_by = "date": page.lower = newer neighbour, page.higher = older #}
+  {% if page.lower or page.higher %}
+  <nav class="post-nav">
+    {% if page.lower %}
+    <a class="post-nav-item newer instant" href="{{ page.lower.permalink }}">
+      <span class="extras-label">newer</span>
+      <span class="post-nav-title">{{ page.lower.title }}</span>
+    </a>
+    {% else %}<div></div>{% endif %}
+    {% if page.higher %}
+    <a class="post-nav-item older instant" href="{{ page.higher.permalink }}">
+      <span class="extras-label">older</span>
+      <span class="post-nav-title">{{ page.higher.title }}</span>
+    </a>
+    {% endif %}
+  </nav>
+  {% endif %}
+
+</div>

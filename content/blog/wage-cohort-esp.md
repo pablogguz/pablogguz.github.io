@@ -19,7 +19,6 @@ display_tags = true
 truncate_summary = false
 featured = false
 cover_image = "https://pablogguz.github.io/img/nocountry.png"
-reading_time = 8
 +++
 
 <img src="/img/nocountry.png" width="500"/>

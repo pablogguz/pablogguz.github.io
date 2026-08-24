@@ -19,7 +19,6 @@ display_tags = true
 truncate_summary = false
 featured = false
 cover_image = "https://pablogguz.github.io/img/corr_badbunny_hispanic.png"
-reading_time = 7
 +++
 
 <img src="/img/dalle_gtrends.webp" width="500"/>

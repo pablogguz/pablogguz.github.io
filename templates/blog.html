@@ -22,7 +22,8 @@
       {% for post in posts %}
       <a class="post instant {% if post.extra.featured %}featured{% endif %}" href="{{ post.permalink }}">
         <span>{{ post.title }}</span>
-        <span class="date">{{ post.date | date}}</span>
+        <span class="date">{{ post.date | date }} · {% if post.extra.reading_time %}{{ post.extra.reading_time }}{% else %}{{ post.reading_time }}{% endif %} min</span>
+        {% if post.description %}<span class="post-desc">{{ post.description }}</span>{% endif %}
       </a>
       {% endfor %}
     </div>
@@ -32,7 +33,8 @@
       {% for post in section.pages %}
       <a class="post instant {% if post.extra.featured %}featured{% endif %}" href="{{ post.permalink }}">
         <span>{{ post.title }}</span>
-        <span class="date">{{ post.date | date}}</span>
+        <span class="date">{{ post.date | date }} · {% if post.extra.reading_time %}{{ post.extra.reading_time }}{% else %}{{ post.reading_time }}{% endif %} min</span>
+        {% if post.description %}<span class="post-desc">{{ post.description }}</span>{% endif %}
       </a>
       {% endfor %}
     </div>

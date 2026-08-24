@@ -15,6 +15,9 @@
       {%- endif -%}
     "/>
 	<updated>{{ last_updated | date(format="%+") }}</updated>
+	{%- if config.extra.author %}
+	<author><name>{{ config.extra.author }}</name></author>
+	{%- endif %}
 	<id>{{ feed_url | safe }}</id>
 	{%- for page in pages %}
 	<entry xml:lang="{{ page.lang }}">

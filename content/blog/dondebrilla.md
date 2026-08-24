@@ -19,7 +19,6 @@ display_tags = true
 truncate_summary = false
 featured = false
 cover_image = "https://pablogguz.github.io/img/montoya.jpg"
-reading_time = 3
 +++
 
 Let’s start with the circus. _[La Isla de las Tentaciones](https://es.wikipedia.org/wiki/La_isla_de_las_tentaciones)_ — Spain’s answer to [Temptation Island](https://en.wikipedia.org/wiki/Temptation_Island_(TV_series)) — is not a reality TV show. It’s a social experiment designed to strip love down to its most pathetic, voyeuristic core. The premise is simple: take a handful of couples, separate them from their partners on a tropical paradise, and throw in attractive singles to test their loyalty. The result? A spectacle of jealousy, cheating, and **the kind of emotional carnage that makes you wonder why anyone would willingly sign up for this**.

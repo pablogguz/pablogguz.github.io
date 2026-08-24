@@ -236,6 +236,18 @@ function addFootnoteBacklink() {
   });
 }
 
+function enableCopyLink() {
+  const btn = document.querySelector('#copy-link-btn');
+  if (!btn) return;
+  const original = btn.textContent;
+  btn.addEventListener('click', () => {
+    navigator.clipboard.writeText(btn.dataset.link).then(() => {
+      btn.textContent = 'copied!';
+      setTimeout(() => { btn.textContent = original; }, 1500);
+    });
+  });
+}
+
 function enableImgLightense() {
   window.addEventListener("load", () => Lightense(".prose img", { background: 'rgba(43, 43, 43, 0.19)' }));
 }
@@ -301,6 +313,7 @@ if (document.body.classList.contains('post')) {
   enableTocIndicate();
   addBackToTopBtn();
   enableTocTooltip();
+  enableCopyLink();
 }
 if (document.querySelector('.prose')) {
   addCopyBtns();

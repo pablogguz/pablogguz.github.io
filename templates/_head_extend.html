@@ -1,0 +1,5 @@
+{# feed auto-discovery — lets browsers/readers find the atom feeds #}
+{% if config.generate_feeds %}
+<link rel="alternate" type="application/atom+xml" title="{{ config.title }}" href="{{ get_url(path=config.feed_filenames.0) | safe }}">
+{% endif %}
+<link rel="alternate" type="application/atom+xml" title="{{ config.title }} — blog" href="{{ get_url(path='blog/feed.xml') | safe }}">

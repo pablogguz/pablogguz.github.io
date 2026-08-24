@@ -1,6 +1,6 @@
 +++
-title = "my projects"
-description = "My projects page."
+title = "policy writing"
+description = "policy writing and publications"
 template = "policy.html"
 
 [extra]

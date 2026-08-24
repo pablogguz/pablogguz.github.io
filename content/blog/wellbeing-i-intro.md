@@ -19,7 +19,6 @@ display_tags = true
 truncate_summary = false
 featured = false
 cover_image = "https://pablogguz.github.io/img/wellbeing_i_picv3.webp"
-reading_time = 12
 +++
 
 <img src="/img/wellbeing_i_picv3.webp" width="500"/>
