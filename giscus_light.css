@@ -1,0 +1,28 @@
+/* giscus custom theme — carbon editorial, light
+   loaded inside the giscus iframe; keep in sync with _custom_css.html tokens */
+@import url('https://giscus.app/themes/noborder_light.css');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+body {
+  font-family: 'IBM Plex Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+main {
+  --color-canvas-default: transparent;
+  --color-canvas-subtle: #f1efe9;
+  --color-border-default: #e6e3da;
+  --color-border-muted: #e6e3da;
+  --color-fg-default: #191817;
+  --color-fg-muted: #504e48;
+  --color-fg-subtle: #8f8c83;
+  --color-accent-fg: #0f62fe;
+  --color-accent-emphasis: #0f62fe;
+  --color-btn-primary-bg: #0f62fe;
+  --color-btn-primary-border: #0f62fe;
+  --color-btn-primary-hover-bg: #0043ce;
+  --color-btn-primary-hover-border: #0043ce;
+}
+
+code, pre, kbd {
+  font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+}

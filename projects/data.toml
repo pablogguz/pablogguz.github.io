@@ -1,0 +1,186 @@
+dormant = []
+
+# [[project]]
+# name = ""
+# desc = ""
+# tags = ["", ""]
+# links = [
+#   { name = "", url = "" },
+#   { name = "", url = "" },
+# ]
+
+[[project]]
+name = "NTA Spain"
+desc = "An interactive online application to explore how taxes paid and benefits received are distributed across the lifecycle in Spain"
+tags = []
+shiny_url = "https://nta-spain.es/"
+links = [
+  # { name = "", url = "" },
+]
+
+
+# ========================================
+# ACTIVE PROJECTS
+# ========================================
+
+[[active]]
+name = "WikiBarrio"
+desc = "An interactive visualization tool to explore neighborhood-level socio-demographic data from Spain"
+tags = []
+icon = "/img/favicons/wikibarrio.svg"
+shiny_url = "https://www.wikibarrio.es/"
+links = [
+  { name = "El Español", url = "https://www.elespanol.com/elandroidelibre/noticias-y-novedades/20260221/google-maps-informacion-economica-barrio-extranjeros-renta-edades/1003744122806_0.html" },
+  { name = "El Economista", url = "https://www.eleconomista.es/tecnologia/noticias/13771614/02/26/desde-este-momento-podras-saber-cuanto-cobran-tus-vecinos-un-experto-en-informatica-revela-como-hacerlo.html" },
+]
+
+[[active]]
+name = "que-estudio.es"
+desc = "An interactive explorer of employment outcomes and salary data for Spanish university graduates across 81 universities and 29 fields of study"
+tags = []
+icon = "/img/favicons/queestudio.svg"
+shiny_url = "https://que-estudio.es/"
+links = []
+
+[[active]]
+name = "observatoriorenta.es"
+desc = "Interactive platform for exploring income distribution and inequality data across Spain at multiple geographic levels"
+tags = []
+icon = "/img/favicons/observatoriorenta.png"
+shiny_url = "https://observatoriorenta.es/"
+links = [
+  { name = "Infobae", url = "https://www.infobae.com/espana/2026/04/22/la-emancipacion-juvenil-cae-a-minimos-casi-la-mitad-de-los-jovenes-de-25-a-34-anos-vive-con-sus-padres/" },
+]
+
+[[active]]
+name = "nta-spain.es"
+desc = "Interactive visualization of National Transfer Accounts data for Spain, showing how economic resources flow between generations"
+tags = []
+icon = "/img/favicons/nta-spain.svg"
+shiny_url = "https://nta-spain.es/"
+links = []
+
+[[active]]
+name = "LiTS IV Visualizer"
+desc = "An interactive online application to explore the data from the latest wave of the EBRD-World Bank Life in Transition Survey, a large-scale household survey covering 37,000+ respondents across 37 countries"
+tags = []
+icon = "/img/favicons/lits-visualizer.png"
+shiny_url = "https://lits-visualizer.ebrd.com/"
+links = [
+  # { name = "", url = "" },
+]
+
+[[project]]
+name = "ineAtlas"
+desc = "An R package to provide easy access to granular socio-economic data for Spain at the municipal, district, and census tract levels"
+tags = []
+r_url = "https://pablogguz.github.io/ineAtlas/"
+github_url = "https://github.com/pablogguz/ineAtlas"
+links = [
+  # { name = "", url = "" },
+]
+
+[[project]]
+name = "WikiBarrio"
+desc = "An interactive visualization tool to explore neighborhood-level socio-demographic data from Spain"
+tags = []
+shiny_url = "https://www.wikibarrio.es/"
+links = [
+  # { name = "", url = "" },
+]
+
+[[project]]
+name = "dedonde.es"
+desc = "Interactive online application to explore the international migrant stock in Spain using microdata from administrative municipal registers and the census"
+tags = []
+shiny_url = "http://dedonde.es/"
+links = [
+  { name = "Infobae", url = "https://www.infobae.com/espana/2025/04/23/las-dos-caras-de-la-inmigracion-en-espana-los-marroquies-vienen-en-edad-de-trabajar-y-los-britanicos-despues-de-jubilarse/" },
+]
+
+
+[[active]]
+name = "econphdplacements.com"
+desc = "An interactive platform to explore placement outcomes for PhD graduates in economics across departments worldwide"
+tags = []
+icon = "/img/favicons/econphdplacements.svg"
+shiny_url = "https://econphdplacements.com/"
+links = []
+
+[[project]]
+name = "ineAtlas"
+desc = "An R package to provide easy access to granular socio-economic data for Spain at the municipal, district, and census tract levels"
+tags = []
+r_url = "https://pablogguz.github.io/ineAtlas/"
+github_url = "https://github.com/pablogguz/ineAtlas"
+links = [
+  # { name = "", url = "" },
+]
+
+[[active]]
+name = "dedonde.es"
+desc = "Interactive online application to explore the international migrant stock in Spain using microdata from administrative municipal registers and the census"
+tags = []
+icon = "/img/favicons/dedonde.svg"
+shiny_url = "http://dedonde.es/"
+links = [
+  { name = "Infobae", url = "https://www.infobae.com/espana/2025/04/23/las-dos-caras-de-la-inmigracion-en-espana-los-marroquies-vienen-en-edad-de-trabajar-y-los-britanicos-despues-de-jubilarse/" },
+]
+
+[[active]]
+name = "comparatuingreso.es"
+desc = "An interactive online tool that allows users to calculate their relative position in the income distribution of Spain using census tract-level administrative data from income tax returns"
+tags = []
+icon = "/img/favicons/comparatuingreso.svg"
+shiny_url = "https://comparatuingreso.es/"
+links = [
+   { name = "COPE", url = "https://www.cope.es/actualidad/economia/noticias/ganas-mas-dinero-vecino-truco-descubrirlo-te-pillen-20241209_3058228.html" },
+]
+
+[[active]]
+name = "datoscrimen.es"
+desc = "An interactive visualization tool to explore the spatial distribution of crime in Spain using data from the Spanish Home Office"
+tags = []
+icon = "/img/favicons/datoscrimen.svg"
+shiny_url = "https://datoscrimen.es/"
+links = [
+   { name = "Vozpópuli", url = "https://www.vozpopuli.com/espana/cataluna/proliferan-las-patrullas-vecinales-en-una-cataluna-a-la-cabeza-de-los-robos-violentos-en-espana.html" },
+   { name = "La Razón", url = "https://www.larazon.es/cataluna/herencia-proces-cataluna-generalitat-independentista-11-municipios-mas-robos-espana-eran-catalanes_202501146786aba0bc785b00017bf770.html" }
+]
+
+# ========================================
+# R PACKAGES
+# ========================================
+
+[[packages]]
+name = "ineAtlas"
+desc = "An R package to provide easy access to granular socio-economic data for Spain at the municipal, district, and census tract levels"
+tags = []
+icon = "/img/favicons/ineatlas.png"
+r_url = "https://pablogguz.github.io/ineAtlas/"
+github_url = "https://github.com/pablogguz/ineAtlas"
+links = []
+
+[[packages]]
+name = "subincomeR"
+desc = "An R package providing coordinate-based access to a global dataset of reported sub-national income data covering more than 1,600 sub-national regions across 83 countries"
+tags = []
+icon = "/img/favicons/subincomer.png"
+r_url = "https://pablogguz.github.io/subincomeR/"
+github_url = "https://github.com/pablogguz/subincomeR"
+links = []
+
+# ========================================
+# OLD/DORMANT PROJECTS
+# ========================================
+
+# Moved to active as econphdplacements.com
+# [[dormant]]
+# name = "Placement outcomes for PhD graduates in economics"
+# desc = "I construct a novel dataset with individual-level information on PhD placement outcomes for a total of 29 economics departments worldwide to answer the following question: who hires PhD graduates in Economics?"
+# tags = []
+# shiny_url = "https://pablogguz.shinyapps.io/econphd_placements/"
+# github_url = "https://github.com/pablogguz/econphd_placements"
+# links = []
+
+

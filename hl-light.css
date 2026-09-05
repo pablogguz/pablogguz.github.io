@@ -1,0 +1,132 @@
+/*
+ * Retro Pixel Syntax Theme - Light
+ * Inspired by classic BASIC/terminal aesthetics
+ */
+
+.z-code {
+  color: #1d1d1d;
+  font-family: "Geist Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+/* Comments - muted */
+.z-comment,
+.z-string.z-quoted.z-double.z-block.z-python {
+  color: #6b7280;
+  font-style: normal;
+}
+
+/* Operators and misc */
+.z-keyword.z-operator.z-class,
+.z-constant.z-other,
+.z-source.z-php.z-embedded.z-line {
+  color: #4b5563;
+}
+
+/* Variables, tags, attributes - warm red */
+.z-variable,
+.z-support.z-other.z-variable,
+.z-string.z-other.z-link,
+.z-string.z-regexp,
+.z-entity.z-name.z-tag,
+.z-entity.z-other.z-attribute-name,
+.z-meta.z-tag,
+.z-declaration.z-tag {
+  color: #c0392b;
+}
+
+/* Numbers and constants - warm orange */
+.z-constant.z-numeric,
+.z-constant.z-language,
+.z-support.z-constant,
+.z-constant.z-character,
+.z-variable.z-parameter,
+.z-punctuation.z-section.z-embedded,
+.z-keyword.z-other.z-unit {
+  color: #ee6c4d;
+}
+
+/* Types and classes - teal */
+.z-type,
+.z-entity.z-name.z-class,
+.z-entity.z-name.z-type.z-class,
+.z-support.z-type,
+.z-support.z-class {
+  color: #1abc9c;
+}
+
+/* Strings - retro green */
+.z-string,
+.z-constant.z-other.z-symbol,
+.z-entity.z-other.z-inherited-class,
+.z-markup.z-heading {
+  color: #27ae60;
+}
+
+/* Operators - teal */
+.z-keyword.z-operator,
+.z-constant.z-other.z-color {
+  color: #1abc9c;
+}
+
+/* Functions - pixel blue */
+.z-entity.z-name.z-function,
+.z-meta.z-function-call,
+.z-support.z-function,
+.z-keyword.z-other.z-special-method,
+.z-meta.z-block-level {
+  color: #3d5a80;
+}
+
+/* Keywords and storage - purple (like BASIC) */
+.z-keyword,
+.z-storage,
+.z-storage.z-type {
+  color: #9b59b6;
+}
+
+/* Invalid */
+.z-invalid {
+  color: #ffffff;
+  background-color: #c0392b;
+}
+
+/* Meta separator */
+.z-meta.z-separator {
+  color: #ffffff;
+  background-color: #3d5a80;
+}
+
+/* Deprecated */
+.z-invalid.z-deprecated {
+  color: #ffffff;
+  background-color: #9b59b6;
+}
+
+/* Diff */
+.z-markup.z-inserted.z-diff,
+.z-markup.z-deleted.z-diff,
+.z-meta.z-diff.z-header.z-to-file,
+.z-meta.z-diff.z-header.z-from-file {
+  color: #ffffff;
+}
+
+.z-markup.z-inserted.z-diff,
+.z-meta.z-diff.z-header.z-to-file {
+  background-color: #27ae60;
+}
+
+.z-markup.z-deleted.z-diff,
+.z-meta.z-diff.z-header.z-from-file {
+  background-color: #c0392b;
+}
+
+.z-meta.z-diff.z-header.z-from-file,
+.z-meta.z-diff.z-header.z-to-file {
+  color: #ffffff;
+  background-color: #3d5a80;
+}
+
+.z-meta.z-diff.z-range {
+  color: #1abc9c;
+  font-style: normal;
+}

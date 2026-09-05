@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150" width="150" height="150" role="img" aria-label="Crime Statistics Icon">
+    <!-- Main shield -->
+    <path d="M75 5 
+             L140 30
+             C140 30 140 100 75 150
+             C10 100 10 30 10 30
+             L75 5Z" 
+          fill="#0056b3"/>
+          
+    <!-- Inner shield border -->
+    <path d="M75 15
+             L130 35
+             C130 35 130 95 75 135
+             C20 95 20 35 20 35
+             L75 15Z" 
+          fill="#58a2ec"/>
+    
+    <!-- Data elements inside shield -->
+    <g transform="translate(40, 25) scale(0.7)">
+        <!-- Bar chart -->
+        <rect x="15" y="65" width="12" height="35" fill="white"/>
+        <rect x="35" y="45" width="12" height="55" fill="white"/>
+        <rect x="55" y="25" width="12" height="75" fill="white"/>
+        <rect x="75" y="55" width="12" height="45" fill="white"/>
+        
+        <!-- Trend line - adjusted to be higher -->
+        <path d="M15 65 Q45 25 75 35 T100 25" 
+              fill="none" 
+              stroke="white" 
+              stroke-width="5"
+              stroke-linecap="round"/>
+    </g>
+</svg>

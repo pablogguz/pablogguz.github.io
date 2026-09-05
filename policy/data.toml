@@ -1,0 +1,89 @@
+# [[project]]
+# name = ""
+# desc = ""
+# tags = ["", ""]
+# links = [
+#   { name = "", url = "" },
+#   { name = "", url = "" },
+# ]
+
+[[project]]
+name = "Las transferencias intergeneracionales y el reto demográfico (EsadeEcPol)"
+desc = "Estimating the life-cycle profile of taxes paid and public transfers received in Spain, and quantifying how population ageing will strain the sustainability of the welfare state (w/ Miguel Almunia)"
+tags = []
+pdf_url = "https://www.esade.edu/ecpol/es/publicaciones/las-transferencias-intergeneracionales-y-el-reto-demografico/"
+links = [
+   { name = "El País", url = "https://elpais.com/economia/2026-07-02/el-envejecimiento-triplicara-en-2050-el-deficit-entre-lo-que-los-ciudadanos-aportan-y-reciben-del-estado.html" },
+   { name = "El Mundo", url = "https://www.elmundo.es/economia/2026/07/01/6a4541fdfc6c83ca298b45c4.html" },
+   { name = "El Confidencial", url = "https://www.elconfidencial.com/economia/2026-07-02/contribucion-neta-impuestos-prestaciones-edad-formacion_4381908/" },
+   { name = "La Vanguardia", url = "https://www.lavanguardia.com/economia/20260702/11581329/mayoria-poblacion-recibe-mas-servicios-aporta.html" },
+   { name = "Forbes", url = "https://forbes.es/ultima-hora/970339/esadeecpol-estima-que-cuatro-de-cada-diez-espanoles-aporta-mas-impuestos-de-lo-que-reciben/" },
+   { name = "El Economista", url = "https://www.eleconomista.es/economia/noticias/13994666/07/26/el-ciclo-vital-de-los-impuestos-la-mayoria-de-la-poblacion-recibe-mas-de-lo-que-aporta-pero-el-futuro-pinta-oscuro.html" },
+]
+
+[[project]]
+name = "Demographic trends and the future of growth (EBRD Transition Report 2025-26, Chapter 1)"
+desc = "Quantifying the effects of demographic change on economic growth and evaluating which policy levers can realistically offset it (w/ Federica Coelli and Emily Nilsson)"
+tags = []
+pdf_url = "https://www.ebrd.com/home/news-and-events/publications/economics/transition-reports/transition-report-2025-26/chapters.html#1"
+links = [
+   { name = "FT", url = "https://www.ft.com/content/3a675f7f-ff46-4b8d-9744-08dfed18d23a" },
+   { name = "WSJ", url = "https://www.wsj.com/economy/global/parts-of-europe-at-risk-of-downward-spiral-if-older-voters-stymie-reforms-ebrd-warns-6947369f" },
+   { name = "Reuters", url = "https://www.reuters.com/business/finance/ageing-populations-ticking-time-bomb-gdp-growth-says-ebrd-2025-11-25/" },
+   { name = "Le Monde", url = "https://www.lemonde.fr/economie/article/2025/11/25/l-europe-centrale-devient-vieille-avant-de-devenir-riche_6654718_3234.html" },
+   { name = "La Tribune", url = "https://www.latribune.fr/article/economie/11531181052116/retraites-croissance-et-politiques-publiques-la-berd-alerte-sur-un-choc-demographique-majeur" },
+]
+
+[[project]]
+name = "The political economy of demographic change (EBRD Transition Report 2025-26, Chapter 4)"
+desc = "Analysing how shifting age structures influence voters' attitudes and the political feasibility of responding to demographic pressures (w/ Zsoka Koczan, Alexander Plekhanov, Zhaosheng Li and Daniel Treisman)"
+tags = []
+pdf_url = "https://www.ebrd.com/home/news-and-events/publications/economics/transition-reports/transition-report-2025-26/chapters.html#4"
+links = [
+   { name = "WSJ", url = "https://www.wsj.com/economy/global/parts-of-europe-at-risk-of-downward-spiral-if-older-voters-stymie-reforms-ebrd-warns-6947369f" },
+   { name = "Euronews", url = "https://www.euronews.com/business/2025/11/25/youth-politics-could-help-nations-confront-the-economic-hit-of-ageing" },
+]
+
+[[project]]
+name = "Life in Transition Survey IV: Household resilience in a turbulent world"
+desc = "Analytical chapters on intergenerational mobility, support for the green transition and job market informality using data from the latest wave of the EBRD-World Bank Life in Transition Survey (w/ Zsoka Koczan)"
+tags = []
+pdf_url = "https://www.ebrd.com/life-in-transition-iv.pdf"
+links = [
+   { name = "VoxEU", url = "https://cepr.org/voxeu/columns/social-mobility-and-digital-divides-emerging-economies-evidence-4th-wave-life" },
+   { name = "Frankfurter Allgemeine", url = "https://www.faz.net/aktuell/wirtschaft/mehr-wirtschaft/warum-es-kindern-in-osteuropa-schlechter-geht-als-ihren-eltern-trotz-aufschwung-110110899.html" }
+]
+
+[[project]]
+name = "Life in Transition Survey: Getting to know the EBRD's new countries of operation in sub-Saharan Africa"
+desc = "Analytical report providing a broad overview of the challenges and opportunities in 6 countries in sub-Saharan Africa (w/ Zsoka Koczan, Victoria Marino, Alexander Plekhanov and Oleg Konovalov)"
+tags = []
+pdf_url = "https://www.ebrd.com/publications/life-in-transition-survey-sub-saharan-africa"
+links = []
+
+[[project]]
+name = "Promoting structural change (EBRD Transition Report 2024-25, Chapter 2)"
+desc = "Structural transformation and (services) export-led growth (w/ Anton Grahed, Helena Schweiger, and Beata Javorcik)"
+tags = []
+pdf_url = "https://www.ebrd.com/publications/transition-report-202425-promoting-structural-change"
+links = [
+   { name = "VoxEU", url = "https://cepr.org/voxeu/columns/rise-services-exports-new-pathways-growth" },
+]
+
+# [[project]]
+# name = "Place-based industrial policies (EBRD Transition Report 2024-25, Chapter 3)"
+# desc = "Regional inequality and urban-rural disparities in the EBRD regions (w/ Cevat Aksoy, Francesco Loiacono, Ege Ondes, and Xuanyi Wang)"
+# tags = []
+# pdf_url = "https://www.ebrd.com/publications/transition-report-202425-regional-inequality-and-special-economic-zones"
+# links = [
+#    { name = "VoxEU", url = "https://cepr.org/voxeu/columns/special-economic-zones-and-slow-path-regional-convergence" },
+# ]
+
+[[project]]
+name = "Gender gaps in the labor market impact of the COVID-19 pandemic"
+desc = "Policy brief exploring the impact of the Covid-19 pandemic on gender gaps in labor market outcomes (w/ Claudia Hupkau)"
+tags = []
+pdf_url = "https://www.esade.edu/ecpol/en/publications/las-brechas-de-genero-en-el-mercado-laboral-durante-la-pandemia/"
+links = [
+  # { name = "", url = "" },
+]
