@@ -1,4 +1,5 @@
 {% extends "_base.html" %}
+{% import "_macros.html" as m %}
 
 {% block page %}tag-single{% endblock page %}
 {% block lang -%}
@@ -18,11 +19,9 @@
       <a class="instant" href="{{ config.base_url ~ '/tags' }}">All Tags</a>
     </div>
     <div class="post-list">
+      {% set n = term.pages | length %}
       {% for post in term.pages %}
-      <a class="post instant {% if post.extra.featured %}featured{% endif %}" href="{{ post.permalink }}">
-        <span>{{ post.title }}</span>
-        <span class="date">{{ post.date | date }}</span>
-      </a>
+      {{ m::entry(post=post, index=n - loop.index + 1, show_meter=true) }}
       {% endfor %}
     </div>
   </main>

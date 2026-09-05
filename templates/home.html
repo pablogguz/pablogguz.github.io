@@ -1,4 +1,5 @@
 {% extends "_base.html" %}
+{% import "_macros.html" as m %}
 
 {% block page %}homepage{% endblock page%}
 {% block lang %}{% if section.extra.lang %}{{ section.extra.lang }}{% else %}{{ section.lang }}{% endif %}{% endblock lang %}
@@ -36,7 +37,35 @@
   <main>
     <section id="info">
       {%- set avatar = resize_image(path="static/" ~ config.extra.avatar, width=240, op="fit_width", format="webp", quality=85) %}
-      <img src="{{ avatar.url }}" alt="avatar" id="myAvatar" width="{{ avatar.width }}" height="{{ avatar.height }}">
+      {# fig. 1 — the author, taped into the notebook #}
+      <figure class="polaroid">
+        <img src="{{ avatar.url }}" alt="avatar" id="myAvatar" width="{{ avatar.width }}" height="{{ avatar.height }}">
+        <figcaption>fig. 1 — the author (n = 1)</figcaption>
+      </figure>
+      {# fig. 2 — a scatter that draws itself. purely decorative. #}
+      <figure class="fig-chart" aria-hidden="true">
+        <svg viewBox="0 0 240 150" xmlns="http://www.w3.org/2000/svg">
+          <g class="axes">
+            <line x1="28" y1="12" x2="28" y2="122"/>
+            <line x1="28" y1="122" x2="230" y2="122"/>
+            <line class="tick" x1="25" y1="95" x2="28" y2="95"/>
+            <line class="tick" x1="25" y1="68" x2="28" y2="68"/>
+            <line class="tick" x1="25" y1="41" x2="28" y2="41"/>
+            <line class="tick" x1="78" y1="122" x2="78" y2="125"/>
+            <line class="tick" x1="128" y1="122" x2="128" y2="125"/>
+            <line class="tick" x1="178" y1="122" x2="178" y2="125"/>
+          </g>
+          <g class="points">
+            <circle cx="32.6" cy="98.5" r="2.6"/><circle cx="42.6" cy="90.0" r="2.6"/><circle cx="58.3" cy="98.0" r="2.6"/><circle cx="70.1" cy="87.0" r="2.6"/><circle cx="78.3" cy="89.7" r="2.6"/><circle cx="90.7" cy="78.2" r="2.6"/><circle cx="105.4" cy="70.2" r="2.6"/><circle cx="115.8" cy="72.9" r="2.6"/><circle cx="131.0" cy="46.9" r="2.6"/><circle cx="141.2" cy="60.3" r="2.6"/><circle cx="157.8" cy="26.9" r="2.6"/><circle cx="164.3" cy="38.3" r="2.6"/><circle cx="175.2" cy="32.4" r="2.6"/><circle cx="192.5" cy="24.7" r="2.6"/><circle cx="199.4" cy="41.4" r="2.6"/><circle cx="213.0" cy="28.9" r="2.6"/>
+          </g>
+          <line class="fit" x1="30" y1="103" x2="226" y2="15.6" pathLength="1"/>
+          <text class="lbl" x="130" y="140" text-anchor="middle">coffee (cups)</text>
+          <text class="lbl" x="-67" y="12" text-anchor="middle" transform="rotate(-90)">output</text>
+          <text class="lbl beta" x="226" y="104" text-anchor="end">β̂ = 0.48***</text>
+        </svg>
+        <figcaption>fig. 2 — robust to all specifications</figcaption>
+      </figure>
+      {% if config.extra.name or config.extra.bio %}
       <div id="text">
         <div>
           <span id="name">{{ config.extra.name }}</span>
@@ -46,6 +75,7 @@
         </div>
         <div id="bio"> {{ config.extra.bio }} </div>
       </div>
+      {% endif %}
     </section>
     <section id="links">
       <div id="left">
@@ -75,6 +105,53 @@
       <section id="brief" class="prose">
         {{ section.content | trim | safe }}
       </section>
+      {# player card — every number below is computed at build time from the content #}
+      {%- set blog_section_path = config.extra.blog_section_path | trim_start_matches(pat="/") -%}
+      {%- set blog = get_section(path=blog_section_path ~ "/_index.md") -%}
+      {%- set_global n_essays = 0 -%}
+      {%- set_global n_notes = 0 -%}
+      {%- for p in blog.pages -%}
+        {%- if p.extra.kind | default(value="essay") == "note" -%}
+          {%- set_global n_notes = n_notes + 1 -%}
+        {%- else -%}
+          {%- set_global n_essays = n_essays + 1 -%}
+        {%- endif -%}
+      {%- endfor -%}
+      {%- set pdata = load_data(path="content/projects/data.toml", format="toml") -%}
+      {%- set pol = load_data(path="content/policy/data.toml", format="toml") -%}
+      {%- set n_apps = pdata.active | length -%}
+      {%- set n_pkgs = pdata.packages | length -%}
+      {%- set n_reports = pol.project | length -%}
+      {%- set_global n_press = 0 -%}
+      {%- for p in pol.project -%}{%- set k = p.links | length -%}{%- set_global n_press = n_press + k -%}{%- endfor -%}
+      {%- for p in pdata.active -%}{%- set k = p.links | length -%}{%- set_global n_press = n_press + k -%}{%- endfor -%}
+      {%- for p in pdata.packages -%}{%- set k = p.links | length -%}{%- set_global n_press = n_press + k -%}{%- endfor -%}
+      <section id="player-card" aria-label="site stats">
+        <div class="section-title">player stats</div>
+        <div class="stat-grid">
+          <a class="stat instant" href="{{ config.extra.blog_section_path }}">
+            <span class="stat-n">{{ n_essays }}</span>
+            <span class="stat-l">blog post{{ n_essays | pluralize }}{% if n_notes > 0 %} <small>+{{ n_notes }} note{{ n_notes | pluralize }}</small>{% endif %}</span>
+          </a>
+          <a class="stat instant" href="/projects">
+            <span class="stat-n">{{ n_apps }}</span>
+            <span class="stat-l">apps shipped</span>
+          </a>
+          <a class="stat instant" href="/projects">
+            <span class="stat-n">{{ n_pkgs }}</span>
+            <span class="stat-l">r package{{ n_pkgs | pluralize }}</span>
+          </a>
+          <a class="stat instant" href="/policy">
+            <span class="stat-n">{{ n_reports }}</span>
+            <span class="stat-l">policy reports</span>
+          </a>
+          <a class="stat instant" href="/policy">
+            <span class="stat-n">{{ n_press }}</span>
+            <span class="stat-l">press mentions</span>
+          </a>
+        </div>
+        <div class="stat-foot" id="reader-xp" hidden data-essays="{% for p in blog.pages %}{% if p.extra.kind | default(value="essay") != "note" %}{{ p.slug }}{% if not loop.last %},{% endif %}{% endif %}{% endfor %}">you have read <b>0</b> of {{ n_essays }} blog posts · <a class="instant" href="{{ config.extra.blog_section_path }}">continue →</a></div>
+      </section>
     {% elif config.extra.homepage_layout == 'list' %}
       {% set blog_section_path = config.extra.blog_section_path | trim_start_matches(pat="/") %}
       {% set section_md_path = blog_section_path ~ "/_index.md" %}
@@ -88,22 +165,17 @@
         {% endif %}
         <div class="category">{{ category_name }}</div>
         <div class="post-list categorized">
+          {% set n = posts | length %}
           {% for post in posts %}
-          <a class="post instant {% if post.extra.featured %}featured{% endif %}" href="{{ post.permalink }}">
-            <span>{{ post.title }}</span>
-            <span class="date">{{ post.date | date}}</span>
-          </a>
+          {{ m::entry(post=post, index=n - loop.index + 1, show_meter=true) }}
           {% endfor %}
         </div>
         {% endfor %}
         {% else %}
         <div class="post-list">
+          {% set n = blog_section.pages | length %}
           {% for post in blog_section.pages %}
-          <a class="post instant {% if post.extra.featured %}featured{% endif %}" href="{{ post.permalink }}">
-            <span>{{ post.title }}</span>
-            <span class="line"></span>
-            <span class="date">{{ post.date | date}}</span>
-          </a>
+          {{ m::entry(post=post, index=n - loop.index + 1, show_meter=true) }}
           {% endfor %}
         </div>
         {% endif %}
@@ -114,12 +186,9 @@
       {% set blog_section = get_section(path=section_md_path) %}
       <section class="layout-list">
         <div class="post-list">
+          {% set n = blog_section.pages | length %}
           {% for post in blog_section.pages | slice(end=config.extra.recent_max) %}
-          <a class="post instant {% if post.extra.featured %}featured{% endif %}" href="{{ post.permalink }}">
-            <span>{{ post.title }}</span>
-            <span class="line"></span>
-            <span class="date">{{ post.date | date}}</span>
-          </a>
+          {{ m::entry(post=post, index=n - loop.index + 1, show_meter=true) }}
           {% endfor %}
         </div>
         {% if config.extra.recent_more %}

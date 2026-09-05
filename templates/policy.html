@@ -15,7 +15,8 @@
       {% set data = load_data(path="content/policy/data.toml", format="toml") %}
       <div class="project-grid">
         {% for proj in data.project %}
-        <div class="project-card compact">
+        <div class="project-card compact paper">
+          <span class="card-index" aria-hidden="true">{% if loop.index < 10 %}0{% endif %}{{ loop.index }}</span>
           <div class="card-content">
             <h3 class="project-title">{{ proj.name }}</h3>
             <div class="project-desc">{{ proj.desc | trim | markdown | safe }}</div>

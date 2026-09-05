@@ -1,4 +1,5 @@
 {% extends "_base.html" %}
+{% import "_macros.html" as m %}
 
 {% block page %}blog{% endblock page%}
 {% block lang %}{% if section.extra.lang %}{{ section.extra.lang }}{% else %}{{ section.lang }}{% endif %}{% endblock lang %}
@@ -6,6 +7,7 @@
 {% block desc %}
   <meta name="description" content="{{ section.description }}">
 {% endblock desc %}
+
 
 {% block content %}
 {% include "_header.html" %}
@@ -20,37 +22,35 @@
     <div class="category">{{ category_name }}</div>
     <div class="post-list categorized">
       {% for post in posts %}
-      <a class="post instant {% if post.extra.featured %}featured{% endif %}" href="{{ post.permalink }}">
-        <span>{{ post.title }}</span>
-        <span class="date">{{ post.date | date }} · {% if post.extra.reading_time %}{{ post.extra.reading_time }}{% else %}{{ post.reading_time }}{% endif %} min</span>
-        {% if post.description %}<span class="post-desc">{{ post.description }}</span>{% endif %}
-      </a>
+      {{ m::entry(post=post, index=loop.index, show_meter=true) }}
       {% endfor %}
     </div>
     {% endfor %}
     {% else %}
     {% set notes = section.pages | filter(attribute="extra.kind", value="note") %}
-    {% if notes | length > 0 %}<div class="section-title list-title">essays</div>{% endif %}
-    <div class="post-list">
+    {% set n_notes = notes | length %}
+    {% set n_essays = section.pages | length - n_notes %}
+    <div class="list-head">
+      <div class="section-title list-title">blog posts</div>
+      <div class="read-progress" data-total="{{ n_essays }}" aria-live="polite">
+        <span class="read-progress-label"><b>0</b> / {{ n_essays }} read</span>
+        <span class="read-progress-bar" aria-hidden="true"><i></i></span>
+      </div>
+    </div>
+    <div class="post-list essays">
+      {% set_global i = 0 %}
       {% for post in section.pages %}
       {% if post.extra.kind | default(value="essay") != "note" %}
-      <a class="post instant {% if post.extra.featured %}featured{% endif %}" href="{{ post.permalink }}">
-        <span>{{ post.title }}</span>
-        <span class="date">{{ post.date | date }} · {% if post.extra.reading_time %}{{ post.extra.reading_time }}{% else %}{{ post.reading_time }}{% endif %} min</span>
-        {% if post.description %}<span class="post-desc">{{ post.description }}</span>{% endif %}
-      </a>
+      {% set_global i = i + 1 %}
+      {{ m::entry(post=post, index=n_essays - i + 1, show_meter=true) }}
       {% endif %}
       {% endfor %}
     </div>
-    {% if notes | length > 0 %}
+    {% if n_notes > 0 %}
     <div class="section-title list-title">notes</div>
-    <div class="post-list">
+    <div class="post-list notes">
       {% for post in notes %}
-      <a class="post instant" href="{{ post.permalink }}">
-        <span>{{ post.title }}</span>
-        <span class="date">{{ post.date | date }}</span>
-        {% if post.description %}<span class="post-desc">{{ post.description }}</span>{% endif %}
-      </a>
+      {{ m::entry(post=post, index=n_notes - loop.index + 1, show_meter=false) }}
       {% endfor %}
     </div>
     {% endif %}

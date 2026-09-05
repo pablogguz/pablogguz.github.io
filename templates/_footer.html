@@ -2,6 +2,7 @@
   <div class="copyright">
     {{ config.extra.footer_copyright | trim | markdown | safe }}
   </div>
+  <div class="built" title="the date this page was generated">last compiled {{ now() | date(format="%d %b %Y") | lower }}</div>
   {% if config.extra.footer_credits %}
   <div class="credits">
     powered by

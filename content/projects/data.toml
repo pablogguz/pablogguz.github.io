@@ -31,6 +31,7 @@ icon = "/img/favicons/wikibarrio.svg"
 shiny_url = "https://www.wikibarrio.es/"
 links = [
   { name = "El Español", url = "https://www.elespanol.com/elandroidelibre/noticias-y-novedades/20260221/google-maps-informacion-economica-barrio-extranjeros-renta-edades/1003744122806_0.html" },
+  { name = "El Economista", url = "https://www.eleconomista.es/tecnologia/noticias/13771614/02/26/desde-este-momento-podras-saber-cuanto-cobran-tus-vecinos-un-experto-en-informatica-revela-como-hacerlo.html" },
 ]
 
 [[active]]
@@ -47,7 +48,9 @@ desc = "Interactive platform for exploring income distribution and inequality da
 tags = []
 icon = "/img/favicons/observatoriorenta.png"
 shiny_url = "https://observatoriorenta.es/"
-links = []
+links = [
+  { name = "Infobae", url = "https://www.infobae.com/espana/2026/04/22/la-emancipacion-juvenil-cae-a-minimos-casi-la-mitad-de-los-jovenes-de-25-a-34-anos-vive-con-sus-padres/" },
+]
 
 [[active]]
 name = "nta-spain.es"

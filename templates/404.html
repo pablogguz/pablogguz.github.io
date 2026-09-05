@@ -11,6 +11,11 @@
     <div class="spacer"></div>
     <div class="text">{{ config.extra.not_found_error_text }}</div>
   </div>
+  <pre class="na-console" aria-hidden="true">&gt; page &lt;- find(&quot;<span id="na-path">this page</span>&quot;)
+&gt; page
+[1] NA
+&gt; is.na(page)
+[1] TRUE</pre>
   <a class="instant" href="/">{{ config.extra.not_found_recover_text }}</a>
 </div>
 {% endblock %}

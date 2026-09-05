@@ -137,7 +137,7 @@
       <div id="copy-cfg" style="display: none;" data-copy-icon="{{ copy_icon }}" data-check-icon="{{ check_icon }}"></div>
       {% endif %}
       {% set backlink_icon = load_data(path="static/icon/backlink.svg") %}
-      <article class="prose" data-backlink-icon="{{ backlink_icon }}" data-pagefind-body>
+      <article class="prose" data-backlink-icon="{{ backlink_icon }}" data-pagefind-body data-post-id="{{ page.slug }}"{% if page.extra.kind is defined and page.extra.kind == "note" %} data-kind="note"{% endif %}>
         <h1>{{ page.title }}</h1>
         <div id="post-info">
           <div id="date">
@@ -193,6 +193,12 @@
         {% else %}
           {{ page.content | safe }}
         {% endif %}
+
+        {# tombstone: end of the essay (and the sentinel the read tracker watches) #}
+        <div class="essay-end" id="essay-end" aria-hidden="true">
+          <span class="qed" title="q.e.d.">∎</span>
+          <span class="essay-end-label">{{ page.reading_time }} min · {{ page.word_count }} words</span>
+        </div>
 
         {% if page.extra.cite is defined %}{% set show_cite = page.extra.cite %}{% elif config.extra.cite is defined %}{% set show_cite = config.extra.cite %}{% else %}{% set show_cite = false %}{% endif %}
         {% if show_cite %}

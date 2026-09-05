@@ -19,9 +19,10 @@
         <h2 class="section-title">Active Projects</h2>
         <div class="project-grid">
           {% for proj in data.active %}
-          <div class="project-card compact">
+          <div class="project-card compact app">
+            <span class="card-index" aria-hidden="true">{% if loop.index < 10 %}0{% endif %}{{ loop.index }}</span>
             <div class="card-content">
-              <h3 class="project-title">{% if proj.icon %}<img src="{{ proj.icon }}" alt="" class="project-icon">{% endif %}{{ proj.name }}</h3>
+              <h3 class="project-title">{% if proj.icon %}<img src="{{ proj.icon }}" alt="" class="project-icon">{% endif %}{{ proj.name }}{% if proj.shiny_url %}<i class="live" title="live"></i>{% endif %}</h3>
               <div class="project-desc">{{ proj.desc | trim | markdown | safe }}</div>
 
               <div class="project-links">
@@ -72,7 +73,8 @@
         <h2 class="section-title">R Packages</h2>
         <div class="project-grid ">
           {% for proj in data.packages %}
-          <div class="project-card compact">
+          <div class="project-card compact pkg">
+            <span class="card-index" aria-hidden="true">{% if loop.index < 10 %}0{% endif %}{{ loop.index }}</span>
             <div class="card-content">
               <h3 class="project-title">{% if proj.icon %}<img src="{{ proj.icon }}" alt="" class="project-icon">{% endif %}{{ proj.name }}</h3>
               <div class="project-desc">{{ proj.desc | trim | markdown | safe }}</div>

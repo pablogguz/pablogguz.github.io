@@ -1,0 +1,14 @@
+{# one blog entry: index number · title · date/meter · description · "read" stamp (js) #}
+{% macro entry(post, index, show_meter) %}
+  {%- set rt = post.extra.reading_time | default(value=post.reading_time) -%}
+  {%- set filled = (rt / 4) | round(method="ceil") | int -%}
+  {%- if filled < 1 %}{% set filled = 1 %}{% endif -%}
+  {%- if filled > 5 %}{% set filled = 5 %}{% endif -%}
+  <a class="post instant {% if post.extra.featured %}featured{% endif %}" href="{{ post.permalink }}" data-post-id="{{ post.slug }}">
+    <span class="post-index" aria-hidden="true">{% if index < 10 %}0{% endif %}{{ index }}</span>
+    <span class="post-title">{{ post.title }}</span>
+    <span class="date">{{ post.date | date }}{% if show_meter %} · {{ rt }} min <span class="meter" aria-hidden="true" title="{{ rt }} minute read">{% for i in range(end=5) %}<i{% if i < filled %} class="on"{% endif %}></i>{% endfor %}</span>{% endif %}</span>
+    {% if post.description %}<span class="post-desc">{{ post.description }}</span>{% endif %}
+    <span class="stamp" aria-hidden="true">read</span>
+  </a>
+{% endmacro entry %}

@@ -18,6 +18,7 @@ links = [
    { name = "El Confidencial", url = "https://www.elconfidencial.com/economia/2026-07-02/contribucion-neta-impuestos-prestaciones-edad-formacion_4381908/" },
    { name = "La Vanguardia", url = "https://www.lavanguardia.com/economia/20260702/11581329/mayoria-poblacion-recibe-mas-servicios-aporta.html" },
    { name = "Forbes", url = "https://forbes.es/ultima-hora/970339/esadeecpol-estima-que-cuatro-de-cada-diez-espanoles-aporta-mas-impuestos-de-lo-que-reciben/" },
+   { name = "El Economista", url = "https://www.eleconomista.es/economia/noticias/13994666/07/26/el-ciclo-vital-de-los-impuestos-la-mayoria-de-la-poblacion-recibe-mas-de-lo-que-aporta-pero-el-futuro-pinta-oscuro.html" },
 ]
 
 [[project]]
@@ -27,7 +28,10 @@ tags = []
 pdf_url = "https://www.ebrd.com/home/news-and-events/publications/economics/transition-reports/transition-report-2025-26/chapters.html#1"
 links = [
    { name = "FT", url = "https://www.ft.com/content/3a675f7f-ff46-4b8d-9744-08dfed18d23a" },
-   { name = "WSJ", url = "https://www.wsj.com/economy/global/parts-of-europe-at-risk-of-downward-spiral-if-older-voters-stymie-reforms-ebrd-warns-6947369f" }
+   { name = "WSJ", url = "https://www.wsj.com/economy/global/parts-of-europe-at-risk-of-downward-spiral-if-older-voters-stymie-reforms-ebrd-warns-6947369f" },
+   { name = "Reuters", url = "https://www.reuters.com/business/finance/ageing-populations-ticking-time-bomb-gdp-growth-says-ebrd-2025-11-25/" },
+   { name = "Le Monde", url = "https://www.lemonde.fr/economie/article/2025/11/25/l-europe-centrale-devient-vieille-avant-de-devenir-riche_6654718_3234.html" },
+   { name = "La Tribune", url = "https://www.latribune.fr/article/economie/11531181052116/retraites-croissance-et-politiques-publiques-la-berd-alerte-sur-un-choc-demographique-majeur" },
 ]
 
 [[project]]
@@ -36,7 +40,8 @@ desc = "Analysing how shifting age structures influence voters' attitudes and th
 tags = []
 pdf_url = "https://www.ebrd.com/home/news-and-events/publications/economics/transition-reports/transition-report-2025-26/chapters.html#4"
 links = [
-   { name = "WSJ", url = "https://www.wsj.com/economy/global/parts-of-europe-at-risk-of-downward-spiral-if-older-voters-stymie-reforms-ebrd-warns-6947369f" }
+   { name = "WSJ", url = "https://www.wsj.com/economy/global/parts-of-europe-at-risk-of-downward-spiral-if-older-voters-stymie-reforms-ebrd-warns-6947369f" },
+   { name = "Euronews", url = "https://www.euronews.com/business/2025/11/25/youth-politics-could-help-nations-confront-the-economic-hit-of-ageing" },
 ]
 
 [[project]]

@@ -9,7 +9,10 @@
   {% block desc %}{% endblock desc %}
   <title>{% block title %}{% endblock title %}</title>
   {% block head %}{% endblock head %}
-  <link rel="icon" type="image/jpeg" sizes="32x32" href="/img/blue.jpg">
+  <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/img/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="/img/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" sizes="180x180">
   {% include "_custom_font.html" %}
   <link rel="stylesheet" href="/main.css">
   {# custom css loads AFTER main.css so the design layer wins the cascade #}
