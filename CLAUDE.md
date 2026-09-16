@@ -41,8 +41,8 @@ Unpublished essays must never reach the public repo. They live in `content/blog/
 The site is styled as an applied economist's lab notebook. The pieces, so you can find and edit them:
 
 - **Atmosphere**: graph-paper grid + paper grain are `body::before` / `body::after` in section 4 of `_custom_css.html`. Text selection is highlighter-yellow.
-- **Homepage** (`home.html`): the avatar is a taped-in polaroid captioned "fig. 1 — the author (n = 1)"; "fig. 2" is a decorative inline SVG scatter + fitted line that draws itself on load; the **player stats** card shows counts computed at build time (blog posts, apps, R packages, policy reports, press mentions — from `blog.pages` and the two `data.toml` files; nothing is hard-coded).
-- **Blog list** (headed "// blog posts"): entries are numbered like notebook pages (newest = highest), reading time shows as a five-bar meter (~4 min per bar). A **per-visitor read tracker** (`enableReadTracker` in `main.js`, `localStorage` key `pgg:read`) stamps finished essays with a rubber "read" mark, fills the progress bar in the list header, and shows "you have read x of n" on the homepage. An essay counts as read when the `∎` tombstone at its end (`.essay-end` in `post.html`) scrolls into view; a small toast announces it.
+- **Homepage** (`home.html`): the avatar is a slightly tilted polaroid held down with washi tape (`.polaroid`); nothing else is decorated.
+- **Blog list** (headed "// blog posts"): entries are numbered like notebook pages (newest = highest), reading time shows as a five-bar meter (~4 min per bar). A **per-visitor read tracker** (`enableReadTracker` in `main.js`, `localStorage` key `pgg:read`) stamps finished essays with a rubber "read" mark, fills the progress bar in the list header,. An essay counts as read when the `∎` tombstone at its end (`.essay-end` in `post.html`) scrolls into view; a small toast announces it.
 - **Cards**: `.card-index` specimen numbers; a pulsing `.live` dot beside apps with a URL; policy cards are `.paper` with a dog-eared corner.
 - **Footer**: a "last compiled" stamp using Zola's `now()`.
 - **404**: an R console printing `NA`; `main.js` fills in the requested path.

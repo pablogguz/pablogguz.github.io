@@ -383,25 +383,6 @@ function showToast(kicker, msg, ms = 3200) {
   toast._timer = setTimeout(() => toast.classList.remove('show'), ms);
 }
 
-// homepage player card: numbers count up from 0
-function enableCountUp() {
-  const nums = document.querySelectorAll('#player-card .stat-n');
-  if (!nums.length) return;
-  nums.forEach((el, i) => {
-    const target = parseInt(el.textContent, 10);
-    if (!Number.isFinite(target) || reducedMotion()) return;
-    const duration = 900, delay = 700 + i * 90, start = performance.now() + delay;
-    el.textContent = '0';
-    const tick = (now) => {
-      const t = Math.min(1, Math.max(0, (now - start) / duration));
-      const eased = 1 - Math.pow(1 - t, 3);
-      el.textContent = String(Math.round(target * eased));
-      if (t < 1) requestAnimationFrame(tick); else el.textContent = String(target);
-    };
-    requestAnimationFrame(tick);
-  });
-}
-
 function enableReadTracker() {
   const read = getRead();
 
@@ -447,21 +428,6 @@ function enableReadTracker() {
     if (bar) requestAnimationFrame(() => { bar.style.width = `${total ? Math.round(100 * done / total) : 0}%`; });
   }
 
-  // homepage: "you have read x of n essays"
-  const xp = document.querySelector('#reader-xp');
-  if (xp) {
-    const essays = (xp.dataset.essays || '').split(',').filter(Boolean);
-    const done = essays.filter(slug => read.includes(slug)).length;
-    if (done > 0) {
-      const b = xp.querySelector('b');
-      if (b) b.textContent = String(done);
-      if (done >= essays.length) {
-        const link = xp.querySelector('a');
-        if (link) link.textContent = 'all of them. thank you ♥';
-      }
-      xp.hidden = false;
-    }
-  }
 }
 
 // ↑ ↑ ↓ ↓ ← → ← → b a — a shower of data points
@@ -554,7 +520,6 @@ if (document.querySelector('.prose')) {
 if (document.body.classList.contains('post')) {
   enableSidenotes();
 }
-enableCountUp();
 enableReadTracker();
 enableKonami();
 enable404();

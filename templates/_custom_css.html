@@ -363,7 +363,7 @@
     body.homepage #brief > *:nth-child(n+6) { animation-delay: 0.56s; }
   }
 
-  /* fig. 1 — the author, a polaroid taped into the notebook */
+  /* the author — a polaroid taped into the notebook */
   body.homepage #info {
     align-items: flex-start;
     gap: 34px;
@@ -400,15 +400,6 @@
   .polaroid:hover img {
     filter: saturate(1.05);
   }
-  .polaroid figcaption {
-    margin-top: 7px;
-    font-family: var(--font-mono);
-    font-size: 9.5px;
-    line-height: 1.35;
-    letter-spacing: 0.02em;
-    text-align: left;
-    color: var(--text-pale-color);
-  }
   /* washi tape */
   .polaroid::before,
   .polaroid::after {
@@ -433,202 +424,8 @@
     transform: rotate(30deg);
   }
 
-  /* fig. 2 — a scatter plot that draws itself */
-  .fig-chart {
-    flex: 1;
-    align-self: flex-end;
-    min-width: 150px;
-    max-width: 250px;
-    margin: 0 0 0 auto;
-  }
-  .fig-chart svg {
-    display: block;
-    width: 100%;
-    height: auto;
-    overflow: visible;
-  }
-  .fig-chart .axes line {
-    stroke: color-mix(in srgb, var(--text-color) 40%, transparent);
-    stroke-width: 1;
-    stroke-linecap: round;
-  }
-  .fig-chart .axes .tick {
-    stroke: color-mix(in srgb, var(--text-color) 30%, transparent);
-  }
-  .fig-chart .points circle {
-    fill: var(--accent);
-    opacity: 0.85;
-    transform-box: fill-box;
-    transform-origin: center;
-  }
-  .fig-chart .fit {
-    stroke: color-mix(in srgb, var(--text-color) 78%, transparent);
-    stroke-width: 1.5;
-    stroke-linecap: round;
-  }
-  .fig-chart .lbl {
-    font-family: var(--font-mono);
-    font-size: 7.5px;
-    fill: var(--text-pale-color);
-    letter-spacing: 0.04em;
-  }
-  .fig-chart .lbl.beta {
-    font-size: 8px;
-    font-weight: 600;
-    fill: var(--accent-2-ink);
-  }
-  .fig-chart figcaption {
-    margin-top: 2px;
-    font-family: var(--font-mono);
-    font-size: 9.5px;
-    line-height: 1.35;
-    letter-spacing: 0.02em;
-    text-align: left;
-    color: var(--text-pale-color);
-  }
-  @media (max-width: 440px) {
-    body.homepage #info { gap: 22px; }
-    .fig-chart { min-width: 120px; }
-    .fig-chart figcaption { font-size: 8.5px; }
-  }
-
-  @keyframes pop {
-    from { transform: scale(0); opacity: 0; }
-    to   { transform: scale(1); opacity: 0.85; }
-  }
-  @keyframes draw {
-    to { stroke-dashoffset: 0; }
-  }
-  @keyframes fade-in {
-    to { opacity: 1; }
-  }
-  @media (prefers-reduced-motion: no-preference) {
-    .fig-chart .points circle {
-      animation: pop 0.45s var(--ease-spring) backwards;
-    }
-    .fig-chart .points circle:nth-child(1) { animation-delay: 0.55s; }
-    .fig-chart .points circle:nth-child(2) { animation-delay: 0.61s; }
-    .fig-chart .points circle:nth-child(3) { animation-delay: 0.67s; }
-    .fig-chart .points circle:nth-child(4) { animation-delay: 0.73s; }
-    .fig-chart .points circle:nth-child(5) { animation-delay: 0.79s; }
-    .fig-chart .points circle:nth-child(6) { animation-delay: 0.85s; }
-    .fig-chart .points circle:nth-child(7) { animation-delay: 0.91s; }
-    .fig-chart .points circle:nth-child(8) { animation-delay: 0.97s; }
-    .fig-chart .points circle:nth-child(9) { animation-delay: 1.03s; }
-    .fig-chart .points circle:nth-child(10) { animation-delay: 1.09s; }
-    .fig-chart .points circle:nth-child(11) { animation-delay: 1.15s; }
-    .fig-chart .points circle:nth-child(12) { animation-delay: 1.21s; }
-    .fig-chart .points circle:nth-child(13) { animation-delay: 1.27s; }
-    .fig-chart .points circle:nth-child(14) { animation-delay: 1.33s; }
-    .fig-chart .points circle:nth-child(15) { animation-delay: 1.39s; }
-    .fig-chart .points circle:nth-child(16) { animation-delay: 1.45s; }
-    .fig-chart .fit {
-      stroke-dasharray: 1;
-      stroke-dashoffset: 1;
-      animation: draw 0.9s var(--ease) 1.65s forwards;
-    }
-    .fig-chart .lbl.beta {
-      opacity: 0;
-      animation: fade-in 0.4s var(--ease) 2.55s forwards;
-    }
-    body.homepage #player-card { animation: rise var(--speed-slow) var(--ease) 0.62s backwards; }
-  }
-
   body.homepage #brief strong {
     font-weight: 600;
-  }
-
-  /* player card — build-time stats, count up on load (js) */
-  #player-card {
-    padding: 0 15px 3em;
-  }
-  #player-card .section-title {
-    margin-bottom: 14px;
-  }
-  .stat-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 10px;
-  }
-  @media (max-width: 560px) {
-    .stat-grid { grid-template-columns: repeat(3, 1fr); }
-  }
-  @media (max-width: 380px) {
-    .stat-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-  .stat {
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    padding: 12px 12px 11px;
-    background: var(--card-bg-color);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow-sm);
-    text-decoration: none;
-    color: inherit;
-  }
-  .stat::after {
-    content: "";
-    position: absolute;
-    left: 10px;
-    right: 10px;
-    bottom: 0;
-    height: 3px;
-    background: var(--accent-2);
-    transform: scaleX(0);
-    transform-origin: left center;
-    transition: transform var(--speed-slow) var(--ease);
-  }
-  .stat:hover {
-    transform: translateY(-2px) rotate(-0.6deg);
-    border-color: var(--border-hover);
-    box-shadow: var(--shadow-md);
-  }
-  .stat:hover::after {
-    transform: scaleX(1);
-  }
-  .stat-n {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-size: 1.95em;
-    line-height: 1;
-    letter-spacing: -0.02em;
-    color: var(--text-color);
-    font-variant-numeric: tabular-nums;
-  }
-  .stat-l {
-    font-family: var(--font-mono);
-    font-size: 10.5px;
-    line-height: 1.35;
-    letter-spacing: 0.04em;
-    text-transform: lowercase;
-    color: var(--text-pale-color);
-  }
-  .stat-l small {
-    display: block;
-    font-size: 9px;
-    color: var(--text-pale-color);
-    opacity: 0.85;
-  }
-  .stat-foot {
-    margin-top: 12px;
-    font-family: var(--font-mono);
-    font-size: 11.5px;
-    color: var(--text-secondary);
-  }
-  .stat-foot b {
-    color: var(--accent-2-ink);
-    font-weight: 600;
-  }
-  .stat-foot a {
-    color: var(--accent);
-    text-decoration: none;
-  }
-  .stat-foot a:hover {
-    color: var(--accent-strong);
   }
 
   /* "hey!" — oversized serif greeting with a blinking terminal caret */
