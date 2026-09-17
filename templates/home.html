@@ -37,7 +37,6 @@
   <main>
     <section id="info">
       {%- set avatar = resize_image(path="static/" ~ config.extra.avatar, width=240, op="fit_width", format="webp", quality=85) %}
-      {# the author, taped into the notebook #}
       <figure class="polaroid">
         <img src="{{ avatar.url }}" alt="avatar" id="myAvatar" width="{{ avatar.width }}" height="{{ avatar.height }}">
       </figure>

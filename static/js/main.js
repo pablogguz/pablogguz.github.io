@@ -21,16 +21,24 @@ function enableThemeToggle() {
     window.removeEventListener('message', initGiscusTheme);
   }
   window.addEventListener('message', initGiscusTheme);
+  // Switch themes with one cross-fade of the whole page (View Transitions API).
+  // Fallback: transition every element with identical timing so text and
+  // background never drift apart mid-animation.
+  function switchTheme(theme) {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) { toggleTheme(theme); return; }
+    if (typeof document.startViewTransition === 'function') {
+      document.startViewTransition(() => toggleTheme(theme));
+      return;
+    }
+    document.body.classList.add('theme-transition');
+    toggleTheme(theme);
+    setTimeout(() => document.body.classList.remove('theme-transition'), 400);
+  }
   themeToggle.addEventListener('click', () => {
-    document.body.classList.add('theme-transition');
-    toggleTheme(localStorage.getItem("theme") == "dark" ? "light" : "dark");
-    setTimeout(() => document.body.classList.remove('theme-transition'), 400);
+    switchTheme(localStorage.getItem("theme") == "dark" ? "light" : "dark");
   });
-  preferDark.addEventListener("change", e => {
-    document.body.classList.add('theme-transition');
-    toggleTheme(e.matches ? "dark" : "light");
-    setTimeout(() => document.body.classList.remove('theme-transition'), 400);
-  });
+  preferDark.addEventListener("change", e => switchTheme(e.matches ? "dark" : "light"));
   if (!localStorage.getItem("theme") && preferDark.matches) toggleTheme("dark");
   if (localStorage.getItem("theme") == "dark") toggleTheme("dark");
 }

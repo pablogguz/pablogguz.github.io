@@ -31,23 +31,22 @@ Unpublished essays must never reach the public repo. They live in `content/blog/
   - `content/dataviz/data.toml` — chart-dump page data (section currently disabled in nav).
 - `templates/` — root-level templates **override** the ones in `themes/serene/templates/`. All of them have been copied here and customized; edit these, not the theme.
 - `themes/serene/sass/main.scss` — base structural CSS. It consumes CSS variables but defines almost no colors/fonts itself.
-- `templates/_custom_css.html` — **the design system** ("carbon editorial · field notebook"). All design tokens (ink accent `--accent`, marker accent `--accent-2`, fonts, radii, motion speeds, light/dark palettes) live in one commented block at the top; everything else derives from them via `color-mix()`. It is included *after* `main.css` in `_base.html`, so it wins the cascade without `!important`.
-- `templates/_macros.html` — the `entry(post, index, show_meter)` macro that renders one blog-list row (index number, title, date + reading meter, description, "read" stamp). Used by `blog.html`, `tags/single.html`, and the unused homepage list layouts; import it with `{% import "_macros.html" as m %}` right after `extends`.
+- `templates/_custom_css.html` — **the design system** ("carbon editorial · retro-minimal"). All design tokens (ink accent `--accent`, marker accent `--accent-2`, fonts, radii, motion speeds, light/dark palettes) live in one commented block at the top; everything else derives from them via `color-mix()`. It is included *after* `main.css` in `_base.html`, so it wins the cascade without `!important`.
+- `templates/_macros.html` — the `entry(post, index, show_meter)` macro that renders one blog-list row (index number, title, date + reading time, description, "read" mark). Used by `blog.html`, `tags/single.html`, and the unused homepage list layouts; import it with `{% import "_macros.html" as m %}` right after `extends`.
 - `templates/_custom_font.html` — font loading (IBM Plex Sans / Mono / Serif from Google Fonts). Keep in sync with the `--font-*` tokens in `_custom_css.html`.
 - `static/js/main.js` — theme toggle, link prefetching, scroll-reveal animations (`enableReveal`), and the post reading-progress bar (`enableScrollProgress`).
 
-## The notebook layer
+## The design layer
 
-The site is styled as an applied economist's lab notebook. The pieces, so you can find and edit them:
+"Carbon editorial · retro-minimal": warm paper, 1px hairlines, mono labels, one ink accent, no shadows, near-square corners, no ornament. The few deliberate flourishes, so you can find them:
 
-- **Atmosphere**: graph-paper grid + paper grain are `body::before` / `body::after` in section 4 of `_custom_css.html`. Text selection is highlighter-yellow.
-- **Homepage** (`home.html`): the avatar is a slightly tilted polaroid held down with washi tape (`.polaroid`); nothing else is decorated.
-- **Blog list** (headed "// blog posts"): entries are numbered like notebook pages (newest = highest), reading time shows as a five-bar meter (~4 min per bar). A **per-visitor read tracker** (`enableReadTracker` in `main.js`, `localStorage` key `pgg:read`) stamps finished essays with a rubber "read" mark, fills the progress bar in the list header,. An essay counts as read when the `∎` tombstone at its end (`.essay-end` in `post.html`) scrolls into view; a small toast announces it.
-- **Cards**: `.card-index` specimen numbers; a pulsing `.live` dot beside apps with a URL; policy cards are `.paper` with a dog-eared corner.
-- **Footer**: a "last compiled" stamp using Zola's `now()`.
+- **Homepage** (`home.html`): a plain framed photo (`.polaroid` class name kept for continuity), and the serif "hey!" greeting with a blinking terminal caret.
+- **Blog list** (headed "blog posts"): entries are numbered like notebook pages (newest = highest). A **per-visitor read tracker** (`enableReadTracker` in `main.js`, `localStorage` key `pgg:read`) replaces the index with a quiet "read" mark once a post is finished and fills the thin progress line in the list header. A post counts as read when the `∎` end mark (`.essay-end` in `post.html`) scrolls into view; a small toast announces it.
+- **Cards**: flat, hairline borders, hover darkens the border. Nothing else.
 - **404**: an R console printing `NA`; `main.js` fills in the requested path.
 - **Easter egg**: the konami code (↑↑↓↓←→←→ b a) drops a shower of data points and a toast.
-- Everything animated has a `prefers-reduced-motion` fallback (initial hidden states live inside `@media (prefers-reduced-motion: no-preference)` so nothing stays invisible).
+- `--accent-2` (marker yellow) survives only for text selection.
+- Everything animated has a `prefers-reduced-motion` fallback.
 
 ## Conventions
 
