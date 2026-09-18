@@ -1,0 +1,15 @@
+---
+layout: base.njk
+title: tags
+permalink: /tags/
+bodyClass: blog
+eleventyExcludeFromCollections: true
+---
+<section class="wrap">
+  <h1 class="page-title">tags</h1>
+  <ul class="tag-cloud">
+    {%- for tag in collections.tagList %}
+    <li><a href="/tags/{{ tag | tagSlug }}/">{{ tag }}<span class="tag-count">{{ collections[tag].length }}</span></a></li>
+    {%- endfor %}
+  </ul>
+</section>

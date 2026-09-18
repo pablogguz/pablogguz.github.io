@@ -1,33 +1,25 @@
 #!/usr/bin/env bash
-# scaffold a new local draft (never pushed): ./scripts/new-draft.sh "my essay title"
-# add --note for the lighter tier:          ./scripts/new-draft.sh "quick thought" --note
+# scaffold a local-only draft: ./scripts/new-draft.sh "title" [--note]
 set -euo pipefail
 cd "$(dirname "$0")/.."
-
-title="${1:?usage: $0 \"essay title\" [--note]}"
-kind="essay"
-[ "${2:-}" = "--note" ] && kind="note"
-slug=$(echo "$title" | iconv -f utf-8 -t ascii//TRANSLIT 2>/dev/null | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]+/-/g; s/^-+|-+$//g')
-file="content/blog/drafts/${slug}.md"
-
-[ -e "$file" ] && { echo "already exists: $file" >&2; exit 1; }
-
-cat > "$file" <<EOF
-+++
-title = "$title"
-description = ""
-date = $(date +%Y-%m-%d)
-draft = true
-
-[taxonomies]
-tags = []
-
-[extra]
-$( [ "$kind" = "note" ] && echo 'kind = "note"
-toc = false' || echo 'toc = true' )
-+++
-
-EOF
-
-echo "created $file"
-echo "preview with: zola serve --drafts"
+title="${1:?usage: new-draft.sh \"title\" [--note]}"
+kind=""
+[[ "${2:-}" == "--note" ]] && kind="note"
+slug="$(printf '%s' "$title" | tr '[:upper:]' '[:lower:]' | iconv -f utf8 -t ascii//TRANSLIT 2>/dev/null | sed -E 's/[^a-z0-9]+/-/g; s/^-+|-+$//g')"
+file="src/blog/drafts/${slug}.md"
+[[ -e "$file" ]] && { echo "exists: $file"; exit 1; }
+mkdir -p src/blog/drafts
+{
+  echo "---"
+  echo "title: \"$title\""
+  echo "date: $(date +%Y-%m-%d)"
+  echo "description: \"\""
+  echo "tags: []"
+  [[ -n "$kind" ]] && echo "kind: note"
+  echo "math: false"
+  echo "draft: true"
+  echo "---"
+  echo
+  echo "first paragraph."
+} > "$file"
+echo "→ $file   (preview with: npm run dev:drafts)"

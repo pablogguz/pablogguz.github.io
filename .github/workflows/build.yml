@@ -1,4 +1,4 @@
-# On every push to main: build with zola, index with pagefind, deploy to gh-pages
+# On every push to main: build with eleventy, deploy to gh-pages
 on: push
 name: Build and deploy GH Pages
 jobs:
@@ -10,18 +10,19 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v4
-      - name: install zola
-        run: |
-          curl -fsSL https://github.com/getzola/zola/releases/download/v0.22.1/zola-v0.22.1-x86_64-unknown-linux-gnu.tar.gz \
-            | sudo tar xz -C /usr/local/bin
+      - name: set up node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: install
+        run: npm ci
       - name: build site
-        run: zola build
-      - name: build search index
-        run: npx --yes pagefind@1 --site public
+        run: npm run build
       - name: deploy
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
+          publish_dir: ./_site
           publish_branch: gh-pages
           force_orphan: true

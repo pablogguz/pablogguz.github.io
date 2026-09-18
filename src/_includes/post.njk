@@ -1,0 +1,114 @@
+---
+layout: base.njk
+bodyClass: post
+---
+{%- set showToc = toc if toc is defined else site.post.toc -%}
+{%- set showComments = comment if comment is defined else site.post.comment -%}
+{%- set showCite = cite if cite is defined else site.post.cite -%}
+{%- set tocItems = content | toc -%}
+{%- set minutes = reading_time or (content | readingTime) -%}
+{%- set alertDays = outdate_alert_days or site.post.outdateAlertDays -%}
+{%- set doAlert = outdate_alert if outdate_alert is defined else site.post.outdateAlert -%}
+
+<div class="post-layout">
+  <article class="post-article" data-post-id="{{ page.fileSlug }}">
+    <header class="post-header">
+      <p class="post-kicker">
+        {%- if kind == "note" %}<span class="kind">note</span> · {% endif -%}
+        <time datetime="{{ page.date | dateToRfc3339 }}">{{ page.date | dateDisplay }}</time> · {{ minutes }} min read
+      </p>
+      <h1 class="post-title">{{ title }}</h1>
+      {%- if description %}
+      <p class="post-description">{{ description }}</p>
+      {%- endif %}
+      {%- if tags and tags.length %}
+      <ul class="post-tags" aria-label="tags">
+        {%- for t in tags %}
+        <li><a href="/tags/{{ t | tagSlug }}/">{{ t }}</a></li>
+        {%- endfor %}
+      </ul>
+      {%- endif %}
+    </header>
+
+    {%- if doAlert %}
+    <aside class="callout callout-alert outdate-alert" id="outdate-alert" hidden data-days="{{ alertDays }}" data-date="{{ page.date | dateDisplay }}">
+      <div class="callout-icon">{% icon "alert" %}</div>
+      <div class="callout-body"><p></p></div>
+    </aside>
+    {%- endif %}
+
+    {%- if series %}
+    {%- set parts = collections.posts | whereSeries(series) %}
+    {%- if parts.length > 1 %}
+    <nav class="series" aria-label="series">
+      <p class="series-title">series · {{ series }}</p>
+      <ol>
+        {%- for p in parts %}
+        <li>{% if p.url == page.url %}<span class="series-current">{{ p.data.title }}</span>{% else %}<a href="{{ p.url }}">{{ p.data.title }}</a>{% endif %}</li>
+        {%- endfor %}
+      </ol>
+    </nav>
+    {%- endif %}
+    {%- endif %}
+
+    {%- if tocItems.length %}
+    <details class="toc-inline">
+      <summary>contents</summary>
+      <ol>
+        {%- for h in tocItems %}
+        <li><a href="#{{ h.id }}">{{ h.text }}</a>
+          {%- if h.children.length %}<ol>{% for c in h.children %}<li><a href="#{{ c.id }}">{{ c.text }}</a></li>{% endfor %}</ol>{% endif -%}
+        </li>
+        {%- endfor %}
+      </ol>
+    </details>
+    {%- endif %}
+
+    <div class="prose">
+      {{ content | safe }}
+    </div>
+
+    <p class="post-end" aria-hidden="true">∎</p>
+
+    {%- if showCite or true %}
+    {% include "partials/post-extras.njk" %}
+    {%- endif %}
+  </article>
+
+  {%- if showToc and tocItems.length %}
+  <aside class="toc-aside" aria-label="table of contents">
+    <nav id="toc">
+      <p class="toc-label">contents</p>
+      <ol>
+        {%- for h in tocItems %}
+        <li><a href="#{{ h.id }}">{{ h.text }}</a>
+          {%- if h.children.length %}<ol>{% for c in h.children %}<li><a href="#{{ c.id }}">{{ c.text }}</a></li>{% endfor %}</ol>{% endif -%}
+        </li>
+        {%- endfor %}
+      </ol>
+    </nav>
+  </aside>
+  {%- endif %}
+</div>
+
+{%- if showComments %}
+<section class="wrap comments" id="comments">
+  <h2 class="section-label">comments</h2>
+  <div class="giscus"></div>
+  <script src="https://giscus.app/client.js"
+    data-repo="{{ site.giscus.repo }}"
+    data-repo-id="{{ site.giscus.repoId }}"
+    data-category="{{ site.giscus.category }}"
+    data-category-id="{{ site.giscus.categoryId }}"
+    data-mapping="pathname"
+    data-strict="1"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="{{ site.url }}/assets/giscus-light.css"
+    data-lang="en"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async></script>
+</section>
+{%- endif %}

@@ -1,8 +1,9 @@
-# generated output — built and deployed to gh-pages by CI, never committed
-public/
+node_modules/
+_site/
+.cache/
 
-# local drafts — never pushed; preview with `zola serve --drafts`
-content/blog/drafts/
+# local drafts — never pushed; preview with `npm run dev:drafts`
+src/blog/drafts/*
+!src/blog/drafts/drafts.11tydata.js
 
-# os noise
 .DS_Store

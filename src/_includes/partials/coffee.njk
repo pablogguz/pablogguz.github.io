@@ -1,0 +1,11 @@
+<dialog id="coffee-modal" class="modal">
+  <div class="modal-body">
+    <h2 class="modal-title">before reaching out…</h2>
+    <ul class="modal-list">
+      {%- for g in site.coffee.guidelines %}
+      <li>{{ g }}</li>
+      {%- endfor %}
+    </ul>
+    <button class="modal-close" type="button">got it</button>
+  </div>
+</dialog>

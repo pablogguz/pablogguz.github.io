@@ -1,0 +1,46 @@
+{%- set year = page.date | dateYear -%}
+{%- set url = page.url | absoluteUrl(site.url) -%}
+<footer class="post-extras">
+  <div class="share-row">
+    <span class="extras-label">share</span>
+    <button type="button" class="text-btn" id="copy-link" data-link="{{ url }}">copy link</button>
+    <a href="https://twitter.com/intent/tweet?text={{ title | urlencode }}&amp;url={{ url | urlencode }}" target="_blank" rel="noopener">x / twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ url | urlencode }}" target="_blank" rel="noopener">linkedin</a>
+    <a href="/blog/feed.xml">rss</a>
+  </div>
+
+  {%- if kind != "note" and (cite if cite is defined else site.post.cite) %}
+  <details class="cite">
+    <summary>cite this essay</summary>
+    <div class="cite-body">
+      <span class="extras-label">plain text</span>
+      <pre class="cite-text">{{ site.authorCitation }} ({{ year }}). “{{ title }}”. {{ site.title }}. {{ url }}</pre>
+      <span class="extras-label">bibtex</span>
+      <pre class="cite-text">@misc{{ "{" }}{{ page.fileSlug | bibKey(year) }},
+  author = {{ "{" }}{{ site.authorCitation }}},
+  title  = {{ "{" }}{{ title }}},
+  year   = {{ "{" }}{{ year }}},
+  month  = {{ "{" }}{{ page.date | dateMonth }}},
+  url    = {{ "{" }}{{ url }}},
+  note   = {{ "{" }}{{ site.title }}}
+}</pre>
+    </div>
+  </details>
+  {%- endif %}
+
+  {%- set posts = collections.posts -%}
+  {%- set idx = -1 -%}
+  {%- for p in posts %}{% if p.url == page.url %}{% set idx = loop.index0 %}{% endif %}{% endfor -%}
+  {%- set newer = posts[idx - 1] if idx > 0 else null -%}
+  {%- set older = posts[idx + 1] if (idx >= 0 and idx + 1 < posts.length) else null -%}
+  {%- if newer or older %}
+  <nav class="post-nav" aria-label="more writing">
+    {%- if newer %}
+    <a class="post-nav-item newer" href="{{ newer.url }}"><span class="extras-label">newer</span><span>{{ newer.data.title }}</span></a>
+    {%- else %}<span></span>{% endif %}
+    {%- if older %}
+    <a class="post-nav-item older" href="{{ older.url }}"><span class="extras-label">older</span><span>{{ older.data.title }}</span></a>
+    {%- endif %}
+  </nav>
+  {%- endif %}
+</footer>

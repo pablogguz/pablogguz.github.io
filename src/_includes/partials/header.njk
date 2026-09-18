@@ -1,0 +1,13 @@
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="/">{{ site.handle }}</a>
+    <nav class="site-nav" aria-label="primary">
+      {%- for item in site.nav %}
+      <a href="{{ item.url }}"{% if page.url.startsWith(item.url) %} aria-current="page"{% endif %}>{{ item.name }}</a>
+      {%- endfor %}
+      <button class="nav-icon" id="theme-toggle" aria-label="toggle dark mode" type="button">
+        <span class="icon-sun">{% icon "sun" %}</span><span class="icon-moon">{% icon "moon" %}</span>
+      </button>
+    </nav>
+  </div>
+</header>

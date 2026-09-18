@@ -1,0 +1,30 @@
+---
+layout: base.njk
+bodyClass: home
+---
+<section class="wrap home-intro">
+  <img class="avatar" src="/assets/img/avatar.jpg" alt="" width="88" height="88" loading="eager" decoding="async">
+  <div class="prose home-prose">
+    {{ content | safe }}
+  </div>
+  <ul class="social" aria-label="elsewhere">
+    {%- for l in site.links %}
+    <li><a href="{{ l.url }}" aria-label="{{ l.name }}"{% if not l.url.startsWith("mailto:") %} target="_blank" rel="noopener noreferrer"{% endif %}>{% icon l.icon %}<span>{{ l.name | lower }}</span></a></li>
+    {%- endfor %}
+  </ul>
+</section>
+
+<section class="wrap home-recent">
+  <h2 class="section-label">recent writing</h2>
+  <ol class="post-list">
+    {%- for post in collections.posts | head(4) %}
+    <li class="post-item">
+      <a class="post-link" href="{{ post.url }}">
+        <span class="post-title">{{ post.data.title }}</span>
+        <span class="post-meta">{{ post.date | dateDisplay }}{% if post.data.kind == "note" %} · note{% endif %}</span>
+      </a>
+    </li>
+    {%- endfor %}
+  </ol>
+  <a class="more-link" href="/blog/">all writing →</a>
+</section>
