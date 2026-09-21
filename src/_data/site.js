@@ -36,9 +36,9 @@ export default {
     intro: "i'm always happy to hear from you. a few things worth knowing first:",
     subject: "hello from your website",
     guidelines: [
-      "Don't be shy! I'm always happy to chat about data, economics, or anything else. If you are a student or just starting out in the field, I'm also happy to provide advice or guidance on the usual stuff (e.g. whether to do a PhD, whether a pre-doc is worth it, alternative career paths, etc.).",
-      "If you add me on LinkedIn, please drop a brief note explaining why you want to connect. I generally don't accept invites without context (unless we're clearly in the same data/econ/policy bubble).",
-      "I am not a hiring manager and can't provide specific interview advice for EBRD roles. If you ask me about this, I will refer you to publicly available resources and wish you the best of luck!",
+      "don't be shy! i'm always happy to chat about data, economics, or anything else. if you are a student or just starting out in the field, i'm also happy to provide advice or guidance on the usual stuff (e.g. whether to do a PhD, whether a pre-doc is worth it, alternative career paths, etc.).",
+      "if you add me on LinkedIn, please drop a brief note explaining why you want to connect. i generally don't accept invites without context (unless we're clearly in the same data/econ/policy bubble).",
+      "i am not a hiring manager and can't provide specific interview advice for EBRD roles. if you ask me about this, i will refer you to publicly available resources and wish you the best of luck!",
     ],
   },
 
