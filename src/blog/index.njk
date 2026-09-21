@@ -9,34 +9,28 @@ bodyClass: blog
 {%- set notes = [] -%}
 {%- for p in collections.posts %}{% if p.data.kind == "note" %}{% set notes = (notes.push(p), notes) %}{% else %}{% set essays = (essays.push(p), essays) %}{% endif %}{% endfor -%}
 
+{%- macro row(post, showTime) %}
+<li class="post-item{% if post.data.featured %} featured{% endif %}">
+  <a class="post-link" href="{{ post.url }}">
+    <span class="post-title">{{ post.data.title }}</span>
+    <span class="post-meta">{{ post.date | dateDisplay }}{% if showTime %} · {{ post.templateContent | readingTime }} min{% endif %}</span>
+    <span class="post-desc">{{ post.data.description or (post.templateContent | excerpt) }}</span>
+  </a>
+</li>
+{%- endmacro %}
+
 <section class="wrap">
   <h1 class="page-title">writing</h1>
   <p class="page-lede">essays on economics, data, and public policy. <a href="/blog/feed.xml">rss</a>.</p>
 
   <ol class="post-list">
-    {%- for post in essays %}
-    <li class="post-item{% if post.data.featured %} featured{% endif %}">
-      <a class="post-link" href="{{ post.url }}">
-        <span class="post-title">{{ post.data.title }}</span>
-        <span class="post-meta">{{ post.date | dateDisplay }} · {{ post.data.reading_time or (post.templateContent | readingTime) }} min</span>
-        {%- if post.data.description %}<span class="post-desc">{{ post.data.description }}</span>{% endif %}
-      </a>
-    </li>
-    {%- endfor %}
+    {%- for post in essays %}{{ row(post, true) }}{% endfor %}
   </ol>
 
   {%- if notes.length %}
   <h2 class="section-label">notes</h2>
   <ol class="post-list">
-    {%- for post in notes %}
-    <li class="post-item">
-      <a class="post-link" href="{{ post.url }}">
-        <span class="post-title">{{ post.data.title }}</span>
-        <span class="post-meta">{{ post.date | dateDisplay }}</span>
-        {%- if post.data.description %}<span class="post-desc">{{ post.data.description }}</span>{% endif %}
-      </a>
-    </li>
-    {%- endfor %}
+    {%- for post in notes %}{{ row(post, false) }}{% endfor %}
   </ol>
   {%- endif %}
 </section>

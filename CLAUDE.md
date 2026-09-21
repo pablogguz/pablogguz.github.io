@@ -48,11 +48,15 @@ Note: `eleventy.config.js` calls `setUseGitIgnore(false)` on purpose. Eleventy i
 - **Colour**: ultramarine ink `#2340a8` on warm paper `#fbfaf7`; in dark mode `#93a9f5` on `#161613`. Alert callouts keep a red of their own so warnings never read as links.
 - **Motion**: restrained. Cards enter with a pure-CSS staggered animation using `backwards` fill — do **not** reintroduce a JS-driven reveal class, because adding one after paint makes cards flash, and an inline `transition-delay` left behind will slow every later hover. The theme toggle cross-fades the page with the View Transitions API, with a lockstep per-element fallback. Everything animated has a `prefers-reduced-motion` path.
 - **Favicon**: a bevelled pixel square in the accent colour (`src/assets/favicon.svg` plus PNG and Apple touch fallbacks).
+- The homepage greeting is plain body copy — same face, same size as the paragraphs under it. It is deliberately not a display line.
+- **Coffee modal**: a `<dialog>` in `partials/coffee.njk`, opened by `#coffee-btn` in the bio. Actions are "email me" (mailto built from `site.email` + `site.coffee.subject`), linkedin, and copy-address (writes to the clipboard and confirms with the shared toast). Closes via the ×, Escape, or a click outside the panel.
 
 ## Conventions
 
 - The site uses a lowercase aesthetic (nav, labels, page titles) — keep new copy lowercase unless it's a proper noun or a publication title.
-- Post front matter: `title`, `date`, `description`, `tags`, `kind: note`, `series`, `featured`, `math`, `cover_image`, `toc`/`comment`/`cite` (set false to opt out), `outdate_alert` + `outdate_alert_days`, `reading_time` (manual override), `draft`.
+- Post front matter: `title`, `date`, `description`, `tags`, `kind: note`, `series`, `featured`, `math`, `cover_image`, `toc`/`comment`/`cite` (set false to opt out), `outdate_alert` + `outdate_alert_days`, `draft`.
+- **Tags are not displayed.** There are no tag pages and no tag chips; `tags` in front matter survives only as `article:tag` / JSON-LD metadata. Don't reintroduce tag UI without being asked.
+- **Reading time and blurbs are automatic.** `/blog/` computes minutes from the rendered body, and shows `description` if a post sets one, otherwise an auto-excerpt (the `excerpt` filter strips headings, quotes, figures, code and tables, then trims to a whole word).
 - **Notes vs posts**: `kind: note` lists the entry under a separate "notes" group on `/blog/`, shows a "note" chip, and skips the cite box.
 - **Series**: `series: "name"` groups posts; the series box appears once two or more share a name.
 - Posts contain **no template syntax**. Callouts, quotes and figures are markdown containers, which matters because the maths-heavy posts would otherwise fight the template engine:

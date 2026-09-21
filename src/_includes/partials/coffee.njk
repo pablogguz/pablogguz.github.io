@@ -1,11 +1,29 @@
-<dialog id="coffee-modal" class="modal">
+<dialog id="coffee-modal" class="modal" aria-labelledby="coffee-title">
   <div class="modal-body">
-    <h2 class="modal-title">before reaching out…</h2>
+    <div class="modal-head">
+      <h2 class="modal-title" id="coffee-title">{{ site.coffee.title }}</h2>
+      <button class="modal-close" type="button" aria-label="close" autofocus>&times;</button>
+    </div>
+
+    <p class="modal-intro">{{ site.coffee.intro }}</p>
+
     <ul class="modal-list">
       {%- for g in site.coffee.guidelines %}
       <li>{{ g }}</li>
       {%- endfor %}
     </ul>
-    <button class="modal-close" type="button">got it</button>
+
+    <div class="modal-actions">
+      <a class="btn btn-primary" href="mailto:{{ site.email }}?subject={{ site.coffee.subject | urlencode }}">
+        {% icon "email" %}<span>email me</span>
+      </a>
+      <a class="btn" href="https://www.linkedin.com/in/pablogguz/" target="_blank" rel="noopener noreferrer">
+        {% icon "linkedin" %}<span>linkedin</span>
+      </a>
+      <button class="btn" type="button" id="copy-email" data-email="{{ site.email }}">
+        <span>copy address</span>
+      </button>
+      <span class="modal-mail">{{ site.email }}</span>
+    </div>
   </div>
 </dialog>

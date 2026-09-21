@@ -53,7 +53,16 @@
   if (modal) {
     $("#coffee-btn")?.addEventListener("click", (e) => { e.preventDefault(); modal.showModal(); });
     $(".modal-close", modal)?.addEventListener("click", () => modal.close());
-    modal.addEventListener("click", (e) => { if (e.target === modal) modal.close(); });
+    // click outside the panel closes it (the dialog element itself fills the
+    // viewport, so compare against its content box rather than the target)
+    modal.addEventListener("click", (e) => {
+      const r = modal.getBoundingClientRect();
+      const outside = e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom;
+      if (outside) modal.close();
+    });
+    $("#copy-email", modal)?.addEventListener("click", (e) => {
+      navigator.clipboard.writeText(e.currentTarget.dataset.email).then(() => toast("email address copied"));
+    });
   }
 
   /* ---------------------------------------------------------- code copy */

@@ -5,6 +5,7 @@ export default {
   lang: "en",
 
   author: "Pablo García-Guzmán",
+  email: "pgarcia.eco@gmail.com",
   authorCitation: "García-Guzmán, Pablo",
   twitter: "pablogguz_",
   handle: "pablo garcía-guzmán",
@@ -31,7 +32,9 @@ export default {
   },
 
   coffee: {
-    text: "fancy a (virtual) coffee?",
+    title: "before you write",
+    intro: "i'm always happy to hear from you. a few things worth knowing first:",
+    subject: "hello from your website",
     guidelines: [
       "Don't be shy! I'm always happy to chat about data, economics, or anything else. If you are a student or just starting out in the field, I'm also happy to provide advice or guidance on the usual stuff (e.g. whether to do a PhD, whether a pre-doc is worth it, alternative career paths, etc.).",
       "If you add me on LinkedIn, please drop a brief note explaining why you want to connect. I generally don't accept invites without context (unless we're clearly in the same data/econ/policy bubble).",

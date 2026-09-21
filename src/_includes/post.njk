@@ -21,13 +21,6 @@ bodyClass: post
       {%- if description %}
       <p class="post-description">{{ description }}</p>
       {%- endif %}
-      {%- if tags and tags.length %}
-      <ul class="post-tags" aria-label="tags">
-        {%- for t in tags %}
-        <li><a href="/tags/{{ t | tagSlug }}/">{{ t }}</a></li>
-        {%- endfor %}
-      </ul>
-      {%- endif %}
     </header>
 
     {%- if doAlert %}

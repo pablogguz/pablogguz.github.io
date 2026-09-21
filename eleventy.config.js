@@ -237,11 +237,6 @@ export default function (eleventyConfig) {
   eleventyConfig.addCollection("posts", (api) =>
     api.getFilteredByGlob(["src/blog/posts/*.md", "src/blog/drafts/*.md"]).sort((a, b) => b.date - a.date)
   );
-  eleventyConfig.addCollection("tagList", (api) => {
-    const tags = new Set();
-    for (const p of api.getFilteredByGlob("src/blog/posts/*.md")) (p.data.tags || []).forEach((t) => tags.add(t));
-    return [...tags].sort();
-  });
 
   eleventyConfig.addShortcode("icon", icon);
   eleventyConfig.addShortcode("year", () => String(new Date().getFullYear()));
@@ -258,14 +253,35 @@ export default function (eleventyConfig) {
     const words = text.split(/\s+/).filter(Boolean).length;
     return Math.max(1, Math.ceil(words / 200));
   });
-  eleventyConfig.addFilter("excerpt", (html, n = 200) => {
+  // first sentences of the post body, trimmed to a whole word. Used as the
+  // automatic blurb on /blog/ for posts without an explicit description.
+  eleventyConfig.addFilter("excerpt", (html, n = 165) => {
     let src = String(html || "");
     const i = src.indexOf('<div class="prose">');   // on post pages, skip the header block
     if (i >= 0) src = src.slice(i);
-    src = src.replace(/<aside[\s\S]*?<\/aside>/g, " ").replace(/<figure[\s\S]*?<\/figure>/g, " ");
-    const text = src.replace(/<[^>]+>/g, " ").replace(/&[a-z]+;/g, " ").replace(/\s+/g, " ").trim();
-    return text.length > n ? text.slice(0, n - 1).trimEnd() + "…" : text;
+    const text = src
+      // drop whole blocks that are not running prose
+      .replace(/<aside[\s\S]*?<\/aside>/g, " ")
+      .replace(/<figure[\s\S]*?<\/figure>/g, " ")
+      .replace(/<blockquote[\s\S]*?<\/blockquote>/g, " ")
+      .replace(/<(pre|table)[\s\S]*?<\/\1>/g, " ")
+      .replace(/<h[1-6][\s\S]*?<\/h[1-6]>/g, " ")
+      // block boundaries become spaces, inline tags vanish so words stay joined
+      .replace(/<\/(p|div|li|ul|ol|section)>/g, " ")
+      .replace(/<br\s*\/?>/g, " ")
+      .replace(/<[^>]+>/g, "")
+      .replace(/&nbsp;/g, " ")
+      .replace(/&amp;/g, "&")
+      .replace(/&#39;|&rsquo;|&lsquo;/g, "\u2019")
+      .replace(/&quot;|&ldquo;|&rdquo;/g, '"')
+      .replace(/&[a-z]+;/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+    if (text.length <= n) return text;
+    const cut = text.slice(0, n);
+    return cut.slice(0, cut.lastIndexOf(" ")).replace(/[,;:.\u2013\u2014-]+$/, "") + "\u2026";
   });
+
   eleventyConfig.addFilter("toc", (html) => {
     const items = [];
     const re = /<h([23]) id="([^"]+)"[^>]*>([\s\S]*?)<\/h\1>/g;
@@ -283,7 +299,6 @@ export default function (eleventyConfig) {
   });
   eleventyConfig.addFilter("whereSeries", (posts, name) => (posts || []).filter((p) => p.data.series === name).sort((a, b) => a.date - b.date));
   eleventyConfig.addFilter("bibKey", (slug, year) => `garciaguzman${year}${String(slug).replace(/-/g, "")}`);
-  eleventyConfig.addFilter("tagSlug", slugify);
 
   return {
     dir: { input: "src", output: "_site", includes: "_includes", data: "_data" },
