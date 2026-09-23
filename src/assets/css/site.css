@@ -236,14 +236,16 @@ html.dark .icon-sun { display: none; }
    stage behind the page, never taking the pointer. By day the near and far
    canvases hold the shade of a branch; by night the near canvas holds the
    lamp through the blind and the dust canvas its motes. The two soft
-   canvases are painted at quarter size; upscaling plus the blur is the
-   softness. JS fades the stage to half as you scroll. */
-.bg-stage { position: fixed; inset: 0; z-index: -1; pointer-events: none; } /* above the page's paper, below everything else */
+   canvases are painted at reduced size and softened in the canvas itself;
+   no CSS filter, which would re-blur the screen every frame. JS fades the
+   stage to half as you scroll. */
+/* sized to the large viewport so a phone's address bar never resizes it;
+   z-index -1 puts it above the page's paper and below everything else */
+.bg-stage {
+  position: fixed; left: 0; top: 0; width: 100%; height: 100vh; height: 100lvh;
+  z-index: -1; pointer-events: none; contain: strict;
+}
 .bg-stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
-.bg-far { filter: blur(11px); }
-.bg-near { filter: blur(3.5px); }
-html.dark .bg-far { display: none; }
-html.dark .bg-near { filter: blur(5px); }
 @keyframes bg-in { from { opacity: 0; } }
 @media (prefers-reduced-motion: no-preference) {
   .bg-stage canvas { animation: bg-in 1600ms var(--ease-out) 200ms backwards; }

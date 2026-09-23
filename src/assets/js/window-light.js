@@ -7,8 +7,19 @@
    ripple in a breeze, the near branch cuts the light, and dust glints only
    inside the lit slats; moving the pointer stirs it. Morning light falls
    from the left, afternoon light from the right.
-   The shade and the lamplight are painted at quarter resolution; the
-   browser's upscale plus a small CSS blur make the softness for free.
+   The shade and the lamplight are painted off-screen at reduced resolution
+   (a quarter on desktop, more on phones so the leaves stay legible), then
+   softened into the visible canvas by averaging a ring of offset copies;
+   the browser's upscale does the rest. No CSS filter: a filter re-blurs
+   the whole screen every frame, which halves the frame rate on a phone.
+   Layers are painted as full-strength white masks, softened, then tinted
+   with their colour; how faint they are is the canvas's CSS opacity. (At
+   10% alpha, 8-bit channels cannot survive being split into thirteen
+   copies: they round unevenly and the shade turns blue.)
+   On phones the address bar comes and goes as you scroll, which fires
+   resize events. The stage is sized to the large viewport (100lvh) so it
+   does not change, and resizes that only move the address bar are ignored;
+   a real resize (rotation) repaints in the same frame, so nothing blinks.
    Colours come from --shade and --lamp in site.css. */
 (() => {
   "use strict";
@@ -16,9 +27,11 @@
   if (!stage) return;
   const root = document.documentElement;
   const near = stage.querySelector(".bg-near"), far = stage.querySelector(".bg-far"), dust = stage.querySelector(".bg-dust");
-  const nctx = near.getContext("2d"), fctx = far.getContext("2d"), dctx = dust.getContext("2d");
+  const nearSrc = document.createElement("canvas"), farSrc = document.createElement("canvas");
+  const nctx = nearSrc.getContext("2d"), fctx = farSrc.getContext("2d"), dctx = dust.getContext("2d");
+  const nvis = near.getContext("2d"), fvis = far.getContext("2d");
   const REDUCED = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const TAU = Math.PI * 2, S = 0.25;
+  const TAU = Math.PI * 2;
   const clamp = (x, a, b) => Math.min(b, Math.max(a, x));
   const lerp = (a, b, t) => a + (b - a) * t;
   const rgba = (c, a) => `rgba(${c[0]},${c[1]},${c[2]},${a})`;
@@ -121,21 +134,30 @@
   /* ---------------------------------------------------------- state */
   const side = new Date().getHours() < 13 ? -1 : 1;
   const pointer = { x: 0, y: 0, mx: 0, my: 0, vx: 0, vy: 0, speed: 0, on: false };
-  let W = 0, H = 0, dpr = 1, g, pal, motes = [], treeNear, treeFar;
+  let W = 0, H = 0, S = 0.25, SF = 0.1, dpr = 1, g, pal, motes = [], treeNear, treeFar;
   let cloud = 1, gust = 0.5, drift = [0, 0];
 
   function palette() {
     const cs = getComputedStyle(root), dark = root.classList.contains("dark");
     pal = dark
-      ? { night: true, lit: hexRGB(cs.getPropertyValue("--lamp")), a: 0.16, reach: 0.8, bloom: 0.55, mote: hexRGB(cs.getPropertyValue("--lamp")), moteA: 0.85, floor: 0.035 }
+      ? { night: true, lit: hexRGB(cs.getPropertyValue("--lamp")), a: 0.2, reach: 0.8, bloom: 0.45, mote: hexRGB(cs.getPropertyValue("--lamp")), moteA: 0.85, floor: 0.035 }
       : { night: false, shade: hexRGB(cs.getPropertyValue("--shade")), nearA: 0.1, farA: 0.055 };
+    near.style.opacity = pal.night ? pal.a : pal.nearA;
+    far.style.opacity = pal.night ? 0 : pal.farA;
     dctx.setTransform(1, 0, 0, 1, 0, 0);
     dctx.clearRect(0, 0, dust.width, dust.height);
     dctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
+  function measure() {
+    const r = stage.getBoundingClientRect();
+    return [Math.round(r.width) || innerWidth, Math.round(r.height) || innerHeight];
+  }
   function build() {
-    W = innerWidth; H = innerHeight; dpr = Math.min(devicePixelRatio || 1, 2);
-    for (const c of [near, far]) { c.width = Math.max(2, Math.round(W * S)); c.height = Math.max(2, Math.round(H * S)); }
+    const ow = W, oh = H;
+    [W, H] = measure();
+    dpr = Math.min(devicePixelRatio || 1, 2);
+    S = clamp(360 / W, 0.25, 0.6); SF = S * 0.4; /* the far layer is softer still */
+    for (const [c, s] of [[near, S], [nearSrc, S], [far, SF], [farSrc, SF]]) { c.width = Math.max(2, Math.round(W * s)); c.height = Math.max(2, Math.round(H * s)); }
     dust.width = Math.round(W * dpr); dust.height = Math.round(H * dpr);
     dctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     const ww = clamp(W * 0.46, 320, 820), wh = H * 1.3;
@@ -146,8 +168,9 @@
     const L = clamp(H * 0.5, 260, 520);
     treeNear = grow(rng(12), L, 0, L);
     treeFar = grow(rng(31), L * 1.35, 0, L * 1.35);
+    /* dust is seeded once; a resize only rescales where it is */
+    if (motes.length) { for (const m of motes) { m.x *= W / ow; m.y *= H / oh; } return; }
     const r = rng(5), nm = Math.round(clamp(W * H / 7000, 80, 210));
-    motes = [];
     for (let i = 0; i < nm; i++) motes.push({ x: r() * W, y: r() * H, vx: 0, vy: 0, z: r(), ph: r() * TAU });
   }
   const open = (k, t) => clamp(0.56 + (0.11 * Math.sin(t * 0.8 - k * 0.5) + 0.05 * Math.sin(t * 2.1 - k * 1.3)) * (0.35 + gust), 0.18, 0.86);
@@ -158,28 +181,49 @@
     c.save(); c.translate(x, y); c.rotate(ang); addBranch(c, seg, t, gust); c.restore();
     c.fillStyle = fill; c.fill();
   }
-  function clear(c, cv) { c.setTransform(1, 0, 0, 1, 0, 0); c.clearRect(0, 0, cv.width, cv.height); c.setTransform(S, 0, 0, S, 0, 0); }
+  function clear(c, cv, s) { c.setTransform(1, 0, 0, 1, 0, 0); c.clearRect(0, 0, cv.width, cv.height); c.setTransform(s, 0, 0, s, 0, 0); }
+  /* blur without a filter: the average of the layer and a ring of offset
+     copies ("lighter" adds, so the alphas average exactly). r in canvas px. */
+  const RING = [[0, 0]];
+  for (let k = 0; k < 8; k++) RING.push([Math.cos(k * TAU / 8), Math.sin(k * TAU / 8)]);
+  for (let k = 0; k < 4; k++) RING.push([0.5 * Math.cos(k * TAU / 4 + TAU / 8), 0.5 * Math.sin(k * TAU / 4 + TAU / 8)]);
+  function soften(c, cv, src, r, rgb) {
+    c.setTransform(1, 0, 0, 1, 0, 0);
+    c.clearRect(0, 0, cv.width, cv.height);
+    c.globalCompositeOperation = "lighter";
+    c.globalAlpha = 1 / RING.length;
+    for (const [x, y] of RING) c.drawImage(src, x * r, y * r);
+    c.globalAlpha = 1;
+    /* tint the softened mask: keep its alpha, take the colour */
+    c.globalCompositeOperation = "source-in";
+    c.fillStyle = `rgb(${rgb[0]},${rgb[1]},${rgb[2]})`;
+    c.fillRect(0, 0, cv.width, cv.height);
+    c.globalCompositeOperation = "source-over";
+  }
+  const MASK = "#fff";
 
   function paintDay(t) {
-    clear(fctx, far); clear(nctx, near);
-    tree(fctx, treeFar, W / 2 + side * W * 0.3 + drift[0] * 1.4, -70 + drift[1], Math.PI / 2 + side * 0.62, t * 0.8, rgba(pal.shade, pal.farA));
-    tree(nctx, treeNear, W / 2 + side * W * 0.41 + drift[0], -40 + drift[1], Math.PI / 2 + side * 0.45, t, rgba(pal.shade, pal.nearA));
+    clear(fctx, farSrc, SF); clear(nctx, nearSrc, S);
+    tree(fctx, treeFar, W / 2 + side * W * 0.3 + drift[0] * 1.4, -70 + drift[1], Math.PI / 2 + side * 0.62, t * 0.8, MASK);
+    tree(nctx, treeNear, W / 2 + side * W * 0.41 + drift[0], -40 + drift[1], Math.PI / 2 + side * 0.45, t, MASK);
+    soften(fvis, far, farSrc, 1.2, pal.shade);
+    soften(nvis, near, nearSrc, 3 * S, pal.shade);
   }
   function paintNight(t) {
     const { ww, wh, period, pane, mull } = g;
-    clear(fctx, far); clear(nctx, near);
+    clear(nctx, nearSrc, S); clear(fvis, far, 1);
     const gx = g.cx + drift[0], gy = g.cy + drift[1];
     const bloom = nctx.createRadialGradient(gx, gy, 0, gx, gy, ww * 0.95);
-    bloom.addColorStop(0, rgba(pal.lit, pal.a * pal.bloom * cloud));
-    bloom.addColorStop(1, rgba(pal.lit, 0));
+    bloom.addColorStop(0, `rgba(255,255,255,${pal.bloom})`);
+    bloom.addColorStop(1, "rgba(255,255,255,0)");
     nctx.fillStyle = bloom; nctx.fillRect(0, 0, W, H);
     nctx.save();
     nctx.translate(gx, gy); nctx.rotate(g.rot); nctx.transform(1, 0, g.sk, 1, 0, 0); nctx.translate(-ww / 2, -wh / 2);
     /* a lamp, not the sun: the light falls off from the middle of the window */
     const pool = nctx.createRadialGradient(ww / 2, wh / 2, 0, ww / 2, wh / 2, ww * pal.reach);
-    pool.addColorStop(0, rgba(pal.lit, pal.a * cloud));
-    pool.addColorStop(0.55, rgba(pal.lit, pal.a * cloud * 0.5));
-    pool.addColorStop(1, rgba(pal.lit, 0));
+    pool.addColorStop(0, "rgba(255,255,255,1)");
+    pool.addColorStop(0.55, "rgba(255,255,255,0.5)");
+    pool.addColorStop(1, "rgba(255,255,255,0)");
     nctx.fillStyle = pool;
     for (let k = 0, y = 0; y < wh; k++, y += period) {
       const h = period * open(k, t), sw = 4 * Math.sin(t * 0.9 - k * 0.35) * (0.3 + gust);
@@ -191,6 +235,8 @@
     nctx.globalCompositeOperation = "destination-out";
     tree(nctx, treeNear, g.cx - side * ww * 0.12 + drift[0], -40 + drift[1], Math.PI / 2 + side * 0.45, t, "rgba(0,0,0,0.9)");
     nctx.globalCompositeOperation = "source-over";
+    soften(nvis, near, nearSrc, 5 * S, pal.lit);
+    near.style.opacity = (pal.a * cloud).toFixed(3); /* a passing cloud dims the lamp */
   }
   /* how lit is this screen point? the inverse of the blind's transform */
   function lightAt(X, Y, t) {
@@ -286,11 +332,19 @@
     requestAnimationFrame(() => { scrollPending = false; fade(); });
   }, { passive: true });
 
+  /* canvases clear when resized, so a rebuild repaints before the frame ends */
   let resizePending = false;
   addEventListener("resize", () => {
     if (resizePending) return;
     resizePending = true;
-    requestAnimationFrame(() => { resizePending = false; build(); palette(); if (REDUCED) still(); fade(); });
+    requestAnimationFrame(() => {
+      resizePending = false;
+      const [w, h] = measure();
+      if (w === W && Math.abs(h - H) < H * 0.25) return; /* just the address bar */
+      build(); palette();
+      if (REDUCED) still(); else render(clock, 0);
+      fade();
+    });
   });
 
   /* follow the site's theme switch; repaint at once so the view transition
