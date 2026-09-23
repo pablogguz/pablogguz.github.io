@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>A modern IDE for Stata with VSCode + Quarto · pablo garcía-guzmán</title>
+  <meta name="description" content="Over the last few decades, applied microeconomic research has witnessed what is widely termed as the credibility revolution, a paradigm shift that emphasized the importance of experimental and…">
+  <meta name="author" content="Pablo García-Guzmán">
+  <link rel="canonical" href="https://pablogguz.github.io/blog/stata-vscode-quarto/">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" sizes="180x180">
+  <link rel="alternate" type="application/atom+xml" title="pablo garcía-guzmán" href="/feed.xml">
+  <link rel="alternate" type="application/atom+xml" title="pablo garcía-guzmán — blog" href="/blog/feed.xml">
+  <link rel="preload" href="/assets/fonts/newsreader-latin-standard-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/jetbrains-mono-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/site.css">
+
+  <meta property="og:site_name" content="pablo garcía-guzmán">
+  <meta property="og:title" content="A modern IDE for Stata with VSCode + Quarto">
+  <meta property="og:description" content="Over the last few decades, applied microeconomic research has witnessed what is widely termed as the credibility revolution, a paradigm shift that emphasized the importance of experimental and…">
+  <meta property="og:url" content="https://pablogguz.github.io/blog/stata-vscode-quarto/">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://pablogguz.github.io/img/dalle_vscode_stata_v2.webp">
+  <meta name="twitter:image" content="https://pablogguz.github.io/img/dalle_vscode_stata_v2.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@pablogguz_">
+  <meta name="twitter:creator" content="@pablogguz_">
+  <meta name="twitter:title" content="A modern IDE for Stata with VSCode + Quarto">
+  <meta name="twitter:description" content="Over the last few decades, applied microeconomic research has witnessed what is widely termed as the credibility revolution, a paradigm shift that emphasized the importance of experimental and…">
+  <meta property="article:published_time" content="2024-02-27T00:00:00Z">
+  <meta property="article:tag" content="stata">
+  <meta property="article:tag" content="vscode">
+  <meta property="article:tag" content="quarto">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "A modern IDE for Stata with VSCode + Quarto",
+    "description": "Over the last few decades, applied microeconomic research has witnessed what is widely termed as the credibility revolution, a paradigm shift that emphasized the importance of experimental and…",
+    "url": "https://pablogguz.github.io/blog/stata-vscode-quarto/",
+    "datePublished": "2024-02-27T00:00:00Z","image": "https://pablogguz.github.io/img/dalle_vscode_stata_v2.webp","keywords": ["stata","vscode","quarto"],
+    "author": { "@type": "Person", "name": "Pablo García-Guzmán", "url": "https://pablogguz.github.io/" }
+  }
+  </script>
+
+  <script>
+    /* theme boot — runs before paint so there is no flash */
+    (function () {
+      try {
+        var t = localStorage.getItem("theme");
+        var dark = t ? t === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+        if (dark) document.documentElement.classList.add("dark");
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body class="post">
+  <header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="/">pablo garcía-guzmán</a>
+    <nav class="site-nav" aria-label="primary">
+      <a href="/blog/" aria-current="page">blog</a>
+      <a href="/projects/">data projects</a>
+      <a href="/policy/">policy writing</a>
+      <button class="nav-icon" id="theme-toggle" aria-label="toggle dark mode" type="button">
+        <span class="icon-sun"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 18C8.68629 18 6 15.3137 6 12C6 8.68629 8.68629 6 12 6C15.3137 6 18 8.68629 18 12C18 15.3137 15.3137 18 12 18ZM12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16ZM11 1H13V4H11V1ZM11 20H13V23H11V20ZM3.51472 4.92893L4.92893 3.51472L7.05025 5.63604L5.63604 7.05025L3.51472 4.92893ZM16.9497 18.364L18.364 16.9497L20.4853 19.0711L19.0711 20.4853L16.9497 18.364ZM19.0711 3.51472L20.4853 4.92893L18.364 7.05025L16.9497 5.63604L19.0711 3.51472ZM5.63604 16.9497L7.05025 18.364L4.92893 20.4853L3.51472 19.0711L5.63604 16.9497ZM23 11V13H20V11H23ZM4 11V13H1V11H4Z" fill="currentColor"></path></svg></span><span class="icon-moon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M10 7C10 10.866 13.134 14 17 14C18.9584 14 20.729 13.1957 21.9995 11.8995C22 11.933 22 11.9665 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C12.0335 2 12.067 2 12.1005 2.00049C10.8043 3.27098 10 5.04157 10 7ZM4 12C4 16.4183 7.58172 20 12 20C15.0583 20 17.7158 18.2839 19.062 15.7621C18.3945 15.9187 17.7035 16 17 16C12.0294 16 8 11.9706 8 7C8 6.29648 8.08133 5.60547 8.2379 4.938C5.71611 6.28423 4 8.9417 4 12Z" fill="currentColor"></path></svg></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+  <main id="main">
+    <div class="post-layout">
+  <article class="post-article" data-post-id="stata-vscode-quarto">
+    <header class="post-header">
+      <p class="post-kicker"><time datetime="2024-02-27T00:00:00Z">2024-02-27</time> · 14 min read
+      </p>
+      <h1 class="post-title">A modern IDE for Stata with VSCode + Quarto</h1>
+    </header>
+    <aside class="callout callout-alert outdate-alert" id="outdate-alert" hidden data-days="365" data-date="2024-02-27">
+      <div class="callout-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M4.00098 20V14C4.00098 9.58172 7.5827 6 12.001 6C16.4193 6 20.001 9.58172 20.001 14V20H21.001V22H3.00098V20H4.00098ZM6.00098 20H18.001V14C18.001 10.6863 15.3147 8 12.001 8C8.68727 8 6.00098 10.6863 6.00098 14V20ZM11.001 2H13.001V5H11.001V2ZM19.7792 4.80761L21.1934 6.22183L19.0721 8.34315L17.6578 6.92893L19.7792 4.80761ZM2.80859 6.22183L4.22281 4.80761L6.34413 6.92893L4.92991 8.34315L2.80859 6.22183ZM7.00098 14C7.00098 11.2386 9.23956 9 12.001 9V11C10.3441 11 9.00098 12.3431 9.00098 14H7.00098Z" fill="currentColor"></path></svg></div>
+      <div class="callout-body"><p></p></div>
+    </aside>
+    <details class="toc-inline">
+      <summary>contents</summary>
+      <ol>
+        <li><a href="#why-stata">Why Stata</a></li>
+        <li><a href="#why-vscode">Why VSCode</a></li>
+        <li><a href="#why-quarto">Why Quarto</a></li>
+        <li><a href="#setup">Setup</a><ol><li><a href="#step-1-install-quarto">Step 1: Install Quarto</a></li><li><a href="#step-2-install-vscode">Step 2: Install VSCode</a></li><li><a href="#step-3-install-vscode-extensions">Step 3: Install VSCode extensions</a></li><li><a href="#step-4-install-nbstata">Step 4: Install nbstata</a></li><li><a href="#an-example">An example</a></li></ol></li>
+        <li><a href="#caveats">Caveats</a></li>
+        <li><a href="#troubleshooting">Troubleshooting</a><ol><li><a href="#common-issue-quarto-does-not-recognize-the-python-installation">Common issue: Quarto does not recognize the Python installation</a></li></ol></li>
+      </ol>
+    </details>
+
+    <div class="prose">
+      <aside class="callout callout-alert"><div class="callout-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M4.00098 20V14C4.00098 9.58172 7.5827 6 12.001 6C16.4193 6 20.001 9.58172 20.001 14V20H21.001V22H3.00098V20H4.00098ZM6.00098 20H18.001V14C18.001 10.6863 15.3147 8 12.001 8C8.68727 8 6.00098 10.6863 6.00098 14V20ZM11.001 2H13.001V5H11.001V2ZM19.7792 4.80761L21.1934 6.22183L19.0721 8.34315L17.6578 6.92893L19.7792 4.80761ZM2.80859 6.22183L4.22281 4.80761L6.34413 6.92893L4.92991 8.34315L2.80859 6.22183ZM7.00098 14C7.00098 11.2386 9.23956 9 12.001 9V11C10.3441 11 9.00098 12.3431 9.00098 14H7.00098Z" fill="currentColor"></path></svg></div><div class="callout-body"><p class="callout-header">Update Aug 2024</p>
+<p>I only used this setup for a couple of weeks before switching to a non-interactive integration that allows for running <code>.do</code> files within VSCode. The lack of a data browser and the variable explorer in the Jupyter kernel was a dealbreaker for me (plus I have grown to find interactive notebooks a bit annoying except for very specific tasks). To set this up, follow the instructions <a href="https://github.com/wulizyk/Notebook_Stata/wiki/Run-STATA-in-VScode">here</a> under the &quot;way one&quot; section.</p>
+<p>Moreover, I have increasingly found myself using R for most of my work over the last year, and I have to stay that I no longer agree with some of the points I made in this post. Most of the time, the so-claimed &quot;superiority&quot; of Stata for reduced-form empirical work is just a skill issue. My advice would be to invest time in mastering R or Python, and <em>then</em> decide whether you really need to use Stata (you probably won't).</p>
+</div></aside>
+<img src="/img/dalle_vscode_stata_v2.webp" width="600"/>
+<p>Over the last few decades, applied microeconomic research has witnessed what is widely termed as <a href="https://www.aeaweb.org/articles?id=10.1257/jep.24.2.3">the credibility revolution</a>, a paradigm shift that emphasized the importance of experimental and quasi-experimental methods to credibly identify causal relationships between variables. This transformative period has not only influenced the methodologies employed in academic papers but also strengthened the field's impact on policy-making, by providing more solid and rigorous evidence upon which to base decisions.</p>
+<p>This emphasis on methodologically robust empirical approaches has resulted in bigger, more complex projects, naturally elevating the importance of data skills within the field. However, despite the increasing importance of coding in economics, many economists lag in adopting modern coding practices and development environments. One of the most widely used tools in the profession, <a href="https://www.stata.com/">Stata</a>, is not even a programming language but a purpose-built statistical package.<sup class="footnote-ref"><a href="#fn1" id="fnref1">1</a></sup> Stata is also commercial software, meaning that it does not have the benefits of open-source languages like Python or R, which have amassed extensive communities contributing to their development and offering support. Due to its nature, it has traditionally been hard to integrate Stata with modern IDEs, resulting in a less efficient workflow when one has to write code in multiple languages or use the latest tools for version control, code completion, and so on.</p>
+<p>This post provides a quick tutorial on setting up a modern development environment for Stata with Visual Studio Code and Quarto. It is by no means perfect and it comes with its own caveats, but it is a step in the right direction for those who want to modernize a bit their workflow without having to give up on Stata.</p>
+<h2 id="why-stata" tabindex="-1">Why Stata <a class="heading-anchor" href="#why-stata" aria-hidden="true">#</a></h2>
+<p>I know what you are thinking.</p>
+<p><strong>jUsT dOn't usE sTAta BrO</strong>.</p>
+<p>I get it. I code in multiple languages and it is indeed not a good idea to <em>only</em> use Stata, simply because there are lots of cool things (web scraping, geospatial stuff, ML) that you would miss out on by doing so.</p>
+<p>However, the truth is that if you do applied microeconomics for a living, <strong>it would be very stupid not to use Stata</strong> sometimes. Whoever tells you otherwise is i) not an applied microeconomist (good for them!) or ii) underestimating how important Stata is in the profession:</p>
+<ul>
+<li>
+<p>Stata can be found in <a href="https://www.r-bloggers.com/2023/12/usage-shares-of-programming-languages-in-economics-research/">more than 70% of replication packages</a> for published papers in economics. It is followed by Matlab (which we deliberately ignore since it is aimed at structural work), and R comes in third with less than 10%. I am not going to argue whether this is a good or a bad equilibrium but <em>it is an equilibrium</em>, and if you want collaborate with others and be able to replicate their work, you will have to use Stata</p>
+</li>
+<li>
+<p>For reduced-form econometrics, Stata is unparalleled. Period. I have been writing code for +3.5 years and it still amazes me how ridiculously cumbersome R and Python can be relative to Stata when it comes to running regressions. For some specifications, it is simply not possible to use something else unless you want to code the estimator from scratch (good luck running modern difference-in-differences estimators for heterogeneous treatment effects in Python, for example)</p>
+</li>
+<li>
+<p>Economists love regression tables. And again, the functionalities and flexibility of <code>esttab</code> to export fully formatted and reproducible LaTeX tables in Stata are light years ahead of the alternatives in other languages (e.g., <code>stargazer</code> in R)</p>
+</li>
+<li>
+<p>For most people doing applied micro research or policy work, <strong>coding will hardly ever be their comparative advantage</strong>. Instead, your value lies in the quality of your ideas and how well you execute them – coding is only useful insofar as it helps in that purpose. Some folks (myself included) enjoy venturing off the beaten path, but most researchers would prioritize research productivity if the marginal cost of learning new data skills is sufficiently high. In this sense, Stata has a quite shallow and gentle learning curve, so usually people learn it as their first &quot;language&quot; and then just stick to it. I am not saying this is good (I think is bad!), but in the end people respond to incentives</p>
+</li>
+</ul>
+<h2 id="why-vscode" tabindex="-1">Why VSCode <a class="heading-anchor" href="#why-vscode" aria-hidden="true">#</a></h2>
+<p>VSCode is Microsoft's open-source code editor. It supports a wide array of programming languages and comes with the usual IDE features like syntax highlighting, code completion, <a href="https://github.com/features/copilot">Copilot</a>, and version control integration.<sup class="footnote-ref"><a href="#fn2" id="fnref2">2</a></sup></p>
+<p>More importantly, turns out that it is fairly straightforward to integrate VSCode with Stata via plug-ins. VSCode also has nice LaTeX extensions, which in my opinion makes it the only real alternative to Overleaf. This means that you can seamlessly integrate all your workflow into a single code editor, from data cleaning to drafting.</p>
+<h2 id="why-quarto" tabindex="-1">Why Quarto <a class="heading-anchor" href="#why-quarto" aria-hidden="true">#</a></h2>
+<p>Quarto is an open-source scientific and technical publishing system that allows users to create dynamic documents, slide decks, and reports in various formats from plain text files. Quarto files support multiple programming languages and can be rendered into interactive HTML documents, which allows the user to combine code execution with high-quality document production.</p>
+<p>The main advantage of using a notebook-based interface relative to the native Stata editor is that it allows you to create and present exploratory analysis combining code, output, and text (including comments, LaTeX equations, and more), all in one convenient place.</p>
+<p>And last but not least, Quarto outputs are <a href="https://quarto.org/docs/gallery/#interactive-docs">beautiful</a>.</p>
+<h2 id="setup" tabindex="-1">Setup <a class="heading-anchor" href="#setup" aria-hidden="true">#</a></h2>
+<h3 id="step-1-install-quarto" tabindex="-1">Step 1: Install Quarto <a class="heading-anchor" href="#step-1-install-quarto" aria-hidden="true">#</a></h3>
+<p>Go to <a href="https://quarto.org/">https://quarto.org/</a>, click on &quot;Get Started&quot;, download the latest Quarto version available, and install it on your machine.</p>
+<p><img src="/img/quarto_example.JPG" alt="Alt text"></p>
+<h3 id="step-2-install-vscode" tabindex="-1">Step 2: Install VSCode <a class="heading-anchor" href="#step-2-install-vscode" aria-hidden="true">#</a></h3>
+<p>Go to <a href="https://code.visualstudio.com/download">https://code.visualstudio.com/download</a>, download the latest VSCode version available, and install it on your machine.</p>
+<p><img src="/img/vscode_example.JPG" alt="Alt text"></p>
+<h3 id="step-3-install-vscode-extensions" tabindex="-1">Step 3: Install VSCode extensions <a class="heading-anchor" href="#step-3-install-vscode-extensions" aria-hidden="true">#</a></h3>
+<p>You will have to install two VSCode extensions:</p>
+<ol>
+<li>To get nice Stata syntax highlighting and code autocompletion, you will have to install the <a href="https://marketplace.visualstudio.com/items?itemName=kylebarron.stata-enhanced">Stata Enhanced</a> package. Open VSCode, go to the extensions tab (highlighted in red in the screenshot), search for the extension, and install it.</li>
+<li>For integrated render and preview for Quarto documents, repeat the steps above and install the <a href="https://marketplace.visualstudio.com/items?itemName=quarto.quarto">Quarto</a> extension.</li>
+</ol>
+<p><img src="/img/stataenhanced_example.jpg" alt="Alt text"></p>
+<h3 id="step-4-install-nbstata" tabindex="-1">Step 4: Install <code>nbstata</code> <a class="heading-anchor" href="#step-4-install-nbstata" aria-hidden="true">#</a></h3>
+<p><a href="https://hugetim.github.io/nbstata/"><code>nbstata</code></a> is a Jupyter kernel for Stata, built on top of the functionalities of the <code>pystata</code> Python package introduced in Stata version 17. This means that you will need Stata 17 or higher to install it.<sup class="footnote-ref"><a href="#fn3" id="fnref3">3</a></sup></p>
+<p>You can find the full user and installation guide <a href="https://hugetim.github.io/nbstata/user_guide.html">here</a>. For the curious, I encourage you to go through the author's guide. For the lazy ones, the short version goes as follows:</p>
+<ol>
+<li>To install <code>nbstata</code>, you need an installation of Python 3.7 or higher. For first-time Python users, I would follow the suggestion from the author of <code>nbstata</code> and just install the <a href="https://www.anaconda.com/download/">Anaconda distribution</a>. If you want a lighter, minimalistic version, you can go for <a href="https://docs.anaconda.com/free/miniconda/">Miniconda</a>.<sup class="footnote-ref"><a href="#fn4" id="fnref4">4</a></sup></li>
+<li>Once you have installed Anaconda, open the Anaconda prompt and type</li>
+</ol>
+<pre><code>pip install nbstata
+</code></pre>
+<ol start="3">
+<li>Finally, install <code>nbstata</code> by running</li>
+</ol>
+<pre><code>python -m nbstata.install
+</code></pre>
+<p>And that is it! Your machine should be now ready to render Quarto Markdown (<code>.qmd</code>) files in VSCode using the <code>nbstata</code> kernel.</p>
+<h3 id="an-example" tabindex="-1">An example <a class="heading-anchor" href="#an-example" aria-hidden="true">#</a></h3>
+<p>To begin, create a <code>.qmd</code> file. At the very start of this file, incorporate a YAML header to specify the Jupyter kernel you wish to use. In our case, to use <code>nbstata</code> in your Quarto document, add <code>jupyter: nbstata</code> within the YAML header. The YAML header is a section located at the top of Markdown files, designed to hold metadata such as configuration settings and document properties. This metadata is structured in a readable format and is essential for defining various aspects of your document's processing and presentation. A sample of YAML header could look as follows:</p>
+<pre class="language-m" tabindex="0"><code class="language-m">---
+title: "Some dataviz with Stata and Quarto"
+date: 2024-24-01
+author: "Pablo"
+jupyter: nbstata
+format: 
+  html:
+    self-contained: true
+    toc: true
+    toc-depth: 3
+    toc-float:
+      collapsed: false
+      smooth-scroll: true
+      width: 20%
+---</code></pre>
+<p>You can now create code chunks as you would do in any other notebook-based interface, specifying <code>stata</code> in your code chunk header.</p>
+<p>For our example, we will create a chart to visualize gender gaps in suicide rates across low-income countries. To load the dataset into our environment, we will use the Stata wrapper for the World Bank's WDI database API, <a href="https://github.com/jpazvd/wbopendata/tree/master"><code>wbopendata</code></a>:</p>
+<pre class="language-stata" tabindex="0"><code class="language-stata">```<span class="token punctuation">{</span>stata load<span class="token operator">-</span>data<span class="token punctuation">}</span>
+<span class="token command keyword">wbopendata</span><span class="token punctuation">,</span> <span class="token function">indicator</span><span class="token punctuation">(</span>SH.STA.SUIC.FE.P5; SH.STA.SUIC.MA.P5<span class="token punctuation">)</span> <span class="token keyword">clear</span> long
+<span class="token command keyword">desc</span>
+```</code></pre>
+<pre><code>Metadata for indicator SH.STA.SUIC.FE.P5
+-------------------------------------------------------------------------------
+    Name: Suicide mortality rate, female (per 100,000 female population)
+-------------------------------------------------------------------------------
+    Collection: 2 World Development Indicators
+-------------------------------------------------------------------------------
+    Description: Suicide mortality rate is the number of suicide deaths in
+    a year per 100,000 population. Crude suicide rate (not age-adjusted).
+-------------------------------------------------------------------------------
+    Note: World Health Organization, Global Health Observatory Data
+    Repository (http:  apps.who.int ghodata ).
+-------------------------------------------------------------------------------
+    Topic(s): 8 Health
+-------------------------------------------------------------------------------
+
+
+
+    Metadata for indicator SH.STA.SUIC.MA.P5
+-------------------------------------------------------------------------------
+    Name: Suicide mortality rate, male (per 100,000 male population)
+-------------------------------------------------------------------------------
+    Collection: 2 World Development Indicators
+-------------------------------------------------------------------------------
+    Description: Suicide mortality rate is the number of suicide deaths in
+...
+sh_sta_suic_m~5 float   %8.0g                 SH.STA.SUIC.MA.P5
+-------------------------------------------------------------------------------
+Sorted by: countrycode  year
+     Note: Dataset has changed since last saved.
+Output is truncated. View as a scrollable element or open in a text editor. Adjust cell output settings...
+</code></pre>
+<p>Let's create a simple dumbbell chart by sex:</p>
+<pre class="language-stata" tabindex="0"><code class="language-stata">```<span class="token punctuation">{</span>stata gen<span class="token operator">-</span>chart<span class="token punctuation">}</span>
+<span class="token comment">* Prepare data</span>
+  <span class="token command keyword">cap</span> ren sh_sta_suic_fe_p5 fem_rate 
+  <span class="token command keyword">cap</span> ren sh_sta_suic_ma_p5 male_rate 
+
+  <span class="token command keyword">keep</span> <span class="token keyword">if</span> <span class="token operator">!</span><span class="token function">inlist</span><span class="token punctuation">(</span>.<span class="token punctuation">,</span>fem_rate<span class="token punctuation">,</span>male_rate<span class="token punctuation">)</span> <span class="token comment">// keep non-missing pairs of female and male suicide rates</span>
+  <span class="token command keyword">bys</span> countrycode <span class="token punctuation">(</span>year<span class="token punctuation">)</span><span class="token punctuation">:</span> keep <span class="token keyword">if</span> _n <span class="token operator">==</span> _N <span class="token comment">// keep latest country-year obs.</span>
+  <span class="token command keyword">drop</span> <span class="token keyword">if</span> region <span class="token operator">==</span> <span class="token string-literal"><span class="token string">""</span></span> <span class="token comment">// drop regional aggregates</span>
+  <span class="token command keyword">keep</span> <span class="token keyword">if</span> incomelevelname <span class="token operator">==</span> <span class="token string-literal"><span class="token string">"Low income"</span></span> <span class="token comment">// keep low-income countries</span>
+
+<span class="token comment">* Chart settings </span>
+  <span class="token command keyword">distinct</span> countrycode
+  <span class="token command keyword">local</span> ub <span class="token operator">=</span> <span class="token variable">`r(ndistinct)'</span> <span class="token comment">// N of categories for the x-axis</span>
+
+  <span class="token command keyword">sort</span> male_rate 
+  <span class="token command keyword">cap</span> g order <span class="token operator">=</span> _n <span class="token comment">// order of x-axis categories</span>
+  <span class="token command keyword">labmask</span> order<span class="token punctuation">,</span> <span class="token function">val</span><span class="token punctuation">(</span>countryname<span class="token punctuation">)</span>
+
+  <span class="token command keyword">su</span> male_rate<span class="token punctuation">,</span> d
+  <span class="token command keyword">local</span> x_max <span class="token operator">=</span> <span class="token function">round</span><span class="token punctuation">(</span><span class="token function">r</span><span class="token punctuation">(</span>max<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">0.1</span><span class="token punctuation">)</span> <span class="token comment">// max value for y-axis</span>
+
+<span class="token comment">* Export chart</span>
+  <span class="token operator">#</span>d;
+  <span class="token command keyword">twoway</span> <span class="token punctuation">(</span>rspike male_rate fem_rate order<span class="token punctuation">,</span> <span class="token function">lcolor</span><span class="token punctuation">(</span>gs14%<span class="token number">90</span><span class="token punctuation">)</span><span class="token punctuation">)</span> 
+    <span class="token punctuation">(</span>scatter male_rate order<span class="token punctuation">,</span> <span class="token function">mcolor</span><span class="token punctuation">(</span>midblue<span class="token punctuation">)</span><span class="token punctuation">)</span> 
+    <span class="token punctuation">(</span>scatter fem_rate order<span class="token punctuation">,</span> <span class="token function">mcolor</span><span class="token punctuation">(</span>pink<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> 
+    <span class="token command keyword">ytitle</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"Suicide mortality rate (per 100,000 population)"</span></span><span class="token punctuation">)</span> 
+    <span class="token command keyword">xtitle</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">""</span></span><span class="token punctuation">)</span> 
+    <span class="token command keyword">ylabel</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token variable">`x_max'</span><span class="token punctuation">)</span> 
+    <span class="token command keyword">xlabel</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token variable">`ub'</span><span class="token punctuation">,</span> <span class="token function">angle</span><span class="token punctuation">(</span><span class="token number">45</span><span class="token punctuation">)</span> <span class="token function">labsize</span><span class="token punctuation">(</span>vsmall<span class="token punctuation">)</span> valuelabel<span class="token punctuation">)</span> 
+    <span class="token command keyword">legend</span><span class="token punctuation">(</span><span class="token function">order</span><span class="token punctuation">(</span><span class="token number">2</span> <span class="token string-literal"><span class="token string">"Males"</span></span> <span class="token number">3</span> <span class="token string-literal"><span class="token string">"Females"</span></span><span class="token punctuation">)</span> <span class="token function">pos</span><span class="token punctuation">(</span><span class="token number">11</span><span class="token punctuation">)</span> <span class="token function">row</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token function">size</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span> 
+    <span class="token command keyword">title</span><span class="token punctuation">(</span>Gender gaps <span class="token keyword">in</span> suicide rates across low<span class="token operator">-</span>income countries<span class="token punctuation">,</span> <span class="token function">pos</span><span class="token punctuation">(</span><span class="token number">11</span><span class="token punctuation">)</span> <span class="token function">size</span><span class="token punctuation">(</span>medium<span class="token punctuation">)</span><span class="token punctuation">)</span>;
+  <span class="token operator">#</span>d cr
+```</code></pre>
+<p><img src="/img/suicide_rates.png" alt="Alt text"></p>
+<h2 id="caveats" tabindex="-1">Caveats <a class="heading-anchor" href="#caveats" aria-hidden="true">#</a></h2>
+<p>Sadly, the integration of Stata with VSCode and Quarto is far from perfect, specially if you are used to the native Stata editor and its functionalities. Here are a couple of issues that bother me:</p>
+<ul>
+<li>
+<p>You will be missing the data browser and the variable explorer. This is a big one. The Stata data browser is also incredibly smooth and fast compared to the alternatives in R and Python, so it is a shame to lose one of its comparative advantages. Although <code>nbstata</code> comes with <a href="https://hugetim.github.io/nbstata/user_guide.html#magics">Jupyter magics</a> that allow for browsing, such as <code>%browse</code> for the main dataset and <code>%frbrowse</code> for frames, so far I have not figured out a way to expand the cell output in VSCode (nor in Jupyter itself), so this is not useful. If you know of a solution, please reach out!</p>
+</li>
+<li>
+<p>You will not be able to change the font for your charts within VSCode. Not a big deal, you can always change it by opening Stata itself and changing the defaults with the <code>graph set</code> commands, but it is a bit annoying</p>
+</li>
+</ul>
+<h2 id="troubleshooting" tabindex="-1">Troubleshooting <a class="heading-anchor" href="#troubleshooting" aria-hidden="true">#</a></h2>
+<p>In case you are finding problems with your setup, you should verify your installations and ensure that the Jupyter kernel is correctly set up and recognnized by your system.</p>
+<p>To check if Quarto is installed and determine its version, open your command prompt (or terminal on macOS and Linux) and enter the following command:</p>
+<pre><code>quarto check
+</code></pre>
+<p>If Quarto is not found, ensure it is installed and that its installation directory is added to your system's PATH environment variable. Reinstalling may also help.</p>
+<p>To verify that Python is installed on your system and to check its version, run:</p>
+<pre><code>python --version
+</code></pre>
+<p>To check your Python installation directory, run</p>
+<pre><code>where python
+</code></pre>
+<p>This command should return the version of Python installed on your system. If Python is not installed or if there are issues with the installation, this command may return an error or indicate that Python is not recognized. Similar to Quarto, ensure Python's installation directory is in your PATH. If you have multiple Python versions installed, ensure the correct version's path is prioritized.</p>
+<p>To check which Jupyter kernels are installed on your system, use:</p>
+<pre><code>jupyter kernelspec list
+</code></pre>
+<p>This command will list all available kernels, including their names and installation paths. If you've installed a kernel (such as <code>nbstata</code>) but it doesn't appear in this list, there may be an issue with how the kernel was installed or registered with Jupyter.</p>
+<h3 id="common-issue-quarto-does-not-recognize-the-python-installation" tabindex="-1">Common issue: Quarto does not recognize the Python installation <a class="heading-anchor" href="#common-issue-quarto-does-not-recognize-the-python-installation" aria-hidden="true">#</a></h3>
+<p>If you have problems with Quarto finding the correct Python installation, you can try the following steps (here I have assumed you have installed Anaconda, but the same logic applies to Miniconda or any other Python distribution):</p>
+<ol>
+<li><strong>Disable app execution aliases for Python</strong>: Open Settings, go to Windows Settings &gt; Apps &gt; Apps &amp; features, and manage execution aliases to disable Python aliases (i.e., turn off the toggle(s) that point to the Microsoft Store app, <code>python.exe</code> and <code>python3.exe</code>). By disabling these, you prevent Windows from redirecting Python commands to the Microsoft Store app, allowing your system to use the Anaconda Python executable instead.</li>
+<li><strong>Adjusting the PATH order</strong>: go to System Properties &gt; Advanced &gt; Environment Variables, then select the &quot;Path&quot; variable under User variables or System variables and click &quot;Edit&quot;. In the Edit Environment Variable window, find the entry for <code>C:\Users\[your-username]\AppData\Local\Microsoft\WindowsApps</code>. You can either remove this entry or move it down the list so that the paths to your Anaconda installation appear above it. This changes the order in which Windows searches these paths for executable files. To check the order of your PATH environment variable, type <code>where python</code> in the Anaconda prompt (usually, it should be installed in <code>C:\ProgramData\anaconda3</code>). Then, add this path to the PATH environment variable and move it to the top of the list, adding also the <code>Scripts</code> folder (usually, <code>C:\ProgramData\anaconda3\Scripts</code>).</li>
+</ol>
+<hr>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>Stata though has its own matrix-based programming language, <em>Mata</em>. Some of the most popular user-written Stata packages, like <code>reghdfe</code> for regressions with high dimensional fixed effects, are largely written in Mata. <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p>For open-source languages, like R or Python, Copilot is a game-changer. For Stata, it is less useful, although I have to say that I am pleasantly surprised with the quality of its suggestions relative to ChatGPT 4. <a href="#fnref2" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn3" class="footnote-item"><p>For earlier Stata versions, an alternative would be using the <code>stata_kernel</code> Jupyter kernel. I have not tested it, but I have good references from colleagues. You can find the installation guide <a href="https://kylebarron.dev/stata_kernel/">here</a>. <a href="#fnref3" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn4" class="footnote-item"><p><code>nbstata</code> is a Jupyter kernel. If you install Anaconda, you will also get JupyterLab installed, so you will be able to run Stata code from Jupyter notebooks as well. I personally hate them, but if you don't, it is an alternative. <a href="#fnref4" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+
+    </div>
+
+    <p class="post-end" aria-hidden="true">∎</p>
+    <footer class="post-extras">
+  <div class="share-row">
+    <span class="extras-label">share</span>
+    <button type="button" class="text-btn" id="copy-link" data-link="https://pablogguz.github.io/blog/stata-vscode-quarto/">copy link</button>
+    <a href="https://twitter.com/intent/tweet?text=A%20modern%20IDE%20for%20Stata%20with%20VSCode%20%2B%20Quarto&amp;url=https%3A%2F%2Fpablogguz.github.io%2Fblog%2Fstata-vscode-quarto%2F" target="_blank" rel="noopener">x / twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fpablogguz.github.io%2Fblog%2Fstata-vscode-quarto%2F" target="_blank" rel="noopener">linkedin</a>
+    <a href="/blog/feed.xml">rss</a>
+  </div>
+  <details class="cite">
+    <summary>cite this essay</summary>
+    <div class="cite-body">
+      <span class="extras-label">plain text</span>
+      <pre class="cite-text">García-Guzmán, Pablo (2024). “A modern IDE for Stata with VSCode + Quarto”. pablo garcía-guzmán. https://pablogguz.github.io/blog/stata-vscode-quarto/</pre>
+      <span class="extras-label">bibtex</span>
+      <pre class="cite-text">@misc{garciaguzman2024statavscodequarto,
+  author = {García-Guzmán, Pablo},
+  title  = {A modern IDE for Stata with VSCode + Quarto},
+  year   = {2024},
+  month  = {02},
+  url    = {https://pablogguz.github.io/blog/stata-vscode-quarto/},
+  note   = {pablo garcía-guzmán}
+}</pre>
+    </div>
+  </details>
+  <nav class="post-nav" aria-label="more writing">
+    <a class="post-nav-item newer" href="/blog/gtrends-badbunny/"><span class="extras-label">newer</span><span>Predicting socio-economic outcomes with Google Trends</span></a>
+  </nav>
+</footer>
+
+  </article>
+  <aside class="toc-aside" aria-label="table of contents">
+    <nav id="toc">
+      <p class="toc-label">contents</p>
+      <ol>
+        <li><a href="#why-stata">Why Stata</a></li>
+        <li><a href="#why-vscode">Why VSCode</a></li>
+        <li><a href="#why-quarto">Why Quarto</a></li>
+        <li><a href="#setup">Setup</a><ol><li><a href="#step-1-install-quarto">Step 1: Install Quarto</a></li><li><a href="#step-2-install-vscode">Step 2: Install VSCode</a></li><li><a href="#step-3-install-vscode-extensions">Step 3: Install VSCode extensions</a></li><li><a href="#step-4-install-nbstata">Step 4: Install nbstata</a></li><li><a href="#an-example">An example</a></li></ol></li>
+        <li><a href="#caveats">Caveats</a></li>
+        <li><a href="#troubleshooting">Troubleshooting</a><ol><li><a href="#common-issue-quarto-does-not-recognize-the-python-installation">Common issue: Quarto does not recognize the Python installation</a></li></ol></li>
+      </ol>
+    </nav>
+  </aside>
+</div>
+<section class="wrap comments" id="comments">
+  <h2 class="section-label">comments</h2>
+  <div class="giscus"></div>
+  <script src="https://giscus.app/client.js"
+    data-repo="pablogguz/pablogguz.github.io"
+    data-repo-id="R_kgDOLFdBTA"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOLFdBTM4DEEFr"
+    data-mapping="pathname"
+    data-strict="1"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="https://pablogguz.github.io/assets/giscus-light.css"
+    data-lang="en"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async></script>
+</section>
+
+  </main>
+  <footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-row">
+      <span>made by pablo w/ ❤️ © 2026</span>
+      <span class="footer-links">
+        <a href="/feed.xml">rss</a>
+      </span>
+    </div>
+    <p class="footer-disclaimer">All the content shared on this website is completely my own and does not reflect the views of the EBRD.</p>
+  </div>
+</footer>
+
+  <dialog id="coffee-modal" class="modal" aria-labelledby="coffee-title">
+  <div class="modal-body">
+    <div class="modal-head">
+      <h2 class="modal-title" id="coffee-title">before you write</h2>
+      <button class="modal-close" type="button" aria-label="close" autofocus>&times;</button>
+    </div>
+
+    <p class="modal-intro">i&#39;m always happy to hear from you. a few things worth knowing first:</p>
+
+    <ul class="modal-list">
+      <li>don&#39;t be shy! i&#39;m always happy to chat about data, economics, or anything else. if you are a student or just starting out in the field, i&#39;m also happy to provide advice or guidance on the usual stuff (e.g. whether to do a PhD, whether a pre-doc is worth it, alternative career paths, etc.).</li>
+      <li>if you add me on LinkedIn, please drop a brief note explaining why you want to connect. i generally don&#39;t accept invites without context (unless we&#39;re clearly in the same data/econ/policy bubble).</li>
+      <li>i am not a hiring manager and can&#39;t provide specific interview advice for EBRD roles. if you ask me about this, i will refer you to publicly available resources and wish you the best of luck!</li>
+    </ul>
+
+    <div class="modal-actions">
+      <a class="btn btn-primary" href="mailto:pgarcia.eco@gmail.com?subject=hello%20from%20your%20website">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM20 7.23792L12.0718 14.338L4 7.21594V19H20V7.23792ZM4.51146 5L12.0619 11.662L19.501 5H4.51146Z" fill="currentColor"></path></svg><span>email me</span>
+      </a>
+      <a class="btn" href="https://www.linkedin.com/in/pablogguz/" target="_blank" rel="noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="20" height="20">
+  <path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z" fill="currentColor"></path>
+</svg><span>linkedin</span>
+      </a>
+      <button class="btn" type="button" id="copy-email" data-email="pgarcia.eco@gmail.com">
+        <span>copy address</span>
+      </button>
+      <span class="modal-mail">pgarcia.eco@gmail.com</span>
+    </div>
+  </div>
+</dialog>
+
+  <script src="/assets/js/lightense.min.js" defer></script>
+  <script src="/assets/js/site.js" defer></script>
+</body>
+</html>
