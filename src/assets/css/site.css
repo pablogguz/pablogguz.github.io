@@ -19,6 +19,8 @@
   --accent: #2340a8;      /* ultramarine ink */
   --accent-2: #1b2f80;    /* hover / pressed */
   --selection: #dde3fb;
+  --shade: #2c3246;       /* window light: the leaf shadow by day */
+  --lamp: #ffdeac;        /* window light: the lamp through the blind by night */
 
   --serif: "Newsreader", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
   --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
@@ -229,6 +231,24 @@ html.dark .icon-sun { display: none; }
 .social a:hover { color: var(--accent); }
 .social svg { font-size: 0.95rem; opacity: 0.8; }
 .home-recent { margin-top: 4rem; }
+
+/* homepage background: window light (assets/js/window-light.js). A fixed
+   stage behind the page, never taking the pointer. By day the near and far
+   canvases hold the shade of a branch; by night the near canvas holds the
+   lamp through the blind and the dust canvas its motes. The two soft
+   canvases are painted at quarter size; upscaling plus the blur is the
+   softness. JS fades the stage to half as you scroll. */
+.bg-stage { position: fixed; inset: 0; z-index: -1; pointer-events: none; } /* above the page's paper, below everything else */
+.bg-stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.bg-far { filter: blur(11px); }
+.bg-near { filter: blur(3.5px); }
+html.dark .bg-far { display: none; }
+html.dark .bg-near { filter: blur(5px); }
+@keyframes bg-in { from { opacity: 0; } }
+@media (prefers-reduced-motion: no-preference) {
+  .bg-stage canvas { animation: bg-in 1600ms var(--ease-out) 200ms backwards; }
+}
+@media print { .bg-stage { display: none; } }
 .more-link { display: inline-block; margin-top: 1rem; font-family: var(--mono); font-size: 0.8rem; text-decoration: none; }
 
 /* homepage entrance — the page settles once, top to bottom. Opacity leads,

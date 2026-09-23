@@ -2,6 +2,12 @@
 layout: base.njk
 bodyClass: home
 ---
+<div class="bg-stage" aria-hidden="true">
+  <canvas class="bg-far"></canvas>
+  <canvas class="bg-near"></canvas>
+  <canvas class="bg-dust"></canvas>
+</div>
+<script src="/assets/js/window-light.js" defer></script>
 <section class="wrap home-intro">
   <img class="avatar" src="/assets/img/avatar.jpg" alt="" width="88" height="88" loading="eager" decoding="async">
   <div class="prose home-prose">

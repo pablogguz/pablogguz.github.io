@@ -37,6 +37,7 @@ Note: `eleventy.config.js` calls `setUseGitIgnore(false)` on purpose. Eleventy i
 - `src/index.md` — homepage bio text (rendered by `home.njk`).
 - `src/assets/css/site.css` — **the design system**, one file, sectioned and commented. All tokens (colours, fonts, measure, motion) live in section 1 at the top; everything else derives from them. Change `--accent` and the whole site re-skins.
 - `src/assets/js/site.js` — theme toggle, coffee modal, code copy buttons, copy-link, TOC scroll indicator, reading progress, sidenotes, outdate alert. Dependency-free, one IIFE.
+- `src/assets/js/window-light.js` — the homepage background (loaded by `home.njk` only). Dependency-free, one IIFE.
 - `src/img/` — post images, copied to `/img/` at build time, so every historical `/img/...` URL still resolves.
 - `src/assets/fonts/` — self-hosted variable fonts (Newsreader, JetBrains Mono), latin + latin-ext subsets.
 
@@ -48,6 +49,7 @@ Note: `eleventy.config.js` calls `setUseGitIgnore(false)` on purpose. Eleventy i
 - **Colour**: ultramarine ink `#2340a8` on warm paper `#fbfaf7`; in dark mode `#93a9f5` on `#161613`. Alert callouts keep a red of their own so warnings never read as links.
 - **Motion**: restrained. Cards enter with a pure-CSS staggered animation using `backwards` fill — do **not** reintroduce a JS-driven reveal class, because adding one after paint makes cards flash, and an inline `transition-delay` left behind will slow every later hover. The theme toggle cross-fades the page with the View Transitions API, with a lockstep per-element fallback. Everything animated has a `prefers-reduced-motion` path.
 - **Favicon**: a bevelled pixel square in the accent colour (`src/assets/favicon.svg` plus PNG and Apple touch fallbacks).
+- **Window light** (homepage background, `window-light.js`): by day only the soft shadow of a branch falls across the page, two layers deep, swaying in the breeze; by night (dark theme) a lamp shines through a blind with dust in the beam that the pointer stirs. Morning light falls from the left, afternoon from the right. It sits on a fixed `.bg-stage` at `z-index: -1`, paints its soft layers at quarter resolution under a CSS blur, follows the theme through a class observer (so the view transition captures the new scene), fades to half on scroll, pauses in hidden tabs and draws one still frame under reduced motion. Colours are the `--shade` and `--lamp` tokens.
 - The homepage greeting is plain body copy — same face, same size as the paragraphs under it. It is deliberately not a display line.
 - **Coffee modal**: a `<dialog>` in `partials/coffee.njk`, opened by `#coffee-btn` in the bio. Actions are "email me" (mailto built from `site.email` + `site.coffee.subject`), linkedin, and copy-address (writes to the clipboard and confirms with the shared toast). Closes via the ×, Escape, or a click outside the panel.
 
