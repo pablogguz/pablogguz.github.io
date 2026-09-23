@@ -1,0 +1,37 @@
+{#- one row of the index on /projects/ and /policy/.
+    kind "policy" opens the report first and labels its links read / app;
+    anything else opens the app first. A "Title (Source)" name is split so
+    the source sits above the title as a kicker. -#}
+{%- macro entry(p, n, kind) %}
+{%- set policy = kind == "policy" %}
+{%- set primary = (p.pdf_url or p.shiny_url) if policy else (p.shiny_url or p.r_url or p.github_url or p.pdf_url) %}
+{%- set parts = p.name | splitSource %}
+<li class="entry">
+  <span class="entry-num" aria-hidden="true">{% if n < 10 %}0{% endif %}{{ n }}</span>
+  <div class="entry-body">
+    {%- if parts[1] %}
+    <p class="entry-kicker">{{ parts[1] }}</p>
+    {%- endif %}
+    <h2 class="entry-title">
+      {%- if primary %}<a class="entry-link" href="{{ primary }}" target="_blank" rel="noopener noreferrer">{% endif %}
+      {%- if p.icon %}<img class="entry-icon" src="{{ p.icon }}" alt="" width="18" height="18" loading="lazy">{% endif %}
+      <span class="entry-name">{{ parts[0] }}</span>
+      {%- if primary %}<span class="entry-arrow" aria-hidden="true">↗</span></a>{% endif %}
+    </h2>
+    <p class="entry-desc">{{ p.desc }}</p>
+    <div class="entry-meta">
+      <span class="entry-actions">
+        {%- if p.shiny_url %}<a href="{{ p.shiny_url }}" target="_blank" rel="noopener noreferrer">{{ "app" if policy else "open app" }} <span class="arrow">↗</span></a>{% endif %}
+        {%- if p.pdf_url %}<a href="{{ p.pdf_url }}" target="_blank" rel="noopener noreferrer">{{ "read" if policy else "pdf" }} <span class="arrow">↗</span></a>{% endif %}
+        {%- if p.r_url %}<a href="{{ p.r_url }}" target="_blank" rel="noopener noreferrer">docs <span class="arrow">↗</span></a>{% endif %}
+        {%- if p.github_url %}<a href="{{ p.github_url }}" target="_blank" rel="noopener noreferrer">code <span class="arrow">↗</span></a>{% endif %}
+      </span>
+      {%- if p.links and p.links.length %}
+      <span class="entry-press">in the press
+        {%- for l in p.links %} <a href="{{ l.url }}" target="_blank" rel="noopener noreferrer">{{ l.name }}</a>{% if not loop.last %}<span class="sep">·</span>{% endif %}{% endfor %}
+      </span>
+      {%- endif %}
+    </div>
+  </div>
+</li>
+{%- endmacro %}

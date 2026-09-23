@@ -299,6 +299,11 @@ export default function (eleventyConfig) {
   });
   eleventyConfig.addFilter("whereSeries", (posts, name) => (posts || []).filter((p) => p.data.series === name).sort((a, b) => a.date - b.date));
   eleventyConfig.addFilter("bibKey", (slug, year) => `garciaguzman${year}${String(slug).replace(/-/g, "")}`);
+  // "Title (Source)" -> ["Title", "Source"]; policy entries name their venue that way
+  eleventyConfig.addFilter("splitSource", (name) => {
+    const m = /^(.*?)\s*\(([^()]+)\)\s*$/.exec(String(name || ""));
+    return m ? [m[1], m[2]] : [String(name || ""), ""];
+  });
 
   return {
     dir: { input: "src", output: "_site", includes: "_includes", data: "_data" },

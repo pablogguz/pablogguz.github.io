@@ -5,28 +5,12 @@ description: reports and policy briefs
 permalink: /policy/
 bodyClass: projects
 ---
-<section class="wrap wrap-wide">
+{%- from "partials/entry.njk" import entry %}
+<section class="wrap">
   <h1 class="page-title">policy writing</h1>
   <p class="page-lede">reports and briefs written for policy audiences, with the press coverage each one received.</p>
 
-  <ul class="card-grid">
-    {%- for proj in policy.project %}
-    {%- set primary = proj.pdf_url or proj.shiny_url %}
-    <li class="card">
-      <div class="card-head">
-        <h2 class="card-title">{% if primary %}<a href="{{ primary }}" target="_blank" rel="noopener noreferrer">{{ proj.name }}</a>{% else %}{{ proj.name }}{% endif %}</h2>
-      </div>
-      <p class="card-desc">{{ proj.desc }}</p>
-      <div class="card-actions">
-        {%- if proj.pdf_url %}<a href="{{ proj.pdf_url }}" target="_blank" rel="noopener noreferrer">read <span class="arrow">↗</span></a>{% endif %}
-        {%- if proj.shiny_url %}<a href="{{ proj.shiny_url }}" target="_blank" rel="noopener noreferrer">app <span class="arrow">↗</span></a>{% endif %}
-      </div>
-      {%- if proj.links and proj.links.length %}
-      <p class="card-press">in the press
-        {%- for l in proj.links %} <a href="{{ l.url }}" target="_blank" rel="noopener noreferrer">{{ l.name }}</a>{% if not loop.last %}<span class="sep">·</span>{% endif %}{% endfor %}
-      </p>
-      {%- endif %}
-    </li>
-    {%- endfor %}
-  </ul>
+  <ol class="index">
+    {%- for p in policy.project %}{{ entry(p, loop.index, "policy") }}{% endfor %}
+  </ol>
 </section>

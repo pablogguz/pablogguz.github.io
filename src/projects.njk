@@ -5,39 +5,18 @@ description: interactive data tools and open-source packages
 permalink: /projects/
 bodyClass: projects
 ---
-{%- macro card(proj) %}
-{%- set primary = proj.shiny_url or proj.r_url or proj.github_url or proj.pdf_url %}
-<li class="card">
-  <div class="card-head">
-    {%- if proj.icon %}<img class="card-icon" src="{{ proj.icon }}" alt="" width="22" height="22" loading="lazy">{% endif %}
-    <h2 class="card-title">{% if primary %}<a href="{{ primary }}" target="_blank" rel="noopener noreferrer">{{ proj.name }}</a>{% else %}{{ proj.name }}{% endif %}</h2>
-  </div>
-  <p class="card-desc">{{ proj.desc }}</p>
-  <div class="card-actions">
-    {%- if proj.shiny_url %}<a href="{{ proj.shiny_url }}" target="_blank" rel="noopener noreferrer">open app <span class="arrow">↗</span></a>{% endif %}
-    {%- if proj.r_url %}<a href="{{ proj.r_url }}" target="_blank" rel="noopener noreferrer">docs <span class="arrow">↗</span></a>{% endif %}
-    {%- if proj.github_url %}<a href="{{ proj.github_url }}" target="_blank" rel="noopener noreferrer">code <span class="arrow">↗</span></a>{% endif %}
-    {%- if proj.pdf_url %}<a href="{{ proj.pdf_url }}" target="_blank" rel="noopener noreferrer">pdf <span class="arrow">↗</span></a>{% endif %}
-  </div>
-  {%- if proj.links and proj.links.length %}
-  <p class="card-press">in the press
-    {%- for l in proj.links %} <a href="{{ l.url }}" target="_blank" rel="noopener noreferrer">{{ l.name }}</a>{% if not loop.last %}<span class="sep">·</span>{% endif %}{% endfor %}
-  </p>
-  {%- endif %}
-</li>
-{%- endmacro %}
-
-<section class="wrap wrap-wide">
+{%- from "partials/entry.njk" import entry %}
+<section class="wrap">
   <h1 class="page-title">data projects</h1>
   <p class="page-lede">interactive tools to explore public data, mostly about Spain, and a couple of R packages to make that data easier to use.</p>
 
   <h2 class="section-label">apps</h2>
-  <ul class="card-grid">
-    {%- for p in projects.active %}{{ card(p) }}{% endfor %}
-  </ul>
+  <ol class="index">
+    {%- for p in projects.active %}{{ entry(p, loop.index) }}{% endfor %}
+  </ol>
 
   <h2 class="section-label">r packages</h2>
-  <ul class="card-grid">
-    {%- for p in projects.packages %}{{ card(p) }}{% endfor %}
-  </ul>
+  <ol class="index">
+    {%- for p in projects.packages %}{{ entry(p, loop.index) }}{% endfor %}
+  </ol>
 </section>
