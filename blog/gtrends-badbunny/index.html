@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Predicting socio-economic outcomes with Google Trends · pablo garcía-guzmán</title>
+  <meta name="description" content="Everybody lies (sometimes). This is both a universal truth and the title of a book by Seth Stephens-Davidowitz, former data scientist at Google and PhD in economics from Harvard. Everybody lies is an…">
+  <meta name="author" content="Pablo García-Guzmán">
+  <link rel="canonical" href="https://pablogguz.github.io/blog/gtrends-badbunny/">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" sizes="180x180">
+  <link rel="alternate" type="application/atom+xml" title="pablo garcía-guzmán" href="/feed.xml">
+  <link rel="alternate" type="application/atom+xml" title="pablo garcía-guzmán — blog" href="/blog/feed.xml">
+  <link rel="preload" href="/assets/fonts/newsreader-latin-standard-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/jetbrains-mono-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <link rel="stylesheet" href="/assets/katex/katex.min.css">
+
+  <meta property="og:site_name" content="pablo garcía-guzmán">
+  <meta property="og:title" content="Predicting socio-economic outcomes with Google Trends">
+  <meta property="og:description" content="Everybody lies (sometimes). This is both a universal truth and the title of a book by Seth Stephens-Davidowitz, former data scientist at Google and PhD in economics from Harvard. Everybody lies is an…">
+  <meta property="og:url" content="https://pablogguz.github.io/blog/gtrends-badbunny/">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://pablogguz.github.io/img/corr_badbunny_hispanic.png">
+  <meta name="twitter:image" content="https://pablogguz.github.io/img/corr_badbunny_hispanic.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@pablogguz_">
+  <meta name="twitter:creator" content="@pablogguz_">
+  <meta name="twitter:title" content="Predicting socio-economic outcomes with Google Trends">
+  <meta name="twitter:description" content="Everybody lies (sometimes). This is both a universal truth and the title of a book by Seth Stephens-Davidowitz, former data scientist at Google and PhD in economics from Harvard. Everybody lies is an…">
+  <meta property="article:published_time" content="2024-03-10T00:00:00Z">
+  <meta property="article:tag" content="googletrends">
+  <meta property="article:tag" content="badbunny">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Predicting socio-economic outcomes with Google Trends",
+    "description": "Everybody lies (sometimes). This is both a universal truth and the title of a book by Seth Stephens-Davidowitz, former data scientist at Google and PhD in economics from Harvard. Everybody lies is an…",
+    "url": "https://pablogguz.github.io/blog/gtrends-badbunny/",
+    "datePublished": "2024-03-10T00:00:00Z","image": "https://pablogguz.github.io/img/corr_badbunny_hispanic.png","keywords": ["googletrends","badbunny"],
+    "author": { "@type": "Person", "name": "Pablo García-Guzmán", "url": "https://pablogguz.github.io/" }
+  }
+  </script>
+
+  <script>
+    /* theme boot — runs before paint so there is no flash */
+    (function () {
+      try {
+        var t = localStorage.getItem("theme");
+        var dark = t ? t === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+        if (dark) document.documentElement.classList.add("dark");
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body class="post">
+  <header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="/">pablo garcía-guzmán</a>
+    <nav class="site-nav" aria-label="primary">
+      <a href="/blog/" aria-current="page">blog</a>
+      <a href="/projects/">data projects</a>
+      <a href="/policy/">policy writing</a>
+      <button class="nav-icon" id="theme-toggle" aria-label="toggle dark mode" type="button">
+        <span class="icon-sun"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M12 18C8.68629 18 6 15.3137 6 12C6 8.68629 8.68629 6 12 6C15.3137 6 18 8.68629 18 12C18 15.3137 15.3137 18 12 18ZM12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16ZM11 1H13V4H11V1ZM11 20H13V23H11V20ZM3.51472 4.92893L4.92893 3.51472L7.05025 5.63604L5.63604 7.05025L3.51472 4.92893ZM16.9497 18.364L18.364 16.9497L20.4853 19.0711L19.0711 20.4853L16.9497 18.364ZM19.0711 3.51472L20.4853 4.92893L18.364 7.05025L16.9497 5.63604L19.0711 3.51472ZM5.63604 16.9497L7.05025 18.364L4.92893 20.4853L3.51472 19.0711L5.63604 16.9497ZM23 11V13H20V11H23ZM4 11V13H1V11H4Z" fill="currentColor"></path></svg></span><span class="icon-moon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M10 7C10 10.866 13.134 14 17 14C18.9584 14 20.729 13.1957 21.9995 11.8995C22 11.933 22 11.9665 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C12.0335 2 12.067 2 12.1005 2.00049C10.8043 3.27098 10 5.04157 10 7ZM4 12C4 16.4183 7.58172 20 12 20C15.0583 20 17.7158 18.2839 19.062 15.7621C18.3945 15.9187 17.7035 16 17 16C12.0294 16 8 11.9706 8 7C8 6.29648 8.08133 5.60547 8.2379 4.938C5.71611 6.28423 4 8.9417 4 12Z" fill="currentColor"></path></svg></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+  <main id="main">
+    <div class="post-layout">
+  <article class="post-article" data-post-id="gtrends-badbunny">
+    <header class="post-header">
+      <p class="post-kicker"><time datetime="2024-03-10T00:00:00Z">2024-03-10</time> · 11 min read
+      </p>
+      <h1 class="post-title">Predicting socio-economic outcomes with Google Trends</h1>
+    </header>
+    <aside class="callout callout-alert outdate-alert" id="outdate-alert" hidden data-days="365" data-date="2024-03-10">
+      <div class="callout-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M4.00098 20V14C4.00098 9.58172 7.5827 6 12.001 6C16.4193 6 20.001 9.58172 20.001 14V20H21.001V22H3.00098V20H4.00098ZM6.00098 20H18.001V14C18.001 10.6863 15.3147 8 12.001 8C8.68727 8 6.00098 10.6863 6.00098 14V20ZM11.001 2H13.001V5H11.001V2ZM19.7792 4.80761L21.1934 6.22183L19.0721 8.34315L17.6578 6.92893L19.7792 4.80761ZM2.80859 6.22183L4.22281 4.80761L6.34413 6.92893L4.92991 8.34315L2.80859 6.22183ZM7.00098 14C7.00098 11.2386 9.23956 9 12.001 9V11C10.3441 11 9.00098 12.3431 9.00098 14H7.00098Z" fill="currentColor"></path></svg></div>
+      <div class="callout-body"><p></p></div>
+    </aside>
+    <details class="toc-inline">
+      <summary>contents</summary>
+      <ol>
+        <li><a href="#some-background-on-google-trends-data">Some background on Google Trends data</a></li>
+        <li><a href="#predicting-hispanic-population-shares-with-google-trends">Predicting Hispanic population shares with Google Trends</a></li>
+        <li><a href="#measuring-what-matters">Measuring what matters</a></li>
+        <li><a href="#wrapping-up">Wrapping up</a></li>
+        <li><a href="#references">References</a></li>
+      </ol>
+    </details>
+
+    <div class="prose">
+      <img src="/img/dalle_gtrends.webp" width="500"/>
+<br>
+<p>Everybody lies (<em>sometimes</em>).</p>
+<p>This is both a universal truth and the title of a book by <a href="http://sethsd.com/">Seth Stephens-Davidowitz</a>, former data scientist at Google and PhD in economics from Harvard. <a href="https://www.amazon.co.uk/Everybody-Lies-Internet-about-Really/dp/0062390856"><em>Everybody lies</em></a> is an incredibly fun read offering a compelling argument: that our online searches can reveal more about our true selves than we might like to admit. The book is not only a testament to the power of non-traditional data sources, but also an invitation to explore human behaviour through a different lens.</p>
+<p>Stephens-Davidowitz's work shows that Google searches can be used to predict a wide range of socio-economic outcomes when conventional data sources are not available or are contaminated by social desirability bias. The latter occurs when people are reluctant to disclose their true preferences or beliefs in surveys, which is particularly important when studying sensitive topics such as racial animus, sexual orientation, or mental health. The idea is quite simple: if revealing what you really think leads to social stigma, then you would be more likely to confess to Google than to a survey interviewer. In a sense, the unfiltered truth of humanity lies in Google's autocomplete bar.</p>
+<p>In <a href="https://people.cs.umass.edu/~brenocon/smacss2015/papers/StephensDawidowitz2014.pdf">one of his academic papers</a> published in the <em>Journal of Public Economics</em>, Stephens-Davidowitz uses Google searches to measure racial animus in the U.S. and its impact on the 2008 and 2012 presidential elections – specifically, he finds that racially charged Google search rates are a strong negative predictor of Obama's vote share. The point estimates in the preferred specification suggest that racial animus cost Obama around 4 percentage points in the 2008 election, which is significantly above previous estimates based on survey data.</p>
+<br>
+<div id="table1">
+<figcaption>Table 1: Google search terms and socio-economic outcomes </figcaption>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Underlying variable</th>
+<th>t-Stat</th>
+<th><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>R</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">R^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0077em;">R</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>God</td>
+<td>Percent believe in god</td>
+<td>8.45</td>
+<td>0.65</td>
+</tr>
+<tr>
+<td>Gun</td>
+<td>Percent own gun</td>
+<td>8.94</td>
+<td>0.62</td>
+</tr>
+<tr>
+<td>African American(s)</td>
+<td>Percent Black</td>
+<td>13.15</td>
+<td>0.78</td>
+</tr>
+<tr>
+<td>Hispanic</td>
+<td>Percent Hispanic</td>
+<td>8.71</td>
+<td>0.61</td>
+</tr>
+<tr>
+<td>Jewish</td>
+<td>Percent Jewish</td>
+<td>17.08</td>
+<td>0.86</td>
+</tr>
+</tbody>
+</table>
+<p class="figure-note">Source: <a href="https://people.cs.umass.edu/~brenocon/smacss2015/papers/StephensDawidowitz2014.pdf">Stephens-Davidowitz (2015)</a>, Table 1. The t-stat and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>R</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">R^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0077em;">R</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span> are from a regression with the normalized search volume of the
+word(s) in the first column as the independent variable and measures of the value in
+the second column as the dependent variable. The normalized search volume for all
+terms is from 2004 to 2007. All data are at the state level.</p>
+</div>
+<br>
+<p>But the potential of Google searches goes beyond measuring racial animus. In <a href="#table1">Table 1</a>, I show some of Stephen-Davidowitz's examples on how Google searches can be exploited to predict various population-level outcomes. For example, Google searches for the word &quot;Gun&quot; explain 62% of the variation in states' gun ownership rates, and Google searches for the word &quot;Hispanic&quot; explain 61% of the variation in the percentage of Hispanic population across U.S. states.</p>
+<p>Can we do better? In this post, I will show you how we can leverage the popularity of Latin urban music artists in Google searches to predict state-level Hispanic population shares in the U.S.</p>
+<h2 id="some-background-on-google-trends-data" tabindex="-1">Some background on Google Trends data <a class="heading-anchor" href="#some-background-on-google-trends-data" aria-hidden="true">#</a></h2>
+<p>Data on Google searches is available through <a href="https://trends.google.com/trends/">Google Trends</a>, a tool that allows users to explore the popularity of search terms over time and across different regions within countries. The data is normalized to the time and location of a query, so that the popularity of a search term is measured relative to the total number of searches in a given region and time period. In other words, Google Trends gives measures of relative search term popularity, not an absolute measure of the number of searches for a given term.[^1] Relative popularity is measured on a scale from 0 to 100, where 100 is the most popular point in time or location for a given search term. For example, value of 50 means that the term is at half its peak observed popularity.</p>
+<p>There are a bazillion online resources on how to use Google Trends, so I won't go into the details here. As a starting point, I would recommend you to check out the <a href="https://newsinitiative.withgoogle.com/es-es/resources/trainings/basics-of-google-trends/">Google Trends basics page</a> and the <a href="https://support.google.com/trends/answer/4359582?hl=en">search tips page</a>.</p>
+<h2 id="predicting-hispanic-population-shares-with-google-trends" tabindex="-1">Predicting Hispanic population shares with Google Trends <a class="heading-anchor" href="#predicting-hispanic-population-shares-with-google-trends" aria-hidden="true">#</a></h2>
+<p>We will combine Google Trends data on the popularity of search terms related to Latin urban music superstars with data on the Hispanic population shares across U.S. states sourced from the <a href="https://www.census.gov/programs-surveys/acs/data.html">American Community Survey (ACS)</a> microdata for the year 2022.[^2]</p>
+<p>First, we will use the search term &quot;bad bunny&quot; to predict Hispanic population shares. <a href="https://open.spotify.com/intl-es/artist/4q3ewBCX7sLwd24euuV69X">Bad Bunny</a> is arguably the most popular Latin artist worldwide nowadays – in 2022, he was Billboard's top artist of the year and the <a href="https://www.billboard.com/pro/bad-bunny-top-streaming-artist-year-end-charts-2022/">most streamed artist</a> in Spotify and Apple Music. He also has a <a href="https://www.instagram.com/badbunnypr/">huge following</a> on Instagram with over 40 million followers, and its popularity has played a crucial role in the reivindication of the Latino culture and identity in the U.S. (<a href="https://www.youtube.com/watch?v=QdQEljUMCEM"><em>ahora todos quieren ser latinos</em></a>).</p>
+<p>Let's do it. To start with, I show the Hispanic population shares across U.S. states in 2022 in <a href="#fig1">Figure 1</a>. Unsurprisingly, the Hispanic population is concentrated in the South and West regions of the U.S. The states with the highest Hispanic population shares are New Mexico, California, and Texas, with shares of 50%, 40.3%, and 40.2%, respectively. The states with the lowest Hispanic population shares are West Virginia, Maine, and Vermont, with shares of around 2% each.</p>
+<br>
+<figure id="fig1">
+  <figcaption>Figure 1</figcaption>
+  <img src="/img/map_hispanic.png" loading="lazy" style="width: 100%; border: 0px none;"></iframe>
+</figure>
+<!-- <p class="figure-note">Source: 2022 ACS.</a></p> -->
+<br>
+<p>Now, let's do the same for the popularity of the search term &quot;bad bunny&quot; in the U.S. in 2022:</p>
+<br>
+<figure id="fig2">
+  <figcaption>Figure 2</figcaption>
+  <img src="/img/map_badbunny.png" loading="lazy" style="width: 100%; border: 0px none;"></iframe>
+</figure>
+<!-- <p class="figure-note">Source: 2022 ACS.</a></p> -->
+<br>
+<p>Similar, right?</p>
+<p>We can visualize the relationship between the popularity of the search term &quot;bad bunny&quot; and the Hispanic population shares across U.S. states in a scatter plot (see <a href="#fig3">Figure 3</a>). By running a simple OLS regression of the Hispanic population share on the popularity of the search term, we get that 76% of the variation in the Hispanic population share across U.S. states can be explained by the relative popularity of Bad Bunny in Google searches. This implies a 15 percentage point increase in the share of variation explained relative to just using the term &quot;Hispanic&quot; as a predictor.</p>
+<br>
+<figure id="fig3">
+  <figcaption>Figure 3</figcaption>
+  <img src="/img/corr_badbunny_hispanic.png" loading="lazy" style="width: 100%; border: 0px none;"></iframe>
+</figure>
+<!-- <p class="figure-note">Source: 2022 ACS.</a></p> -->
+<br>
+<p>There is one state that is particularly off path: New Mexico (if we were to omit it, then the share of variation explained would go up to 89%). New Mexico has a Hispanic population share of 50%, but the popularity of Bad Bunny in Google searches is only 56% of the most popular point location for the term.</p>
+<p>One particularity of New Mexico is that it has the highest population share with Mexican origin in the U.S. What if we focused on the popularity of a Mexican artist, and looked at Mexican population shares instead? I got curious about this, so I replicated the analysis exploiting the popularity of the search term &quot;peso pluma&quot;. <a href="https://open.spotify.com/intl-es/artist/12GqGscKJx3aE4t07u7eVZ">Peso Pluma</a> is a Mexican artist whose popularity has skyrocketed during the last couple of years, being <a href="https://www.billboard.com/espanol/noticias/peso-pluma-artista-mas-visto-youtube-2023-estados-unidos-1235563630/">Youtube's most viewed artist of 2023 in the U.S.</a></p>
+<p>The results are shown in <a href="#fig4">Figure 4</a>. The fit is breathtaking: Peso Pluma's popularity in Google searches explains 94% of the variation in the Mexican population share across U.S. states.</p>
+<br>
+<figure id="fig4">
+  <figcaption>Figure 4</figcaption>
+  <img src="/img/corr_pesopluma_mexican.png" loading="lazy" style="width: 100%; border: 0px none;"></iframe>
+</figure>
+<!-- <p class="figure-note">Source: 2022 ACS.</a></p> -->
+<br>
+<h2 id="measuring-what-matters" tabindex="-1">Measuring what matters <a class="heading-anchor" href="#measuring-what-matters" aria-hidden="true">#</a></h2>
+<p>Fine, this is cute. But what's the point?</p>
+<p>The point is that Google searches can be used to measure things that actually matter. We might not need to predict historical Hispanic population shares, or for that matter any type of socio-economic outcome that can be easily derived from traditional data sources. But we might be interested, for instance, in nowcasting suicide rates or the prevalence of mental health disorders. Insofar as these figures could guide the allocation of resources in healthcare systems and provide early warning signs for potential crises, they could be a quite important estimand for policy.</p>
+<p>In <a href="#table1">Table 2</a>, I illustrate the comparison between how state-level suicide rates in the U.S. correlate with both Google search terms and self-reported measures of suicide risk. While Google searches are not perfect, they prove to be more reliable than the traditional survey-derived data, which yields statistically insignificant correlations.</p>
+<br>
+<div id="table1">
+<figcaption>Table 2: Correlations between Google search terms and suicide rates in the U.S. </figcaption>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Predictor</th>
+<th><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">r</span></span></span></span></th>
+<th><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">p</span></span></span></span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Google search term</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Suicide</td>
+<td>-.06</td>
+<td>.63</td>
+</tr>
+<tr>
+<td style="text-align:left">How to suicide</td>
+<td>.49</td>
+<td>&lt; .001</td>
+</tr>
+<tr>
+<td style="text-align:left">How to kill yourself</td>
+<td>.61</td>
+<td>&lt; .001</td>
+</tr>
+<tr>
+<td style="text-align:left">How to commit suicide</td>
+<td>.63</td>
+<td>&lt; .001</td>
+</tr>
+<tr>
+<td style="text-align:left">Painless suicide</td>
+<td>.59</td>
+<td>&lt; .001</td>
+</tr>
+<tr>
+<td style="text-align:left">Composite of all four suicidal terms</td>
+<td>.67</td>
+<td>&lt; .001</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Self-report measure</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Suicidal thoughts</td>
+<td>-.17</td>
+<td>.22</td>
+</tr>
+<tr>
+<td style="text-align:left">Suicidal plans</td>
+<td>-.14</td>
+<td>.30</td>
+</tr>
+<tr>
+<td style="text-align:left">Suicidal attempts</td>
+<td>-.03</td>
+<td>.82</td>
+</tr>
+<tr>
+<td style="text-align:left">Composite of self-reported suicidality</td>
+<td>-.16</td>
+<td>.25</td>
+</tr>
+</tbody>
+</table>
+<p class="figure-note">Source: <a href="https://journals.sagepub.com/doi/abs/10.1177/2167702615593475">Ma-Kellams et al. (2016)</a>, Table 1. Data for 2008 and 2009. The column <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">r</span></span></span></span> shows the correlation between suicidal death rates and the relevant Google search term at the state level. Self-reported measures are sourced from the National Survey on Drug Use and Health.</p>
+</div>
+<br>
+<p>We can also use Google searches to track economic activity in real time. For example, the OECD has developed a <a href="https://www.oecd.org/economy/weekly-tracker-of-gdp-growth/">tool</a> that uses Google searches to nowcast GDP growth on a weekly basis. The algorithm gathers data related to various realms of economic activity, using search terms related to consumption (like &quot;vehicles&quot; and &quot;household appliances&quot;), labour market conditions (such as &quot;unemployment benefits&quot;), the housing sector (like &quot;real estate agencies&quot; and &quot;mortgages&quot;), business-related services, industrial activity, trade, and economic sentiment, among others. So, next time you are casually checking (again) whether rent prices are going up in your area, you might be contributing to a fancy economic forecast.</p>
+<h2 id="wrapping-up" tabindex="-1">Wrapping up <a class="heading-anchor" href="#wrapping-up" aria-hidden="true">#</a></h2>
+<p>In this post, I have shown some examples on how Google searches can be used to proxy for a wide range of outcomes when conventional data sources are not available or are contaminated by social desirability bias. This often involves being creative and leveraging pop-culture knowledge – as we saw, Bad Bunny helps us predict Hispanic population shares better than the term &quot;Hispanic&quot; itself.</p>
+<p>That said, it does not always work. Using Google Trends for research purposes can be tricky, as most of the time you will lack the granularity needed to link the data to the relevant population. In the U.S., the data is only available at the state and metro area levels, and it is not possible to obtain data for finer geographic areas or specific demographic groups.[^3] For some countries, the minimum level of aggregation is too coarse to be useful: for instance, the UK's finest administrative boundary in Google Trends corresponds to the <em>region</em> level, which means that you will not have variation within England, Scotland, Wales, or Northern Ireland.</p>
+<p>Still, I think it's quite cool. I will leave below a bunch of potential applications for Google Trends data that I would find particularly interesting:</p>
+<ul>
+<li><strong>Sexual minorities</strong>: can we use Google searches to estimate sexual minority population shares in settings where sexual orientation and identity are heavily stigmatized? Stephens-Davidowitz has some work on this for the U.S., but I would be curious to see how this could be extended to countries where sexual minorities are criminalized.</li>
+<li><strong>Political outcomes</strong>: there has been a rising concern about how polls often underestimate voting intention for far-right parties (for instance, see <a href="https://www.aljazeera.com/news/2022/10/6/how-did-brazils-pollsters-underestimate-support-for-bolsonaro">here</a>). Could we predict vote shares for controversial candidates at scale with Google searches?</li>
+<li><strong>Emergency situations and public safety</strong>: during emergencies, real-time data from Google Trends can provide insights into public sentiment or areas of concern, which might be faster or more accurate other methods. For instance, in the context of natural disasters, spikes in searches for emergency services or relief efforts can indicate the most affected areas or the public’s most urgent needs.</li>
+</ul>
+<p>I will leave it here. If you have worked with Google Trends data before and have some cool applications in mind you would like to share, please feel free to get in touch!</p>
+<br>
+<!-- ::: tip header="Code and data"
+All the code used to produce the analyses in my blog posts (if any) is publicly available in my [blog's code kitchen](https://github.com/pablogguz/blog_posts_code).
+::: -->
+<hr>
+<p>[^1] However, with some assumptions and creativity, it is possible to come up with proxies for absolute Google search volumnes. See Appendix C in <a href="https://people.cs.umass.edu/~brenocon/smacss2015/papers/StephensDawidowitz2014.pdf">Stephens-Davidowitz (2015)</a> for more details.</p>
+<p>[^2] I identify people with Hispanic/Latino origin in the ACS using the variable <code>HISPAN</code>. More details can be found <a href="https://usa.ipums.org/usa-action/variables/HISPAN#description_section">here</a>.</p>
+<p>[^3] One further caveat is that the Google Trends metro areas are custom aggregates and do not correspond to standard metropolitan statistical areas (MSAs) or metropolitan divisions. Due to this, there has been some attempts to map Google Trends metro areas to more granular geographic units, such as <a href="https://sites.google.com/view/jacob-schneider/resources">counties in the U.S</a>.</p>
+<br>
+<h2 id="references" tabindex="-1">References <a class="heading-anchor" href="#references" aria-hidden="true">#</a></h2>
+<ul>
+<li>Stephens-Davidowitz, S. (2017). <em>Everybody lies: Big data, new data, and what the internet can tell us about who we really are</em>. Bloomsbury Publishing.</li>
+<li>Stephens-Davidowitz, S. (2015). The cost of racial animus on a black candidate: Evidence using Google search data. <em>Journal of Public Economics</em>, 118, 26-40.</li>
+<li>Ma-Kellams, C., Or, F., Baek, J. H., &amp; Kawachi, I. (2016). Rethinking suicide surveillance: Google search data and self-reported suicidality differentially estimate completed suicide risk. Clinical Psychological Science, 4(3), 480-484.</li>
+</ul>
+
+    </div>
+
+    <p class="post-end" aria-hidden="true">∎</p>
+    <footer class="post-extras">
+  <div class="share-row">
+    <span class="extras-label">share</span>
+    <button type="button" class="text-btn" id="copy-link" data-link="https://pablogguz.github.io/blog/gtrends-badbunny/">copy link</button>
+    <a href="https://twitter.com/intent/tweet?text=Predicting%20socio-economic%20outcomes%20with%20Google%20Trends&amp;url=https%3A%2F%2Fpablogguz.github.io%2Fblog%2Fgtrends-badbunny%2F" target="_blank" rel="noopener">x / twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fpablogguz.github.io%2Fblog%2Fgtrends-badbunny%2F" target="_blank" rel="noopener">linkedin</a>
+    <a href="/blog/feed.xml">rss</a>
+  </div>
+  <details class="cite">
+    <summary>cite this essay</summary>
+    <div class="cite-body">
+      <span class="extras-label">plain text</span>
+      <pre class="cite-text">García-Guzmán, Pablo (2024). “Predicting socio-economic outcomes with Google Trends”. pablo garcía-guzmán. https://pablogguz.github.io/blog/gtrends-badbunny/</pre>
+      <span class="extras-label">bibtex</span>
+      <pre class="cite-text">@misc{garciaguzman2024gtrendsbadbunny,
+  author = {García-Guzmán, Pablo},
+  title  = {Predicting socio-economic outcomes with Google Trends},
+  year   = {2024},
+  month  = {03},
+  url    = {https://pablogguz.github.io/blog/gtrends-badbunny/},
+  note   = {pablo garcía-guzmán}
+}</pre>
+    </div>
+  </details>
+  <nav class="post-nav" aria-label="more writing">
+    <a class="post-nav-item newer" href="/blog/wellbeing-i-intro/"><span class="extras-label">newer</span><span>Wellbeing I: Introduction</span></a>
+    <a class="post-nav-item older" href="/blog/stata-vscode-quarto/"><span class="extras-label">older</span><span>A modern IDE for Stata with VSCode + Quarto</span></a>
+  </nav>
+</footer>
+
+  </article>
+  <aside class="toc-aside" aria-label="table of contents">
+    <nav id="toc">
+      <p class="toc-label">contents</p>
+      <ol>
+        <li><a href="#some-background-on-google-trends-data">Some background on Google Trends data</a></li>
+        <li><a href="#predicting-hispanic-population-shares-with-google-trends">Predicting Hispanic population shares with Google Trends</a></li>
+        <li><a href="#measuring-what-matters">Measuring what matters</a></li>
+        <li><a href="#wrapping-up">Wrapping up</a></li>
+        <li><a href="#references">References</a></li>
+      </ol>
+    </nav>
+  </aside>
+</div>
+<section class="wrap comments" id="comments">
+  <h2 class="section-label">comments</h2>
+  <div class="giscus"></div>
+  <script src="https://giscus.app/client.js"
+    data-repo="pablogguz/pablogguz.github.io"
+    data-repo-id="R_kgDOLFdBTA"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOLFdBTM4DEEFr"
+    data-mapping="pathname"
+    data-strict="1"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="https://pablogguz.github.io/assets/giscus-light.css"
+    data-lang="en"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async></script>
+</section>
+
+  </main>
+  <footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-row">
+      <span>made by pablo w/ ❤️ © 2026</span>
+      <span class="footer-links">
+        <a href="/feed.xml">rss</a>
+      </span>
+    </div>
+    <p class="footer-disclaimer">All the content shared on this website is completely my own and does not reflect the views of the EBRD.</p>
+  </div>
+</footer>
+
+  <dialog id="coffee-modal" class="modal" aria-labelledby="coffee-title">
+  <div class="modal-body">
+    <div class="modal-head">
+      <h2 class="modal-title" id="coffee-title">before you write</h2>
+      <button class="modal-close" type="button" aria-label="close" autofocus>&times;</button>
+    </div>
+
+    <p class="modal-intro">i&#39;m always happy to hear from you. a few things worth knowing first:</p>
+
+    <ul class="modal-list">
+      <li>don&#39;t be shy! i&#39;m always happy to chat about data, economics, or anything else. if you are a student or just starting out in the field, i&#39;m also happy to provide advice or guidance on the usual stuff (e.g. whether to do a PhD, whether a pre-doc is worth it, alternative career paths, etc.).</li>
+      <li>if you add me on LinkedIn, please drop a brief note explaining why you want to connect. i generally don&#39;t accept invites without context (unless we&#39;re clearly in the same data/econ/policy bubble).</li>
+      <li>i am not a hiring manager and can&#39;t provide specific interview advice for EBRD roles. if you ask me about this, i will refer you to publicly available resources and wish you the best of luck!</li>
+    </ul>
+
+    <div class="modal-actions">
+      <a class="btn btn-primary" href="mailto:pgarcia.eco@gmail.com?subject=hello%20from%20your%20website">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM20 7.23792L12.0718 14.338L4 7.21594V19H20V7.23792ZM4.51146 5L12.0619 11.662L19.501 5H4.51146Z" fill="currentColor"></path></svg><span>email me</span>
+      </a>
+      <a class="btn" href="https://www.linkedin.com/in/pablogguz/" target="_blank" rel="noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="20" height="20">
+  <path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z" fill="currentColor"></path>
+</svg><span>linkedin</span>
+      </a>
+      <button class="btn" type="button" id="copy-email" data-email="pgarcia.eco@gmail.com">
+        <span>copy address</span>
+      </button>
+      <span class="modal-mail">pgarcia.eco@gmail.com</span>
+    </div>
+  </div>
+</dialog>
+
+  <script src="/assets/js/lightense.min.js" defer></script>
+  <script src="/assets/js/site.js" defer></script>
+</body>
+</html>
