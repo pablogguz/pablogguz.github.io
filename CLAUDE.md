@@ -30,7 +30,7 @@ Note: `eleventy.config.js` calls `setUseGitIgnore(false)` on purpose. Eleventy i
 
 - `eleventy.config.js` — the whole build. Markdown pipeline (KaTeX, footnotes, heading anchors, container shortcodes), collections, filters, passthrough copies. Read this first.
 - `src/_data/site.js` — site config: title, nav, social links, giscus credentials, coffee-modal text, footer, per-post defaults (`toc`, `comment`, `cite`, outdate alert).
-- `src/_data/projects.toml` — **data-driven projects page**. `[[active]]` entries are apps, `[[packages]]` are R packages; each has `name`, `desc`, `icon`, plus URL fields (`shiny_url`, `r_url`, `github_url`, `pdf_url`) and a `links` array of `{ name, url }` rendered as the "in the press" strip.
+- `src/_data/projects.toml` — **data-driven projects page**. `[[active]]` entries are apps, `[[packages]]` are R packages; each has `name`, `desc`, `icon` (and optionally `icon_dark`, shown instead while the dark theme is on, for icons that vanish on the dark page), plus URL fields (`shiny_url`, `r_url`, `github_url`, `pdf_url`) and a `links` array of `{ name, url }` rendered as the "in the press" strip.
 - `src/_data/policy.toml` — same pattern for the policy-writing page, under `[[project]]`.
 - `src/_includes/` — `base.njk` (head, meta, OG/JSON-LD, theme boot), `home.njk`, `post.njk`, and `partials/` (header, footer, coffee modal, post-extras).
 - `src/blog/posts/*.md` — posts, YAML front matter. `src/blog/index.njk` is the listing.

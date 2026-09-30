@@ -754,6 +754,8 @@ html.dark .callout-alert { --callout: #ff8389; }
 .entry:focus-within .entry-name { background-size: 100% 1px; }
 .entry:focus-within .entry-arrow { opacity: 1; transform: none; }
 .entry:focus-within .entry-icon { filter: none; opacity: 1; }
+/* an icon with a dark-theme twin (icon_dark in projects.toml) swaps with the theme */
+html:not(.dark) .only-dark, html.dark .only-light { display: none; }
 /* no hover on touch screens, so icons keep their colour there */
 @media (hover: none) { .entry-icon { filter: none; opacity: 1; } }
 

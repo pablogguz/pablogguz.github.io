@@ -28,6 +28,7 @@ name = "WikiBarrio"
 desc = "An interactive visualization tool to explore neighborhood-level socio-demographic data from Spain"
 tags = []
 icon = "/img/favicons/wikibarrio.svg"
+icon_dark = "/img/favicons/wikibarrio-dark.png"  # the black outline disappears on the dark page
 shiny_url = "https://www.wikibarrio.es/"
 links = [
   { name = "El Español", url = "https://www.elespanol.com/elandroidelibre/noticias-y-novedades/20260221/google-maps-informacion-economica-barrio-extranjeros-renta-edades/1003744122806_0.html" },
@@ -46,7 +47,7 @@ links = []
 name = "observatoriorenta.es"
 desc = "Interactive platform for exploring income distribution and inequality data across Spain at multiple geographic levels"
 tags = []
-icon = "/img/favicons/observatoriorenta.png"
+icon = "/img/favicons/observatoriorenta.svg"
 shiny_url = "https://observatoriorenta.es/"
 links = [
   { name = "Infobae", url = "https://www.infobae.com/espana/2026/04/22/la-emancipacion-juvenil-cae-a-minimos-casi-la-mitad-de-los-jovenes-de-25-a-34-anos-vive-con-sus-padres/" },
