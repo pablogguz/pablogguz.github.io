@@ -1,0 +1,27 @@
+/* giscus theme — keep in sync with the dark tokens in css/site.css */
+main {
+  --color-prettylights-syntax-comment: #7e7b72;
+  --color-btn-text: #e8e5dd;
+  --color-btn-bg: #1f1e1a;
+  --color-btn-border: #403e38;
+  --color-btn-hover-bg: #2b2a26;
+  --color-btn-hover-border: #7e7b72;
+  --color-btn-primary-text: #161613;
+  --color-btn-primary-bg: #93a9f5;
+  --color-btn-primary-border: #93a9f5;
+  --color-btn-primary-hover-bg: #b9c7fa;
+  --color-btn-primary-hover-border: #b9c7fa;
+  --color-fg-default: #e8e5dd;
+  --color-fg-muted: #b7b3a9;
+  --color-fg-subtle: #7e7b72;
+  --color-canvas-default: #161613;
+  --color-canvas-subtle: #1f1e1a;
+  --color-border-default: #2b2a26;
+  --color-border-muted: #2b2a26;
+  --color-accent-fg: #93a9f5;
+  --color-accent-emphasis: #93a9f5;
+  --color-accent-muted: rgba(147, 169, 245, 0.3);
+  --color-accent-subtle: rgba(147, 169, 245, 0.1);
+  --color-primer-shadow-inset: none;
+  font-family: "Newsreader", Georgia, serif;
+}

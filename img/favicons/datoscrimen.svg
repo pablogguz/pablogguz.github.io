@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" role="img" aria-label="datoscrimen">
+    <rect width="32" height="32" rx="7" fill="#0b0e11"/>
+    <g transform="translate(5 5) scale(1.1)">
+        <path d="M2.2 6.8V4.4a2.2 2.2 0 0 1 2.2-2.2h2.4M13.2 2.2h2.4a2.2 2.2 0 0 1 2.2 2.2v2.4M17.8 13.2v2.4a2.2 2.2 0 0 1-2.2 2.2h-2.4M6.8 17.8H4.4a2.2 2.2 0 0 1-2.2-2.2v-2.4" fill="none" stroke="#e4e8ec" stroke-width="1.6" stroke-linecap="round"/>
+        <circle cx="10" cy="10" r="2.9" fill="#ff8a57"/>
+    </g>
+</svg>
