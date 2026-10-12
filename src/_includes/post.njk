@@ -14,13 +14,20 @@ bodyClass: post
   <article class="post-article" data-post-id="{{ page.fileSlug }}">
     <header class="post-header">
       <p class="post-kicker">
-        {%- if kind == "note" %}<span class="kind">note</span> · {% endif -%}
-        <time datetime="{{ page.date | dateToRfc3339 }}">{{ page.date | dateDisplay }}</time> · {{ minutes }} min read
+        <span class="kind">{{ "note" if kind == "note" else "essay" }}</span>
+        {%- if series %} · {{ series }}{% endif %}
       </p>
       <h1 class="post-title">{{ title }}</h1>
       {%- if description %}
       <p class="post-description">{{ description }}</p>
       {%- endif %}
+      <div class="post-byline">
+        <img class="byline-avatar" src="/assets/img/avatar.jpg" alt="" width="34" height="34" decoding="async">
+        <p class="byline-text">
+          <a class="byline-name" href="/">{{ site.handle }}</a>
+          <span class="byline-meta"><time datetime="{{ page.date | dateToRfc3339 }}">{{ page.date | dateDisplay }}</time> · {{ minutes }} min read</span>
+        </p>
+      </div>
     </header>
 
     {%- if doAlert %}

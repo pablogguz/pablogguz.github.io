@@ -90,6 +90,11 @@
   $("#copy-link")?.addEventListener("click", (e) => {
     navigator.clipboard.writeText(e.currentTarget.dataset.link).then(() => toast("link copied"));
   });
+  /* each citation format has its own copy button */
+  $$(".cite-copy").forEach((btn) => btn.addEventListener("click", () => {
+    const text = btn.closest(".cite-block")?.querySelector(".cite-text")?.innerText;
+    if (text) navigator.clipboard.writeText(text).then(() => toast("citation copied"));
+  }));
 
   /* ---------------------------------------------------------- post page bits */
   const article = $(".post-article");

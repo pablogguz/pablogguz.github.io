@@ -299,6 +299,22 @@ export default function (eleventyConfig) {
   });
   eleventyConfig.addFilter("whereSeries", (posts, name) => (posts || []).filter((p) => p.data.series === name).sort((a, b) => a.date - b.date));
   eleventyConfig.addFilter("bibKey", (slug, year) => `garciaguzman${year}${String(slug).replace(/-/g, "")}`);
+  // a post's hero: the first image in its body, else its cover_image, made site-relative
+  eleventyConfig.addFilter("heroImage", (html, cover, siteUrl) => {
+    const m = /<img\b[^>]*\bsrc=["']([^"']+)["']/i.exec(String(html || ""));
+    const src = m ? m[1] : String(cover || "");
+    return siteUrl && src.startsWith(siteUrl) ? src.slice(siteUrl.length) : src;
+  });
+  // posts (newest first) -> [{ year, posts }], for the year groups on /blog/
+  eleventyConfig.addFilter("byYear", (posts) => {
+    const out = [];
+    for (const p of posts || []) {
+      const y = (p.date instanceof Date ? p.date : new Date(p.date)).getUTCFullYear();
+      const last = out[out.length - 1];
+      if (last && last.year === y) last.posts.push(p); else out.push({ year: y, posts: [p] });
+    }
+    return out;
+  });
   // "Title (Source)" -> ["Title", "Source"]; policy entries name their venue that way
   eleventyConfig.addFilter("splitSource", (name) => {
     const m = /^(.*?)\s*\(([^()]+)\)\s*$/.exec(String(name || ""));

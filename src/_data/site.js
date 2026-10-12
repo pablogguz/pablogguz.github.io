@@ -9,6 +9,8 @@ export default {
   authorCitation: "García-Guzmán, Pablo",
   twitter: "pablogguz_",
   handle: "pablo garcía-guzmán",
+  // one line for the author card under each post, from the homepage bio
+  bio: "applied microeconomist conducting academic and policy research at a multilateral development bank.",
 
   nav: [
     { name: "blog", url: "/blog/" },

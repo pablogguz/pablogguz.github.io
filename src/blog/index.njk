@@ -8,29 +8,52 @@ bodyClass: blog
 {%- set essays = [] -%}
 {%- set notes = [] -%}
 {%- for p in collections.posts %}{% if p.data.kind == "note" %}{% set notes = (notes.push(p), notes) %}{% else %}{% set essays = (essays.push(p), essays) %}{% endif %}{% endfor -%}
+{%- set lead = essays[0] -%}
 
-{%- macro row(post, showTime) %}
+{#- the post's opening illustration, cropped into a frame -#}
+{%- macro media(post, cls) %}
+{%- set src = post.templateContent | heroImage(post.data.cover_image, site.url) %}
+{%- if src %}<span class="{{ cls }}"><img src="{{ src }}" alt="" loading="lazy" decoding="async"></span>{% endif %}
+{%- endmacro %}
+
+{%- macro row(post, showTime, withThumb) %}
 <li class="post-item{% if post.data.featured %} featured{% endif %}">
   <a class="post-link" href="{{ post.url }}">
-    <span class="post-title">{{ post.data.title }}</span>
-    <span class="post-meta">{{ post.date | dateDisplay }}{% if showTime %} · {{ post.templateContent | readingTime }} min{% endif %}</span>
+    <span class="post-meta">{{ post.date | dateDisplay }}{% if showTime %} · {{ post.templateContent | readingTime }} min read{% endif %}</span>
+    <span class="post-title"><span class="post-name">{{ post.data.title }}</span></span>
     <span class="post-desc">{{ post.data.description or (post.templateContent | excerpt) }}</span>
+    {%- if withThumb %}{{ media(post, "post-thumb") }}{% endif %}
   </a>
 </li>
 {%- endmacro %}
 
 <section class="wrap">
   <h1 class="page-title">writing</h1>
-  <p class="page-lede">essays on economics, data, and public policy. <a href="/blog/feed.xml">rss</a>.</p>
+  <p class="page-lede">essays on economics, data, and public policy.</p>
 
-  <ol class="post-list">
-    {%- for post in essays %}{{ row(post, true) }}{% endfor %}
+  {%- if lead %}
+  <article class="lead-post">
+    <a class="lead-link" href="{{ lead.url }}">
+      {{ media(lead, "lead-media") }}
+      <span class="lead-kicker"><span class="lead-flag">latest</span> · {{ lead.date | dateDisplay }} · {{ lead.templateContent | readingTime }} min read</span>
+      <span class="lead-title"><span class="post-name">{{ lead.data.title }}</span></span>
+      <span class="lead-desc">{{ lead.data.description or (lead.templateContent | excerpt(240)) }}</span>
+      <span class="lead-more">read the essay <span class="arrow" aria-hidden="true">→</span></span>
+    </a>
+  </article>
+  {%- endif %}
+
+  {%- for group in essays.slice(1) | byYear %}
+  <h2 class="section-label">{{ group.year }}</h2>
+  <ol class="post-list post-list--rich">
+    {%- for post in group.posts %}{{ row(post, true, true) }}{% endfor %}
   </ol>
+  {%- endfor %}
 
   {%- if notes.length %}
   <h2 class="section-label">notes</h2>
-  <ol class="post-list">
-    {%- for post in notes %}{{ row(post, false) }}{% endfor %}
+  <ol class="post-list post-list--rich">
+    {%- for post in notes %}{{ row(post, false, false) }}{% endfor %}
   </ol>
   {%- endif %}
 </section>
