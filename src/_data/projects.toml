@@ -28,7 +28,6 @@ name = "WikiBarrio"
 desc = "An interactive visualization tool to explore neighborhood-level socio-demographic data from Spain"
 tags = []
 icon = "/img/favicons/wikibarrio.svg"
-icon_dark = "/img/favicons/wikibarrio-dark.png"  # the black outline disappears on the dark page
 shiny_url = "https://www.wikibarrio.es/"
 links = [
   { name = "El Español", url = "https://www.elespanol.com/elandroidelibre/noticias-y-novedades/20260221/google-maps-informacion-economica-barrio-extranjeros-renta-edades/1003744122806_0.html" },
