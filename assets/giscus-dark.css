@@ -1,0 +1,27 @@
+/* giscus theme — keep in sync with the dark tokens in css/site.css */
+main {
+  --color-prettylights-syntax-comment: #6c6c73;
+  --color-btn-text: #ededee;
+  --color-btn-bg: #151517;
+  --color-btn-border: #2e2e33;
+  --color-btn-hover-bg: #1f1f22;
+  --color-btn-hover-border: #6c6c73;
+  --color-btn-primary-text: #0b0b0c;
+  --color-btn-primary-bg: #8098ff;
+  --color-btn-primary-border: #8098ff;
+  --color-btn-primary-hover-bg: #a6b7ff;
+  --color-btn-primary-hover-border: #a6b7ff;
+  --color-fg-default: #ededee;
+  --color-fg-muted: #a6a6ad;
+  --color-fg-subtle: #6c6c73;
+  --color-canvas-default: #0b0b0c;
+  --color-canvas-subtle: #151517;
+  --color-border-default: #1f1f22;
+  --color-border-muted: #1f1f22;
+  --color-accent-fg: #8098ff;
+  --color-accent-emphasis: #8098ff;
+  --color-accent-muted: rgba(128, 152, 255, 0.3);
+  --color-accent-subtle: rgba(128, 152, 255, 0.1);
+  --color-primer-shadow-inset: none;
+  font-family: "Geist", ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
