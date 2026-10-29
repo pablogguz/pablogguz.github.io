@@ -186,9 +186,8 @@ html.dark .icon-sun { display: none; }
 .footer-disclaimer { margin: 0.6rem 0 0; max-width: 36rem; font-size: 0.72rem; line-height: 1.6; }
 
 /* 5 · home ------------------------------------------------------------ */
-/* the greeting and the first paragraph; then the apps on a panel; then the
-   rest of the bio and the links; then the writing. The bio is one markdown
-   file (index.md), split at its `<!-- apps -->` marker by home.njk. */
+/* the whole bio and the links; then the apps on a panel, straight after;
+   then the writing. The bio is one markdown file (index.md). */
 .home-intro { padding-top: 3rem; }
 .avatar {
   display: block;
@@ -211,7 +210,7 @@ html.dark .icon-sun { display: none; }
    and press into the caption below. With a mouse an icon opens its app; on
    a touch screen the first tap shows the caption and the second opens it.
    Script: partials/apps-dock.njk. */
-.home-apps { margin-top: 3rem; }
+.home-apps { margin-top: 2.75rem; }
 .dock { border: 1px solid var(--line); border-radius: var(--r-lg); background: var(--paper); overflow: hidden; }
 .dock-row { list-style: none; margin: 0; padding: 1.15rem 1.25rem 0.95rem; display: flex; justify-content: space-between; }
 .dock-app { position: relative; display: block; padding-bottom: 12px; text-decoration: none; outline: none; }
@@ -290,8 +289,7 @@ html.dark .dock-app.on .tile { box-shadow: 0 12px 20px -12px rgba(0, 0, 0, 0.9);
   .cap { padding: 0.95rem 1.05rem 1.1rem; }
 }
 
-/* the rest of the bio, and the links as pills */
-.home-about { margin-top: 2.75rem; }
+/* the links, as pills */
 .social { list-style: none; padding: 0; margin: 1.4rem 0 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .social a {
   display: inline-flex;
