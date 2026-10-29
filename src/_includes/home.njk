@@ -2,17 +2,29 @@
 layout: base.njk
 bodyClass: home
 ---
-<div class="bg-stage" aria-hidden="true">
-  <canvas class="bg-far"></canvas>
-  <canvas class="bg-near"></canvas>
-  <canvas class="bg-dust"></canvas>
-</div>
-<script src="/assets/js/window-light.js" defer></script>
+{#- the bio (index.md) is split at its `<!-- apps -->` marker so the apps
+    sit on the first screen: greeting and first paragraph, the apps panel,
+    then the rest of the bio and the links, then the writing -#}
+{%- set bio = content.split("<!-- apps -->") %}
 <section class="wrap home-intro">
   <img class="avatar" src="/assets/img/avatar.jpg" alt="" width="88" height="88" loading="eager" decoding="async">
   <div class="prose home-prose">
-    {{ content | safe }}
+    {{ bio[0] | safe }}
   </div>
+</section>
+
+<section class="wrap home-apps">
+  <h2 class="section-label">apps</h2>
+  {% include "partials/apps-dock.njk" %}
+  <a class="more-link" href="/projects/">all projects →</a>
+</section>
+
+<section class="wrap home-about">
+  {%- if bio[1] %}
+  <div class="prose home-prose">
+    {{ bio[1] | safe }}
+  </div>
+  {%- endif %}
   <ul class="social" aria-label="elsewhere">
     {%- for l in site.links %}
     <li><a href="{{ l.url }}" aria-label="{{ l.name }}"{% if not l.url.startsWith("mailto:") %} target="_blank" rel="noopener noreferrer"{% endif %}>{% icon l.icon %}<span>{{ l.name | lower }}</span></a></li>

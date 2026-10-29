@@ -243,6 +243,11 @@ export default function (eleventyConfig) {
 
   eleventyConfig.addFilter("dateDisplay", (d) => (d instanceof Date ? d : new Date(d)).toISOString().slice(0, 10));
   eleventyConfig.addFilter("dateYear", (d) => (d instanceof Date ? d : new Date(d)).getUTCFullYear());
+  // "oct 09": the blog index already groups by year
+  eleventyConfig.addFilter("dateShort", (d) => {
+    const x = d instanceof Date ? d : new Date(d);
+    return ["jan","feb","mar","apr","may","jun","jul","aug","sep","oct","nov","dec"][x.getUTCMonth()] + " " + String(x.getUTCDate()).padStart(2, "0");
+  });
   eleventyConfig.addFilter("dateMonth", (d) => String((d instanceof Date ? d : new Date(d)).getUTCMonth() + 1).padStart(2, "0"));
   eleventyConfig.addFilter("head", (arr, n) => (arr || []).slice(0, n));
   eleventyConfig.addFilter("wordCount", (html) => String(html || "").replace(/<[^>]+>/g, " ").split(/\s+/).filter(Boolean).length);
@@ -255,6 +260,16 @@ export default function (eleventyConfig) {
   });
   // first sentences of the post body, trimmed to a whole word. Used as the
   // automatic blurb on /blog/ for posts without an explicit description.
+  // plain text for the blog search index: no tags, no MathML, entities decoded
+  eleventyConfig.addFilter("searchText", (html) =>
+    String(html || "")
+      .replace(/<(script|style|math)[\s\S]*?<\/\1>/g, " ")
+      .replace(/<[^>]+>/g, " ")
+      .replace(/&nbsp;/g, " ").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, "&")
+      .replace(/\s+/g, " ")
+      .trim()
+  );
+
   eleventyConfig.addFilter("excerpt", (html, n = 165) => {
     let src = String(html || "");
     const i = src.indexOf('<div class="prose">');   // on post pages, skip the header block

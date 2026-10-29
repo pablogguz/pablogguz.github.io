@@ -1,5 +1,5 @@
 /* pablogguz.github.io — small, dependency-free.
-   theme toggle · coffee modal · copy buttons · copy link · toc indicator
+   theme toggle · coffee modal · blog search · copy buttons · copy link · toc indicator
    reading progress · sidenotes · outdate alert · image zoom */
 (() => {
   "use strict";
@@ -63,6 +63,80 @@
     $("#copy-email", modal)?.addEventListener("click", (e) => {
       navigator.clipboard.writeText(e.currentTarget.dataset.email).then(() => toast("email address copied"));
     });
+  }
+
+  /* ---------------------------------------------------------- blog search */
+  // /blog/: filter the rows across the full text of every post. The index
+  // (/blog/search.json) is fetched the first time the field is used.
+  const search = $("#blog-search");
+  if (search) {
+    const input = $("input", search), hint = $(".blog-search-hint", search), empty = $("#search-empty");
+    const fold = (s) => String(s).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+    const escHTML = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    const rows = $$(".post-list--rich .post-item").map((li) => {
+      const name = $(".post-name", li), desc = $(".post-desc", li);
+      return { li, url: $(".post-link", li).getAttribute("href"), name, desc, nameText: name.textContent, descText: desc ? desc.textContent : "" };
+    });
+    const groups = $$(".year-label").map((h) => ({ h, list: h.nextElementSibling }));
+    let index = null, loading = null;
+    const load = () => loading || (loading = fetch("/blog/search.json")
+      .then((r) => r.json())
+      .then((d) => { index = new Map(d.map((p) => [p.url, { text: p.text, f: fold(p.title + " " + p.desc + " " + p.text) }])); })
+      .catch(() => { index = new Map(); }));
+    // wrap every occurrence of the terms in <mark>, matching without accents or case
+    const mark = (text, terms) => {
+      const f = fold(text), ranges = [];
+      terms.forEach((t) => { for (let k = f.indexOf(t); k >= 0; k = f.indexOf(t, k + t.length)) ranges.push([k, k + t.length]); });
+      if (!ranges.length) return escHTML(text);
+      ranges.sort((a, b) => a[0] - b[0]);
+      let out = "", at = 0;
+      for (const [s, e] of ranges) { if (s < at) continue; out += escHTML(text.slice(at, s)) + "<mark>" + escHTML(text.slice(s, e)) + "</mark>"; at = e; }
+      return out + escHTML(text.slice(at));
+    };
+    // a few words either side of the first match in the body
+    const snippet = (text, terms) => {
+      const f = fold(text), k = Math.min(...terms.map((t) => f.indexOf(t)).filter((i) => i >= 0));
+      let s = Math.max(0, k - 70), e = Math.min(text.length, k + 150);
+      if (s > 0) s = text.indexOf(" ", s) + 1;
+      if (e < text.length) e = text.lastIndexOf(" ", e);
+      return (s > 0 ? "… " : "") + text.slice(s, e) + (e < text.length ? " …" : "");
+    };
+    const run = () => {
+      const raw = input.value.trim(), terms = fold(raw).split(/\s+/).filter(Boolean);
+      let shown = 0;
+      rows.forEach((r) => {
+        if (!terms.length) { r.li.hidden = false; r.name.textContent = r.nameText; if (r.desc) r.desc.textContent = r.descText; return; }
+        const p = index && index.get(r.url);
+        const hay = p ? p.f : fold(r.nameText + " " + r.descText);
+        const hit = terms.every((t) => hay.includes(t));
+        r.li.hidden = !hit;
+        if (!hit) { r.name.textContent = r.nameText; if (r.desc) r.desc.textContent = r.descText; return; }
+        shown++;
+        r.name.innerHTML = mark(r.nameText, terms);
+        if (!r.desc) return;
+        const inBlurb = terms.some((t) => fold(r.nameText + " " + r.descText).includes(t));
+        r.desc.innerHTML = mark(inBlurb || !p ? r.descText : snippet(p.text, terms), terms);
+      });
+      groups.forEach((g) => { g.h.hidden = g.list.hidden = !$$(".post-item", g.list).some((li) => !li.hidden); });
+      empty.hidden = !terms.length || shown > 0;
+      if (terms.length && !shown) empty.textContent = `nothing matches “${raw}”.`;
+      hint.innerHTML = terms.length ? `${shown} of ${rows.length}` : "<kbd>/</kbd>";
+      const u = new URL(location.href);
+      if (raw) u.searchParams.set("q", raw); else u.searchParams.delete("q");
+      history.replaceState(null, "", u);
+    };
+    search.hidden = false;
+    input.addEventListener("focus", load, { once: true });
+    input.addEventListener("input", () => { run(); if (!index) load().then(run); });
+    input.addEventListener("keydown", (e) => { if (e.key === "Escape") { input.value = ""; run(); input.blur(); } });
+    addEventListener("keydown", (e) => {
+      if (e.key !== "/" || e.metaKey || e.ctrlKey || e.altKey) return;
+      if (/^(input|textarea|select)$/i.test(document.activeElement?.tagName || "") || document.activeElement?.isContentEditable) return;
+      e.preventDefault(); input.focus();
+    });
+    // ?q= opens the page with a search already run (and keeps it on reload)
+    const q0 = new URLSearchParams(location.search).get("q");
+    if (q0) { input.value = q0; load().then(run); }
   }
 
   /* ---------------------------------------------------------- code copy */

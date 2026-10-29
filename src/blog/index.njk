@@ -8,21 +8,22 @@ bodyClass: blog
 {%- set essays = [] -%}
 {%- set notes = [] -%}
 {%- for p in collections.posts %}{% if p.data.kind == "note" %}{% set notes = (notes.push(p), notes) %}{% else %}{% set essays = (essays.push(p), essays) %}{% endif %}{% endfor -%}
-{%- set lead = essays[0] -%}
 
-{#- the post's opening illustration, cropped into a frame -#}
-{%- macro media(post, cls) %}
+{#- the post's opening illustration, cropped onto a tile -#}
+{%- macro media(post) %}
 {%- set src = post.templateContent | heroImage(post.data.cover_image, site.url) %}
-{%- if src %}<span class="{{ cls }}"><img src="{{ src }}" alt="" loading="lazy" decoding="async"></span>{% endif %}
+{%- if src %}<span class="post-thumb"><img src="{{ src }}" alt="" loading="lazy" decoding="async"></span>{% endif %}
 {%- endmacro %}
 
-{%- macro row(post, showTime, withThumb) %}
+{%- macro row(post, withThumb, showTime) %}
 <li class="post-item{% if post.data.featured %} featured{% endif %}">
   <a class="post-link" href="{{ post.url }}">
-    <span class="post-meta">{{ post.date | dateDisplay }}{% if showTime %} · {{ post.templateContent | readingTime }} min read{% endif %}</span>
-    <span class="post-title"><span class="post-name">{{ post.data.title }}</span></span>
-    <span class="post-desc">{{ post.data.description or (post.templateContent | excerpt) }}</span>
-    {%- if withThumb %}{{ media(post, "post-thumb") }}{% endif %}
+    {%- if withThumb %}{{ media(post) }}{% endif %}
+    <span class="post-text">
+      <span class="post-title"><span class="post-name">{{ post.data.title }}</span></span>
+      <span class="post-desc">{{ post.data.description or (post.templateContent | excerpt(220)) }}</span>
+    </span>
+    <span class="post-meta"><time datetime="{{ post.date | dateDisplay }}">{{ post.date | dateShort }}</time>{% if showTime %}<span>{{ post.templateContent | readingTime }} min</span>{% endif %}</span>
   </a>
 </li>
 {%- endmacro %}
@@ -31,27 +32,24 @@ bodyClass: blog
   <h1 class="page-title">writing</h1>
   <p class="page-lede">essays on economics, data, and public policy.</p>
 
-  {%- if lead %}
-  <article class="lead-post">
-    <a class="lead-link" href="{{ lead.url }}">
-      {{ media(lead, "lead-media") }}
-      <span class="lead-kicker"><span class="lead-flag">latest</span> · {{ lead.date | dateDisplay }} · {{ lead.templateContent | readingTime }} min read</span>
-      <span class="lead-title"><span class="post-name">{{ lead.data.title }}</span></span>
-      <span class="lead-desc">{{ lead.data.description or (lead.templateContent | excerpt(240)) }}</span>
-      <span class="lead-more">read the essay <span class="arrow" aria-hidden="true">→</span></span>
-    </a>
-  </article>
-  {%- endif %}
+  {#- search: the full text of every post, fetched from /blog/search.json on first use
+      (site.js). Hidden until the script runs, so it never shows without it. -#}
+  <div class="blog-search" id="blog-search" role="search" hidden>
+    <span class="blog-search-icon" aria-hidden="true">{% icon "search" %}</span>
+    <input type="search" id="blog-search-input" placeholder="search the writing" autocomplete="off" spellcheck="false" aria-label="search the writing">
+    <span class="blog-search-hint" aria-live="polite"><kbd>/</kbd></span>
+  </div>
+  <p class="search-empty" id="search-empty" hidden></p>
 
-  {%- for group in essays.slice(1) | byYear %}
-  <h2 class="section-label">{{ group.year }}</h2>
+  {%- for group in essays | byYear %}
+  <h2 class="year-label">{{ group.year }}</h2>
   <ol class="post-list post-list--rich">
     {%- for post in group.posts %}{{ row(post, true, true) }}{% endfor %}
   </ol>
   {%- endfor %}
 
   {%- if notes.length %}
-  <h2 class="section-label">notes</h2>
+  <h2 class="year-label">notes</h2>
   <ol class="post-list post-list--rich">
     {%- for post in notes %}{{ row(post, false, false) }}{% endfor %}
   </ol>

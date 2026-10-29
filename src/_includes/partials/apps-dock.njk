@@ -1,0 +1,59 @@
+{#- dock: the nine icons in one row; pointing at one (or focusing it) brings
+    its name, description and press into the caption below. With a mouse the
+    icon opens the app; on a touch screen the first tap shows the caption and
+    the second opens it. ← → move along the dock. -#}
+<div class="dock">
+  <ul class="dock-row">
+    {%- for p in projects.active %}
+    {%- set url = p.shiny_url or p.r_url or p.github_url or p.pdf_url %}
+    <li><a class="dock-app{% if loop.first %} on{% endif %}" href="{{ url }}" target="_blank" rel="noopener noreferrer" data-i="{{ loop.index0 }}" aria-label="{{ p.name }}">{% include "partials/app-tile.njk" %}</a></li>
+    {%- endfor %}
+  </ul>
+  <div class="dock-cap" aria-live="polite">
+    {%- for p in projects.active %}
+    {%- set url = p.shiny_url or p.r_url or p.github_url or p.pdf_url %}
+    <div class="cap{% if loop.first %} on{% endif %}" data-i="{{ loop.index0 }}">
+      <h3 class="cap-name"><a href="{{ url }}" target="_blank" rel="noopener noreferrer" tabindex="-1"><span class="u">{{ p.name }}</span><span class="arrow-nw" aria-hidden="true">↗</span></a></h3>
+      <p class="cap-desc">{{ p.desc }}</p>
+      {%- if p.links and p.links.length %}
+      <p class="press">in the press {% for l in p.links %}<a href="{{ l.url }}" target="_blank" rel="noopener noreferrer" tabindex="-1">{{ l.name }}</a>{% if not loop.last %}<span class="sep">·</span>{% endif %}{% endfor %}</p>
+      {%- endif %}
+    </div>
+    {%- endfor %}
+  </div>
+</div>
+<script>
+  (function () {
+    var dock = document.currentScript.previousElementSibling;
+    var apps = [].slice.call(dock.querySelectorAll(".dock-app"));
+    var caps = [].slice.call(dock.querySelectorAll(".cap"));
+    var cur = 0, pressed = null; // the pointer type of a press in progress
+    function show(i) {
+      if (i === cur) return;
+      apps[cur].classList.remove("on"); caps[cur].classList.remove("on");
+      caps[cur].querySelectorAll("a").forEach(function (a) { a.tabIndex = -1; });
+      cur = i;
+      apps[cur].classList.add("on"); caps[cur].classList.add("on");
+      caps[cur].querySelectorAll("a").forEach(function (a) { a.tabIndex = 0; });
+    }
+    caps[0].querySelectorAll("a").forEach(function (a) { a.tabIndex = 0; });
+    /* a press that never became a click (a drag, a cancelled tap) must not
+       make the keyboard behave like a finger */
+    addEventListener("keydown", function () { pressed = null; }, true);
+    addEventListener("pointercancel", function () { pressed = null; });
+    apps.forEach(function (a, i) {
+      a.addEventListener("pointerenter", function (e) { if (e.pointerType === "mouse") show(i); });
+      /* a tap focuses before it clicks, so focus only selects from the keyboard */
+      a.addEventListener("focus", function () { if (!pressed) show(i); });
+      a.addEventListener("pointerdown", function (e) { pressed = e.pointerType; });
+      a.addEventListener("click", function (e) {
+        var t = pressed; pressed = null;
+        if (t && t !== "mouse" && i !== cur) { e.preventDefault(); show(i); }
+      });
+      a.addEventListener("keydown", function (e) {
+        var d = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
+        if (d) { e.preventDefault(); apps[(i + d + apps.length) % apps.length].focus(); }
+      });
+    });
+  })();
+</script>

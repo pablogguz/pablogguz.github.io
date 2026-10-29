@@ -1,22 +1,27 @@
 {#- one row of the index on /projects/ and /policy/.
     kind "policy" opens the report first and labels its links read / app;
     anything else opens the app first. A "Title (Source)" name is split so
-    the source sits above the title as a kicker. An icon_dark, if given,
-    replaces the icon while the dark theme is on. -#}
+    the source sits above the title as a kicker. An entry with an icon gets
+    a tile beside it (an icon_dark, if given, replaces the icon while the
+    dark theme is on); one without, like the policy reports, does not. -#}
 {%- macro entry(p, n, kind) %}
 {%- set policy = kind == "policy" %}
 {%- set primary = (p.pdf_url or p.shiny_url) if policy else (p.shiny_url or p.r_url or p.github_url or p.pdf_url) %}
 {%- set parts = p.name | splitSource %}
-<li class="entry">
+<li class="entry{% if not p.icon %} entry--plain{% endif %}">
   <span class="entry-num" aria-hidden="true">{% if n < 10 %}0{% endif %}{{ n }}</span>
+  {%- if p.icon %}
+  <span class="tile entry-tile" aria-hidden="true">
+    <img{% if p.icon_dark %} class="only-light"{% endif %} src="{{ p.icon }}" alt="" width="28" height="28" loading="lazy">
+    {%- if p.icon_dark %}<img class="only-dark" src="{{ p.icon_dark }}" alt="" width="28" height="28" loading="lazy">{% endif %}
+  </span>
+  {%- endif %}
   <div class="entry-body">
     {%- if parts[1] %}
     <p class="entry-kicker">{{ parts[1] }}</p>
     {%- endif %}
     <h2 class="entry-title">
       {%- if primary %}<a class="entry-link" href="{{ primary }}" target="_blank" rel="noopener noreferrer">{% endif %}
-      {%- if p.icon %}<img class="entry-icon{% if p.icon_dark %} only-light{% endif %}" src="{{ p.icon }}" alt="" width="18" height="18" loading="lazy">{% endif %}
-      {%- if p.icon_dark %}<img class="entry-icon only-dark" src="{{ p.icon_dark }}" alt="" width="18" height="18" loading="lazy">{% endif %}
       <span class="entry-name">{{ parts[0] }}</span>
       {%- if primary %}<span class="entry-arrow" aria-hidden="true">↗</span></a>{% endif %}
     </h2>

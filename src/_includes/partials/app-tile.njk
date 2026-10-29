@@ -1,0 +1,6 @@
+{#- an app's icon on its tile. An icon_dark, if given, replaces the icon while
+    the dark theme is on. Expects `p` (one [[active]] entry). -#}
+<span class="tile" aria-hidden="true">
+  {%- if p.icon %}<img{% if p.icon_dark %} class="only-light"{% endif %} src="{{ p.icon }}" alt="" width="32" height="32" loading="lazy">{% endif %}
+  {%- if p.icon_dark %}<img class="only-dark" src="{{ p.icon_dark }}" alt="" width="32" height="32" loading="lazy">{% endif %}
+</span>

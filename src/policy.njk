@@ -8,7 +8,7 @@ bodyClass: projects
 {%- from "partials/entry.njk" import entry %}
 <section class="wrap">
   <h1 class="page-title">policy writing</h1>
-  <p class="page-lede">reports and briefs written for policy audiences, with the press coverage each one received.</p>
+  <p class="page-lede">reports and briefs written for policy audiences.</p>
 
   <ol class="index">
     {%- for p in policy.project %}{{ entry(p, loop.index, "policy") }}{% endfor %}
