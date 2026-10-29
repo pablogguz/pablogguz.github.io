@@ -828,31 +828,13 @@ html.dark .callout-alert { --callout: #ff8389; }
 /* 9 · post extras ----------------------------------------------------- */
 .post-extras { margin-top: 2.75rem; display: flex; flex-direction: column; gap: 1.75rem; }
 
-.author-card {
-  display: grid;
-  grid-template-columns: 56px minmax(0, 1fr);
-  gap: 1.1rem;
-  align-items: start;
-  padding: 1.4rem 0;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-}
-.author-avatar { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 1px var(--line); }
-.author-body p { margin: 0; }
-.author-name { margin-top: 0.15rem !important; font-size: 1.02rem; font-weight: 560; line-height: 1.3; letter-spacing: -0.012em; }
-.author-name a { color: var(--ink); text-decoration: none; }
-.author-name a:hover { color: var(--accent); }
-.author-bio { margin-top: 0.25rem !important; color: var(--ink-2); font-size: 0.92rem; line-height: 1.55; }
-.author-links { display: flex; flex-wrap: wrap; gap: 0.35rem 1.1rem; margin-top: 0.65rem !important; font-family: var(--mono); font-size: 0.74rem; }
-.author-links a, .share-row a, .share-row .text-btn {
+.share-row a, .share-row .text-btn {
   color: var(--ink-2);
   text-decoration: none;
   background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
   transition: color var(--fast) var(--ease), background-size 320ms var(--ease-out);
 }
-.author-links a:hover, .share-row a:hover, .share-row .text-btn:hover { color: var(--accent); background-size: 100% 1px; }
-.author-links .arrow { display: inline-block; transition: transform 240ms var(--ease); }
-.author-links a:hover .arrow { transform: translateX(3px); }
+.share-row a:hover, .share-row .text-btn:hover { color: var(--accent); background-size: 100% 1px; }
 .extras-label { color: var(--ink-3); }
 .share-row { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
 .share-row a, .text-btn { color: var(--ink-2); text-decoration: none; }

@@ -1,19 +1,6 @@
 {%- set year = page.date | dateYear -%}
 {%- set url = page.url | absoluteUrl(site.url) -%}
 <footer class="post-extras">
-  <section class="author-card" aria-label="about the author">
-    <img class="author-avatar" src="/assets/img/avatar.jpg" alt="" width="56" height="56" loading="lazy" decoding="async">
-    <div class="author-body">
-      <p class="extras-label">written by</p>
-      <p class="author-name"><a href="/">{{ site.handle }}</a></p>
-      <p class="author-bio">{{ site.bio }}</p>
-      <p class="author-links">
-        {%- for l in site.links %}{% if not l.url.startsWith("mailto:") %}<a href="{{ l.url }}" target="_blank" rel="noopener noreferrer">{{ l.name | lower }}</a>{% endif %}{% endfor %}
-        <a href="/blog/">more writing <span class="arrow" aria-hidden="true">→</span></a>
-      </p>
-    </div>
-  </section>
-
   <div class="share-row">
     <span class="extras-label">share</span>
     <button type="button" class="text-btn" id="copy-link" data-link="{{ url }}">copy link</button>

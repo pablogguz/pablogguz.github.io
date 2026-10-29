@@ -22,6 +22,56 @@ const icon = (name) => {
   try { return readFileSync(`src/assets/icons/${name}.svg`, "utf8").trim(); } catch { return ""; }
 };
 
+/* reading time, in minutes, from a post's rendered html. Running prose is
+   read at the measured adult rate for non-fiction: 238 words a minute in
+   English (Brysbaert 2019, a meta-analysis of 190 studies) and 218 in Spanish
+   (the IReST norms); the language is told from the commonest short words.
+   Everything that is not prose is timed on its own terms: a displayed
+   equation 10 s and an inline formula 2 s; code at 100 words a minute; tables
+   at half the prose rate, since they are scanned rather than read; and
+   pictures 12 s for the first, a second less for each one after, never under
+   3 s. The total is rounded to the nearest minute (at least 1). A post can
+   override it with `reading_time` in its front matter. */
+const WPM = { en: 238, es: 218 };
+const STOP = {
+  en: new Set("the of and to in is that it for with as on are this be by was were which from have has an at not".split(" ")),
+  es: new Set("el la los las de del que y en un una por con para es se no lo al su sus como más pero ya muy".split(" ")),
+};
+const plainWords = (html) => String(html || "")
+  .replace(/<[^>]+>/g, " ")
+  .replace(/&[a-z#0-9]+;/gi, " ")
+  .split(/\s+/)
+  .filter((w) => /[\p{L}\p{N}]/u.test(w));
+// cut every <span …> element that opens with `opener`, nested spans and all
+const cutSpans = (html, opener) => {
+  let out = "", at = 0, count = 0;
+  for (let i = html.indexOf(opener); i >= 0; i = html.indexOf(opener, at)) {
+    const tag = /<span\b|<\/span>/g; tag.lastIndex = i;
+    let depth = 0, m, end = html.length;
+    while ((m = tag.exec(html))) {
+      depth += m[0] === "</span>" ? -1 : 1;
+      if (depth === 0) { end = tag.lastIndex; break; }
+    }
+    out += html.slice(at, i) + " "; at = end; count++;
+  }
+  return [out + html.slice(at), count];
+};
+const readingTime = (html) => {
+  let s = String(html || "");
+  let display, inline, code = 0, table = 0;
+  [s, display] = cutSpans(s, '<span class="katex-display">');
+  [s, inline] = cutSpans(s, '<span class="katex">');
+  s = s.replace(/<pre[\s\S]*?<\/pre>/g, (m) => { code += plainWords(m).length; return " "; });
+  s = s.replace(/<table[\s\S]*?<\/table>/g, (m) => { table += plainWords(m).length; return " "; });
+  const pictures = (s.match(/<img\b/g) || []).length;
+  const words = plainWords(s);
+  const hits = (lang) => words.reduce((n, w) => n + STOP[lang].has(w.toLowerCase()), 0);
+  const wpm = hits("es") > hits("en") ? WPM.es : WPM.en;
+  let seconds = (words.length / wpm) * 60 + (table / (wpm / 2)) * 60 + (code / 100) * 60 + display * 10 + inline * 2;
+  for (let k = 0; k < pictures; k++) seconds += Math.max(3, 12 - k);
+  return Math.max(1, Math.round(seconds / 60));
+};
+
 const esc = (s) => String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
 /** `key="value" key2="v2"` → object; a bare string becomes { header } */
@@ -251,15 +301,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("dateMonth", (d) => String((d instanceof Date ? d : new Date(d)).getUTCMonth() + 1).padStart(2, "0"));
   eleventyConfig.addFilter("head", (arr, n) => (arr || []).slice(0, n));
   eleventyConfig.addFilter("wordCount", (html) => String(html || "").replace(/<[^>]+>/g, " ").split(/\s+/).filter(Boolean).length);
-  eleventyConfig.addFilter("readingTime", (html) => {
-    const text = String(html || "")
-      .replace(/<span class="katex-mathml">[\s\S]*?<\/span><\/span>/g, " ")  // katex emits mathml + html; count once
-      .replace(/<[^>]+>/g, " ");
-    const words = text.split(/\s+/).filter(Boolean).length;
-    return Math.max(1, Math.ceil(words / 200));
-  });
-  // first sentences of the post body, trimmed to a whole word. Used as the
-  // automatic blurb on /blog/ for posts without an explicit description.
+  eleventyConfig.addFilter("readingTime", readingTime);
   // plain text for the blog search index: no tags, no MathML, entities decoded
   eleventyConfig.addFilter("searchText", (html) =>
     String(html || "")
@@ -270,6 +312,8 @@ export default function (eleventyConfig) {
       .trim()
   );
 
+  // first sentences of the post body, trimmed to a whole word. Used as the
+  // automatic blurb on /blog/ for posts without an explicit description.
   eleventyConfig.addFilter("excerpt", (html, n = 165) => {
     let src = String(html || "");
     const i = src.indexOf('<div class="prose">');   // on post pages, skip the header block

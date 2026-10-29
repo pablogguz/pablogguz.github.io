@@ -29,14 +29,14 @@ bodyClass: blog
 {%- endmacro %}
 
 <section class="wrap">
-  <h1 class="page-title">writing</h1>
+  <h1 class="page-title">blog</h1>
   <p class="page-lede">essays on economics, data, and public policy.</p>
 
   {#- search: the full text of every post, fetched from /blog/search.json on first use
       (site.js). Hidden until the script runs, so it never shows without it. -#}
   <div class="blog-search" id="blog-search" role="search" hidden>
     <span class="blog-search-icon" aria-hidden="true">{% icon "search" %}</span>
-    <input type="search" id="blog-search-input" placeholder="search the writing" autocomplete="off" spellcheck="false" aria-label="search the writing">
+    <input type="search" id="blog-search-input" placeholder="search the blog" autocomplete="off" spellcheck="false" aria-label="search the blog">
     <span class="blog-search-hint" aria-live="polite"><kbd>/</kbd></span>
   </div>
   <p class="search-empty" id="search-empty" hidden></p>
